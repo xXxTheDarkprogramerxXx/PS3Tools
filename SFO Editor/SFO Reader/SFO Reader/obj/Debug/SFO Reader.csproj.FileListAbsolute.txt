@@ -1,0 +1,9 @@
+c:\users\3de echelon\documents\visual studio 2013\Projects\SFO Reader\SFO Reader\bin\Debug\SFO Reader.exe.config
+c:\users\3de echelon\documents\visual studio 2013\Projects\SFO Reader\SFO Reader\bin\Debug\SFO Reader.exe
+c:\users\3de echelon\documents\visual studio 2013\Projects\SFO Reader\SFO Reader\bin\Debug\SFO Reader.pdb
+c:\users\3de echelon\documents\visual studio 2013\Projects\SFO Reader\SFO Reader\obj\Debug\SFO Reader.csprojResolveAssemblyReference.cache
+c:\users\3de echelon\documents\visual studio 2013\Projects\SFO Reader\SFO Reader\obj\Debug\SFO_Reader.Form1.resources
+c:\users\3de echelon\documents\visual studio 2013\Projects\SFO Reader\SFO Reader\obj\Debug\SFO_Reader.Properties.Resources.resources
+c:\users\3de echelon\documents\visual studio 2013\Projects\SFO Reader\SFO Reader\obj\Debug\SFO Reader.csproj.GenerateResource.Cache
+c:\users\3de echelon\documents\visual studio 2013\Projects\SFO Reader\SFO Reader\obj\Debug\SFO Reader.exe
+c:\users\3de echelon\documents\visual studio 2013\Projects\SFO Reader\SFO Reader\obj\Debug\SFO Reader.pdb
