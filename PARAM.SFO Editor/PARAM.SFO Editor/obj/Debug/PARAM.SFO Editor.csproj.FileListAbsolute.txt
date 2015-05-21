@@ -1,0 +1,9 @@
+c:\users\3de echelon\documents\visual studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.exe.config
+C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.exe
+C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.pdb
+C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csprojResolveAssemblyReference.cache
+C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.Form1.resources
+C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.Properties.Resources.resources
+C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csproj.GenerateResource.Cache
+C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.exe
+C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.pdb
