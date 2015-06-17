@@ -1,0 +1,9 @@
+c:\users\3de echelon\documents\visual studio 2012\Projects\PS3 ISO Tools GUI\PS3 ISO Tools GUI\bin\Debug\PS3 ISO Tools GUI.exe.config
+C:\Users\3de Echelon\Documents\Visual Studio 2012\Projects\PS3 ISO Tools GUI\PS3 ISO Tools GUI\bin\Debug\PS3 ISO Tools GUI.exe
+C:\Users\3de Echelon\Documents\Visual Studio 2012\Projects\PS3 ISO Tools GUI\PS3 ISO Tools GUI\bin\Debug\PS3 ISO Tools GUI.pdb
+C:\Users\3de Echelon\Documents\Visual Studio 2012\Projects\PS3 ISO Tools GUI\PS3 ISO Tools GUI\obj\Debug\PS3 ISO Tools GUI.csprojResolveAssemblyReference.cache
+C:\Users\3de Echelon\Documents\Visual Studio 2012\Projects\PS3 ISO Tools GUI\PS3 ISO Tools GUI\obj\Debug\PS3_ISO_Tools_GUI.ps3_ISO_Tool_GUI.resources
+C:\Users\3de Echelon\Documents\Visual Studio 2012\Projects\PS3 ISO Tools GUI\PS3 ISO Tools GUI\obj\Debug\PS3_ISO_Tools_GUI.Properties.Resources.resources
+C:\Users\3de Echelon\Documents\Visual Studio 2012\Projects\PS3 ISO Tools GUI\PS3 ISO Tools GUI\obj\Debug\PS3 ISO Tools GUI.csproj.GenerateResource.Cache
+C:\Users\3de Echelon\Documents\Visual Studio 2012\Projects\PS3 ISO Tools GUI\PS3 ISO Tools GUI\obj\Debug\PS3 ISO Tools GUI.exe
+C:\Users\3de Echelon\Documents\Visual Studio 2012\Projects\PS3 ISO Tools GUI\PS3 ISO Tools GUI\obj\Debug\PS3 ISO Tools GUI.pdb
