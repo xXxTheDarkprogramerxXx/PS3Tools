@@ -20,12 +20,12 @@ namespace PARAM.SFO_Editor
        
         #region << Error Code >>
 
-        //----The Point of this is to simulate ps3 datacorrupt for whatever reason
+        //----The Point of this is to simulate ps3 data corrupt for whatever reason
         int errorcount = 0;
         bool errors = false;
         public void errormessage(int errorcount)
         { 
-            string message = "The Paramaters of the System File Object has errors they have been marked\n\n\r\t Total Errors "+errorcount+"\n\n\r\t";
+            string message = "The Parameters of the System File Object has errors they have been marked\n\n\r\t Total Errors "+errorcount+"\n\n\r\t";
             MessageBox.Show(message, "Errors Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
@@ -193,6 +193,52 @@ namespace PARAM.SFO_Editor
 
         #endregion << key_table >>
 
+        #region <<< Title ID >>>
+
+        public string getTitleID(FileStream path)
+        {
+            int startHeader = 0xA30;
+            int endheader = 0xA40;
+
+            BinaryReader breader = new BinaryReader(path);
+            breader.BaseStream.Position = startHeader;
+            byte[] itemSection = breader.ReadBytes(endheader);
+            string key_1 = ByteArrayToAscii(itemSection, 0,20,false );
+            return key_1;
+        }
+
+
+
+
+
+        #endregion <<< Title ID >>>
+
+        #region <<< Table Content >>>
+
+        public string getAccountID(FileStream path)
+        {
+            //ACCOUNT_ID[edit]
+            //Info
+            //param_fmt: utf8 - S
+            //param_max_len: 0x10(16 bytes)           
+            //param_len: 0x10(16 bytes)
+            //Tip
+            //Used by: Save Data
+            //PSN User Account stored as utf8 - S.The string is compared with the user info in XRegistry.sys.The comparison can only return two values, right, or wrong, if the comparison returns right the SaveData is valid.
+            //Filled with zeros when the user has not been registered in PSN.
+
+            int startHeader = 0x588;
+            int endheader = 0x597;
+
+            BinaryReader breader = new BinaryReader(path);
+            breader.BaseStream.Position = startHeader;
+            byte[] itemSection = breader.ReadBytes(endheader);
+            string key_1 = ByteArrayToAscii(itemSection, 0, 16,false);
+            return key_1;
+        }
+
+        #endregion <<< Table Content >>>
+
         public static string ByteArrayToHexString(byte[] ByteArray)
         {
             string HexString = "";
@@ -237,6 +283,7 @@ namespace PARAM.SFO_Editor
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //as a test i used The Evil Within save game
             OpenFileDialog thedialog = new OpenFileDialog();
             thedialog.Title = "PARAM.SFO";
             thedialog.Filter = ".SFO|PARAM.SFO";
@@ -264,6 +311,12 @@ namespace PARAM.SFO_Editor
                         //key_table
                         lblkey_1.Text = getkey_1(str);
 
+                        //TitleID
+                        textBox1.Text = getTitleID(str);
+
+                        //Account ID
+                        getAccountID(str);
+
                     }
                     else
                     {
@@ -284,8 +337,6 @@ namespace PARAM.SFO_Editor
             {
                 gbAdvanced.Visible = false;
             }
-        }
-
-       
+        }   
     }
 }
