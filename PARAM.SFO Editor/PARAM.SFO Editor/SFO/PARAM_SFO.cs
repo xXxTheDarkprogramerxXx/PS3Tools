@@ -59,6 +59,11 @@ namespace PeXploit
             UINT32 = 0x0404
         }
 
+        public PARAM_SFO()
+        {
+            
+        }
+
         public PARAM_SFO(string filepath)
         {
             Init(new FileStream(filepath, FileMode.Open, FileAccess.Read, FileShare.Read));
@@ -86,6 +91,21 @@ namespace PeXploit
                     if (t.Name == "CATEGORY")
                         return ((DataTypes) BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0));
                 return DataTypes.None;
+            }
+        }
+
+        public string Attribute
+        {
+            get
+            {
+                if (Tables == null)
+                    return "";
+                foreach(Table t in Tables)
+                {
+                    if (t.Name == "ATTRIBUTE")
+                        return t.Value;
+                }
+                return "";
             }
         }
 

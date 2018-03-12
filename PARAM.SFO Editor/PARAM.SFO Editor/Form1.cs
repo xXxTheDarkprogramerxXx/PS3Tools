@@ -31,6 +31,8 @@ namespace PARAM.SFO_Editor
 
         #endregion << Error Code >>
 
+        PeXploit.PARAM_SFO psfo;
+
         #region << Header >>
         //Magic
         public bool checkMagic (FileStream path)
@@ -207,10 +209,6 @@ namespace PARAM.SFO_Editor
             return key_1;
         }
 
-
-
-
-
         #endregion <<< Title ID >>>
 
         #region <<< Table Content >>>
@@ -236,6 +234,61 @@ namespace PARAM.SFO_Editor
             string key_1 = ByteArrayToAscii(itemSection, 0, 16,false);
             return key_1;
         }
+
+        public string GetAttribute(FileStream path)
+        {
+            //Info
+            //param_fmt: int32
+            //param_max_len: 0x4(4 bytes)
+            //param_len:      0x4(4 bytes)
+            //Tip
+            //Used by: HDD Game, PS1 Game, Minis Game, PSP Re-masters Game, PCEngine game, NEOGEO game, Game Data, Save Data
+            //Contains a maximum of 32 flags that can be turned on/ off to activate/ deactivate special boot modes and features of the content.
+
+            //Values are stored in "Little Endian" format inside the SFO, to represent the whole tables in a "human readable" format has been needed to convert them to "Big Endian" and then to "Binary".
+            int startHeader = 0x153;
+            int endheader = 0x157;
+
+            BinaryReader breader = new BinaryReader(path);
+            breader.BaseStream.Position = startHeader;
+            byte[] itemSection = breader.ReadBytes(endheader);
+
+            //Always change 3rd parameter to apply the size of the field to extract should be param_max_len
+            string key_1 = ByteArrayToAscii(itemSection, 0, 4, false);
+            return key_1;
+
+        }
+        #region <<< GAME DATA >>>
+        public string GetGameData1(FileStream path)
+        {
+            int startHeader = 0x158;
+            int endheader = 0x168;
+
+            BinaryReader breader = new BinaryReader(path);
+            breader.BaseStream.Position = startHeader;
+            byte[] itemSection = breader.ReadBytes(endheader);
+
+            //Always change 3rd parameter to apply the size of the field to extract should be param_max_len
+            string key_1 = ByteArrayToAscii(itemSection, 0, 17, false);
+            return key_1;
+        }
+
+        public string GetGameData2(FileStream path)
+        {
+            int startHeader = 0x169;
+            int endheader = 0x15C;
+
+            BinaryReader breader = new BinaryReader(path);
+            breader.BaseStream.Position = startHeader;
+            byte[] itemSection = breader.ReadBytes(endheader);
+
+            //Always change 3rd parameter to apply the size of the field to extract should be param_max_len
+            string key_1 = ByteArrayToAscii(itemSection, 0, 18, false);
+            return key_1;
+        }
+
+        #endregion <<< GAME DATA >>>
+
 
         #endregion <<< Table Content >>>
 
@@ -292,8 +345,11 @@ namespace PARAM.SFO_Editor
             {
                 using (FileStream str = File.OpenRead(thedialog.FileName.ToString()))
                 {
+
+                     psfo = new PeXploit.PARAM_SFO(thedialog.FileName.ToString());
+
                     //Check MAGIC
-                    if(checkMagic(str) != false)
+                     if (psfo != null)
                     { 
                          //Version 
                         cbVersion.Items.Add(getVersion(str).ToString());
@@ -312,10 +368,37 @@ namespace PARAM.SFO_Editor
                         lblkey_1.Text = getkey_1(str);
 
                         //TitleID
-                        textBox1.Text = getTitleID(str);
+                        textBox1.Text = psfo.TitleID.ToString();
 
                         //Account ID
                         getAccountID(str);
+                       
+
+                        //GetAttribute
+                        string attribute =  psfo.Attribute;
+
+                        #region <<< Attribute String >>>
+
+                        if(attribute == "SD")
+                        {
+                            textBox2.Text = "Save Data";
+                        }
+                        else if(attribute == "GD")
+                        {
+                            textBox2.Text = "Game Data";
+                        }
+                        else
+                        {
+                            textBox2.Text = attribute;
+                        }
+
+                        #endregion <<< Attribute String >>>
+
+                        //Get Game Data 1 -Progress Level Ext
+
+                        textBox3.Text = GetGameData1(str);
+
+                        textBox4.Text = GetGameData2(str);
 
                     }
                     else
@@ -337,6 +420,12 @@ namespace PARAM.SFO_Editor
             {
                 gbAdvanced.Visible = false;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            RawView raw = new RawView(psfo);
+            raw.ShowDialog();
         }   
     }
 }
