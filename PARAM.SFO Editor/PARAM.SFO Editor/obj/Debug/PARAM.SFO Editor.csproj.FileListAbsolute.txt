@@ -7,3 +7,22 @@ C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARA
 C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csproj.GenerateResource.Cache
 C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.exe
 C:\Users\3de Echelon\Documents\Visual Studio 2013\Projects\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.pdb
+C:\Users\3de Echelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.exe.config
+C:\Users\3de Echelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.exe
+C:\Users\3de Echelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.pdb
+C:\Users\3de Echelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.exe
+C:\Users\3de Echelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.pdb
+C:\Users\3de Echelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csprojResolveAssemblyReference.cache
+C:\Users\3de Echelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.Form1.resources
+C:\Users\3de Echelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.Properties.Resources.resources
+C:\Users\3de Echelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csproj.GenerateResource.Cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.exe.config
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csprojResolveAssemblyReference.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.Form1.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.Properties.Resources.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csproj.GenerateResource.Cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.RawView.resources

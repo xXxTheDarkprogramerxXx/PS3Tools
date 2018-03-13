@@ -1,0 +1,13 @@
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\bin\Debug\PS4 Pup Unpacker.exe.config
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\bin\Debug\PS4 Pup Unpacker.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\bin\Debug\PS4 Pup Unpacker.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\bin\Debug\MetroFramework.Design.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\bin\Debug\MetroFramework.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\obj\Debug\PS4 Pup Unpacker.csprojResolveAssemblyReference.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\obj\Debug\PS4_Pup_Unpacker.Properties.Resources.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\obj\Debug\PS4 Pup Unpacker.csproj.GenerateResource.Cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\obj\Debug\PS4 Pup Unpacker.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\obj\Debug\PS4 Pup Unpacker.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 Pup Unpacker\PS4 Pup Unpacker\obj\Debug\PS4_Pup_Unpacker.Form1.resources

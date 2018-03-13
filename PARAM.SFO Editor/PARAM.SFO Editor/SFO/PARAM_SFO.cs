@@ -29,7 +29,7 @@ namespace PeXploit
     {
         public enum DataTypes : uint
         {
-            PSNGame =18248,
+            PSN_Game =18248,
             GameData = 0x4744,
             SaveData = 0x5344,
             AppPhoto = 0x4150,
@@ -49,6 +49,9 @@ namespace PeXploit
             VideoRoot = 0x5652,
             ThemeRoot = 0x5452,
             DiscMovie = 0x444D,
+            PS4_Game_Application = 25703,
+            PS4_Game_Application_Patch = 28775,
+            PS4_Additional_Content = 25441,
             None
         }
 
@@ -103,6 +106,21 @@ namespace PeXploit
                 foreach(Table t in Tables)
                 {
                     if (t.Name == "ATTRIBUTE")
+                        return t.Value;
+                }
+                return "";
+            }
+        }
+
+        public string APP_VER
+        {
+            get
+            {
+                if (Tables == null)
+                    return "";
+                foreach (Table t in Tables)
+                {
+                    if (t.Name == "APP_VER")
                         return t.Value;
                 }
                 return "";

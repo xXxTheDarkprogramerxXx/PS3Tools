@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using static PeXploit.PARAM_SFO;
+using System.Threading;
 
 namespace PARAM.SFO_Editor
 {
@@ -31,7 +33,20 @@ namespace PARAM.SFO_Editor
 
         #endregion << Error Code >>
 
+
+
+        int i = 0;
+        string MainPath;
+
         PeXploit.PARAM_SFO psfo;
+
+        Playstation version;
+
+        enum Playstation
+        {
+            ps3 = 0,
+            ps4 = 2
+        }
 
         #region << Header >>
         //Magic
@@ -334,12 +349,17 @@ namespace PARAM.SFO_Editor
             return HexStringToAscii(hexPhrase, true);
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
-            //as a test i used The Evil Within save game
+            cbxAddon.Items.Clear();
+            cbVersion.Items.Clear();
+            cbSystemVersion.Items.Clear();
+            cbxAppVersion.Items.Clear();
+
             OpenFileDialog thedialog = new OpenFileDialog();
             thedialog.Title = "PARAM.SFO";
-            thedialog.Filter = ".SFO|PARAM.SFO";
+            thedialog.Filter = ".SFO|*.SFO";
             thedialog.InitialDirectory = System.Environment.SpecialFolder.MyComputer.ToString();
             if(thedialog.ShowDialog() == DialogResult.OK)
             {
@@ -348,58 +368,85 @@ namespace PARAM.SFO_Editor
 
                      psfo = new PeXploit.PARAM_SFO(thedialog.FileName.ToString());
 
+                    MainPath = System.IO.Path.GetDirectoryName(thedialog.FileName.ToString());
+
                     //Check MAGIC
                      if (psfo != null)
-                    { 
-                         //Version 
-                        cbVersion.Items.Add(getVersion(str).ToString());
-                        cbVersion.SelectedIndex = 0;
-                        //header
-                        lblKTS.Text = getKeyTableStart(str);
-                        lblDTS.Text = getDataTableStart(str);
-                        lblTE.Text = getTableEntries(str);
-                        //Index_Table
-                        lblkey_1_offset.Text = getkey_1_offset(str);
-                        lbldata_1_fmt.Text = getdata_1_fmt(str);
-                        lbldata_1_len.Text = getdata_1_len(str);
-                        lbldata_1_max_len.Text = getdata_1_max_len(str);
-                        lbldata_1_offset.Text = getdata_1_offset(str);
-                        //key_table
-                        lblkey_1.Text = getkey_1(str);
-
-                        //TitleID
-                        textBox1.Text = psfo.TitleID.ToString();
-
-                        //Account ID
-                        getAccountID(str);
-                       
-
-                        //GetAttribute
-                        string attribute =  psfo.Attribute;
-
-                        #region <<< Attribute String >>>
-
-                        if(attribute == "SD")
+                    {
+                        
+                        List<string> AlreadyAdded = new List<string>();
+                        foreach (PeXploit.PARAM_SFO.Table t in psfo.Tables)
                         {
-                            textBox2.Text = "Save Data";
+                            if(t.Name == "TITLE_ID")
+                            {
+                                txtTitleId.Text = t.Value.Trim();
+                                AlreadyAdded.Add(t.Name);
+                            }
+                            if(t.Name == "CONTENT_ID")
+                            {
+                                txtContentId.Text = t.Value.Trim();
+                                AlreadyAdded.Add(t.Name);
+                            }
+                            if (t.Name == "TITLE")
+                            {
+                                txtTitle.Text = t.Value.Trim();
+                                AlreadyAdded.Add(t.Name);
+                            }
+                            if(t.Name == "CATEGORY")
+                            {
+                                txtCATEGORY.Text =((DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
+                                AlreadyAdded.Add(t.Name);
+                            }
+                            if(t.Name == "APP_VER")
+                            {
+                                cbxAppVersion.Items.Add(t.Value.Trim());
+                                AlreadyAdded.Add(t.Name);
+                                cbxAppVersion.SelectedIndex = 0;
+                            }
+                            if(t.Name == "VERSION")
+                            {
+                                cbVersion.Items.Add(t.Value.Trim());
+                                AlreadyAdded.Add(t.Name);
+                                cbVersion.SelectedIndex = 0;
+                            }
+                            if(t.Name == "PARENTAL_LEVEL")
+                            {
+                                cbxParent.SelectedIndex = Convert.ToInt32(t.Value);
+                                AlreadyAdded.Add(t.Name);
+                            }
+                            if(t.Name == "PS3_SYSTEM_VER")
+                            {
+                                //we know its PS3
+                                cbSystemVersion.Items.Add(t.Value.ToString());
+                                pbLogo.Image = Properties.Resources.images;
+                                AlreadyAdded.Add(t.Name);
+                                cbSystemVersion.SelectedIndex = 0;
+                                version = Playstation.ps3;
+                            }
+                            if(t.Name == "SYSTEM_VER")
+                            {
+                                cbSystemVersion.Items.Add(t.Value.ToString());
+                                pbLogo.Image = Properties.Resources.ps4_logo_white1;
+                                AlreadyAdded.Add(t.Name);
+                                cbSystemVersion.SelectedIndex = 0;
+                                version = Playstation.ps4;
+                            }
+                            if(!AlreadyAdded.Contains(t.Name))
+                            {
+                                cbxAddon.Items.Add(t.Name);
+                            }
+
+
                         }
-                        else if(attribute == "GD")
+
+                        //after loading we need to spesify some things
+                        cbxAddon.SelectedIndex = 0;
+                        if(backgroundWorker1.IsBusy == true)
                         {
-                            textBox2.Text = "Game Data";
+                            backgroundWorker1.CancelAsync();
                         }
-                        else
-                        {
-                            textBox2.Text = attribute;
-                        }
-
-                        #endregion <<< Attribute String >>>
-
-                        //Get Game Data 1 -Progress Level Ext
-
-                        textBox3.Text = GetGameData1(str);
-
-                        textBox4.Text = GetGameData2(str);
-
+                        backgroundWorker1.RunWorkerAsync();
+                        btnRaw.Enabled = true;
                     }
                     else
                     {
@@ -426,6 +473,117 @@ namespace PARAM.SFO_Editor
         {
             RawView raw = new RawView(psfo);
             raw.ShowDialog();
-        }   
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (i == 0)
+            {
+                #region << PS3 >>
+                if (version == Playstation.ps3)
+                {
+                    
+                    if (Directory.Exists(MainPath + @"\C00\") && i == 0)
+                    {
+                        pbLogoAndBackground.ImageLocation = MainPath + @"\C00\ICON0.PNG";
+                        i = 1;
+                        Thread.Sleep(1500);
+                    }
+                    else
+                    {
+                        pbLogoAndBackground.ImageLocation = MainPath + @"\ICON0.PNG";
+                        i = 1;
+                        Thread.Sleep(1500);
+                    }
+                }
+                #endregion << PS3 >>
+                else
+                {
+                    pbLogoAndBackground.ImageLocation = MainPath + @"\ICON0.PNG";
+                    i = 1;
+                    Thread.Sleep(1500);
+                }
+            }
+            while (i == 1)
+            {
+                try
+                {
+                    #region << PS3 >>
+                    if (version == Playstation.ps3)
+                    {
+                        if (Directory.Exists(MainPath + @"\C00\") && i == 1)
+                        {
+                            pbLogoAndBackground.ImageLocation = MainPath + @"\C00\PIC1.PNG";
+                            i = 0;
+                            Thread.Sleep(1500);
+                        }
+                        else
+                        {
+                            pbLogoAndBackground.ImageLocation = MainPath + @"\PIC1.PNG";
+                            i = 0;
+                            Thread.Sleep(1500);
+                        }
+                    }
+                    #endregion << PS3 >>
+
+                    else
+                    {
+                        Random rnd = new Random();
+                        int ran = rnd.Next(1, 3);
+                        if (ran == 1)
+                        {
+                            pbLogoAndBackground.ImageLocation = MainPath + @"\PIC1.PNG";
+                        }
+                        else
+                        {
+                            if (File.Exists(MainPath + @"\PIC0.PNG"))
+                            {
+                                pbLogoAndBackground.ImageLocation = MainPath + @"\PIC0.PNG";
+                            }
+                        }
+                        i = 0;
+                        Thread.Sleep(1500);
+                    }
+                }
+                catch (Exception ee)
+                {
+                    string test = ee.Message;
+                }
+            }
+
+        }
+
+        private void cbxAddon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (PeXploit.PARAM_SFO.Table item in psfo.Tables)
+            {
+                if(item.Name == cbxAddon.SelectedItem.ToString().Trim())
+                {
+                    txtAddonData.Text = item.Value.ToString();
+                }
+            }
+        }
+
+        private void txtAddonData_Leave(object sender, EventArgs e)
+        {
+            //on leave save the info to the table
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if(psfo.Tables[i].Name == cbxAddon.SelectedItem.ToString().Trim())
+                {
+                    psfo.Tables[i].Value = txtAddonData.Text.Trim();
+                }
+            }
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            backgroundWorker1.RunWorkerAsync();
+        }
     }
 }

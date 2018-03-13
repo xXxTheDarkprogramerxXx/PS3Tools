@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbVersion = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.gbAdvanced = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -54,50 +52,43 @@
             this.lblKTS = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtTitleId = new System.Windows.Forms.TextBox();
+            this.txtCATEGORY = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtContentId = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.txtAddonData = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cbxParent = new System.Windows.Forms.ComboBox();
+            this.cbVersion = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbxAppVersion = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cbxAddon = new System.Windows.Forms.ComboBox();
+            this.btnRaw = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.txtTitle = new System.Windows.Forms.TextBox();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.pbLogoAndBackground = new System.Windows.Forms.PictureBox();
+            this.cbSystemVersion = new System.Windows.Forms.ComboBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbAdvanced.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoAndBackground)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 309);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 19);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Version:";
-            // 
-            // cbVersion
-            // 
-            this.cbVersion.FormattingEnabled = true;
-            this.cbVersion.Location = new System.Drawing.Point(118, 304);
-            this.cbVersion.Margin = new System.Windows.Forms.Padding(4);
-            this.cbVersion.Name = "cbVersion";
-            this.cbVersion.Size = new System.Drawing.Size(120, 24);
-            this.cbVersion.TabIndex = 3;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(880, 15);
+            this.checkBox1.Location = new System.Drawing.Point(823, 89);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(93, 21);
@@ -363,86 +354,173 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "TitleID :";
             // 
-            // textBox1
+            // txtTitleId
             // 
-            this.textBox1.Location = new System.Drawing.Point(127, 94);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 22);
-            this.textBox1.TabIndex = 8;
+            this.txtTitleId.Location = new System.Drawing.Point(127, 94);
+            this.txtTitleId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTitleId.Name = "txtTitleId";
+            this.txtTitleId.Size = new System.Drawing.Size(188, 22);
+            this.txtTitleId.TabIndex = 8;
             // 
-            // textBox2
+            // txtCATEGORY
             // 
-            this.textBox2.Location = new System.Drawing.Point(127, 197);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(188, 22);
-            this.textBox2.TabIndex = 9;
+            this.txtCATEGORY.Location = new System.Drawing.Point(127, 238);
+            this.txtCATEGORY.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCATEGORY.Name = "txtCATEGORY";
+            this.txtCATEGORY.Size = new System.Drawing.Size(653, 22);
+            this.txtCATEGORY.TabIndex = 9;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(13, 198);
+            this.label12.Location = new System.Drawing.Point(13, 239);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(106, 19);
+            this.label12.Size = new System.Drawing.Size(87, 19);
             this.label12.TabIndex = 10;
-            this.label12.Text = "ATTRIBUTE:";
+            this.label12.Text = "Category:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(16, 230);
+            this.label14.Location = new System.Drawing.Point(16, 271);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(59, 19);
+            this.label14.Size = new System.Drawing.Size(104, 19);
             this.label14.TabIndex = 13;
-            this.label14.Text = "Data 1";
+            this.label14.Text = "System Ver:";
             // 
-            // textBox3
+            // txtContentId
             // 
-            this.textBox3.Location = new System.Drawing.Point(127, 227);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(188, 22);
-            this.textBox3.TabIndex = 14;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(127, 274);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(188, 22);
-            this.textBox4.TabIndex = 16;
+            this.txtContentId.Location = new System.Drawing.Point(127, 315);
+            this.txtContentId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtContentId.Name = "txtContentId";
+            this.txtContentId.Size = new System.Drawing.Size(416, 22);
+            this.txtContentId.TabIndex = 16;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(16, 277);
+            this.label13.Location = new System.Drawing.Point(16, 318);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(59, 19);
+            this.label13.Size = new System.Drawing.Size(100, 19);
             this.label13.TabIndex = 15;
-            this.label13.Text = "Data 2";
+            this.label13.Text = "Content-ID:";
             // 
-            // button3
+            // txtAddonData
             // 
-            this.button3.Image = global::PARAM.SFO_Editor.Properties.Resources.icons8_raw_48;
-            this.button3.Location = new System.Drawing.Point(765, 460);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(43, 46);
-            this.button3.TabIndex = 17;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.txtAddonData.Location = new System.Drawing.Point(20, 184);
+            this.txtAddonData.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAddonData.Multiline = true;
+            this.txtAddonData.Name = "txtAddonData";
+            this.txtAddonData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtAddonData.Size = new System.Drawing.Size(760, 46);
+            this.txtAddonData.TabIndex = 19;
+            this.txtAddonData.Leave += new System.EventHandler(this.txtAddonData_Leave);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(246, 271);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(169, 19);
+            this.label15.TabIndex = 20;
+            this.label15.Text = "Parental Locl Level :";
+            // 
+            // cbxParent
+            // 
+            this.cbxParent.FormattingEnabled = true;
+            this.cbxParent.Items.AddRange(new object[] {
+            "0 - Unlocked",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11 - Full Lock"});
+            this.cbxParent.Location = new System.Drawing.Point(423, 266);
+            this.cbxParent.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxParent.Name = "cbxParent";
+            this.cbxParent.Size = new System.Drawing.Size(120, 24);
+            this.cbxParent.TabIndex = 21;
+            // 
+            // cbVersion
+            // 
+            this.cbVersion.FormattingEnabled = true;
+            this.cbVersion.Location = new System.Drawing.Point(660, 266);
+            this.cbVersion.Margin = new System.Windows.Forms.Padding(4);
+            this.cbVersion.Name = "cbVersion";
+            this.cbVersion.Size = new System.Drawing.Size(120, 24);
+            this.cbVersion.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(561, 271);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 19);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Version:";
+            // 
+            // cbxAppVersion
+            // 
+            this.cbxAppVersion.FormattingEnabled = true;
+            this.cbxAppVersion.Location = new System.Drawing.Point(660, 311);
+            this.cbxAppVersion.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxAppVersion.Name = "cbxAppVersion";
+            this.cbxAppVersion.Size = new System.Drawing.Size(120, 24);
+            this.cbxAppVersion.TabIndex = 25;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(561, 316);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(77, 19);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "App Ver:";
+            // 
+            // cbxAddon
+            // 
+            this.cbxAddon.FormattingEnabled = true;
+            this.cbxAddon.Location = new System.Drawing.Point(20, 155);
+            this.cbxAddon.Name = "cbxAddon";
+            this.cbxAddon.Size = new System.Drawing.Size(760, 24);
+            this.cbxAddon.TabIndex = 26;
+            this.cbxAddon.SelectedIndexChanged += new System.EventHandler(this.cbxAddon_SelectedIndexChanged);
+            // 
+            // btnRaw
+            // 
+            this.btnRaw.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.icons8_raw_48;
+            this.btnRaw.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRaw.Enabled = false;
+            this.btnRaw.Location = new System.Drawing.Point(493, 89);
+            this.btnRaw.Name = "btnRaw";
+            this.btnRaw.Size = new System.Drawing.Size(70, 60);
+            this.btnRaw.TabIndex = 17;
+            this.btnRaw.UseVisualStyleBackColor = true;
+            this.btnRaw.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
             this.button2.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.Save;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(973, 43);
+            this.button2.Location = new System.Drawing.Point(407, 89);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(79, 59);
@@ -452,11 +530,11 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::PARAM.SFO_Editor.Properties.Resources.cooltext118235191746368;
-            this.pictureBox1.Location = new System.Drawing.Point(20, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(170, 13);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(638, 71);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -464,7 +542,7 @@
             // 
             this.button1.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.Open;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(879, 43);
+            this.button1.Location = new System.Drawing.Point(332, 89);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(67, 59);
@@ -472,24 +550,58 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox5
+            // pbLogo
             // 
-            this.textBox5.Location = new System.Drawing.Point(127, 135);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(188, 22);
-            this.textBox5.TabIndex = 19;
+            this.pbLogo.Location = new System.Drawing.Point(16, 12);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(147, 71);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogo.TabIndex = 27;
+            this.pbLogo.TabStop = false;
             // 
-            // label15
+            // txtTitle
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(16, 133);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(99, 19);
-            this.label15.TabIndex = 18;
-            this.label15.Text = "ContentID: ";
+            this.txtTitle.Location = new System.Drawing.Point(127, 126);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(188, 22);
+            this.txtTitle.TabIndex = 29;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(16, 124);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(53, 19);
+            this.lblTitle.TabIndex = 28;
+            this.lblTitle.Text = "Title :";
+            // 
+            // pbLogoAndBackground
+            // 
+            this.pbLogoAndBackground.Location = new System.Drawing.Point(820, 11);
+            this.pbLogoAndBackground.Name = "pbLogoAndBackground";
+            this.pbLogoAndBackground.Size = new System.Drawing.Size(147, 71);
+            this.pbLogoAndBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogoAndBackground.TabIndex = 30;
+            this.pbLogoAndBackground.TabStop = false;
+            // 
+            // cbSystemVersion
+            // 
+            this.cbSystemVersion.FormattingEnabled = true;
+            this.cbSystemVersion.Location = new System.Drawing.Point(128, 266);
+            this.cbSystemVersion.Margin = new System.Windows.Forms.Padding(4);
+            this.cbSystemVersion.Name = "cbSystemVersion";
+            this.cbSystemVersion.Size = new System.Drawing.Size(120, 24);
+            this.cbSystemVersion.TabIndex = 31;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // Form1
             // 
@@ -497,28 +609,37 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1097, 518);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.cbSystemVersion);
+            this.Controls.Add(this.pbLogoAndBackground);
+            this.Controls.Add(this.txtTitle);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.pbLogo);
+            this.Controls.Add(this.cbxAddon);
+            this.Controls.Add(this.cbxAppVersion);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.cbVersion);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbxParent);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtAddonData);
+            this.Controls.Add(this.btnRaw);
+            this.Controls.Add(this.txtContentId);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCATEGORY);
+            this.Controls.Add(this.txtTitleId);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.gbAdvanced);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.cbVersion);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PARAM.SFO EDITOR v1.0";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.gbAdvanced.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -527,6 +648,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoAndBackground)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -536,8 +659,6 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbVersion;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.GroupBox gbAdvanced;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -563,16 +684,27 @@
         private System.Windows.Forms.Label lblkey_1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTitleId;
+        private System.Windows.Forms.TextBox txtCATEGORY;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtContentId;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button btnRaw;
+        private System.Windows.Forms.TextBox txtAddonData;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cbxParent;
+        private System.Windows.Forms.ComboBox cbVersion;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbxAppVersion;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cbxAddon;
+        private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.TextBox txtTitle;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.PictureBox pbLogoAndBackground;
+        private System.Windows.Forms.ComboBox cbSystemVersion;
+        public System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
