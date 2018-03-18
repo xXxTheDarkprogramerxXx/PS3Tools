@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using static PeXploit.PARAM_SFO;
 using System.Threading;
 
 namespace PARAM.SFO_Editor
@@ -389,12 +388,14 @@ namespace PARAM.SFO_Editor
                             }
                             if (t.Name == "TITLE")
                             {
-                                txtTitle.Text = t.Value.Trim();
+                                
+
+                                txtTitle.Text = t.Value.Trim(); 
                                 AlreadyAdded.Add(t.Name);
                             }
                             if(t.Name == "CATEGORY")
                             {
-                                txtCATEGORY.Text =((DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
+                                txtCATEGORY.Text =((PeXploit.PARAM_SFO.DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
                                 AlreadyAdded.Add(t.Name);
                             }
                             if(t.Name == "APP_VER")
@@ -431,6 +432,338 @@ namespace PARAM.SFO_Editor
                                 cbSystemVersion.SelectedIndex = 0;
                                 version = Playstation.ps4;
                             }
+                            if (t.Name == "RESOLUTION")
+                            {
+                                gbxVideo.Enabled = true;
+                                #region << PS3 Resolution >>
+                                int Val = 0;
+                                int.TryParse(t.Value.Trim(), out Val);
+                                switch(Val)
+                                {
+                                    case 1:
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 2:
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 3:
+                                        chbx480.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 4:
+                                        chb720.Checked = true;
+                                        break;
+                                    case 5:
+                                        chb720.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 6:
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 7:
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 8:
+                                        chbx1080.Checked = true;
+                                        break;
+                                    case 9:
+                                        chbx1080.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 10:
+                                        chbx1080.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 11:
+                                        chbx1080.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 12:
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        break;
+                                    case 13:
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 14:
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 15:
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 16:
+                                        chbx480Wide.Checked = true;
+                                        break;
+                                    case 17:
+                                        chbx480Wide.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 18:
+                                        chbx480Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 19:
+                                        chbx480.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 20:
+                                        chbx480Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        break;
+                                    case 21:
+                                        chbx480.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        break;
+                                    case 22:
+                                        chbx480Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        chb720.Checked = true;
+                                        break;
+                                    case 23:
+                                        chbx480Wide.Checked = true;
+                                        chbx480.Checked = true;
+                                        chbx576.Checked = true;
+                                        chb720.Checked = true;
+                                        break;
+                                    case 24:
+                                        chbx1080.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        break;
+                                    case 25:
+                                        chbx1080.Checked = true;
+                                        chbx480.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        break;
+                                    case 26:
+                                        chbx1080.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        break;
+                                    case 27:
+                                        chbx1080.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        break;
+                                    case 28:
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        break;
+                                    case 29:
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx480.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        break;
+                                    case 30:
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        break;
+                                    case 31:
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx480.Checked = true;
+                                        chbx480Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 32:
+                                        chbx576Wide.Checked = true;
+                                        break;
+                                    case 33:
+                                        chbx576Wide.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 34:
+                                        chbx576Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 35:
+                                        chbx576Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 36:
+                                        chbx576Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        break;
+                                    case 37:
+                                        chb720.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 38:
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        break;
+                                    case 39:
+                                        chb720.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 40 :
+                                        chbx576Wide.Checked = true;
+                                        chbx1080.Checked = true;
+                                        break;
+                                    case 41:
+                                        chbx1080.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 42:
+                                        chbx1080.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 43:
+                                        chbx1080.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 44:                                  
+                                        chbx1080.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        break;
+                                    case 45:
+                                        chbx1080.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 46:
+                                        chbx1080.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 47:
+                                        chbx1080.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 48:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        break;
+                                    case 49:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 50:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 51:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 52:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        break;
+                                    case 53:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 54:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 55:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 56:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx1080.Checked = true;
+                                        break;
+                                    case 57:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx1080.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 58:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx1080.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 59:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx1080.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 60:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        break;
+                                    case 61:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    case 62:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        break;
+                                    case 63:
+                                        chbx480Wide.Checked = true;
+                                        chbx576Wide.Checked = true;
+                                        chbx1080.Checked = true;
+                                        chb720.Checked = true;
+                                        chbx576.Checked = true;
+                                        chbx480.Checked = true;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                #endregion << PS3 Resolution >>
+                            }
+
                             if(!AlreadyAdded.Contains(t.Name))
                             {
                                 cbxAddon.Items.Add(t.Name);
@@ -445,6 +778,10 @@ namespace PARAM.SFO_Editor
                         {
                             backgroundWorker1.CancelAsync();
                         }
+                         while(backgroundWorker1.IsBusy == true)
+                         {
+                             Thread.Sleep(100);
+                         }
                         backgroundWorker1.RunWorkerAsync();
                         btnRaw.Enabled = true;
                     }
@@ -459,20 +796,23 @@ namespace PARAM.SFO_Editor
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked == true)
-            {
-                gbAdvanced.Visible = true;
-            }
-            else
-            {
-                gbAdvanced.Visible = false;
-            }
+
+        }
+
+        private void Uncheck_Resolution_All()
+        {
+            chb720.Checked = false;
+            chbx1080.Checked = false;
+            chbx480.Checked = false;
+            chbx480Wide.Checked = false;
+            chbx576.Checked = false;
+            chbx576Wide.Checked = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             RawView raw = new RawView(psfo);
-            raw.ShowDialog();
+            raw.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -584,6 +924,341 @@ namespace PARAM.SFO_Editor
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void txtAddonData_TextChanged(object sender, EventArgs e)
+        {
+            if(cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+            {
+                Uncheck_Resolution_All();
+                #region << PS3 Resolution >>
+                int Val = 0;
+                int.TryParse(txtAddonData.Text.Trim(), out Val);
+                switch (Val)
+                {
+                    case 1:
+                        chbx480.Checked = true;
+                        break;
+                    case 2:
+                        chbx576.Checked = true;
+                        break;
+                    case 3:
+                        chbx480.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 4:
+                        chb720.Checked = true;
+                        break;
+                    case 5:
+                        chb720.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 6:
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 7:
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 8:
+                        chbx1080.Checked = true;
+                        break;
+                    case 9:
+                        chbx1080.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 10:
+                        chbx1080.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 11:
+                        chbx1080.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 12:
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        break;
+                    case 13:
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 14:
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 15:
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 16:
+                        chbx480Wide.Checked = true;
+                        break;
+                    case 17:
+                        chbx480Wide.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 18:
+                        chbx480Wide.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 19:
+                        chbx480.Checked = true;
+                        chbx480Wide.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 20:
+                        chbx480Wide.Checked = true;
+                        chb720.Checked = true;
+                        break;
+                    case 21:
+                        chbx480.Checked = true;
+                        chbx480Wide.Checked = true;
+                        chb720.Checked = true;
+                        break;
+                    case 22:
+                        chbx480Wide.Checked = true;
+                        chbx576.Checked = true;
+                        chb720.Checked = true;
+                        break;
+                    case 23:
+                        chbx480Wide.Checked = true;
+                        chbx480.Checked = true;
+                        chbx576.Checked = true;
+                        chb720.Checked = true;
+                        break;
+                    case 24:
+                        chbx1080.Checked = true;
+                        chbx480Wide.Checked = true;
+                        break;
+                    case 25:
+                        chbx1080.Checked = true;
+                        chbx480.Checked = true;
+                        chbx480Wide.Checked = true;
+                        break;
+                    case 26:
+                        chbx1080.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480Wide.Checked = true;
+                        break;
+                    case 27:
+                        chbx1080.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        chbx480Wide.Checked = true;
+                        break;
+                    case 28:
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx480Wide.Checked = true;
+                        break;
+                    case 29:
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx480.Checked = true;
+                        chbx480Wide.Checked = true;
+                        break;
+                    case 30:
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480Wide.Checked = true;
+                        break;
+                    case 31:
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx480.Checked = true;
+                        chbx480Wide.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 32:
+                        chbx576Wide.Checked = true;
+                        break;
+                    case 33:
+                        chbx576Wide.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 34:
+                        chbx576Wide.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 35:
+                        chbx576Wide.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 36:
+                        chbx576Wide.Checked = true;
+                        chb720.Checked = true;
+                        break;
+                    case 37:
+                        chb720.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 38:
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        chbx576Wide.Checked = true;
+                        break;
+                    case 39:
+                        chb720.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 40:
+                        chbx576Wide.Checked = true;
+                        chbx1080.Checked = true;
+                        break;
+                    case 41:
+                        chbx1080.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 42:
+                        chbx1080.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 43:
+                        chbx1080.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 44:
+                        chbx1080.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chb720.Checked = true;
+                        break;
+                    case 45:
+                        chbx1080.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chb720.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 46:
+                        chbx1080.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 47:
+                        chbx1080.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 48:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        break;
+                    case 49:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 50:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 51:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 52:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chb720.Checked = true;
+                        break;
+                    case 53:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chb720.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 54:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 55:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 56:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx1080.Checked = true;
+                        break;
+                    case 57:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx1080.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 58:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx1080.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 59:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx1080.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 60:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        break;
+                    case 61:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    case 62:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        break;
+                    case 63:
+                        chbx480Wide.Checked = true;
+                        chbx576Wide.Checked = true;
+                        chbx1080.Checked = true;
+                        chb720.Checked = true;
+                        chbx576.Checked = true;
+                        chbx480.Checked = true;
+                        break;
+                    default:
+                        break;
+                }
+                #endregion << PS3 Resolution >>
+            }
         }
     }
 }

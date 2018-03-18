@@ -196,11 +196,28 @@ namespace PeXploit
             switch (table.param_data_fmt)
             {
                 case FMT.ASCII:
-                    return Encoding.ASCII.GetString(br.ReadBytes((int) table.param_data_max_len)).Replace("\0", "");
+                    //return Encoding.GetEncoding(1252).GetString(br.ReadBytes((int) table.param_data_max_len)).Replace("\0", "");
+                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
                 case FMT.UINT32:
                     return br.ReadUInt32().ToString();
                 case FMT.UTF_8:
                     return Encoding.UTF8.GetString(br.ReadBytes((int) table.param_data_max_len)).Replace("\0", "");
+                default:
+                    return null;
+            }
+        }
+
+        private string ReadValueSpecialChars(BinaryReader br, index_table table)
+        {
+            br.BaseStream.Position = ((Header.DataTableStart) + table.param_data_offset);
+            switch (table.param_data_fmt)
+            {
+                case FMT.ASCII:
+                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
+                case FMT.UINT32:
+                    return br.ReadUInt32().ToString();
+                case FMT.UTF_8:
+                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
                 default:
                     return null;
             }
@@ -238,7 +255,7 @@ namespace PeXploit
                     var x = new Table();
                     x.index = count;
                     x.Indextable = t;
-                    x.Name = ReadName(br, t);
+                    x.Name = ReadName(br, t);                  
                     x.Value = ReadValue(br, t);
                     count++;
                     xtables.Add(x);
