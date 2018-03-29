@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>publish\</PublishUrlHistory>
-    <InstallUrlHistory>https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</InstallUrlHistory>
+    <PublishUrlHistory>publish\|https://rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|http://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</PublishUrlHistory>
+    <InstallUrlHistory>https://rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <UpdateUrlHistory>https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
