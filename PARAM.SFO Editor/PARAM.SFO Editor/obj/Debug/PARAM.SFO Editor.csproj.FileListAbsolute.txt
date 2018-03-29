@@ -26,3 +26,7 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.Properties.Resources.resources
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csproj.GenerateResource.Cache
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.RawView.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO Editor.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.application
