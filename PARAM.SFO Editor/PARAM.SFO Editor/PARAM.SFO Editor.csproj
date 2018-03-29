@@ -11,22 +11,24 @@
     <AssemblyName>PARAM.SFO Editor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
+    <InstallUrl>https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</InstallUrl>
+    <UpdateUrl>https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</UpdateUrl>
     <ProductName>PARAM.SFO Editor</ProductName>
     <PublisherName>TheDarkprogramer</PublisherName>
     <SuiteName>PS Tools</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
