@@ -63,9 +63,9 @@ namespace PARAM.SFO_Editor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Actions_document_open_icon {
+        internal static System.Drawing.Bitmap _688623017_b797284f_5a12_45ab_b647_bf77e3e6445b {
             get {
-                object obj = ResourceManager.GetObject("Actions-document-open-icon", resourceCulture);
+                object obj = ResourceManager.GetObject("_688623017_b797284f_5a12_45ab_b647_bf77e3e6445b", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,89 @@ namespace PARAM.SFO_Editor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cooltext118235191746368 {
+        internal static System.Drawing.Bitmap _688623019_28d86b52_09fd_4e41_b24b_73e0343dbda4 {
             get {
-                object obj = ResourceManager.GetObject("cooltext118235191746368", resourceCulture);
+                object obj = ResourceManager.GetObject("_688623019_28d86b52_09fd_4e41_b24b_73e0343dbda4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _688626734_ccee13e0_ea05_400a_83b8_d4d354fdeedc {
+            get {
+                object obj = ResourceManager.GetObject("_688626734_ccee13e0_ea05_400a_83b8_d4d354fdeedc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _688632228_9aa6fa9c_a796_4129_a242_75110b02f615 {
+            get {
+                object obj = ResourceManager.GetObject("_688632228_9aa6fa9c_a796_4129_a242_75110b02f615", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _688632230_88b22244_2e4c_4d50_bcad_e7efb6d4f5e2 {
+            get {
+                object obj = ResourceManager.GetObject("_688632230_88b22244_2e4c_4d50_bcad_e7efb6d4f5e2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] di {
+            get {
+                object obj = ResourceManager.GetObject("di", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_binary_file_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_binary_file_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_check_file_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_check_file_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_github_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_github_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_open_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_open_48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -101,12 +181,52 @@ namespace PARAM.SFO_Editor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] libatrac9 {
+            get {
+                object obj = ResourceManager.GetObject("libatrac9", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogoMakr_4y3rYY {
+            get {
+                object obj = ResourceManager.GetObject("LogoMakr_4y3rYY", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Open {
             get {
                 object obj = ResourceManager.GetObject("Open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] orbis_pub_cmd {
+            get {
+                object obj = ResourceManager.GetObject("orbis_pub_cmd", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] orbis_pub_prx {
+            get {
+                object obj = ResourceManager.GetObject("orbis_pub_prx", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -127,6 +247,34 @@ namespace PARAM.SFO_Editor.Properties {
             get {
                 object obj = ResourceManager.GetObject("Save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] sc {
+            get {
+                object obj = ResourceManager.GetObject("sc", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /* body ƒ^ƒOÝ’è */
+        ///body {
+        ///	background-color: rgb(0, 77, 149);					/* ”wŒiF */
+        ///	color: rgb(15, 15, 15);								/* •¶ŽšF */
+        ///	font-family: verdana,arial,helvetica,sans-serif;	/* ƒtƒHƒ“ƒg */
+        ///	font-size: 12px;									/* •¶ŽšƒTƒCƒY */
+        ///	line-height: 18px;									/* s‚Ì‚‚³ */
+        ///	-ms-scrollbar-base-color: transparent;				/* ƒXƒNƒ[ƒ‹ƒo[‚ÌŠî–{F(IEŒü‚¯) */
+        ///	-ms-scrollbar-face-color: rgb(214, 214, 214);		/* ƒXƒNƒ[ƒ‹ƒo[‚Ìƒo[‚ÌF(IEŒü‚¯) */
+        ///	-ms-scrollbar-arrow-color: rgb(214, 214, 214);		/* ƒXƒNƒ[ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string trp_compare_default {
+            get {
+                return ResourceManager.GetString("trp_compare_default", resourceCulture);
             }
         }
     }

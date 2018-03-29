@@ -73,9 +73,13 @@
     <Compile Include="RawView.Designer.cs">
       <DependentUpon>RawView.cs</DependentUpon>
     </Compile>
+    <Compile Include="SFO\BinaryByteOrder.cs" />
     <Compile Include="SFO\Functions.cs" />
     <Compile Include="SFO\PARAM_SFO.cs" />
     <Compile Include="SFO\SecureFileInfo.cs" />
+    <Compile Include="SFO\StringType.cs" />
+    <Compile Include="SFO\StructReader.cs" />
+    <Compile Include="SFO\StructWritter.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,9 +125,6 @@
     <None Include="Resources\Save.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-raw-48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\images.png" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +141,57 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orbis-pub-cmd.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orbis-pub-prx.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\di.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\libatrac9.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sc.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trp_compare_default.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\688623017_b797284f-5a12-45ab-b647-bf77e3e6445b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\688623019_28d86b52-09fd-4e41-b24b-73e0343dbda4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\688626734_ccee13e0-ea05-400a-83b8-d4d354fdeedc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\688632228_9aa6fa9c-a796-4129-a242-75110b02f615.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\688632230_88b22244-2e4c-4d50-bcad-e7efb6d4f5e2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-binary-file-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-check-file-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-github-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-open-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-raw-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoMakr_4y3rYY.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

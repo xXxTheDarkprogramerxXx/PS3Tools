@@ -22,6 +22,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using PARAM.SFO_Editor.SFO;
+using System.Runtime.InteropServices;
 
 namespace PeXploit
 {
@@ -96,6 +98,12 @@ namespace PeXploit
                 return DataTypes.None;
             }
         }
+
+        //public Header HeaderData
+        //{
+        //    get;
+        //    private set;
+        //}
 
         public string Attribute
         {
@@ -296,9 +304,10 @@ namespace PeXploit
                 DataTableStart = input.ReadUInt32();
                 IndexTableEntries = input.ReadUInt32();
             }
+            
         }
 
-        public struct Table
+        public struct Table : IComparable
         {
             public index_table Indextable;
             public string Name;
@@ -337,6 +346,11 @@ namespace PeXploit
                     }
                 }
             }
+
+            public int CompareTo(object obj)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public struct index_table
@@ -346,6 +360,7 @@ namespace PeXploit
             public uint param_data_max_len; /* param_data total reserved bytes */
             public uint param_data_offset; /* param_data offset (relative to start offset of data_table) */
             public ushort param_key_offset; /* param_key offset (relative to start offset of key_table) */
+            
 
             private byte[] Buffer
             {
@@ -370,5 +385,300 @@ namespace PeXploit
                 param_data_offset = input.ReadUInt32();
             }
         }
+
+
+        private enum DATA_TYPE : byte
+        {
+            BinaryData = 0,
+            Utf8Text = 2,
+            Si32Integer = 4
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct INDEX_TABLE_ENTRY
+        {
+            public ushort KeyNameOffset;
+            public byte Unknown;
+            public DATA_TYPE DataType;
+            public uint ValueDataSize;
+            public uint ValueDataSizePlusPadding;
+            public uint DataValueOffset;
+        }
+
+
+
+        #region SFO File Structs
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct SFO_HEADER
+        {
+            public byte magic;           // 00
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+            public char[] signature;    // PSF
+            public byte FileVersionHigh; // 01
+            public byte FileVersionLow;  // 01
+            public short Unknown1;
+            public uint Start_of_Variable_Name_Table; // Offset...
+            public uint Start_of_Variable_Data_Table; // Offset...
+            public uint NumberOfVariables; // Variables count
+        }
+
+        #endregion SFO File Structs
+
+        public void SaveFile(PARAM_SFO psfo,string filename)
+        {
+            // Sort the values before we save them to the sfo file
+            //Array.Sort(psfo.Tables);
+
+            using (FileStream stream = File.Create(filename))
+            {
+               using(StructWriter sw = new StructWriter(ByteOrder.LSB, stream))
+                {
+                    //build index table
+                    INDEX_TABLE_ENTRY[] indexes = new INDEX_TABLE_ENTRY[psfo.Tables.Length];
+                    PARAM_SFO.Table[] mytables = psfo.Tables;
+                    PARAM_SFO.index_table[] myindexes = new index_table[psfo.Tables.Length];
+
+                    string[] variablenames = new string[psfo.Tables.Length];
+                    string[] variablevalues = new string[psfo.Tables.Length];
+
+                    int curkeynameoffset = 0;
+                    uint curvalueoffset = 0;
+                   
+                    for (int idx = 0; idx < psfo.Tables.Length; idx++)
+                    {
+                        PARAM_SFO.Table value = psfo.Tables[idx];
+                             
+
+                        PARAM_SFO.FMT datatype = FMT.UINT32;
+                        uint datasize = 0;
+                        switch (value.Indextable.param_data_fmt)
+                        {
+                            case FMT.ASCII:
+                                {
+                                    datatype = FMT.ASCII;
+                                    datasize = (uint)Encoding.UTF8.GetBytes(value.Value.ToString()).Length + 1;
+                                    break;
+                                }
+                            case FMT.UINT32:
+                                {
+                                    datatype = FMT.UINT32;
+                                    datasize = 4;
+                                    break;
+                                }
+                            case FMT.UTF_8:
+                                {
+                                    datatype = FMT.UTF_8;
+                                    datasize = (uint)Encoding.UTF8.GetBytes(value.Value.ToString()).Length + 1;
+                                    break;
+                                }
+                            default:
+                                {
+                                    throw new Exception("Unknown SFOType!");
+                                }
+                        }
+
+
+                        if(value.Indextable.param_key_offset != (ushort)curkeynameoffset)
+                        {
+                            string breakpoint ="This is for debug testing";
+                        }
+                        value.Indextable.param_key_offset = (ushort)curkeynameoffset;
+                        
+                        if (value.Indextable.param_data_fmt != datatype)
+                        {
+                            string breakpoint = "This is for debug testing";
+                        }
+                        value.Indextable.param_data_fmt = datatype;
+
+                        if (value.Indextable.param_data_len != datasize)
+                        {
+                            string breakpoint = "This is for debug testing";
+                        }
+                        value.Indextable.param_data_len = datasize;
+
+                        //if (value.Indextable.param_data_max_len != GetPaddingSize(value.Name, datasize))
+                        //{
+                        //    string breakpoint = "This is for debug testing";
+                        //}
+                        //value.Indextable.param_data_max_len = GetPaddingSize(value.Name, datasize);
+
+                        if(value.Indextable.param_data_offset != curvalueoffset)
+                        {
+                            string breakpoint = "This is for debug testing";
+                        }
+                        value.Indextable.param_data_offset = curvalueoffset;
+
+                        //we already have all the keynames
+                        curkeynameoffset += value.Name.Length + 1;
+                        
+                        curvalueoffset += value.Indextable.param_data_max_len;
+
+                        
+
+                        indexes[idx].KeyNameOffset = (ushort)curkeynameoffset;
+                        indexes[idx].Unknown = 4;
+                        if (datatype == FMT.UTF_8)
+                        {
+                            indexes[idx].DataType = DATA_TYPE.BinaryData;
+                        }
+                        if (datatype == FMT.ASCII)
+                        {
+                            indexes[idx].DataType = DATA_TYPE.Utf8Text;
+                        }
+                        if (datatype == FMT.UINT32)
+                        {
+                            indexes[idx].DataType = DATA_TYPE.Si32Integer;
+                        }
+                        indexes[idx].ValueDataSize = datasize;
+                        indexes[idx].ValueDataSizePlusPadding = GetPaddingSize(value.Name, datasize);
+                        indexes[idx].DataValueOffset = curvalueoffset;
+
+
+                        variablenames[idx] = value.Name;
+
+                        myindexes[idx] = value.Indextable;
+                        variablevalues[idx] = value.Value;
+                    }
+
+
+                    SFO_HEADER sfoheader = new SFO_HEADER();
+                    sfoheader.magic = 0;
+                    sfoheader.signature = new char[] { 'P', 'S', 'F' };
+                    sfoheader.FileVersionHigh = 1;
+                    sfoheader.FileVersionLow = 1;
+                    sfoheader.Unknown1 = 0;
+                    sfoheader.Start_of_Variable_Name_Table = Header.KeyTableStart;//PadOffset(Marshal.SizeOf(sfoheader) + (psfo.Tables.Length * Marshal.SizeOf(typeof(PARAM_SFO.index_table))));//
+                    sfoheader.Start_of_Variable_Data_Table = Header.DataTableStart;//PadOffset(sfoheader.Start_of_Variable_Name_Table + curkeynameoffset);//
+                    sfoheader.NumberOfVariables = Header.IndexTableEntries;//(uint)psfo.Tables.Length;//
+
+                    sw.WriteStruct(sfoheader);
+
+
+                    // Write variable information...
+                    sw.WriteStructs(myindexes);
+
+                    WritePadBytes(sw, sw.BaseStream.Position, sfoheader.Start_of_Variable_Name_Table);
+
+                    // Write variable names...
+                    sw.WriteStrings(StringType.NullTerminated, variablenames);
+
+                    WritePadBytes(sw, sw.BaseStream.Position, sfoheader.Start_of_Variable_Data_Table);
+
+                    // Write variable data...
+                    for (int idx = 0; idx < psfo.Tables.Length; idx++)
+                    {
+                        PARAM_SFO.Table value = psfo.Tables[idx];
+
+                        switch (value.Indextable.param_data_fmt)
+                        {
+                            case FMT.UTF_8:
+                                {
+                                    sw.Write(value.Value);
+                                    break;
+                                }
+                            case FMT.UINT32:
+                                {
+                                    sw.Write(Convert.ToUInt32(value.Value));
+                                    break;
+                                }
+                            case FMT.ASCII:
+                                {
+                                    sw.Write(value.Value);
+                                    break;
+                                }
+                        }
+
+                        long pos = sw.BaseStream.Position;
+
+                        WritePadBytes(sw, myindexes[idx].param_data_len, myindexes[idx].param_data_max_len);
+                    }
+                }
+            }
+        }
+
+        private void WritePadBytes(StructWriter sw, long curlen, long wantedlen)
+        {
+            long padlength = wantedlen - curlen;
+            if (padlength <= 0)
+                return;
+
+
+            byte[] buffer = new byte[padlength];
+            for (int padidx = 0; padidx < buffer.Length; padidx++)
+            {
+                buffer[padidx] = 0;
+            }
+
+            sw.Write(buffer);
+        }
+
+        private uint GetPaddingSize(string keyname, uint datasize)
+        {
+            uint knownlength = 0;
+            switch (keyname.ToUpper())
+            {
+                //case "LICENSE":
+                //    {
+                //        knownlength = 512;
+                //        break;
+                //    }
+                //case "TITLE":
+                //    {
+                //        knownlength = 128;
+                //        break;
+                //    }
+                //case "TITLE_ID":
+                //    {
+                //        knownlength = 16;
+                //        break;
+                //    }
+            }
+
+            if (knownlength > 0)
+            {
+                if (datasize > knownlength)
+                    throw new Exception(string.Format("{0} too long. Max length = {1}.", keyname, knownlength));
+                return knownlength;
+            }
+
+
+            if (datasize <= 4)
+                return 4;
+
+            if (datasize <= 8)
+                return 8;
+
+            if (datasize <= 16)
+                return 16;
+
+            // for (int curbit = 2; curbit < 12; curbit++)
+            for (int curbit = 7; curbit < 12; curbit++)
+            {
+                int cursize = 1 << curbit;
+
+                if (datasize <= cursize)
+                    return (uint)cursize;
+            }
+
+            return PadOffset(datasize);
+        }
+
+        private uint PadOffset(long offset)
+        {
+            return PadOffset((uint)offset);
+        }
+
+        private uint PadOffset(int offset)
+        {
+            return PadOffset((uint)offset);
+        }
+
+        private uint PadOffset(uint offset)
+        {
+            // Pad the value to 4 bytes
+            return (uint)((offset + 3) / 4) * 4;
+        }
+
     }
 }

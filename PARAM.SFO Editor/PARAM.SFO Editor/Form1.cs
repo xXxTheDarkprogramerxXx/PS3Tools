@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
 
 namespace PARAM.SFO_Editor
 {
@@ -32,16 +33,17 @@ namespace PARAM.SFO_Editor
 
         #endregion << Error Code >>
 
-
+        private System.Windows.Forms.Timer timer1;
 
         int i = 0;
         string MainPath;
+        bool InitialLoad, CheckBoxBusy = false;
 
         PeXploit.PARAM_SFO psfo;
 
         Playstation version;
 
-        enum Playstation
+        public enum Playstation
         {
             ps3 = 0,
             ps4 = 2
@@ -348,13 +350,49 @@ namespace PARAM.SFO_Editor
             return HexStringToAscii(hexPhrase, true);
         }
 
+        public void RunTimer()
+        {
+            timer1 = new System.Windows.Forms.Timer();
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Interval = Convert.ToInt32(TimeSpan.FromSeconds(5).TotalMilliseconds); // in miliseconds
+            timer1.Start();
+            if (backgroundWorker1.IsBusy == false)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+        }
+
+        public void Stoptimer()
+        {
+            timer1.Stop();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(backgroundWorker1.IsBusy == false && backgroundWorker1.CancellationPending == false)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
+            gbxSoundFormat.Enabled = false;
+            gbxVideo.Enabled = false;
+            tbControl.TabPages.Remove(tbPS4);
+            tbControl.TabPages.Remove(tbPS3);
+            tbControl.TabPages.Add(tbPS4);
+            tbControl.TabPages.Add(tbPS3);
+
+
             cbxAddon.Items.Clear();
             cbVersion.Items.Clear();
             cbSystemVersion.Items.Clear();
             cbxAppVersion.Items.Clear();
+
+            chbBoot.Enabled = false;
+            chbBoot.Text = "Bootable";
 
             OpenFileDialog thedialog = new OpenFileDialog();
             thedialog.Title = "PARAM.SFO";
@@ -372,65 +410,83 @@ namespace PARAM.SFO_Editor
                     //Check MAGIC
                      if (psfo != null)
                     {
-                        
+                        //set initial load too true so we dont do anything unnasasary 
+                        InitialLoad = true;
+
                         List<string> AlreadyAdded = new List<string>();
                         foreach (PeXploit.PARAM_SFO.Table t in psfo.Tables)
                         {
                             if(t.Name == "TITLE_ID")
                             {
                                 txtTitleId.Text = t.Value.Trim();
+                                txtTitleId.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                             }
                             if(t.Name == "CONTENT_ID")
                             {
                                 txtContentId.Text = t.Value.Trim();
+                                txtContentId.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                             }
                             if (t.Name == "TITLE")
                             {
-                                
-
-                                txtTitle.Text = t.Value.Trim(); 
+                                txtTitle.Text = t.Value.Trim();
+                                txtTitle.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                             }
                             if(t.Name == "CATEGORY")
                             {
                                 txtCATEGORY.Text =((PeXploit.PARAM_SFO.DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
+                                txtCATEGORY.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                             }
                             if(t.Name == "APP_VER")
                             {
                                 cbxAppVersion.Items.Add(t.Value.Trim());
+                                cbxAppVersion.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                                 cbxAppVersion.SelectedIndex = 0;
                             }
                             if(t.Name == "VERSION")
                             {
                                 cbVersion.Items.Add(t.Value.Trim());
+                                cbVersion.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                                 cbVersion.SelectedIndex = 0;
                             }
                             if(t.Name == "PARENTAL_LEVEL")
                             {
-                                cbxParent.SelectedIndex = Convert.ToInt32(t.Value);
-                                AlreadyAdded.Add(t.Name);
+                                if (t.Value == "")
+                                {
+                                    cbxParent.SelectedIndex = 0;
+                                }
+                                else
+                                {
+                                    cbxParent.Tag = t.Name;
+                                    cbxParent.SelectedIndex = Convert.ToInt32(t.Value);
+                                    AlreadyAdded.Add(t.Name);
+                                }
                             }
                             if(t.Name == "PS3_SYSTEM_VER")
                             {
+                                cbSystemVersion.Tag = t.Name;
                                 //we know its PS3
                                 cbSystemVersion.Items.Add(t.Value.ToString());
                                 pbLogo.Image = Properties.Resources.images;
                                 AlreadyAdded.Add(t.Name);
                                 cbSystemVersion.SelectedIndex = 0;
                                 version = Playstation.ps3;
+                                tbControl.TabPages.Remove(tbPS4);
                             }
                             if(t.Name == "SYSTEM_VER")
                             {
+                                cbSystemVersion.Tag = t.Name;
                                 cbSystemVersion.Items.Add(t.Value.ToString());
                                 pbLogo.Image = Properties.Resources.ps4_logo_white1;
                                 AlreadyAdded.Add(t.Name);
                                 cbSystemVersion.SelectedIndex = 0;
                                 version = Playstation.ps4;
+                                tbControl.TabPages.Remove(tbPS3);
                             }
                             if (t.Name == "RESOLUTION")
                             {
@@ -763,6 +819,40 @@ namespace PARAM.SFO_Editor
                                 }
                                 #endregion << PS3 Resolution >>
                             }
+                            if (t.Name == "BOOTABLE")
+                            {
+                                chbBoot.Enabled = true;
+                                if (t.Value.ToString() == "0")
+                                {
+                                    chbBoot.Checked = false;
+                                }
+                                if (t.Value == "1")
+                                {
+                                    chbBoot.Checked = true;
+                                    chbBoot.Text = "Bootable (Mode 1)";
+                                }
+                                if (t.Value == "2")
+                                {
+                                    chbBoot.Checked = true;
+                                    chbBoot.Text = "Bootable (Mode 2)";
+                                }
+                            }
+                            if (t.Name == "SOUND_FORMAT")
+                            {
+                                gbxSoundFormat.Enabled = true;
+                                #region << PS3 Sound Format >>
+                                int Val = 0;
+                                int.TryParse(t.Value.Trim(), out Val);
+                                switch(Val)
+                                {
+                                    case 1 :
+                                        chbxLPCM2.Checked = true;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                #endregion << PS3 Sound Format >>
+                            }
 
                             if(!AlreadyAdded.Contains(t.Name))
                             {
@@ -776,14 +866,14 @@ namespace PARAM.SFO_Editor
                         cbxAddon.SelectedIndex = 0;
                         if(backgroundWorker1.IsBusy == true)
                         {
+                            Stoptimer();
                             backgroundWorker1.CancelAsync();
                         }
-                         while(backgroundWorker1.IsBusy == true)
-                         {
-                             Thread.Sleep(100);
-                         }
-                        backgroundWorker1.RunWorkerAsync();
+
+                        RunTimer();
                         btnRaw.Enabled = true;
+                        InitialLoad = false;
+                        button2.Enabled = true;
                     }
                     else
                     {
@@ -791,6 +881,11 @@ namespace PARAM.SFO_Editor
                     }
                
                 }
+            }
+            else
+            {
+                tbControl.TabPages.Remove(tbPS4);
+                tbControl.TabPages.Remove(tbPS3);
             }
         }
 
@@ -811,29 +906,111 @@ namespace PARAM.SFO_Editor
 
         private void button3_Click(object sender, EventArgs e)
         {
-            RawView raw = new RawView(psfo);
+            RawView raw = new RawView(psfo,version);
             raw.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ExtractAllResources();
 
+            tbControl.TabPages.Remove(tbPS4);
+            tbControl.TabPages.Remove(tbPS3);
+        }
+
+        private string AppCommonPath()
+        {
+            string returnstring = "";
+
+            returnstring = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Ps4Tools\";
+
+            return returnstring;
+        }
+
+
+        public void ExtractAllResources()
+        {
+            if (!Directory.Exists(AppCommonPath()))
+            {
+                Directory.CreateDirectory(AppCommonPath());
+            }
+            if (!Directory.Exists(AppCommonPath() + @"\ext\"))
+            {
+                Directory.CreateDirectory(AppCommonPath() + @"\ext\");
+            }
+            //We will replace every file each time we call any toolkit to stop issues with different versions ext ext
+
+            ////SCE Files
+            //copy byte files
+
+            //ext
+            System.IO.File.WriteAllBytes(AppCommonPath() + @"\ext\" + "di.exe", Properties.Resources.di);
+            System.IO.File.WriteAllBytes(AppCommonPath() + @"\ext\" + "sc.exe", Properties.Resources.sc);
+            System.IO.File.WriteAllBytes(AppCommonPath() + @"\ext\" + "libatrac9.dll", Properties.Resources.libatrac9);
+            //orbis
+            System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-cmd.exe", Properties.Resources.orbis_pub_cmd);
+            System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-rx.dll", Properties.Resources.orbis_pub_prx);
+
+            //copy text files
+            System.IO.File.WriteAllText(AppCommonPath() + @"\ext\" + "trp_compare_default.css", Properties.Resources.trp_compare_default);
+
+            //Delete Working Directory and recreate it
+            if (Directory.Exists(AppCommonPath() + @"\Working\"))
+            {
+                DeleteDirectory(AppCommonPath() + @"\Working\");
+            }
+
+            Directory.CreateDirectory(AppCommonPath() + @"\Working\");
+
+        }
+
+        public static void DeleteDirectory(string target_dir)
+        {
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
+
+            Directory.Delete(target_dir, false);
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            while (i == 0)
+            if (backgroundWorker1.CancellationPending)
             {
-                #region << PS3 >>
-                if (version == Playstation.ps3)
+                e.Cancel = true;
+            }
+            else
+            {
+                while (i == 0)
                 {
-                    
-                    if (Directory.Exists(MainPath + @"\C00\") && i == 0)
+                    #region << PS3 >>
+                    if (version == Playstation.ps3)
                     {
-                        pbLogoAndBackground.ImageLocation = MainPath + @"\C00\ICON0.PNG";
-                        i = 1;
-                        Thread.Sleep(1500);
+
+                        if (Directory.Exists(MainPath + @"\C00\") && i == 0)
+                        {
+                            pbLogoAndBackground.ImageLocation = MainPath + @"\C00\ICON0.PNG";
+                            i = 1;
+                            Thread.Sleep(1500);
+                        }
+                        else
+                        {
+                            pbLogoAndBackground.ImageLocation = MainPath + @"\ICON0.PNG";
+                            i = 1;
+                            Thread.Sleep(1500);
+                        }
                     }
+                    #endregion << PS3 >>
                     else
                     {
                         pbLogoAndBackground.ImageLocation = MainPath + @"\ICON0.PNG";
@@ -841,70 +1018,64 @@ namespace PARAM.SFO_Editor
                         Thread.Sleep(1500);
                     }
                 }
-                #endregion << PS3 >>
-                else
+                while (i == 1)
                 {
-                    pbLogoAndBackground.ImageLocation = MainPath + @"\ICON0.PNG";
-                    i = 1;
-                    Thread.Sleep(1500);
-                }
-            }
-            while (i == 1)
-            {
-                try
-                {
-                    #region << PS3 >>
-                    if (version == Playstation.ps3)
+                    try
                     {
-                        if (Directory.Exists(MainPath + @"\C00\") && i == 1)
+                        #region << PS3 >>
+                        if (version == Playstation.ps3)
                         {
-                            pbLogoAndBackground.ImageLocation = MainPath + @"\C00\PIC1.PNG";
-                            i = 0;
-                            Thread.Sleep(1500);
-                        }
-                        else
-                        {
-                            pbLogoAndBackground.ImageLocation = MainPath + @"\PIC1.PNG";
-                            i = 0;
-                            Thread.Sleep(1500);
-                        }
-                    }
-                    #endregion << PS3 >>
-
-                    else
-                    {
-                        Random rnd = new Random();
-                        int ran = rnd.Next(1, 3);
-                        if (ran == 1)
-                        {
-                            pbLogoAndBackground.ImageLocation = MainPath + @"\PIC1.PNG";
-                        }
-                        else
-                        {
-                            if (File.Exists(MainPath + @"\PIC0.PNG"))
+                            if (Directory.Exists(MainPath + @"\C00\") && i == 1)
                             {
-                                pbLogoAndBackground.ImageLocation = MainPath + @"\PIC0.PNG";
+                                pbLogoAndBackground.ImageLocation = MainPath + @"\C00\PIC1.PNG";
+                                i = 0;
+                                Thread.Sleep(1500);
+                            }
+                            else
+                            {
+                                pbLogoAndBackground.ImageLocation = MainPath + @"\PIC1.PNG";
+                                i = 0;
+                                Thread.Sleep(1500);
                             }
                         }
-                        i = 0;
-                        Thread.Sleep(1500);
+                        #endregion << PS3 >>
+
+                        else
+                        {
+                            Random rnd = new Random();
+                            int ran = rnd.Next(1, 3);
+                            if (ran == 1)
+                            {
+                                pbLogoAndBackground.ImageLocation = MainPath + @"\PIC1.PNG";
+                            }
+                            else
+                            {
+                                if (File.Exists(MainPath + @"\PIC0.PNG"))
+                                {
+                                    pbLogoAndBackground.ImageLocation = MainPath + @"\PIC0.PNG";
+                                }
+                            }
+                            i = 0;
+                            Thread.Sleep(1500);
+                        }
+                    }
+                    catch (Exception ee)
+                    {
+                        string test = ee.Message;
                     }
                 }
-                catch (Exception ee)
-                {
-                    string test = ee.Message;
-                }
             }
-
         }
 
         private void cbxAddon_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (PeXploit.PARAM_SFO.Table item in psfo.Tables)
             {
-                if(item.Name == cbxAddon.SelectedItem.ToString().Trim())
+                if(item.Name == cbxAddon.SelectedItem.ToString().Trim() && item.Name != string.Empty)
                 {
+                    CheckBoxBusy = true;
                     txtAddonData.Text = item.Value.ToString();
+                    CheckBoxBusy = false;
                 }
             }
         }
@@ -923,7 +1094,12 @@ namespace PARAM.SFO_Editor
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            backgroundWorker1.RunWorkerAsync();
+            if (e.Cancelled)
+            {
+                //item has been cancled
+                MessageBox.Show("Prog Cancled");
+            }
+           
         }
 
         private void txtAddonData_TextChanged(object sender, EventArgs e)
@@ -1259,6 +1435,456 @@ namespace PARAM.SFO_Editor
                 }
                 #endregion << PS3 Resolution >>
             }
+            //set all other data
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == cbxAddon.SelectedText.ToString())
+                {
+                    psfo.Tables[i].Value = txtAddonData.Text.Trim();
+                }
+            }
+        }
+
+        private void chb720_CheckedChanged(object sender, EventArgs e)
+        {
+            if (InitialLoad == true || CheckBoxBusy == true)
+            {
+                return;
+            }
+
+            CheckBoxBusy = true;
+
+            //first get the value from param table
+            int iValue = 0, psfoValue = 0;
+
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == "RESOLUTION")
+                {
+                    int.TryParse(psfo.Tables[i].Value, out psfoValue);
+                    iValue = i;
+                    break;
+                }
+            }
+            //now we add or subtract
+            if (chb720.Checked == true)
+            {
+                psfo.Tables[iValue].Value = (psfoValue + 4).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+            else
+            {
+                psfo.Tables[iValue].Value = (psfoValue - 4).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+        }
+
+        private void chbx576Wide_CheckedChanged(object sender, EventArgs e)
+        {
+            if (InitialLoad == true || CheckBoxBusy == true)
+            {
+                return;
+            }
+
+            CheckBoxBusy = true;
+
+            //first get the value from param table
+            int iValue = 0, psfoValue = 0;
+
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == "RESOLUTION")
+                {
+                    int.TryParse(psfo.Tables[i].Value, out psfoValue);
+                    iValue = i;
+                    break;
+                }
+            }
+            //now we add or subtract
+            if (chbx576Wide.Checked == true)
+            {
+                psfo.Tables[iValue].Value = (psfoValue + 32).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+            else
+            {
+                psfo.Tables[iValue].Value = (psfoValue - 32).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+        }
+
+        private void chbx576_CheckedChanged(object sender, EventArgs e)
+        {
+            if (InitialLoad == true || CheckBoxBusy == true)
+            {
+                return;
+            }
+
+            CheckBoxBusy = true;
+
+            //first get the value from param table
+            int iValue = 0, psfoValue = 0;
+
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == "RESOLUTION")
+                {
+                    int.TryParse(psfo.Tables[i].Value, out psfoValue);
+                    iValue = i;
+                    break;
+                }
+            }
+            //now we add or subtract
+            if (chbx576.Checked == true)
+            {
+                psfo.Tables[iValue].Value = (psfoValue + 2).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+            else
+            {
+                psfo.Tables[iValue].Value = (psfoValue - 2).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+        }
+
+        private void chbx480Wide_CheckedChanged(object sender, EventArgs e)
+        {
+            if (InitialLoad == true || CheckBoxBusy == true)
+            {
+                return;
+            }
+
+            CheckBoxBusy = true;
+
+            //first get the value from param table
+            int iValue = 0, psfoValue = 0;
+
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == "RESOLUTION")
+                {
+                    int.TryParse(psfo.Tables[i].Value, out psfoValue);
+                    iValue = i;
+                    break;
+                }
+            }
+            //now we add or subtract
+            if (chbx480Wide.Checked == true)
+            {
+                psfo.Tables[iValue].Value = (psfoValue + 16).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+            else
+            {
+                psfo.Tables[iValue].Value = (psfoValue - 16).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+        }
+
+        private void chbx480_CheckedChanged(object sender, EventArgs e)
+        {
+            if (InitialLoad == true || CheckBoxBusy == true)
+            {
+                return;
+            }
+
+            CheckBoxBusy = true;
+
+            //first get the value from param table
+            int iValue = 0, psfoValue = 0;
+
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == "RESOLUTION")
+                {
+                    int.TryParse(psfo.Tables[i].Value, out psfoValue);
+                    iValue = i;
+                    break;
+                }
+            }
+            //now we add or subtract
+            if (chbx480.Checked == true)
+            {
+                psfo.Tables[iValue].Value = (psfoValue + 1).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+            else
+            {
+                psfo.Tables[iValue].Value = (psfoValue - 1).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+        }
+
+        private void chbx1080_CheckedChanged(object sender, EventArgs e)
+        {
+            if(InitialLoad == true || CheckBoxBusy == true)
+            {
+                return;
+            }
+
+            CheckBoxBusy = true;
+
+            //first get the value from param table
+            int iValue = 0, psfoValue = 0;
+             
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == "RESOLUTION")
+                {
+                    int.TryParse(psfo.Tables[i].Value, out psfoValue);
+                    iValue = i;
+                    break;
+                }
+            }
+            //now we add or subtract
+            if (chbx1080.Checked == true)
+            {
+                psfo.Tables[iValue].Value = (psfoValue + 8).ToString();
+                if(cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+            else
+            {
+                psfo.Tables[iValue].Value = (psfoValue - 8).ToString();
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                {
+                    txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
+                    CheckBoxBusy = false;
+                }
+            }
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "PARAM.SFO (PARAM.SFO)|PARAM.SFO";
+            dlg.DefaultExt = "SFO";
+            dlg.AddExtension = true;
+            if(dlg.ShowDialog() == DialogResult.OK)
+            {
+                //user wants to save in a new location or whatever
+                //psfo.SaveFile(psfo,dlg.FileName); //this will be added back as soon as this code is working this is for the initial release of the tool for PS4 sfo saving 
+                CreateSFX(psfo, dlg);
+            }
+        }
+
+        public void CreateSFX(PeXploit.PARAM_SFO psfo, SaveFileDialog dlg)
+        {
+            string FileHeader;
+            if (version == Form1.Playstation.ps4)
+            {
+                //table items
+                FileHeader = CreateSFXHeader();
+                string XMLItem = FileHeader + "\n<paramsfo>";//begin the tag
+                foreach (var item in psfo.Tables)
+                {
+                    XMLItem += "\n\t<param key=\"" + item.Name + "\">" + item.Value + "</param>";
+                }
+                XMLItem += "\n</paramsfo>";//close the tag
+                                           //we dont aks user where he wants to save the file 
+
+
+
+                System.IO.File.WriteAllText(AppCommonPath() + @"\Working\param.sfx", XMLItem);
+                Orbis_CMD("", "sfo_create \"" + AppCommonPath() + @"\Working\" + "param.sfx" + "\" \"" + dlg.FileName + "\"");
+                MessageBox.Show("SFO Created", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                System.Diagnostics.Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(dlg.FileName));
+                System.IO.File.Delete(AppCommonPath() + @"\Working\param.sfx");//remove the SFX
+            
+
+                
+
+            }
+            else
+            {
+                MessageBox.Show("SFO Saving For PS3 may be a bit buggy", "SFO Build", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //FileHeader = CreateSFXHeader();
+                //string XMLItem = FileHeader + "\n<paramsfo>";//begin the tag
+                //foreach (var item in psfo.Tables)
+                //{
+                //    #region << Get Format >>
+                //    var frmt = "";
+                //    if (item.Indextable.param_data_fmt == PeXploit.PARAM_SFO.FMT.ASCII)
+                //    {
+                //        frmt = "utf8-S";
+                //    }
+                //    if (item.Indextable.param_data_fmt == PeXploit.PARAM_SFO.FMT.UINT32)
+                //    {
+                //        frmt = "int32";
+                //    }
+                //    if (item.Indextable.param_data_fmt == PeXploit.PARAM_SFO.FMT.UTF_8)
+                //    {
+                //        frmt = "utf8";
+                //    }
+                //    #endregion << Get Format >>
+
+
+                //    XMLItem += "\n\t<param key=\"" + item.Name + "\"" + "fmt=\"" + frmt + "\" max_len=\"" + item.Indextable.param_data_max_len + "\"" + ">" + item.Value + "</param>";
+                //}
+                //XMLItem += "\n</paramsfo>";//close the tag
+
+                psfo.SaveFile(psfo,dlg.FileName);
+
+                MessageBox.Show("SFO Created", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+
+        }
+
+        public string CreateSFXHeader()
+        {
+            return "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>";
+        }
+
+        private void txtTitleId_TextChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if(psfo.Tables[i].Name == "TITLE_ID")
+                {
+                    psfo.Tables[i].Value = txtTitleId.Text.Trim();
+                }
+            }
+        }
+
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == "TITLE")
+                {
+                    psfo.Tables[i].Value = txtTitle.Text.Trim();
+                }
+            }
+        }
+
+        private void cbSystemVersion_TextChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == "SYSTEM_VER" || psfo.Tables[i].Name == "PS3_SYSTEM_VER")
+                {
+                    psfo.Tables[i].Value = cbSystemVersion.Text.Trim();
+                }
+            }
+        }
+
+        private void cbxParent_TextChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == cbxParent.Tag.ToString())
+                {
+                    psfo.Tables[i].Value = cbxParent.Text.Trim();
+                }
+            }
+        }
+
+        private void cbxParent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == cbxParent.Tag.ToString())
+                {
+                    psfo.Tables[i].Value = cbxParent.Text.Trim();
+                }
+            }
+        }
+
+        private void cbVersion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == cbVersion.Tag.ToString())
+                {
+                    psfo.Tables[i].Value = cbVersion.Text.Trim();
+                }
+            }
+        }
+
+        private void cbxAppVersion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Length; i++)
+            {
+                if (psfo.Tables[i].Name == cbxAppVersion.Tag.ToString())
+                {
+                    psfo.Tables[i].Value = cbxAppVersion.Text.Trim();
+                }
+            }
+        }
+
+        //orbis
+        public string Orbis_CMD(string command, string arguments)
+        {
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = AppCommonPath() + "orbis-pub-cmd.exe " + command;
+            start.Arguments = arguments;
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            start.CreateNoWindow = true;
+            using (Process process = Process.Start(start))
+            {
+                process.ErrorDataReceived += Process_ErrorDataReceived;
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    return result;
+                }
+            }
+        }
+
+        private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            MessageBox.Show("Error Creating SFO\n" + e.Data.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
