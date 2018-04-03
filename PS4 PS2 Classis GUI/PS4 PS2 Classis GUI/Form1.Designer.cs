@@ -40,6 +40,7 @@
             this.lblContentName = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.btnConvert = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@
             this.changeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -187,6 +187,12 @@
             this.menuStrip1.Size = new System.Drawing.Size(717, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem1
+            // 
+            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem1.Text = "File";
             // 
             // progressBar1
             // 
@@ -324,12 +330,6 @@
             this.restoreIconToolStripMenuItem.Name = "restoreIconToolStripMenuItem";
             this.restoreIconToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.restoreIconToolStripMenuItem.Text = "Restore Icon";
-            // 
-            // fileToolStripMenuItem1
-            // 
-            this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(44, 24);
-            this.fileToolStripMenuItem1.Text = "File";
             // 
             // Form1
             // 

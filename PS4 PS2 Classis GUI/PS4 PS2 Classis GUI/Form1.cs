@@ -44,11 +44,10 @@ namespace PS4_PS2_Classis_GUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //extract all resources for the current program
             ExtractAllResources();
-
+            //Load the GP4 after extracted
             LoadGp4();
-
-
 
             //quickly read sfo 
             string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
@@ -57,9 +56,14 @@ namespace PS4_PS2_Classis_GUI
             //all we want to change is the Content ID which will rename the package 
             txtContentID.Text = sfo.ContentID.ToString().Trim().Substring(7, 9);
 
+            //Load AuthDB we need to resign all the self files
             LoadAuthDB();
         }
 
+        /// <summary>
+        /// load Auth this method comes from CFW Prophet 
+        /// Follow him on Tiwtter @cfwprophet or visit his github https://github.com/cfwprpht
+        /// </summary>
         public void LoadAuthDB()
         {
             if (!File.Exists(AppCommonPath() + "authinfo.txt"))
@@ -143,6 +147,10 @@ namespace PS4_PS2_Classis_GUI
             }
         }
 
+        /// <summary>
+        /// Load the XML Project File for PS4 PKG's/ISO's
+        /// in this example i will show how to mine the content id
+        /// </summary>
         public void LoadGp4()
         {
             //create new XML Document 
@@ -167,6 +175,10 @@ namespace PS4_PS2_Classis_GUI
             }
 
         }
+
+        /// <summary>
+        /// Save the GP4 so we can build the PKG Via Command Prompt
+        /// </summary>
         public void SaveGp4()
         {
             //create new XML Document 
@@ -189,6 +201,7 @@ namespace PS4_PS2_Classis_GUI
                     xNode.Attributes[0].Value = xmlcontentid;//set the attribute
                 }
             }
+            ////Uncomment this if you want to use the current datetime
             //xmlnode = xmldoc.GetElementsByTagName("volume_ts");
             //foreach (XmlNode item in xmlnode)
             //{
@@ -363,18 +376,55 @@ namespace PS4_PS2_Classis_GUI
         public string Orbis_CMD(string command, string arguments)
         {
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = AppCommonPath() + "orbis-pub-cmd-ps2.exe " + command;
+            start.FileName = AppCommonPath() + "orbis-pub-cmd.exe " + command;
             start.Arguments = arguments ;
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
             start.CreateNoWindow = true;
             using (Process process = Process.Start(start))
             {
+                process.ErrorDataReceived += Process_ErrorDataReceived;
                 using (StreamReader reader = process.StandardOutput)
                 {
                     string result = reader.ReadToEnd();
+                    if(result.Contains("already converted from elf file to self file"))
+                    {
+                        DialogResult dlr =  MessageBox.Show("Already Converted From Elf Error Found.... will be using Orbis-pub-gen for this pkg\n\n Simply Click Build and select the save folder","Error with an alternative",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+                        if(dlr == DialogResult.OK)
+                        {
+                            //this will open up the GP4 Project inside the Utility
+                            Orbis_Pub__GenCMD("", AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
+
+                        }
+                    }
                     return result;
                 }
+            }
+        }
+
+
+        public string Orbis_Pub__GenCMD(string command, string arguments)
+        {
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = AppCommonPath() + "orbis-pub-gen.exe " + command;
+            start.Arguments = arguments;
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = false;
+            start.CreateNoWindow = false;
+            using (Process process = Process.Start(start))
+            {
+                process.WaitForExit();
+            }
+            return "";
+        }
+
+        private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+
+
+            if(e.Data.ToString().Trim() == "")
+            {
+
             }
         }
 
@@ -456,7 +506,7 @@ namespace PS4_PS2_Classis_GUI
             //copy byte files
             System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", Properties.Resources.PS2Classics);
             System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "param.sfo", Properties.Resources.param);
-            System.IO.File.WriteAllBytes(AppCommonPath() + "orbis_pub_cmd.exe", Properties.Resources.orbis_pub_cmd);
+            System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-cmd.exe", Properties.Resources.orbis_pub_cmd);
             System.IO.File.WriteAllBytes(AppCommonPath() + "PS2.zip", Properties.Resources.PS2);
 
             //copy images for the save process
@@ -478,6 +528,10 @@ namespace PS4_PS2_Classis_GUI
 
         #endregion << Extract Needed Resources >>
 
+        /// <summary>
+        /// This function will clean out a directory and then delete the directory
+        /// </summary>
+        /// <param name="target_dir">Supply the directory you want cleaned</param>
         public static void DeleteDirectory(string target_dir)
         {
             string[] files = Directory.GetFiles(target_dir);
@@ -497,29 +551,40 @@ namespace PS4_PS2_Classis_GUI
             Directory.Delete(target_dir, false);
         }
 
+        /// <summary>
+        /// This Button is used to Load an ISO into our Program (Check PS2 File Header)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnISO_Click(object sender, EventArgs e)
         {
+            //Open File Dialog For ISO Files
             OpenFileDialog thedialog = new OpenFileDialog();
             thedialog.Title = "Select ISO";
             thedialog.Filter = "Image File|*.iso";
             thedialog.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
             if (thedialog.ShowDialog() == DialogResult.OK)
             {
-                
+                //set the path and the text on the gui
                 string isopath = thedialog.FileName;
                 txtPath.Text = isopath;
+
+                //now using the file stream we can read the CNF file
                 using (FileStream isoStream = File.OpenRead(isopath))
                 {
                     //use disk utils to read iso quickly
                     CDReader cd = new CDReader(isoStream, true);
+                    //look for the spesific file
                     Stream fileStream = cd.OpenFile(@"SYSTEM.CNF", FileMode.Open);
                     // Use fileStream...
                     TextReader tr = new StreamReader(fileStream);
                     string fullstring = tr.ReadToEnd();//read string to end this will read all the info we need
-
+                    
+                    //mine for info
                     string Is = @"\";
                     string Ie = ";";
-
+                    
+                    //mine the start and end of the string
                     int start = fullstring.ToString().IndexOf(Is) + Is.Length;
                     int end = fullstring.ToString().IndexOf(Ie, start);
                     if (end > start)
@@ -536,21 +601,17 @@ namespace PS4_PS2_Classis_GUI
                             MessageBox.Show("Could not load PS2 ID");
                         }
                     }
-                }
-            }
-        }
+                    else
+                    {
+                        DialogResult dlr =  MessageBox.Show("Could not load PS2 ID\n\n wpuld you like to submit an issue ?","Error Reporting",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2);
+                        if(dlr == DialogResult.Yes)
+                        {
+                            //load github issue page
+                            Process.Start(@"https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues");
+                        }
 
-        public static byte[] ReadFully(Stream input)
-        {
-            byte[] buffer = new byte[16 * 1024];
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
+                    }
                 }
-                return ms.ToArray();
             }
         }
 
@@ -566,9 +627,11 @@ namespace PS4_PS2_Classis_GUI
 
         private void txtTitleId_TextChanged(object sender, EventArgs e)
         {
+            //set the name of the package on the GUI as well to show a bit of information
             lblContentName.Text = txtTitleId.Text.Trim();
         }
 
+        #region << Progress Bar Copy Files >>
 
         public delegate void IntDelegate(int Int);
 
@@ -589,6 +652,8 @@ namespace PS4_PS2_Classis_GUI
             }
 
         }
+
+        #endregion << Progress Bar Copy Files >>
 
         /// <summary>
         /// Check if ELFs of the base are Decrypted.
@@ -611,6 +676,11 @@ namespace PS4_PS2_Classis_GUI
             return true;
         }
 
+        /// <summary>
+        /// This Button is when the user selects to convert the file to PS4 PKG
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConvert_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -663,6 +733,7 @@ namespace PS4_PS2_Classis_GUI
                 }
                 for (int i = 1; i < 7; i++)
                 {
+                    //fix the enter key issue i have found in some in
                     nodes = xmldoc.SelectNodes("//param[@key='SERVICE_ID_ADDCONT_ADD_"+i+"']");
                     if (nodes != null)
                     {
@@ -709,6 +780,9 @@ namespace PS4_PS2_Classis_GUI
             //now create pkg 
             Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + Path.GetDirectoryName(saveFileDialog1.FileName) + "\"");
             //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
+
+            MessageBox.Show("Convert completed");
+            Process.Start(Path.GetDirectoryName(saveFileDialog1.FileName));
 
 
             //now we delete the working directory
