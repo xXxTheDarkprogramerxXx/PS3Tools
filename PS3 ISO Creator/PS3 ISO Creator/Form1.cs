@@ -117,6 +117,8 @@ namespace PS3_ISO_Creator
                 textBoxVolumeName.Text = new DirectoryInfo(dialog.SelectedPath).Name + ".iso";
             }
 
+            
+
             DialogResult result = MessageBox.Show("Do you want to create an ISO of this folder for ps3 ?", "PS3ISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {

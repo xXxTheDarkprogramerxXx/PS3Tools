@@ -22,13 +22,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <InstallUrl>https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</InstallUrl>
-    <UpdateUrl>https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</UpdateUrl>
+    <InstallUrl>http://xdpx.000webhost.com/ParamSFO/</InstallUrl>
+    <UpdateUrl>http://xdpx.000webhost.com/ParamSFO/</UpdateUrl>
     <ProductName>PARAM.SFO Editor</ProductName>
     <PublisherName>TheDarkprogramer</PublisherName>
     <SuiteName>PS Tools</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

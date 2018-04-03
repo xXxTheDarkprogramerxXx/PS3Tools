@@ -63,6 +63,16 @@ namespace PARAM.SFO_Editor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1024px_PlayStation_Certified_svg {
+            get {
+                object obj = ResourceManager.GetObject("1024px-PlayStation_Certified.svg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _688623017_b797284f_5a12_45ab_b647_bf77e3e6445b {
             get {
                 object obj = ResourceManager.GetObject("_688623017_b797284f_5a12_45ab_b647_bf77e3e6445b", resourceCulture);
@@ -76,16 +86,6 @@ namespace PARAM.SFO_Editor.Properties {
         internal static System.Drawing.Bitmap _688623019_28d86b52_09fd_4e41_b24b_73e0343dbda4 {
             get {
                 object obj = ResourceManager.GetObject("_688623019_28d86b52_09fd_4e41_b24b_73e0343dbda4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _688626734_ccee13e0_ea05_400a_83b8_d4d354fdeedc {
-            get {
-                object obj = ResourceManager.GetObject("_688626734_ccee13e0_ea05_400a_83b8_d4d354fdeedc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -181,6 +181,16 @@ namespace PARAM.SFO_Editor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap images__1_ {
+            get {
+                object obj = ResourceManager.GetObject("images (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] libatrac9 {
@@ -227,6 +237,16 @@ namespace PARAM.SFO_Editor.Properties {
             get {
                 object obj = ResourceManager.GetObject("orbis_pub_prx", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ps_vita_logo {
+            get {
+                object obj = ResourceManager.GetObject("ps-vita-logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

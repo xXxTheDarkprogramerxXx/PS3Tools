@@ -145,9 +145,6 @@
   <data name="trp_compare_default" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trp_compare_default.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="icons8_check_file_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-check-file-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -157,8 +154,14 @@
   <data name="icons8_binary_file_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-binary-file-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="sc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sc.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="_688632230_88b22244_2e4c_4d50_bcad_e7efb6d4f5e2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\688632230_88b22244-2e4c-4d50-bcad-e7efb6d4f5e2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoMakr_4y3rYY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoMakr_4y3rYY.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="libatrac9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\libatrac9.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -172,13 +175,22 @@
   <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sc.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="icons8_check_file_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-check-file-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_github_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-github-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LogoMakr_4y3rYY" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LogoMakr_4y3rYY.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="688626734_ccee13e0-ea05-400a-83b8-d4d354fdeedc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\688626734_ccee13e0-ea05-400a-83b8-d4d354fdeedc1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1024px-PlayStation_Certified.svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1024px-PlayStation_Certified.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ps-vita-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ps-vita-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

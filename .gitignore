@@ -41,3 +41,36 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/Discutils.0.11.0.2.nupkg
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/lib/net40/DiscUtils.Common.dll
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/lib/net40/DiscUtils.Common.pdb
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/lib/net40/DiscUtils.Common.XML
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/lib/net40/DiscUtils.dll
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/lib/net40/DiscUtils.pdb
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/lib/net40/DiscUtils.XML
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/BCDDump.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.Common.dll
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.Common.XML
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.dll
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/VolInfo.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/VirtualDiskConvert.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/VHDDump.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/VHDCreate.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/OSClone.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/NTFSDump.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/ISOCreate.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/iSCSIBrowse.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/FileRecover.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/FileExtract.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/ExternalFileSystem.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiskDump.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiskClone.exe
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.XML
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.Types.ps1xml
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.psd1
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.PowerShell.XML
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.PowerShell.dll
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.MSBuild.XML
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.MSBuild.dll
+PS4 PS2 Classis GUI/packages/Discutils.0.11.0.2/tools/DiscUtils.Format.ps1xml
+*.iso

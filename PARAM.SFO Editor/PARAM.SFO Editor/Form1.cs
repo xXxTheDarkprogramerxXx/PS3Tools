@@ -46,7 +46,8 @@ namespace PARAM.SFO_Editor
         public enum Playstation
         {
             ps3 = 0,
-            ps4 = 2
+            psvita = 1,
+            ps4 = 2,
         }
 
         #region << Header >>
@@ -350,6 +351,8 @@ namespace PARAM.SFO_Editor
             return HexStringToAscii(hexPhrase, true);
         }
 
+        #region << For The Image Loop >>
+
         public void RunTimer()
         {
             timer1 = new System.Windows.Forms.Timer();
@@ -375,7 +378,30 @@ namespace PARAM.SFO_Editor
             }
         }
 
+        #endregion << For The Image Loop >>
 
+
+        #region << Methods >>
+
+
+        private void Uncheck_Resolution_All()
+        {
+            chb720.Checked = false;
+            chbx1080.Checked = false;
+            chbx480.Checked = false;
+            chbx480Wide.Checked = false;
+            chbx576.Checked = false;
+            chbx576Wide.Checked = false;
+        }
+
+        #endregion << Methods >>
+
+        #region << Events >>
+        /// <summary>
+        /// Load Button Event ( Loads a psfo from a location )
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             gbxSoundFormat.Enabled = false;
@@ -894,16 +920,6 @@ namespace PARAM.SFO_Editor
 
         }
 
-        private void Uncheck_Resolution_All()
-        {
-            chb720.Checked = false;
-            chbx1080.Checked = false;
-            chbx480.Checked = false;
-            chbx480Wide.Checked = false;
-            chbx576.Checked = false;
-            chbx576Wide.Checked = false;
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             RawView raw = new RawView(psfo,version);
@@ -917,6 +933,8 @@ namespace PARAM.SFO_Editor
             tbControl.TabPages.Remove(tbPS4);
             tbControl.TabPages.Remove(tbPS3);
         }
+
+        #endregion << Events >>
 
         private string AppCommonPath()
         {

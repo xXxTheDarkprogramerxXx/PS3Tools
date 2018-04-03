@@ -9,3 +9,12 @@ c:\users\3de echelon\documents\visual studio 2012\Projects\PS3 ISO Creator\PS3 I
 c:\users\3de echelon\documents\visual studio 2012\Projects\PS3 ISO Creator\PS3 ISO Creator\obj\Debug\PS3 ISO Creator.csproj.GenerateResource.Cache
 c:\users\3de echelon\documents\visual studio 2012\Projects\PS3 ISO Creator\PS3 ISO Creator\obj\Debug\PS3 ISO Creator.exe
 c:\users\3de echelon\documents\visual studio 2012\Projects\PS3 ISO Creator\PS3 ISO Creator\obj\Debug\PS3 ISO Creator.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS3 ISO Creator\PS3 ISO Creator\bin\Debug\PS3 ISO Creator.exe.config
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS3 ISO Creator\PS3 ISO Creator\obj\Debug\PS3 ISO Creator.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS3 ISO Creator\PS3 ISO Creator\obj\Debug\PS3 ISO Creator.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS3 ISO Creator\PS3 ISO Creator\bin\Debug\PS3 ISO Creator.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS3 ISO Creator\PS3 ISO Creator\bin\Debug\PS3 ISO Creator.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS3 ISO Creator\PS3 ISO Creator\obj\Debug\PS3 ISO Creator.csprojResolveAssemblyReference.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS3 ISO Creator\PS3 ISO Creator\obj\Debug\PS3_ISO_Creator.Form1.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS3 ISO Creator\PS3 ISO Creator\obj\Debug\PS3_ISO_Creator.Properties.Resources.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS3 ISO Creator\PS3 ISO Creator\obj\Debug\PS3 ISO Creator.csproj.GenerateResource.Cache
