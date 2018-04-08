@@ -126,7 +126,7 @@
             this.restoreBackgroundToolStripMenuItem1,
             this.resotreIconToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(212, 100);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(212, 128);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // changeBacgroToolStripMenuItem
@@ -136,24 +136,28 @@
             this.changeBacgroToolStripMenuItem.Name = "changeBacgroToolStripMenuItem";
             this.changeBacgroToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.changeBacgroToolStripMenuItem.Text = "Change Bacground ";
+            this.changeBacgroToolStripMenuItem.Click += new System.EventHandler(this.changeBacgroToolStripMenuItem_Click);
             // 
             // changeImageToolStripMenuItem
             // 
             this.changeImageToolStripMenuItem.Name = "changeImageToolStripMenuItem";
             this.changeImageToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.changeImageToolStripMenuItem.Text = "Change Icon";
+            this.changeImageToolStripMenuItem.Click += new System.EventHandler(this.changeImageToolStripMenuItem_Click);
             // 
             // restoreBackgroundToolStripMenuItem1
             // 
             this.restoreBackgroundToolStripMenuItem1.Name = "restoreBackgroundToolStripMenuItem1";
             this.restoreBackgroundToolStripMenuItem1.Size = new System.Drawing.Size(211, 24);
             this.restoreBackgroundToolStripMenuItem1.Text = "Restore Background";
+            this.restoreBackgroundToolStripMenuItem1.Click += new System.EventHandler(this.restoreBackgroundToolStripMenuItem1_Click);
             // 
             // resotreIconToolStripMenuItem
             // 
             this.resotreIconToolStripMenuItem.Name = "resotreIconToolStripMenuItem";
             this.resotreIconToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.resotreIconToolStripMenuItem.Text = "Resotre Icon";
+            this.resotreIconToolStripMenuItem.Click += new System.EventHandler(this.resotreIconToolStripMenuItem_Click);
             // 
             // lblContentName
             // 

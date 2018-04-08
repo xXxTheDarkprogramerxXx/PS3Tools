@@ -428,7 +428,7 @@ namespace PS4_PS2_Classis_GUI
 
             if(e.Data.ToString().Trim() == "")
             {
-
+                MessageBox.Show(e.Data.ToString());
             }
         }
 
@@ -818,7 +818,12 @@ namespace PS4_PS2_Classis_GUI
             File.Copy(AppCommonPath() + @"\Working\" + "param.sfo", AppCommonPath() + @"\PS2\sce_sys\param.sfo", true);
             //now move ISO
 
-            UpdateString("Moving SFO File This May Take Some Time");
+            //save images
+            pictureBox1.Image.Save(AppCommonPath() + @"PS2\sce_sys\icon0.png",System.Drawing.Imaging.ImageFormat.Png);
+
+            pictureBox2.Image.Save(AppCommonPath() + @"PS2\sce_sys\pic1.png", System.Drawing.Imaging.ImageFormat.Png);
+
+            UpdateString("Moving ISO File This May Take Some Time");
             BusyCoping = true;
             new System.Threading.Thread(new System.Threading.ThreadStart(delegate
             {
@@ -887,6 +892,44 @@ namespace PS4_PS2_Classis_GUI
             DeleteDirectory(AppCommonPath() + @"\PS2\");
             DeleteDirectory(AppCommonPath() + @"\PS2Emu\");
 
+        }
+
+        private void changeBacgroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Select Image";
+            dlg.Filter = "Image File|*.png";
+            dlg.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string fileName;
+                fileName = dlg.FileName;
+                pictureBox2.Load(fileName);
+            }
+        }
+
+        private void changeImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Select Image";
+            dlg.Filter = "Image File|*.png";
+            dlg.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                string fileName;
+                fileName = dlg.FileName;
+                pictureBox1.Load(fileName);
+            }
+        }
+
+        private void restoreBackgroundToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Properties.Resources.pic1;
+        }
+
+        private void resotreIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Properties.Resources.pic0;
         }
     }
 
