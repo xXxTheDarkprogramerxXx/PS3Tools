@@ -42,8 +42,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblTask = new System.Windows.Forms.Label();
             this.btnConvert = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.lblPS2ID = new System.Windows.Forms.Label();
             this.txtTitleId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -57,6 +58,7 @@
             this.changeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -86,7 +88,7 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Panel2.Controls.Add(this.progressBar1);
-            this.splitContainer1.Panel2.Controls.Add(this.label4);
+            this.splitContainer1.Panel2.Controls.Add(this.lblTask);
             this.splitContainer1.Panel2.Controls.Add(this.btnConvert);
             this.splitContainer1.Panel2.Controls.Add(this.lblPS2ID);
             this.splitContainer1.Panel2.Controls.Add(this.txtTitleId);
@@ -103,9 +105,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::PS4_PS2_Classis_GUI.Properties.Resources.icon0;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox1.ContextMenuStrip = this.contextMenuStrip1;
-            this.pictureBox1.Image = global::PS4_PS2_Classis_GUI.Properties.Resources.icon0;
             this.pictureBox1.Location = new System.Drawing.Point(39, 32);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(141, 124);
@@ -166,9 +169,10 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.BackgroundImage = global::PS4_PS2_Classis_GUI.Properties.Resources.pic1;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.ContextMenuStrip = this.contextMenuStrip1;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = global::PS4_PS2_Classis_GUI.Properties.Resources.pic1;
             this.pictureBox2.Location = new System.Drawing.Point(0, 28);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(717, 379);
@@ -199,26 +203,38 @@
             this.progressBar1.Location = new System.Drawing.Point(20, 332);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(573, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 12;
+            this.progressBar1.Visible = false;
             // 
-            // label4
+            // lblTask
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 290);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 17);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Running";
+            this.lblTask.AutoSize = true;
+            this.lblTask.Location = new System.Drawing.Point(20, 290);
+            this.lblTask.Name = "lblTask";
+            this.lblTask.Size = new System.Drawing.Size(61, 17);
+            this.lblTask.TabIndex = 11;
+            this.lblTask.Text = "Running";
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(192, 249);
+            this.btnConvert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnConvert.ImageIndex = 0;
+            this.btnConvert.ImageList = this.imageList1;
+            this.btnConvert.Location = new System.Drawing.Point(189, 201);
             this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(161, 23);
+            this.btnConvert.Size = new System.Drawing.Size(245, 88);
             this.btnConvert.TabIndex = 10;
             this.btnConvert.Text = "Create PS2 Classic";
+            this.btnConvert.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnConvert.UseVisualStyleBackColor = true;
             this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "images.jpg");
             // 
             // lblPS2ID
             // 
@@ -331,6 +347,13 @@
             this.restoreIconToolStripMenuItem.Size = new System.Drawing.Size(217, 26);
             this.restoreIconToolStripMenuItem.Text = "Restore Icon";
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -385,8 +408,10 @@
         private System.Windows.Forms.ToolStripMenuItem resotreIconToolStripMenuItem;
         private System.Windows.Forms.Button btnConvert;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblTask;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

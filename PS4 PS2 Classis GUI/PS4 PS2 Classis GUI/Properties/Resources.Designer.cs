@@ -61,6 +61,16 @@ namespace PS4_PS2_Classis_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ext {
+            get {
+                object obj = ResourceManager.GetObject("ext", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon favicon {
@@ -76,6 +86,16 @@ namespace PS4_PS2_Classis_GUI.Properties {
         internal static System.Drawing.Bitmap icon0 {
             get {
                 object obj = ResourceManager.GetObject("icon0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap images {
+            get {
+                object obj = ResourceManager.GetObject("images", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,17 +163,17 @@ namespace PS4_PS2_Classis_GUI.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
         ///&lt;paramsfo&gt;
-        /// &lt;param key=&quot;APP_TYPE&quot;&gt;0&lt;/param&gt;
-        /// &lt;param key=&quot;APP_VER&quot;&gt;01.00&lt;/param&gt;
-        /// &lt;param key=&quot;ATTRIBUTE&quot;&gt;0&lt;/param&gt;
-        /// &lt;param key=&quot;CATEGORY&quot;&gt;gd&lt;/param&gt;
-        /// &lt;param key=&quot;CONTENT_ID&quot;&gt;UP9000-CRST00001_00-SLUS209090000001&lt;/param&gt;
-        /// &lt;param key=&quot;DOWNLOAD_DATA_SIZE&quot;&gt;0&lt;/param&gt;
-        /// &lt;param key=&quot;FORMAT&quot;&gt;obs&lt;/param&gt;
-        /// &lt;param key=&quot;PARENTAL_LEVEL&quot;&gt;5&lt;/param&gt;
-        /// &lt;param key=&quot;REMOTE_PLAY_KEY_ASSIGN&quot;&gt;1&lt;/param&gt;
-        /// &lt;param key=&quot;SERVICE_ID_ADDCONT_ADD_1&quot;&gt;&lt;/param&gt;
-        /// &lt;param key=&quot;SER [rest of string was truncated]&quot;;.
+        ///  &lt;param key=&quot;APP_TYPE&quot;&gt;1&lt;/param&gt;
+        ///  &lt;param key=&quot;APP_VER&quot;&gt;01.00&lt;/param&gt;
+        ///  &lt;param key=&quot;ATTRIBUTE&quot;&gt;0&lt;/param&gt;
+        ///  &lt;param key=&quot;CATEGORY&quot;&gt;gd&lt;/param&gt;
+        ///  &lt;param key=&quot;CONTENT_ID&quot;&gt;UP9000-CRST00001_00-SLUS209090000001&lt;/param&gt;
+        ///  &lt;param key=&quot;DOWNLOAD_DATA_SIZE&quot;&gt;0&lt;/param&gt;
+        ///  &lt;param key=&quot;FORMAT&quot;&gt;obs&lt;/param&gt;
+        ///  &lt;param key=&quot;PARENTAL_LEVEL&quot;&gt;5&lt;/param&gt;
+        ///  &lt;param key=&quot;REMOTE_PLAY_KEY_ASSIGN&quot;&gt;1&lt;/param&gt;
+        ///  &lt;param key=&quot;SERVICE_ID_ADDCONT_ADD_1&quot;&gt;&lt;/param&gt;
+        ///  &lt;par [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sfo {
             get {

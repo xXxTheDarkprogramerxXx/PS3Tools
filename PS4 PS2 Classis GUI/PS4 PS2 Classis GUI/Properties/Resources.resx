@@ -124,25 +124,31 @@
   <data name="favicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\favicon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pic0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="param" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\ps2emu\sce_sys\param.sfo;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="orbis_pub_cmd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\orbis-pub-cmd.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="PS2Classics" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PS2Classics.gp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\param.sfo;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PS2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PS2.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="icon0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="orbis_pub_cmd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\orbis-pub-cmd.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="pic0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pic0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PS2Classics" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PS2Classics.gp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="pic1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pic1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ext" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ext.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

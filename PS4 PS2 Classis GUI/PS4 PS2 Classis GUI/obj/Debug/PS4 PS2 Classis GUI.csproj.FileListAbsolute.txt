@@ -1,15 +1,15 @@
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classis GUI.exe.config
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Form1.resources
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Properties.Resources.resources
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.csproj.GenerateResource.Cache
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classis GUI.exe
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classis GUI.pdb
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.exe
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.pdb
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.csprojResolveAssemblyReference.cache
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\DiscUtils.Common.dll
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\DiscUtils.dll
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\DiscUtils.pdb
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\DiscUtils.xml
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\DiscUtils.Common.pdb
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\DiscUtils.Common.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.csprojResolveAssemblyReference.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Form1.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Properties.Resources.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.csproj.GenerateResource.Cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.pdb

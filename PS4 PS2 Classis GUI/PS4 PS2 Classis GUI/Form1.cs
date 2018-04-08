@@ -42,8 +42,12 @@ namespace PS4_PS2_Classis_GUI
         private StringComparison ignore = StringComparison.InvariantCultureIgnoreCase;
         private List<string> Fws;
 
+        bool BusyCoping = false;
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            //img button stuff
+
             //extract all resources for the current program
             ExtractAllResources();
             //Load the GP4 after extracted
@@ -57,7 +61,7 @@ namespace PS4_PS2_Classis_GUI
             txtContentID.Text = sfo.ContentID.ToString().Trim().Substring(7, 9);
 
             //Load AuthDB we need to resign all the self files
-            LoadAuthDB();
+            //LoadAuthDB();//not using this right now either
         }
 
         /// <summary>
@@ -429,7 +433,7 @@ namespace PS4_PS2_Classis_GUI
         }
 
         /// <summary>
-        /// Fake Sign and spoof authentication informations.
+        /// Fake Sign and spoof authentication informations. //CFW Prophets stuff not uing right now
         /// </summary>
         /// <param name="deci">The TitleIDs decimal value as a hex string.</param>
         private bool FakeSign(string deci)
@@ -447,6 +451,11 @@ namespace PS4_PS2_Classis_GUI
 
             foreach (string elf in Apps[2])
             {
+                //need to make sure name matches 
+                if(!elf.Contains("prx"))
+                {
+
+                }
                 string auth = Auths[2][count];
                 auth = deci + auth.Substring(4, auth.Length - 4);
 
@@ -509,6 +518,8 @@ namespace PS4_PS2_Classis_GUI
             System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-cmd.exe", Properties.Resources.orbis_pub_cmd);
             System.IO.File.WriteAllBytes(AppCommonPath() + "PS2.zip", Properties.Resources.PS2);
 
+            System.IO.File.WriteAllBytes(AppCommonPath() + "ext.zip", Properties.Resources.ext);
+
             //copy images for the save process
             Properties.Resources.icon0.Save(AppCommonPath() + @"\PS2Emu\" + "icon0.png");
             Properties.Resources.icon0.Save(AppCommonPath() + @"\PS2Emu\" + "pic0.png");
@@ -523,6 +534,16 @@ namespace PS4_PS2_Classis_GUI
                 DeleteDirectory(AppCommonPath() + @"\PS2\");
             }
             ZipFile.ExtractToDirectory(AppCommonPath() + "PS2.zip", AppCommonPath());
+
+
+            if (Directory.Exists(AppCommonPath() + @"\ext\"))
+            {
+                DeleteDirectory(AppCommonPath() + @"\ext\");
+            }
+            ZipFile.ExtractToDirectory(AppCommonPath() + "ext.zip", AppCommonPath());
+
+            File.Delete(AppCommonPath() + "ext.zip");
+            File.Delete((AppCommonPath() + "PS2.zip"));
         }
 
 
@@ -676,6 +697,12 @@ namespace PS4_PS2_Classis_GUI
             return true;
         }
 
+
+        private void UpdateString(string txt)
+        {
+            lblTask.Invoke(new Action(() => lblTask.Text = txt));
+        }
+        FolderBrowserDialog tempkeeper = null;
         /// <summary>
         /// This Button is when the user selects to convert the file to PS4 PKG
         /// </summary>
@@ -683,24 +710,55 @@ namespace PS4_PS2_Classis_GUI
         /// <param name="e"></param>
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "PS4 PKG|*.pkg";
-            saveFileDialog1.Title = "Save an PS4 PKG File";
-            if(DialogResult.OK != saveFileDialog1.ShowDialog())
+
+            FolderBrowserDialog saveFileDialog1 = new FolderBrowserDialog();
+            //saveFileDialog1.Filter = "PS4 PKG|*.pkg";
+            //saveFileDialog1.Title = "Save an PS4 PKG File";
+            //saveFileDialog1.ov
+            if (DialogResult.OK != saveFileDialog1.ShowDialog())
             {
                 return;
             }
+            tempkeeper = saveFileDialog1;
+            if (backgroundWorker1.IsBusy == false)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+           
 
+        }
+
+
+        /// <summary>
+        /// Get the string of a byte converted decimal value.
+        /// </summary>
+        /// <param name="titleId">The TitleID decimal to convert.</param>
+        /// <returns>A string, representing the convertet decimal byte value.</returns>
+        private string GetDecimalBytes(string titleId)
+        {
+            byte[] titleIdBytes = Convert.ToDecimal(titleId).GetBytes();
+            return BitConverter.ToString(titleIdBytes).Substring(0, 5).Replace("-", "");
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            FolderBrowserDialog saveFileDialog1 = tempkeeper;
+
+            progressBar1.Invoke(new Action(() =>  progressBar1.Visible = true));
+            UpdateString("Creating Working Area");
 
             if (!Directory.Exists(AppCommonPath() + @"\Working\"))
             {
                 Directory.CreateDirectory(AppCommonPath() + @"\Working\");
             }
+
+            UpdateString("Getting needed files");
             //first we need to build the new SFO 
-            File.Copy(AppCommonPath() + @"\PS2Emu\" + "sfo.xml", AppCommonPath() + @"\Working\" + "sfo.xml",true);
+            File.Copy(AppCommonPath() + @"\PS2Emu\" + "sfo.xml", AppCommonPath() + @"\Working\" + "sfo.xml", true);
 
             //now we need to prase it and change it 
 
+            UpdateString("Gathering GP4 Info");
             //create new XML Document 
             xmldoc = new XmlDataDocument();
             //nodelist 
@@ -724,7 +782,7 @@ namespace PS4_PS2_Classis_GUI
                 nodes = xmldoc.SelectNodes("//param[@key='TITLE']");
                 if (nodes != null)
                 {
-                    nodes[0].InnerText =txtTitleId.Text.Trim();
+                    nodes[0].InnerText = txtTitleId.Text.Trim();
                 }
                 nodes = xmldoc.SelectNodes("//param[@key='TITLE_ID']");
                 if (nodes != null)
@@ -734,7 +792,7 @@ namespace PS4_PS2_Classis_GUI
                 for (int i = 1; i < 7; i++)
                 {
                     //fix the enter key issue i have found in some in
-                    nodes = xmldoc.SelectNodes("//param[@key='SERVICE_ID_ADDCONT_ADD_"+i+"']");
+                    nodes = xmldoc.SelectNodes("//param[@key='SERVICE_ID_ADDCONT_ADD_" + i + "']");
                     if (nodes != null)
                     {
                         nodes[0].InnerText = string.Empty;
@@ -744,29 +802,49 @@ namespace PS4_PS2_Classis_GUI
             //save this into the working folder
             xmldoc.Save(AppCommonPath() + @"\Working\" + "sfo.xml");
 
+
+            UpdateString("Creating GP4 Project");
+
             SaveGp4();
 
 
+            UpdateString("Creating SFO File");
             //now call orbis and create sfo
             Orbis_CMD("", "sfo_create \"" + AppCommonPath() + @"\Working\" + "sfo.xml" + "\" \"" + AppCommonPath() + @"\Working\" + "param.sfo" + "\"");
 
             //move SFO to main directory with locations of new images 
 
+            UpdateString("Moving SFO File");
             File.Copy(AppCommonPath() + @"\Working\" + "param.sfo", AppCommonPath() + @"\PS2\sce_sys\param.sfo", true);
             //now move ISO
-            File.Delete(AppCommonPath() + @"\PS2\image\disc01.iso");
-            //CopyFileWithProgress(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso");
-            File.Copy(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso", true);
 
-            // Set elfs path.//this is from CFWProphet THANSK BRO
-            elfs = new string[4] {
-                AppCommonPath() + @"\PS2\eboot.elf",
-                AppCommonPath() + @"\PS2\ps2-emu-compiler.elf",
-                AppCommonPath() + @"\PS2\sce_module\libSceFios2.prx",
-                AppCommonPath() + @"\PS2\sce_module\libc.prx",
-            };
+            UpdateString("Moving SFO File This May Take Some Time");
+            BusyCoping = true;
+            new System.Threading.Thread(new System.Threading.ThreadStart(delegate
+            {
 
-            //if(IsElfDecrypted() == false)
+                //clean up the blank file
+                File.Delete(AppCommonPath() + @"\PS2\image\disc01.iso");
+                //CopyFileWithProgress(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso");
+                File.Copy(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso", true);
+                BusyCoping = false;
+            })).Start();
+
+            while (BusyCoping == true)
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
+            }
+            ////not using this right now
+            #region << Not Using This Right Now >>
+            // Set elfs path.//this is from CFWProphet THANSK BRO 
+            //elfs = new string[2] {
+            //    //AppCommonPath() + @"\PS2\eboot.elf",//pre patched
+            //    //AppCommonPath() + @"\PS2\ps2-emu-compiler.elf",//pre patched
+            //    AppCommonPath() + @"\PS2\sce_module\libSceFios2.prx",
+            //    AppCommonPath() + @"\PS2\sce_module\libc.prx",
+            //};
+
+            //if (IsElfDecrypted() == false)
             //{
             //    return;
             //}
@@ -776,33 +854,40 @@ namespace PS4_PS2_Classis_GUI
             //    MessageBox.Show("Error Signing Fake Selfs");
             //    return;
             //}
-
+            #endregion << Not Using This Right Now >>
             //now create pkg 
-            Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + Path.GetDirectoryName(saveFileDialog1.FileName) + "\"");
-            //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
+
+            UpdateString("Creating PS4 PKG");
+            BusyCoping = true;
+            new System.Threading.Thread(new System.Threading.ThreadStart(delegate
+            {
+                Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
+                //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
+                BusyCoping = false;
+            })).Start();
+
+            while (BusyCoping == true)
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
+            }
+
+            UpdateString("Done Opening Location");
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            FolderBrowserDialog saveFileDialog1 = tempkeeper;
 
             MessageBox.Show("Convert completed");
-            Process.Start(Path.GetDirectoryName(saveFileDialog1.FileName));
+            Process.Start(saveFileDialog1.SelectedPath);
 
 
             //now we delete the working directory
             DeleteDirectory(AppCommonPath() + @"\Working\");
             DeleteDirectory(AppCommonPath() + @"\PS2\");
+            DeleteDirectory(AppCommonPath() + @"\PS2Emu\");
+
         }
-
-
-        /// <summary>
-        /// Get the string of a byte converted decimal value.
-        /// </summary>
-        /// <param name="titleId">The TitleID decimal to convert.</param>
-        /// <returns>A string, representing the convertet decimal byte value.</returns>
-        private string GetDecimalBytes(string titleId)
-        {
-            byte[] titleIdBytes = Convert.ToDecimal(titleId).GetBytes();
-            return BitConverter.ToString(titleIdBytes).Substring(0, 5).Replace("-", "");
-        }
-
-
     }
 
     public static class Extensionclass

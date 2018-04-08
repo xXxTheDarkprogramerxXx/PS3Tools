@@ -117,19 +117,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\ext.zip" />
     <None Include="Resources\param.sfo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon0.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pic0.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pic1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PS2.zip" />
@@ -157,6 +149,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\orbis-pub-cmd.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pic0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pic1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
