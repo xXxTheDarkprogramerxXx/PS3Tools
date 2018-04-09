@@ -19,6 +19,8 @@ using System.Xml;
 using System.IO.Compression;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Security.AccessControl;
+using System.Security.Principal;
 
 namespace PS4_PS2_Classis_GUI
 {
@@ -401,6 +403,10 @@ namespace PS4_PS2_Classis_GUI
 
                         }
                     }
+                    else if (result.Contains("[Error]"))
+                    {
+                        MessageBox.Show(result);
+                    }
                     return result;
                 }
             }
@@ -710,6 +716,8 @@ namespace PS4_PS2_Classis_GUI
         /// <param name="e"></param>
         private void btnConvert_Click(object sender, EventArgs e)
         {
+            //moving code over
+            ExtractAllResources();//extarct all resources when we need it
 
             FolderBrowserDialog saveFileDialog1 = new FolderBrowserDialog();
             //saveFileDialog1.Filter = "PS4 PKG|*.pkg";
@@ -719,10 +727,18 @@ namespace PS4_PS2_Classis_GUI
             {
                 return;
             }
+
             tempkeeper = saveFileDialog1;
-            if (backgroundWorker1.IsBusy == false)
+            try
             {
-                backgroundWorker1.RunWorkerAsync();
+                if (backgroundWorker1.IsBusy == false)
+                {
+                    backgroundWorker1.RunWorkerAsync();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
            
 
@@ -742,141 +758,151 @@ namespace PS4_PS2_Classis_GUI
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            FolderBrowserDialog saveFileDialog1 = tempkeeper;
-
-            progressBar1.Invoke(new Action(() =>  progressBar1.Visible = true));
-            UpdateString("Creating Working Area");
-
-            if (!Directory.Exists(AppCommonPath() + @"\Working\"))
+            try
             {
-                Directory.CreateDirectory(AppCommonPath() + @"\Working\");
-            }
+                FolderBrowserDialog saveFileDialog1 = tempkeeper;
 
-            UpdateString("Getting needed files");
-            //first we need to build the new SFO 
-            File.Copy(AppCommonPath() + @"\PS2Emu\" + "sfo.xml", AppCommonPath() + @"\Working\" + "sfo.xml", true);
+                progressBar1.Invoke(new Action(() => progressBar1.Visible = true));
+                UpdateString("Creating Working Area");
 
-            //now we need to prase it and change it 
+                if (!Directory.Exists(AppCommonPath() + @"\Working\"))
+                {
+                    Directory.CreateDirectory(AppCommonPath() + @"\Working\");
+                }
 
-            UpdateString("Gathering GP4 Info");
-            //create new XML Document 
-            xmldoc = new XmlDataDocument();
-            //nodelist 
-            XmlNodeList xmlnode;
-            //setup the resource file to be extarcted
-            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            //load the xml file from the base directory
-            xmldoc.Load(AppCommonPath() + @"\Working\" + "sfo.xml");
-            //now load the nodes
-            xmlnode = xmldoc.GetElementsByTagName("paramsfo");//volume is inside the xml
-            //loop to get all info from the node list
-            foreach (XmlNode xn in xmlnode)
-            {
-                XmlNode xNode = xn.SelectSingleNode("CONTENT_ID");
-                XmlNodeList nodes = xmldoc.SelectNodes("//param[@key='CONTENT_ID']");
-                if (nodes != null)
+                UpdateString("Getting needed files");
+                //first we need to build the new SFO 
+                File.Copy(AppCommonPath() + @"\PS2Emu\" + "sfo.xml", AppCommonPath() + @"\Working\" + "sfo.xml", true);
+
+                //now we need to prase it and change it 
+
+                UpdateString("Gathering GP4 Info");
+                //create new XML Document 
+                xmldoc = new XmlDataDocument();
+                //nodelist 
+                XmlNodeList xmlnode;
+                //setup the resource file to be extarcted
+                string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+                //load the xml file from the base directory
+                xmldoc.Load(AppCommonPath() + @"\Working\" + "sfo.xml");
+                //now load the nodes
+                xmlnode = xmldoc.GetElementsByTagName("paramsfo");//volume is inside the xml
+                                                                  //loop to get all info from the node list
+                foreach (XmlNode xn in xmlnode)
                 {
-                    xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PS2ID.Replace("_", "") + "0000001";
-                    nodes[0].InnerText = xmlcontentid;
-                }
-                nodes = xmldoc.SelectNodes("//param[@key='TITLE']");
-                if (nodes != null)
-                {
-                    nodes[0].InnerText = txtTitleId.Text.Trim();
-                }
-                nodes = xmldoc.SelectNodes("//param[@key='TITLE_ID']");
-                if (nodes != null)
-                {
-                    nodes[0].InnerText = txtContentID.Text.Trim();
-                }
-                for (int i = 1; i < 7; i++)
-                {
-                    //fix the enter key issue i have found in some in
-                    nodes = xmldoc.SelectNodes("//param[@key='SERVICE_ID_ADDCONT_ADD_" + i + "']");
+                    XmlNode xNode = xn.SelectSingleNode("CONTENT_ID");
+                    XmlNodeList nodes = xmldoc.SelectNodes("//param[@key='CONTENT_ID']");
                     if (nodes != null)
                     {
-                        nodes[0].InnerText = string.Empty;
+                        xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PS2ID.Replace("_", "") + "0000001";
+                        nodes[0].InnerText = xmlcontentid;
+                    }
+                    nodes = xmldoc.SelectNodes("//param[@key='TITLE']");
+                    if (nodes != null)
+                    {
+                        nodes[0].InnerText = txtTitleId.Text.Trim();
+                    }
+                    nodes = xmldoc.SelectNodes("//param[@key='TITLE_ID']");
+                    if (nodes != null)
+                    {
+                        nodes[0].InnerText = txtContentID.Text.Trim();
+                    }
+                    for (int i = 1; i < 7; i++)
+                    {
+                        //fix the enter key issue i have found in some in
+                        nodes = xmldoc.SelectNodes("//param[@key='SERVICE_ID_ADDCONT_ADD_" + i + "']");
+                        if (nodes != null)
+                        {
+                            nodes[0].InnerText = string.Empty;
+                        }
                     }
                 }
-            }
-            //save this into the working folder
-            xmldoc.Save(AppCommonPath() + @"\Working\" + "sfo.xml");
+                //save this into the working folder
+                xmldoc.Save(AppCommonPath() + @"\Working\" + "sfo.xml");
 
 
-            UpdateString("Creating GP4 Project");
+                UpdateString("Creating GP4 Project");
 
-            SaveGp4();
+                SaveGp4();
 
 
-            UpdateString("Creating SFO File");
-            //now call orbis and create sfo
-            Orbis_CMD("", "sfo_create \"" + AppCommonPath() + @"\Working\" + "sfo.xml" + "\" \"" + AppCommonPath() + @"\Working\" + "param.sfo" + "\"");
+                UpdateString("Creating SFO File");
+                //now call orbis and create sfo
+                Orbis_CMD("", "sfo_create \"" + AppCommonPath() + @"\Working\" + "sfo.xml" + "\" \"" + AppCommonPath() + @"\Working\" + "param.sfo" + "\"");
 
-            //move SFO to main directory with locations of new images 
+                //move SFO to main directory with locations of new images 
 
-            UpdateString("Moving SFO File");
-            File.Copy(AppCommonPath() + @"\Working\" + "param.sfo", AppCommonPath() + @"\PS2\sce_sys\param.sfo", true);
-            //now move ISO
+                UpdateString("Moving SFO File");
+                File.Copy(AppCommonPath() + @"\Working\" + "param.sfo", AppCommonPath() + @"\PS2\sce_sys\param.sfo", true);
+                //now move ISO
 
-            //save images
-            pictureBox1.Image.Save(AppCommonPath() + @"PS2\sce_sys\icon0.png",System.Drawing.Imaging.ImageFormat.Png);
+                //save images
+                if (pictureBox1.Image != null)
+                    pictureBox1.Image.Save(AppCommonPath() + @"PS2\sce_sys\icon0.png", System.Drawing.Imaging.ImageFormat.Png);
 
-            pictureBox2.Image.Save(AppCommonPath() + @"PS2\sce_sys\pic1.png", System.Drawing.Imaging.ImageFormat.Png);
 
-            UpdateString("Moving ISO File This May Take Some Time");
-            BusyCoping = true;
-            new System.Threading.Thread(new System.Threading.ThreadStart(delegate
-            {
+                if (pictureBox2.Image != null)
+                    pictureBox2.Image.Save(AppCommonPath() + @"PS2\sce_sys\pic1.png", System.Drawing.Imaging.ImageFormat.Png);
+
+                UpdateString("Moving ISO File This May Take Some Time");
+                BusyCoping = true;
+                new System.Threading.Thread(new System.Threading.ThreadStart(delegate
+                {
 
                 //clean up the blank file
                 File.Delete(AppCommonPath() + @"\PS2\image\disc01.iso");
                 //CopyFileWithProgress(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso");
                 File.Copy(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso", true);
-                BusyCoping = false;
-            })).Start();
+                    BusyCoping = false;
+                })).Start();
 
-            while (BusyCoping == true)
-            {
-                Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
-            }
-            ////not using this right now
-            #region << Not Using This Right Now >>
-            // Set elfs path.//this is from CFWProphet THANSK BRO 
-            //elfs = new string[2] {
-            //    //AppCommonPath() + @"\PS2\eboot.elf",//pre patched
-            //    //AppCommonPath() + @"\PS2\ps2-emu-compiler.elf",//pre patched
-            //    AppCommonPath() + @"\PS2\sce_module\libSceFios2.prx",
-            //    AppCommonPath() + @"\PS2\sce_module\libc.prx",
-            //};
+                while (BusyCoping == true)
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
+                }
+                ////not using this right now
+                #region << Not Using This Right Now >>
+                // Set elfs path.//this is from CFWProphet THANSK BRO 
+                //elfs = new string[2] {
+                //    //AppCommonPath() + @"\PS2\eboot.elf",//pre patched
+                //    //AppCommonPath() + @"\PS2\ps2-emu-compiler.elf",//pre patched
+                //    AppCommonPath() + @"\PS2\sce_module\libSceFios2.prx",
+                //    AppCommonPath() + @"\PS2\sce_module\libc.prx",
+                //};
 
-            //if (IsElfDecrypted() == false)
-            //{
-            //    return;
-            //}
+                //if (IsElfDecrypted() == false)
+                //{
+                //    return;
+                //}
 
-            //if (!FakeSign(GetDecimalBytes(PS2ID.Replace("_", "").Substring(4, 5))))
-            //{
-            //    MessageBox.Show("Error Signing Fake Selfs");
-            //    return;
-            //}
-            #endregion << Not Using This Right Now >>
-            //now create pkg 
+                //if (!FakeSign(GetDecimalBytes(PS2ID.Replace("_", "").Substring(4, 5))))
+                //{
+                //    MessageBox.Show("Error Signing Fake Selfs");
+                //    return;
+                //}
+                #endregion << Not Using This Right Now >>
+                //now create pkg 
 
-            UpdateString("Creating PS4 PKG");
-            BusyCoping = true;
-            new System.Threading.Thread(new System.Threading.ThreadStart(delegate
-            {
-                Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
+                UpdateString("Creating PS4 PKG");
+                BusyCoping = true;
+                new System.Threading.Thread(new System.Threading.ThreadStart(delegate
+                {
+                   Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
                 //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
                 BusyCoping = false;
-            })).Start();
+                })).Start();
 
-            while (BusyCoping == true)
-            {
-                Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
+                while (BusyCoping == true)
+                {
+                    Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
+                }
+
+                UpdateString("Done Opening Location");
             }
-
-            UpdateString("Done Opening Location");
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -930,6 +956,22 @@ namespace PS4_PS2_Classis_GUI
         private void resotreIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = Properties.Resources.pic0;
+        }
+
+        private void logAnIssueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dlr = MessageBox.Show("Would you like to submit an issue ?", "Error Reporting", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (dlr == DialogResult.Yes)
+            {
+                //load github issue page
+                Process.Start(@"https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues");
+            }
+        }
+
+        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Credits cred = new Credits();
+            cred.ShowDialog();
         }
     }
 

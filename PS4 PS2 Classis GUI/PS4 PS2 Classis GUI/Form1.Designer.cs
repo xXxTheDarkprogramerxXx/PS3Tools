@@ -41,6 +41,14 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openGP4ProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveGP4ProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.logAnIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.addCustomPs2ConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblTask = new System.Windows.Forms.Label();
             this.btnConvert = new System.Windows.Forms.Button();
@@ -126,7 +134,7 @@
             this.restoreBackgroundToolStripMenuItem1,
             this.resotreIconToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(212, 128);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(212, 100);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // changeBacgroToolStripMenuItem
@@ -198,9 +206,66 @@
             // 
             // fileToolStripMenuItem1
             // 
+            this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openGP4ProjectToolStripMenuItem,
+            this.saveGP4ProjectToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem1,
+            this.logAnIssueToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.addCustomPs2ConfigToolStripMenuItem,
+            this.creditsToolStripMenuItem});
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
             this.fileToolStripMenuItem1.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem1.Text = "File";
+            // 
+            // openGP4ProjectToolStripMenuItem
+            // 
+            this.openGP4ProjectToolStripMenuItem.Name = "openGP4ProjectToolStripMenuItem";
+            this.openGP4ProjectToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.openGP4ProjectToolStripMenuItem.Text = "Open GP4 Project";
+            // 
+            // saveGP4ProjectToolStripMenuItem
+            // 
+            this.saveGP4ProjectToolStripMenuItem.Name = "saveGP4ProjectToolStripMenuItem";
+            this.saveGP4ProjectToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.saveGP4ProjectToolStripMenuItem.Text = "Save GP4 Project";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(236, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(239, 26);
+            this.toolStripMenuItem1.Text = "Settings";
+            // 
+            // logAnIssueToolStripMenuItem
+            // 
+            this.logAnIssueToolStripMenuItem.Name = "logAnIssueToolStripMenuItem";
+            this.logAnIssueToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.logAnIssueToolStripMenuItem.Text = "Log an issue";
+            this.logAnIssueToolStripMenuItem.Click += new System.EventHandler(this.logAnIssueToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(236, 6);
+            // 
+            // addCustomPs2ConfigToolStripMenuItem
+            // 
+            this.addCustomPs2ConfigToolStripMenuItem.Name = "addCustomPs2ConfigToolStripMenuItem";
+            this.addCustomPs2ConfigToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.addCustomPs2ConfigToolStripMenuItem.Text = "Add Custom ps2 config";
+            // 
+            // creditsToolStripMenuItem
+            // 
+            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.creditsToolStripMenuItem.Text = "Credits";
+            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
             // 
             // progressBar1
             // 
@@ -416,6 +481,14 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
         private System.Windows.Forms.ImageList imageList1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ToolStripMenuItem logAnIssueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openGP4ProjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveGP4ProjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem addCustomPs2ConfigToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 

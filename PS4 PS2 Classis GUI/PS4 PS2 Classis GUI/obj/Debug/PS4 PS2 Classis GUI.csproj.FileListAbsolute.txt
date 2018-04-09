@@ -13,3 +13,4 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classi
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.csproj.GenerateResource.Cache
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.exe
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Credits.resources
