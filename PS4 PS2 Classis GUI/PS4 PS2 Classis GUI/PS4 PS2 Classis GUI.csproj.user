@@ -3,9 +3,9 @@
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
     <PublishUrlHistory>C:\Publish\PS2 Classics\</PublishUrlHistory>
-    <InstallUrlHistory />
+    <InstallUrlHistory>http://www.nigmacontractors.co.za/PSTools/PS2Classics/|http://www.nigm/PSTools/PS2Classics/|http://154.0.168.26/PSTools/PS2Classics/|http://www.nigmacontactors.co.za/PSTools/PS2Classics/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <UpdateUrlHistory>http://www.nigmacontactors.co.za/PSTools/PS2Classics/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>

@@ -1,6 +1,3 @@
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classis GUI.exe.config
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classis GUI.exe
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classis GUI.pdb
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\DiscUtils.Common.dll
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\DiscUtils.dll
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\DiscUtils.pdb
@@ -11,6 +8,18 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classi
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Form1.resources
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Properties.Resources.resources
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.csproj.GenerateResource.Cache
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.exe
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classis GUI.pdb
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Credits.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Settings.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.MultipleISO_s.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Advanced.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Resources.editcontentid.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classics GUI.exe.config
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classics GUI.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classics GUI.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classics GUI.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\PS4 PS2 Classics GUI.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classics GUI.TrustInfo.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classics GUI.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classics GUI.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classics GUI.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classics GUI.pdb

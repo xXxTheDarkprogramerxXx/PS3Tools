@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>A Special thanks as always to @flatz 
+for his awesom work 
+Thanks to @cfwprophet and
+@VVildCard777 for dealing
+with all my questions  and there help
+Special thanks to @zordon605 for
+PS2 Mutli Iso Info</value>
+  </data>
 </root>

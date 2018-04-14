@@ -32,5 +32,11 @@ namespace PS4_PS2_Classis_GUI
         {
             Process.Start(@"https://twitter.com/VVildCard777");
         }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //@zordon605
+            Process.Start(@"https://twitter.com/zordon605");
+        }
     }
 }

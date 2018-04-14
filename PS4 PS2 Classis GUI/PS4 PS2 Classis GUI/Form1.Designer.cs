@@ -60,7 +60,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnISO = new System.Windows.Forms.Button();
             this.txtPath = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPS2ISO = new System.Windows.Forms.Label();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,9 +105,9 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.btnISO);
             this.splitContainer1.Panel2.Controls.Add(this.txtPath);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.lblPS2ISO);
             this.splitContainer1.Size = new System.Drawing.Size(1326, 407);
-            this.splitContainer1.SplitterDistance = 717;
+            this.splitContainer1.SplitterDistance = 685;
             this.splitContainer1.TabIndex = 1;
             // 
             // pictureBox1
@@ -187,7 +187,7 @@
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Location = new System.Drawing.Point(0, 28);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(717, 379);
+            this.pictureBox2.Size = new System.Drawing.Size(685, 379);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
@@ -200,7 +200,7 @@
             this.fileToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(717, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(685, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -221,15 +221,19 @@
             // 
             // openGP4ProjectToolStripMenuItem
             // 
+            this.openGP4ProjectToolStripMenuItem.Enabled = false;
             this.openGP4ProjectToolStripMenuItem.Name = "openGP4ProjectToolStripMenuItem";
             this.openGP4ProjectToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
-            this.openGP4ProjectToolStripMenuItem.Text = "Open GP4 Project";
+            this.openGP4ProjectToolStripMenuItem.Text = "Open Classics Project";
+            this.openGP4ProjectToolStripMenuItem.Click += new System.EventHandler(this.openGP4ProjectToolStripMenuItem_Click);
             // 
             // saveGP4ProjectToolStripMenuItem
             // 
+            this.saveGP4ProjectToolStripMenuItem.Enabled = false;
             this.saveGP4ProjectToolStripMenuItem.Name = "saveGP4ProjectToolStripMenuItem";
             this.saveGP4ProjectToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
-            this.saveGP4ProjectToolStripMenuItem.Text = "Save GP4 Project";
+            this.saveGP4ProjectToolStripMenuItem.Text = "Save Classics Project";
+            this.saveGP4ProjectToolStripMenuItem.Click += new System.EventHandler(this.saveGP4ProjectToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -241,6 +245,7 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(239, 26);
             this.toolStripMenuItem1.Text = "Settings";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // logAnIssueToolStripMenuItem
             // 
@@ -259,6 +264,7 @@
             this.addCustomPs2ConfigToolStripMenuItem.Name = "addCustomPs2ConfigToolStripMenuItem";
             this.addCustomPs2ConfigToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
             this.addCustomPs2ConfigToolStripMenuItem.Text = "Add Custom ps2 config";
+            this.addCustomPs2ConfigToolStripMenuItem.Click += new System.EventHandler(this.addCustomPs2ConfigToolStripMenuItem_Click);
             // 
             // creditsToolStripMenuItem
             // 
@@ -344,9 +350,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 17);
+            this.label2.Size = new System.Drawing.Size(83, 17);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Content ID";
+            this.label2.Text = "NP Title ID :";
             // 
             // btnISO
             // 
@@ -364,15 +370,17 @@
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(532, 22);
             this.txtPath.TabIndex = 1;
+            this.txtPath.TextChanged += new System.EventHandler(this.txtPath_TextChanged);
             // 
-            // label1
+            // lblPS2ISO
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "PS2 ISO:";
+            this.lblPS2ISO.AutoSize = true;
+            this.lblPS2ISO.Location = new System.Drawing.Point(14, 13);
+            this.lblPS2ISO.Name = "lblPS2ISO";
+            this.lblPS2ISO.Size = new System.Drawing.Size(65, 17);
+            this.lblPS2ISO.TabIndex = 0;
+            this.lblPS2ISO.Text = "PS2 ISO:";
+            this.lblPS2ISO.Click += new System.EventHandler(this.label1_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -456,14 +464,12 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblContentName;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPS2ISO;
         private System.Windows.Forms.Button btnISO;
         private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtContentID;
-        private System.Windows.Forms.TextBox txtTitleId;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblPS2ID;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeBackgroundToolStripMenuItem;
@@ -489,6 +495,8 @@
         private System.Windows.Forms.ToolStripMenuItem addCustomPs2ConfigToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        public System.Windows.Forms.Label lblPS2ID;
+        public System.Windows.Forms.TextBox txtTitleId;
     }
 }
 
