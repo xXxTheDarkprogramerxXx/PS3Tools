@@ -82,5 +82,41 @@ namespace PS4_PS2_Classis_GUI.Properties {
                 this["EnableLogging"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnablePS2IDReplace {
+            get {
+                return ((bool)(this["EnablePS2IDReplace"]));
+            }
+            set {
+                this["EnablePS2IDReplace"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableBootScreen {
+            get {
+                return ((bool)(this["EnableBootScreen"]));
+            }
+            set {
+                this["EnableBootScreen"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableGuiMusic {
+            get {
+                return ((bool)(this["EnableGuiMusic"]));
+            }
+            set {
+                this["EnableGuiMusic"] = value;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,6 +50,12 @@ namespace PS4_PS2_Classis_GUI
             checkBox3.Checked = Properties.Settings.Default.EnableAdvancedMode;
 
 
+            checkBox1.Checked = Properties.Settings.Default.EnablePS2IDReplace ;
+
+            checkBox2.Checked = Properties.Settings.Default.EnableBootScreen;
+
+            checkBox4.Checked = Properties.Settings.Default.EnableGuiMusic;
+
             FinsihedLoading = true;
         }
 
@@ -71,6 +78,49 @@ namespace PS4_PS2_Classis_GUI
             {
                 textBox1.Text = saveFileDialog1.SelectedPath.ToString();
                 Properties.Settings.Default.TempPath = textBox1.Text.Trim();
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FinsihedLoading == true)
+            {
+                Properties.Settings.Default.EnablePS2IDReplace = checkBox1.Checked;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FinsihedLoading == true)
+            {
+                Properties.Settings.Default.EnableBootScreen = checkBox2.Checked;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (FinsihedLoading == true)
+            {
+                if(checkBox4.Checked == false)
+                {
+                    if (Form1.waveOutDevice != null)
+                    {
+                        Form1.waveOutDevice.Stop();
+                        Form1.waveOutDevice.Dispose();
+                    }
+                  
+                }
+                else
+                {
+                    AudioFileReader audioFileReader = new AudioFileReader(Form1.AppCommonPath() + "PS4.mp3");
+                    Form1.waveOutDevice.Init(audioFileReader);
+                    Form1.waveOutDevice.Play();
+                    Form1.waveOutDevice.Play();
+                }
+                Properties.Settings.Default.EnableGuiMusic = checkBox4.Checked;
                 Properties.Settings.Default.Save();
             }
         }

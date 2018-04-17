@@ -23,3 +23,7 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classi
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classics GUI.application
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classics GUI.exe
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4 PS2 Classics GUI.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.BootLogo.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\obj\Debug\PS4_PS2_Classis_GUI.Busy.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\NAudio.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classis GUI\bin\Debug\NAudio.xml

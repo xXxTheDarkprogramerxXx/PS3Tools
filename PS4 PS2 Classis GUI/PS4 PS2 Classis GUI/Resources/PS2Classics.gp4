@@ -4,7 +4,7 @@
     <volume_type>pkg_ps4_app</volume_type>
     <volume_id>PS4VOLUME</volume_id>
     <volume_ts>2018-03-21 15:37:08</volume_ts>
-    <package content_id="UP9000-CRST00001_00-SLUS209090000001" passcode="ng8II8vax3iXZU7sfI3ugo8XlebJ731o" storage_type="digital50" app_type="full"/>
+    <package content_id="UP9000-CRST00001_00-SLUS209090000001" passcode="00000000000000000000000000000000" storage_type="digital50" app_type="full"/>
     <chunk_info chunk_count="1" scenario_count="1">
       <chunks>
         <chunk id="0" layer_no="0" label="Chunk #0"/>

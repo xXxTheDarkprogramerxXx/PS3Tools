@@ -98,12 +98,30 @@ namespace PS4_PS2_Classis_GUI
         #endregion Calcs
         private void MultipleISO_s_Load(object sender, EventArgs e)
         {
+            
+            LoadIsoFiles();
+        }
+
+        public void LoadIsoFiles()
+        {
             //foreach iso file
             for (int i = 0; i < Form1.isoFiles.Count; i++)
             {
                 string File = Form1.isoFiles[i].ToString();
                 listBox1.Items.Add(Path.GetFileName(File));
             }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            //foreach iso file
+            if (DialogResult.Yes == MessageBox.Show("You are about to delete an iso from your list. Are you sure you want to continue?","Remove ISO",MessageBoxButtons.YesNo,MessageBoxIcon.Question))
+            {
+                //delete the iso
+                Form1.isoFiles.RemoveAt(listBox1.SelectedIndex);
+            }
+            LoadIsoFiles();
+            
         }
     }
 }

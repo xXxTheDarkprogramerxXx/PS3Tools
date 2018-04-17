@@ -48,9 +48,8 @@
             this.logAnIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.addCustomPs2ConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCustomULASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.lblTask = new System.Windows.Forms.Label();
             this.btnConvert = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.lblPS2ID = new System.Windows.Forms.Label();
@@ -67,6 +66,7 @@
             this.restoreBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.bgWorkerSS = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,7 +85,6 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackgroundImage = global::PS4_PS2_Classis_GUI.Properties.Resources.pic1;
             this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Controls.Add(this.lblContentName);
@@ -95,8 +94,6 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
-            this.splitContainer1.Panel2.Controls.Add(this.progressBar1);
-            this.splitContainer1.Panel2.Controls.Add(this.lblTask);
             this.splitContainer1.Panel2.Controls.Add(this.btnConvert);
             this.splitContainer1.Panel2.Controls.Add(this.lblPS2ID);
             this.splitContainer1.Panel2.Controls.Add(this.txtTitleId);
@@ -106,8 +103,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.btnISO);
             this.splitContainer1.Panel2.Controls.Add(this.txtPath);
             this.splitContainer1.Panel2.Controls.Add(this.lblPS2ISO);
-            this.splitContainer1.Size = new System.Drawing.Size(1326, 407);
-            this.splitContainer1.SplitterDistance = 685;
+            this.splitContainer1.Size = new System.Drawing.Size(1235, 296);
+            this.splitContainer1.SplitterDistance = 637;
             this.splitContainer1.TabIndex = 1;
             // 
             // pictureBox1
@@ -134,7 +131,7 @@
             this.restoreBackgroundToolStripMenuItem1,
             this.resotreIconToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(212, 100);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(216, 100);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // changeBacgroToolStripMenuItem
@@ -142,35 +139,35 @@
             this.changeBacgroToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.changeBacgroToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Silver;
             this.changeBacgroToolStripMenuItem.Name = "changeBacgroToolStripMenuItem";
-            this.changeBacgroToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
-            this.changeBacgroToolStripMenuItem.Text = "Change Bacground ";
+            this.changeBacgroToolStripMenuItem.Size = new System.Drawing.Size(215, 24);
+            this.changeBacgroToolStripMenuItem.Text = "Change Background ";
             this.changeBacgroToolStripMenuItem.Click += new System.EventHandler(this.changeBacgroToolStripMenuItem_Click);
             // 
             // changeImageToolStripMenuItem
             // 
             this.changeImageToolStripMenuItem.Name = "changeImageToolStripMenuItem";
-            this.changeImageToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.changeImageToolStripMenuItem.Size = new System.Drawing.Size(215, 24);
             this.changeImageToolStripMenuItem.Text = "Change Icon";
             this.changeImageToolStripMenuItem.Click += new System.EventHandler(this.changeImageToolStripMenuItem_Click);
             // 
             // restoreBackgroundToolStripMenuItem1
             // 
             this.restoreBackgroundToolStripMenuItem1.Name = "restoreBackgroundToolStripMenuItem1";
-            this.restoreBackgroundToolStripMenuItem1.Size = new System.Drawing.Size(211, 24);
+            this.restoreBackgroundToolStripMenuItem1.Size = new System.Drawing.Size(215, 24);
             this.restoreBackgroundToolStripMenuItem1.Text = "Restore Background";
             this.restoreBackgroundToolStripMenuItem1.Click += new System.EventHandler(this.restoreBackgroundToolStripMenuItem1_Click);
             // 
             // resotreIconToolStripMenuItem
             // 
             this.resotreIconToolStripMenuItem.Name = "resotreIconToolStripMenuItem";
-            this.resotreIconToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+            this.resotreIconToolStripMenuItem.Size = new System.Drawing.Size(215, 24);
             this.resotreIconToolStripMenuItem.Text = "Resotre Icon";
             this.resotreIconToolStripMenuItem.Click += new System.EventHandler(this.resotreIconToolStripMenuItem_Click);
             // 
             // lblContentName
             // 
             this.lblContentName.AutoSize = true;
-            this.lblContentName.BackColor = System.Drawing.Color.Transparent;
+            this.lblContentName.BackColor = System.Drawing.Color.Black;
             this.lblContentName.ForeColor = System.Drawing.Color.White;
             this.lblContentName.Location = new System.Drawing.Point(54, 191);
             this.lblContentName.Name = "lblContentName";
@@ -187,7 +184,7 @@
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Location = new System.Drawing.Point(0, 28);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(685, 379);
+            this.pictureBox2.Size = new System.Drawing.Size(637, 268);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
@@ -200,7 +197,7 @@
             this.fileToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(685, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(637, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -214,6 +211,7 @@
             this.logAnIssueToolStripMenuItem,
             this.toolStripSeparator2,
             this.addCustomPs2ConfigToolStripMenuItem,
+            this.addCustomULASToolStripMenuItem,
             this.creditsToolStripMenuItem});
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
             this.fileToolStripMenuItem1.Size = new System.Drawing.Size(44, 24);
@@ -223,7 +221,7 @@
             // 
             this.openGP4ProjectToolStripMenuItem.Enabled = false;
             this.openGP4ProjectToolStripMenuItem.Name = "openGP4ProjectToolStripMenuItem";
-            this.openGP4ProjectToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.openGP4ProjectToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
             this.openGP4ProjectToolStripMenuItem.Text = "Open Classics Project";
             this.openGP4ProjectToolStripMenuItem.Click += new System.EventHandler(this.openGP4ProjectToolStripMenuItem_Click);
             // 
@@ -231,72 +229,62 @@
             // 
             this.saveGP4ProjectToolStripMenuItem.Enabled = false;
             this.saveGP4ProjectToolStripMenuItem.Name = "saveGP4ProjectToolStripMenuItem";
-            this.saveGP4ProjectToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.saveGP4ProjectToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
             this.saveGP4ProjectToolStripMenuItem.Text = "Save Classics Project";
             this.saveGP4ProjectToolStripMenuItem.Click += new System.EventHandler(this.saveGP4ProjectToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(242, 6);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(239, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(245, 26);
             this.toolStripMenuItem1.Text = "Settings";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // logAnIssueToolStripMenuItem
             // 
             this.logAnIssueToolStripMenuItem.Name = "logAnIssueToolStripMenuItem";
-            this.logAnIssueToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.logAnIssueToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
             this.logAnIssueToolStripMenuItem.Text = "Log an issue";
             this.logAnIssueToolStripMenuItem.Click += new System.EventHandler(this.logAnIssueToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(236, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(242, 6);
             // 
             // addCustomPs2ConfigToolStripMenuItem
             // 
             this.addCustomPs2ConfigToolStripMenuItem.Name = "addCustomPs2ConfigToolStripMenuItem";
-            this.addCustomPs2ConfigToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.addCustomPs2ConfigToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
             this.addCustomPs2ConfigToolStripMenuItem.Text = "Add Custom ps2 config";
             this.addCustomPs2ConfigToolStripMenuItem.Click += new System.EventHandler(this.addCustomPs2ConfigToolStripMenuItem_Click);
+            // 
+            // addCustomULASToolStripMenuItem
+            // 
+            this.addCustomULASToolStripMenuItem.Name = "addCustomULASToolStripMenuItem";
+            this.addCustomULASToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.addCustomULASToolStripMenuItem.Text = "Add Custom .lua configs";
+            this.addCustomULASToolStripMenuItem.Click += new System.EventHandler(this.addCustomULASToolStripMenuItem_Click);
             // 
             // creditsToolStripMenuItem
             // 
             this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(239, 26);
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
             this.creditsToolStripMenuItem.Text = "Credits";
             this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(20, 332);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(573, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 12;
-            this.progressBar1.Visible = false;
-            // 
-            // lblTask
-            // 
-            this.lblTask.AutoSize = true;
-            this.lblTask.Location = new System.Drawing.Point(20, 290);
-            this.lblTask.Name = "lblTask";
-            this.lblTask.Size = new System.Drawing.Size(61, 17);
-            this.lblTask.TabIndex = 11;
-            this.lblTask.Text = "Running";
             // 
             // btnConvert
             // 
             this.btnConvert.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnConvert.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnConvert.ImageIndex = 0;
             this.btnConvert.ImageList = this.imageList1;
-            this.btnConvert.Location = new System.Drawing.Point(189, 201);
+            this.btnConvert.Location = new System.Drawing.Point(168, 191);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(245, 88);
             this.btnConvert.TabIndex = 10;
@@ -431,12 +419,19 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // bgWorkerSS
+            // 
+            this.bgWorkerSS.WorkerReportsProgress = true;
+            this.bgWorkerSS.WorkerSupportsCancellation = true;
+            this.bgWorkerSS.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerSS_DoWork);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1326, 407);
+            this.ClientSize = new System.Drawing.Size(1235, 296);
             this.Controls.Add(this.splitContainer1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -482,8 +477,6 @@
         private System.Windows.Forms.ToolStripMenuItem restoreBackgroundToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem resotreIconToolStripMenuItem;
         private System.Windows.Forms.Button btnConvert;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label lblTask;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
         private System.Windows.Forms.ImageList imageList1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -497,6 +490,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         public System.Windows.Forms.Label lblPS2ID;
         public System.Windows.Forms.TextBox txtTitleId;
+        private System.Windows.Forms.ToolStripMenuItem addCustomULASToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker bgWorkerSS;
     }
 }
 

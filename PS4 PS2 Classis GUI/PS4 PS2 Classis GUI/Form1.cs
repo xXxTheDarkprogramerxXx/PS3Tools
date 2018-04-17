@@ -24,6 +24,7 @@ using System.Security.Principal;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Deployment.Application;
+using NAudio.Wave;
 
 namespace PS4_PS2_Classis_GUI
 {
@@ -34,8 +35,8 @@ namespace PS4_PS2_Classis_GUI
         {
             InitializeComponent();
         }
-
-
+        public static bool bgwClose;
+        public static IWavePlayer waveOutDevice = new WaveOut();
         XmlDataDocument xmldoc = null;
         public string xmlcontentid { get; set; }
 
@@ -54,7 +55,29 @@ namespace PS4_PS2_Classis_GUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //quickly write the media
 
+            System.IO.File.WriteAllBytes(AppCommonPath() + "PS4.mp3", Properties.Resources.ps4BGM);
+
+
+            if (Properties.Settings.Default.EnableBootScreen == true)
+            {
+                //show bootlogo the good old ps2 classic logo and sound :P
+                this.Hide();
+
+                BootLogo logo = new BootLogo();
+                logo.ShowDialog();
+
+                this.Show();
+            }
+            if(Properties.Settings.Default.EnableGuiMusic == true)
+            {
+                
+                AudioFileReader audioFileReader = new AudioFileReader(AppCommonPath() + "PS4.mp3");
+
+                waveOutDevice.Init(audioFileReader);
+                waveOutDevice.Play();
+            }
             Version v = Assembly.GetExecutingAssembly().GetName().Version;
             //Check to see if we are ClickOnce Deployed.
             //i.e. the executing code was installed via ClickOnce
@@ -553,18 +576,17 @@ namespace PS4_PS2_Classis_GUI
 
         #region << Extract Needed Resources >>
 
-        private string AppCommonPath()
+        public static string AppCommonPath()
         {
             string returnstring = "";
             if (Properties.Settings.Default.OverwriteTemp == true && Properties.Settings.Default.TempPath != string.Empty)
-            {          
+            {
                 returnstring = Properties.Settings.Default.TempPath + @"\Ps4Tools\";
             }
             else
             {
                 returnstring = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Ps4Tools\";
             }
-            UpdateInfo("Temp Folder = " + returnstring);
             return returnstring;
         }
 
@@ -726,6 +748,11 @@ namespace PS4_PS2_Classis_GUI
                             {
                                 PS2ID = PS2Id.Replace(".", "");
                                 lblPS2ID.Text = "PS2 ID : " + PS2Id.Replace(".", "");
+
+                                if (Properties.Settings.Default.EnablePS2IDReplace == true)
+                                {
+                                    txtContentID.Text = PS2ID.Replace("_", "");
+                                }
                             }
                             else
                             {
@@ -823,13 +850,20 @@ namespace PS4_PS2_Classis_GUI
         private void UpdateString(string txt)
         {
             UpdateInfo(txt);
-            lblTask.Invoke(new Action(() => lblTask.Text = txt));
+            OpenCloseWaitScreen(true);
+            Busy.INFO = txt;
+            Application.DoEvents();
+            //lblTask.Invoke(new Action(() => lblTask.Text = txt));
         }
 
         FolderBrowserDialog tempkeeper = null;
 
         public bool doesStringMatch()
         {
+            if(isoFiles.Count == 0)
+            {
+                return false;
+            }
 
             string txt = string.Empty;
             if (isoFiles.Count > 1)
@@ -901,6 +935,27 @@ namespace PS4_PS2_Classis_GUI
             return true;
         }
 
+        private void OpenCloseWaitScreen(bool open)
+        {
+            if (open)
+            {
+                //Info Screen Wait screen
+                Busy.INFO = "Loading Data";
+                bgwClose = false;
+                if (!bgWorkerSS.IsBusy)
+                {
+                    bgWorkerSS.RunWorkerAsync();
+                }
+            }
+            else
+            {
+                //Wait screen/ info Screen
+                bgwClose = true;
+                bgWorkerSS.CancelAsync();
+                bgWorkerSS.Dispose();
+            }
+        }
+
         /// <summary>
         /// This Button is when the user selects to convert the file to PS4 PKG
         /// </summary>
@@ -908,6 +963,7 @@ namespace PS4_PS2_Classis_GUI
         /// <param name="e"></param>
         private void btnConvert_Click(object sender, EventArgs e)
         {
+
             UpdateInfo("Converting ISO(s) to PKG ");
 
             CheckString();
@@ -929,6 +985,7 @@ namespace PS4_PS2_Classis_GUI
             tempkeeper = saveFileDialog1;
             try
             {
+                OpenCloseWaitScreen(true);
                 if (backgroundWorker1.IsBusy == false)
                 {
                     backgroundWorker1.RunWorkerAsync();
@@ -936,6 +993,7 @@ namespace PS4_PS2_Classis_GUI
             }
             catch(Exception ex)
             {
+                OpenCloseWaitScreen(false);
                 MessageBox.Show(ex.Message);
             }
            
@@ -960,7 +1018,7 @@ namespace PS4_PS2_Classis_GUI
             {
                 FolderBrowserDialog saveFileDialog1 = tempkeeper;
 
-                progressBar1.Invoke(new Action(() => progressBar1.Visible = true));
+
                 UpdateString("Creating Working Area");
                 UpdateInfo("Creating Working Area : " + AppCommonPath() + @"\Working\");
                 if (!Directory.Exists(AppCommonPath() + @"\Working\"))
@@ -1082,11 +1140,11 @@ namespace PS4_PS2_Classis_GUI
                         string Is = @"--max-disc-num=";
 
                         int start = textfile.ToString().IndexOf(Is) + Is.Length;
-                        int end = Is.Length + 1;//cause we know its one char more
+                        int end = start + 1;//cause we know its one char more
                         if (end > start)
                         {
                             string texttoreplace =textfile.ToString().Substring(start, end - start);
-                            textfile.Replace(texttoreplace, @"--max-disc-num=" + isoFiles.Count);
+                           textfile = textfile.Replace(Is+texttoreplace, @"--max-disc-num=" + isoFiles.Count);
                         }
                     }
                     File.WriteAllText(AppCommonPath() + @"PS2\config-emu-ps4.txt", textfile);
@@ -1121,7 +1179,8 @@ namespace PS4_PS2_Classis_GUI
 
                 while (BusyCoping == true)
                 {
-                    Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
+                    Application.DoEvents();
+                    //Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
                 }
                 ////not using this right now
                 #region << Not Using This Right Now >>
@@ -1157,7 +1216,8 @@ namespace PS4_PS2_Classis_GUI
 
                 while (BusyCoping == true)
                 {
-                    Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
+                    Application.DoEvents();
+                    //Thread.Sleep(TimeSpan.FromSeconds(5));//sleep for 5 seconds
                 }
 
                 UpdateString("Done Opening Location");
@@ -1216,9 +1276,16 @@ namespace PS4_PS2_Classis_GUI
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+           
             FolderBrowserDialog saveFileDialog1 = tempkeeper;
 
-            MessageBox.Show("Convert completed");
+            //MessageBox.Show("Convert completed");
+            //no messagebox instead play the bootlogo sound 
+
+            System.IO.Stream str = Properties.Resources.ps4_notification;
+            System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
+            snd.PlaySync();
+            OpenCloseWaitScreen(false);
             Process.Start(saveFileDialog1.SelectedPath);
 
 
@@ -1230,8 +1297,7 @@ namespace PS4_PS2_Classis_GUI
             //reset some vales 
             AddCustomPS2Config = false;
             CustomConfigLocation = string.Empty;
-
-            progressBar1.Visible = false;
+           
             UpdateInfo("Ready");
         }
 
@@ -1239,7 +1305,7 @@ namespace PS4_PS2_Classis_GUI
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Title = "Select Image";
-            dlg.Filter = "Image File|*.bmp;*.jpg;*.jpeg";
+            dlg.Filter = "Image File|*.bmp;*.jpg;*.jpeg;*.png";
             dlg.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -1253,7 +1319,7 @@ namespace PS4_PS2_Classis_GUI
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Title = "Select Image";
-            dlg.Filter = "Image File|*.bmp;*.jpg;*.jpeg";
+            dlg.Filter = "Image File|*.bmp;*.jpg;*.jpeg;*.png";
             dlg.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -1329,6 +1395,18 @@ namespace PS4_PS2_Classis_GUI
         {
             Settings set = new Settings();
             set.ShowDialog();
+        }
+
+        private void addCustomULASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bgWorkerSS_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Busy Busy = new Busy(bgWorkerSS);
+            Busy.ShowDialog();
+            Busy.Focus();
         }
     }
 

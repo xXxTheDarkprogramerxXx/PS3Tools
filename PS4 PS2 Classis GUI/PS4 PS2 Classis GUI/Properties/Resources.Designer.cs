@@ -61,6 +61,35 @@ namespace PS4_PS2_Classis_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream BootLogo {
+            get {
+                return ResourceManager.GetStream("BootLogo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DenseGorgeousBaboon {
+            get {
+                object obj = ResourceManager.GetObject("DenseGorgeousBaboon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DiligentWanJellyfish__1_ {
+            get {
+                object obj = ResourceManager.GetObject("DiligentWanJellyfish (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] ext {
@@ -151,11 +180,40 @@ namespace PS4_PS2_Classis_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PS2_Logo {
+            get {
+                object obj = ResourceManager.GetObject("PS2-Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] PS2Classics {
             get {
                 object obj = ResourceManager.GetObject("PS2Classics", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ps4_notification {
+            get {
+                return ResourceManager.GetStream("ps4_notification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ps4BGM {
+            get {
+                object obj = ResourceManager.GetObject("ps4BGM", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\Publish\PS2 Classics\</PublishUrl>
+    <PublishUrl>\publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -22,11 +22,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <InstallUrl>http://www.nigmacontractors.co.za/PSTools/PS2Classics/</InstallUrl>
-    <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/PS2Classics/</UpdateUrl>
+    <InstallUrl>https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PS4%2520PS2%2520Classis%2520GUI/PS4%2520PS2%2520Classis%2520GUI/bin/Debug/app.publish/</InstallUrl>
+    <UpdateUrl>https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PS4%2520PS2%2520Classis%2520GUI/PS4%2520PS2%2520Classis%2520GUI/bin/Debug/app.publish/</UpdateUrl>
     <PublisherName>The Darkprogramer</PublisherName>
     <SuiteName>PSTools</SuiteName>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -85,8 +85,12 @@
       <HintPath>..\packages\Discutils.0.11.0.2\lib\net40\DiscUtils.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NAudio">
+      <HintPath>..\..\..\..\..\Downloads\NAudio-Release\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -105,6 +109,18 @@
       <DependentUpon>Advanced.cs</DependentUpon>
     </Compile>
     <Compile Include="BinaryByteOrder.cs" />
+    <Compile Include="BootLogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BootLogo.Designer.cs">
+      <DependentUpon>BootLogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Busy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Busy.Designer.cs">
+      <DependentUpon>Busy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Credits.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +164,12 @@
     <Compile Include="StructWriter.cs" />
     <EmbeddedResource Include="Advanced.resx">
       <DependentUpon>Advanced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BootLogo.resx">
+      <DependentUpon>BootLogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Busy.resx">
+      <DependentUpon>Busy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Credits.resx">
       <DependentUpon>Credits.cs</DependentUpon>
@@ -230,6 +252,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pic1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PS2-Logo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BootLogo.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DiligentWanJellyfish %281%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ps4_notification.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DenseGorgeousBaboon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ps4 main home menu music _ playstation 4 system music by BGM.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ps4BGM.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
