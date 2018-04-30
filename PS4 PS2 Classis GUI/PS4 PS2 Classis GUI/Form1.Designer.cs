@@ -67,6 +67,7 @@
             this.restoreIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.bgWorkerSS = new System.ComponentModel.BackgroundWorker();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -194,7 +195,8 @@
             this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem1});
+            this.fileToolStripMenuItem1,
+            this.toolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(637, 28);
@@ -425,6 +427,13 @@
             this.bgWorkerSS.WorkerSupportsCancellation = true;
             this.bgWorkerSS.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerSS_DoWork);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(113, 24);
+            this.toolStripMenuItem2.Text = "Mute/Unmute";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -492,6 +501,7 @@
         public System.Windows.Forms.TextBox txtTitleId;
         private System.Windows.Forms.ToolStripMenuItem addCustomULASToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker bgWorkerSS;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

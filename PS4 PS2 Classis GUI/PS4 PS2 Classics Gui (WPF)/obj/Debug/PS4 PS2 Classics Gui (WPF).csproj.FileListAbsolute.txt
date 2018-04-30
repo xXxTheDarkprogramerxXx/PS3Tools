@@ -1,0 +1,40 @@
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.exe.config
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\DiscUtils.Common.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\DiscUtils.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\NAudio.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PulseButton.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\DiscUtils.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\DiscUtils.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\DiscUtils.Common.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\DiscUtils.Common.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\NAudio.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PulseButton.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics Gui (WPF).csprojResolveAssemblyReference.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\Advanced.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\Busy.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\MainWindow.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\MessageBox.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\MultipleISO_s.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\SettingsWindow.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\VideoScreen.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\App.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI_MarkupCompile.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI_MarkupCompile.lref
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\Advanced.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\Busy.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\MainWindow.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\MessageBox.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\MultipleISO_s.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\SettingsWindow.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\VideoScreen.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.g.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4_PS2_Classics_Gui__WPF_.Properties.Resources.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics Gui (WPF).csproj.GenerateResource.Cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.application

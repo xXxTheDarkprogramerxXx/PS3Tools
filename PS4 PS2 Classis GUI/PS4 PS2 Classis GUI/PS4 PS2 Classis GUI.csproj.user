@@ -2,10 +2,10 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
-    <PublishUrlHistory>\publish\|C:\Publish\PS2 Classics\</PublishUrlHistory>
-    <InstallUrlHistory>https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PS4%2520PS2%2520Classis%2520GUI/PS4%2520PS2%2520Classis%2520GUI/bin/Debug/app.publish/|http://www.nigmacontractors.co.za/PSTools/PS2Classics/|https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PS4%2520PS2%2520Classis%2520GUI/PS4%2520PS2%2520Classis%2520GUI/|http://www.nigm/PSTools/PS2Classics/|http://154.0.168.26/PSTools/PS2Classics/</InstallUrlHistory>
+    <PublishUrlHistory>C:\Publish\PS2 Classics\|\publish\</PublishUrlHistory>
+    <InstallUrlHistory>http://www.nigmacontractors.co.za/PSTools/PS2ClassicsTest/|http://www.nigmacontractors.co.za/PSTools/PS2Classics/|https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PS4%2520PS2%2520Classis%2520GUI/PS4%2520PS2%2520Classis%2520GUI/bin/Debug/app.publish/|https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PS4%2520PS2%2520Classis%2520GUI/PS4%2520PS2%2520Classis%2520GUI/|http://www.nigm/PSTools/PS2Classics/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory>http://www.nigmacontractors.co.za/PSTools/PS2Classics/|http://www.nigmacontactors.co.za/PSTools/PS2Classics/</UpdateUrlHistory>
+    <UpdateUrlHistory>http://www.nigmacontractors.co.za/PSTools/PS2Classics/|https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PS4%2520PS2%2520Classis%2520GUI/PS4%2520PS2%2520Classis%2520GUI/bin/Debug/app.publish/|http://www.nigmacontactors.co.za/PSTools/PS2Classics/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>

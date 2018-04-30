@@ -1408,6 +1408,14 @@ namespace PS4_PS2_Classis_GUI
             Busy.ShowDialog();
             Busy.Focus();
         }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if(waveOutDevice!= null)
+            {
+
+            }
+        }
     }
 
     public static class Extensionclass
