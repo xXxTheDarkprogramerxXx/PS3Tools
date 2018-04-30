@@ -118,6 +118,11 @@
     <Compile Include="MessageBox.xaml.cs">
       <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="PS3SFO.cs" />
     <Compile Include="Set.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
@@ -176,11 +181,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -206,22 +206,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\maxresdefault.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\playstation store.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ps4_avatar_06_20170319.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\psplus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\th.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\theme.jpg" />
@@ -249,9 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\DiligentWanJellyfish %281%29.gif" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\sfo.xml" />

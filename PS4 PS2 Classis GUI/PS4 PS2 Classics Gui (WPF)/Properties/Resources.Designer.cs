@@ -61,16 +61,6 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DiligentWanJellyfish__1_ {
-            get {
-                object obj = ResourceManager.GetObject("DiligentWanJellyfish__1_", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] ext {
@@ -96,16 +86,6 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         internal static System.Drawing.Bitmap flow {
             get {
                 object obj = ResourceManager.GetObject("flow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icon {
-            get {
-                object obj = ResourceManager.GetObject("icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
