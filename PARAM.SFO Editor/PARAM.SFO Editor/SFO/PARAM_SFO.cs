@@ -483,19 +483,19 @@ namespace PeXploit
                         {
                             string breakpoint ="This is for debug testing";
                         }
-                        value.Indextable.param_key_offset = (ushort)curkeynameoffset;
+                        //value.Indextable.param_key_offset = (ushort)curkeynameoffset;
                         
                         if (value.Indextable.param_data_fmt != datatype)
                         {
                             string breakpoint = "This is for debug testing";
                         }
-                        value.Indextable.param_data_fmt = datatype;
+                        //value.Indextable.param_data_fmt = datatype;
 
                         if (value.Indextable.param_data_len != datasize)
                         {
                             string breakpoint = "This is for debug testing";
                         }
-                        value.Indextable.param_data_len = datasize;
+                        //value.Indextable.param_data_len = datasize;
 
                         //if (value.Indextable.param_data_max_len != GetPaddingSize(value.Name, datasize))
                         //{
@@ -507,10 +507,9 @@ namespace PeXploit
                         {
                             string breakpoint = "This is for debug testing";
                         }
-                        value.Indextable.param_data_offset = curvalueoffset;
+                        //value.Indextable.param_data_offset = curvalueoffset;
 
                         //we already have all the keynames
-                        curkeynameoffset += value.Name.Length + 1;
                         
                         curvalueoffset += value.Indextable.param_data_max_len;
 
@@ -535,6 +534,9 @@ namespace PeXploit
                         indexes[idx].DataValueOffset = curvalueoffset;
 
 
+                        curkeynameoffset += value.Name.Length + 1;
+
+
                         variablenames[idx] = value.Name;
 
                         myindexes[idx] = value.Indextable;
@@ -556,7 +558,7 @@ namespace PeXploit
 
 
                     // Write variable information...
-                    sw.WriteStructs(myindexes);
+                    sw.WriteStructs(indexes);
 
                     WritePadBytes(sw, sw.BaseStream.Position, sfoheader.Start_of_Variable_Name_Table);
 

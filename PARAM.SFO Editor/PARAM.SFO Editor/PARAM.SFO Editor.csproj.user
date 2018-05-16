@@ -2,9 +2,9 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>publish\|https://rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|http://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</PublishUrlHistory>
-    <InstallUrlHistory>http://xdpx.000webhost.com/ParamSFO/|https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</InstallUrlHistory>
+    <InstallUrlHistory>http://www.nigmacontractors.co.za/PSTools/SFO/|http://xdpx.000webhost.com/ParamSFO/|https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory>https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</UpdateUrlHistory>
+    <UpdateUrlHistory>http://xdpx.000webhost.com/ParamSFO/|https://cdn.rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://rawgit.com/xXxTheDarkprogramerxXx/PS3Tools/tree/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/|https://github.com/xXxTheDarkprogramerxXx/PS3Tools/raw/master/PARAM.SFO%2520Editor/PARAM.SFO%2520Editor/publish/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>

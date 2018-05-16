@@ -112,6 +112,7 @@
             this.checkBox31 = new System.Windows.Forms.CheckBox();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tbPS4 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoAndBackground)).BeginInit();
@@ -1126,12 +1127,23 @@
             this.tbPS4.Text = "PS4";
             this.tbPS4.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(738, 88);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 40;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1097, 583);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.tbControl);
             this.Controls.Add(this.cbSystemVersion);
             this.Controls.Add(this.pbLogoAndBackground);
@@ -1275,6 +1287,7 @@
         private System.Windows.Forms.TabControl tbControl;
         private System.Windows.Forms.TabPage tbPS4;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button button3;
     }
 }
 

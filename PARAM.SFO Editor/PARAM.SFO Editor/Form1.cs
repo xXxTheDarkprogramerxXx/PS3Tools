@@ -189,7 +189,7 @@ namespace PARAM.SFO_Editor
             {
                 errors = true;
                 errorcount++;
-                MessageBox.Show("Data offset missmatch", "DataCorrupt", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Data offset mismatch", "DataCorrupt", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return data_1_max_len;
         }
@@ -357,7 +357,7 @@ namespace PARAM.SFO_Editor
         {
             timer1 = new System.Windows.Forms.Timer();
             timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Interval = Convert.ToInt32(TimeSpan.FromSeconds(5).TotalMilliseconds); // in miliseconds
+            timer1.Interval = Convert.ToInt32(TimeSpan.FromSeconds(5).TotalMilliseconds); // in milliseconds
             timer1.Start();
             if (backgroundWorker1.IsBusy == false)
             {
@@ -926,8 +926,17 @@ namespace PARAM.SFO_Editor
             raw.Show();
         }
 
+        private void CheckUpdate()
+        {
+            //i spesefy a url for the file
+            DateTime modification = File.GetLastWriteTime(@"C:\test.txt");
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            //check for updates on start up 
+            CheckUpdate();
+
             ExtractAllResources();
 
             tbControl.TabPages.Remove(tbPS4);
@@ -1739,11 +1748,17 @@ namespace PARAM.SFO_Editor
             string FileHeader;
             if (version == Form1.Playstation.ps4)
             {
+                List<string> Blockeditems = new List<string>();
+                Blockeditems.Add("PUBTOOLINFO");
+                Blockeditems.Add("DEV_FLAG");
+                Blockeditems.Add("PUBTOOLVER");
+
                 //table items
                 FileHeader = CreateSFXHeader();
                 string XMLItem = FileHeader + "\n<paramsfo>";//begin the tag
                 foreach (var item in psfo.Tables)
                 {
+                    if(!Blockeditems.Contains(item.Name))
                     XMLItem += "\n\t<param key=\"" + item.Name + "\">" + item.Value + "</param>";
                 }
                 XMLItem += "\n</paramsfo>";//close the tag
@@ -1898,6 +1913,11 @@ namespace PARAM.SFO_Editor
                     return result;
                 }
             }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Process.Start(Path.GetDirectoryName(Application.StartupPath));
         }
 
         private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)

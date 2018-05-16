@@ -22,13 +22,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <InstallUrl>http://xdpx.000webhost.com/ParamSFO/</InstallUrl>
-    <UpdateUrl>http://xdpx.000webhost.com/ParamSFO/</UpdateUrl>
+    <InstallUrl>http://www.nigmacontractors.co.za/PSTools/SFO/</InstallUrl>
+    <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/SFO/</UpdateUrl>
     <ProductName>PARAM.SFO Editor</ProductName>
     <PublisherName>TheDarkprogramer</PublisherName>
     <SuiteName>PS Tools</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
