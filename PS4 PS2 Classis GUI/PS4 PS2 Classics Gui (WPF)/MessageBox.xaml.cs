@@ -161,5 +161,10 @@ namespace PS4_PS2_Classics_Gui__WPF_
         {
 
         }
+
+        public static implicit operator PS4_MessageBoxResult(MessageBox v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

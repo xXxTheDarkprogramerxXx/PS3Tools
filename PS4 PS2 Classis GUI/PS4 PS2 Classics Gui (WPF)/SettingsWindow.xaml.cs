@@ -105,6 +105,17 @@ namespace PS4_PS2_Classics_Gui__WPF_
                         DefaultValue = "Off";
                     }
                     break;
+                case "Enable kozarovv Patches":
+                    if(Properties.Settings.Default.EnableCustomConfigFetching == true)
+                    {
+                        DefaultValue = "On";
+                    }
+                    else
+                    {
+                        DefaultValue = "Off";
+                    }
+                    break;
+
             }
             set.SValue = DefaultValue;
             set.type = TypeOfContorl;
@@ -123,6 +134,7 @@ namespace PS4_PS2_Classics_Gui__WPF_
             AddEsttingValues("Enable Boot Logo", "On", new ListView());
             AddEsttingValues("Enable PS4 Ambient Music", "On", new ListView());
 
+            AddEsttingValues("Enable kozarovv Patches", "Off", new ListView());
 
             for (int i = 0; i < Values.Count; i++)
             {
@@ -259,6 +271,9 @@ namespace PS4_PS2_Classics_Gui__WPF_
                             SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Music);
 
                             break;
+                        case "Enable kozarovv Patches":
+                            Properties.Settings.Default.EnableCustomConfigFetching = true;
+                            break;
 
 
                     }
@@ -286,6 +301,9 @@ namespace PS4_PS2_Classics_Gui__WPF_
                             }
                             break;
 
+                        case "Enable kozarovv Patches":
+                            Properties.Settings.Default.EnableCustomConfigFetching = false;
+                            break;
 
                     }
                     Properties.Settings.Default.Save();//save the settings

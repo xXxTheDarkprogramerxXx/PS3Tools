@@ -200,7 +200,9 @@
     <Resource Include="Resources\PS2.zip" />
     <Resource Include="Resources\ext.zip" />
     <Resource Include="Resources\param.sfo" />
-    <Resource Include="Resources\PS2Classics.gp4" />
+    <Resource Include="Resources\PS2Classics.gp4">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

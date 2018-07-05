@@ -29,6 +29,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Threading;
 using System.Runtime.InteropServices;
+using System.Net;
 
 namespace PS4_PS2_Classics_Gui__WPF_
 {
@@ -57,6 +58,10 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
         //items needed
         string PS2ID;
+        /// <summary>
+        /// This is used for kozarovv patches
+        /// </summary>
+        string OriginalPS2ID;
         public static List<string> isoFiles = new List<string>();
         public static List<string> PS2CutomLua = new List<string>();
         public static List<string> PS2TitleId = new List<string>();
@@ -69,6 +74,8 @@ namespace PS4_PS2_Classics_Gui__WPF_
         bool AddCustomPS2Config = false;
         string CustomConfigLocation = string.Empty;
 
+        //URL String For Custom Patches
+        String Url = "https://github.com/kozarovv/PS2-Configs";
 
         #endregion << Vars' >>
 
@@ -319,6 +326,7 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
 
                             if (PS2Id != string.Empty)
                             {
+                                OriginalPS2ID = PS2Id;
                                 PS2ID = PS2Id.Replace(".", "");
                                 lblPS2ID.Content = "PS2 ID : " + PS2Id.Replace(".", "");
 
@@ -374,95 +382,140 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            #region << Background Workers >>
-
-            bgWorkerSS.DoWork += bgWorkerSS_DoWork;
-            bgWorkerSS.WorkerSupportsCancellation = true;
-
-            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
-            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
-
-            #endregion << Background Workers >>
-
-            #region << Quick Sound/Video Extract >>
-
-            //System.IO.File.WriteAllBytes(AppCommonPath() + "PS4.mp3", Properties.Resources.ps4BGM);
-            System.IO.File.WriteAllBytes(AppCommonPath() + "PS2.mp4", Properties.Resources.PS2_Logo);
-
-            if (!Directory.Exists(AppCommonPath() + @"\PS2Emu\"))
+        { 
+            try
             {
-                UpdateInfo("Created Directory" + AppCommonPath() + @"\PS2Emu\");
-                Directory.CreateDirectory(AppCommonPath() + @"\PS2Emu\");
+
+                #region << First Time Settings >>
+
+                if(Properties.Settings.Default.FirstTime == true)
+                {
+                    /*Fist Time User Boots Up Ask User if he wants to use a custom path*/
+                   var ps4message =  new MessageBox(@"Do you want to use a custom path to run the GUI from this is mainly ideal
+if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.Sound.Notification);
+                    ps4message.ShowDialog();
+                    if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                    {
+                        /**Show New Screen to ask where to save*/
+                        using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+                        {
+                            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                            if (result == System.Windows.Forms.DialogResult.OK)
+                            {
+                                Properties.Settings.Default.TempPath = dialog.SelectedPath.ToString();
+                            }
+                            Properties.Settings.Default.OverwriteTemp = true;
+                        }
+                        Properties.Settings.Default.Save();//save the settings
+                    }
+                }
+                #endregion << FirsTime >>
+
+                #region << Background Workers >>
+
+                //System.Windows.Forms.MessageBox.Show("Creating Background Workers");
+                bgWorkerSS.DoWork += bgWorkerSS_DoWork;
+                bgWorkerSS.WorkerSupportsCancellation = true;
+
+                backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+                backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+
+
+                #endregion << Background Workers >>
+
+                #region << Quick Sound/Video Extract >>
+
+
+                //System.Windows.Forms.MessageBox.Show("extracting files");
+                //System.IO.File.WriteAllBytes(AppCommonPath() + "PS4.mp3", Properties.Resources.ps4BGM);
+                System.IO.File.WriteAllBytes(AppCommonPath() + "PS2.mp4", Properties.Resources.PS2_Logo);
+
+                if (!Directory.Exists(AppCommonPath() + @"\PS2Emu\"))
+                {
+                    UpdateInfo("Created Directory" + AppCommonPath() + @"\PS2Emu\");
+                    Directory.CreateDirectory(AppCommonPath() + @"\PS2Emu\");
+                }
+                System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "param.sfo", Properties.Resources.param);
+                #endregion <<Quick Sound/Video Extract >>
+
+                #region << Boot Screen Settings >>
+
+                if (Properties.Settings.Default.EnableBootScreen == true)
+                {
+                    //show bootlogo the good old ps2 classic logo and sound :P
+                    this.Hide();
+
+                    VideoScreen PS2logo = new VideoScreen();
+                    PS2logo.ShowDialog();
+
+                    this.Show();
+                }
+
+                #endregion << Boot Screen Settings >>
+
+                #region << Gui Music >>
+
+                if (Properties.Settings.Default.EnableGuiMusic == true)
+                {
+                    btnMutePlaySound.Background = ImageBrushFromBitmap(Properties.Resources.icon_sound_mute);
+                    SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Music);
+                }
+
+                #endregion << Gui Music >>
+
+                #region << Version Numbering >>
+
+                Version v = Assembly.GetExecutingAssembly().GetName().Version;
+                //Check to see if we are ClickOnce Deployed.
+                //i.e. the executing code was installed via ClickOnce
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    //Collect the ClickOnce Current Version
+                    v = ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                }
+
+                //Show the version in a simple manner
+                this.Title = string.Format("PS2 Classic GUI Version : {0}", v);
+
+
+                #endregion << Version Numbering >>
+
+                #region << Advanced Window >>
+
+                // i removed this as its no longer needed
+                if (Properties.Settings.Default.EnableAdvancedMode == true)
+                {
+                    advanced.Show();
+                }
+
+
+                #endregion << Advanced Window >>
+
+                #region << Begin Maintaining the form and getting everything ready >>
+
+                //quickly read sfo 
+                UpdateInfo("Reading Custom SFO");
+                PS2ClassicsSfo.SFO sfo = new PS2ClassicsSfo.SFO(AppCommonPath() + @"\PS2Emu\" + "param.sfo");
+
+                UpdateInfo("Setting Content ID");
+                //all we want to change is the Content ID which will rename the package 
+                txtContentID.Text = sfo.ContentID.ToString().Trim().Substring(7, 9);
+
+
+                #endregion << Begin Maintaining the form and getting everything ready >>
+
+                #region << Disable First Time >>
+
+                Properties.Settings.Default.FirstTime = false;
+                Properties.Settings.Default.Save();
+
+                #endregion << Disable First Time >>
             }
-            System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "param.sfo", Properties.Resources.param);
-            #endregion <<Quick Sound/Video Extract >>
-
-            #region << Boot Screen Settings >>
-
-            if (Properties.Settings.Default.EnableBootScreen == true)
+            catch (Exception ex)
             {
-                //show bootlogo the good old ps2 classic logo and sound :P
-                this.Hide();
 
-                VideoScreen PS2logo = new VideoScreen();
-                PS2logo.ShowDialog();
-
-                this.Show();
+                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
-
-            #endregion << Boot Screen Settings >>
-
-            #region << Gui Music >>
-
-            if (Properties.Settings.Default.EnableGuiMusic == true)
-            {
-                btnMutePlaySound.Background = ImageBrushFromBitmap(Properties.Resources.icon_sound_mute);
-                SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Music);
-            }
-
-            #endregion << Gui Music >>
-
-            #region << Version Numbering >>
-
-            Version v = Assembly.GetExecutingAssembly().GetName().Version;
-            //Check to see if we are ClickOnce Deployed.
-            //i.e. the executing code was installed via ClickOnce
-            if (ApplicationDeployment.IsNetworkDeployed)
-            {
-                //Collect the ClickOnce Current Version
-                v = ApplicationDeployment.CurrentDeployment.CurrentVersion;
-            }
-
-            //Show the version in a simple manner
-            this.Title = string.Format("PS2 Classic GUI Version : {0}", v);
-
-
-            #endregion << Version Numbering >>
-
-            #region << Advanced Window >>
-
-            // i removed this as its no longer needed
-            if (Properties.Settings.Default.EnableAdvancedMode == true)
-            {
-                advanced.Show();
-            }
-
-
-            #endregion << Advanced Window >>
-
-            #region << Begin Maintaining the form and getting everything ready >>
-
-            //quickly read sfo 
-            UpdateInfo("Reading Custom SFO");
-            PS2ClassicsSfo.SFO sfo = new PS2ClassicsSfo.SFO(AppCommonPath() + @"\PS2Emu\" + "param.sfo");
-
-            UpdateInfo("Setting Content ID");
-            //all we want to change is the Content ID which will rename the package 
-            txtContentID.Text = sfo.ContentID.ToString().Trim().Substring(7, 9);
-
-
-            #endregion << Begin Maintaining the form and getting everything ready >>
         }
 
         /// <summary>
@@ -639,6 +692,14 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                     //move custom ps2 classics config
                     UpdateString("Copying Custom config");
                     File.Copy(CustomConfigLocation, AppCommonPath() + @"PS2\config-emu-ps4.txt", true);//overwrite the file
+                }
+                UpdateString("Looking for Custom PS2 LUA And Config from kozarovv");
+                if (Properties.Settings.Default.EnableCustomConfigFetching == true)
+                {
+                    //here we get some patches from our friend https://twitter.com/kozarovv
+                    SearchGithubForCorrespondingPatches(OriginalPS2ID);
+
+
                 }
 
                 UpdateString("Creating Custom PS2 LUA And Config");
@@ -924,6 +985,172 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
 
         #region << Methods >>
 
+        public class GithubRepoFolder
+        {
+            public string FolderName { get; set; }
+            public string FolderMessage { get; set; }
+            public string FolderAge { get; set; }
+
+            public string FolderUrl { get; set; }
+        }
+
+        public List<GithubRepoFolder> RepoFolders = new List<GithubRepoFolder>();
+
+        public void SearchGithubForCorrespondingPatches(string PS2TitleId)
+        {
+            /*Code from this */
+            string HTMLCodeofsite;
+            using (WebClient client = new WebClient())
+            {
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+                client.Headers.Add("user-agent", "Only a test!");
+                string urlfrom = Url.Replace("../", "/").Replace("//", "/").Replace("\\", "/");
+                if (urlfrom.Contains("https:/"))
+                    urlfrom = urlfrom.Replace("https:/", "https://");
+                if (urlfrom.Contains("http:/"))
+                    urlfrom = urlfrom.Replace("http:/", "http://");
+                Uri urltodownload = new Uri(urlfrom);
+                HTMLCodeofsite = client.DownloadString(urltodownload);
+
+
+
+            }
+
+            //HTMLCodeofsite = webBrowser1.DocumentText;
+
+
+
+            if (HTMLCodeofsite != string.Empty)
+            {
+                //we found the code now we mine 
+                /*now we read line by line*/
+                string[] array = HTMLCodeofsite.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (String item in array)
+                {
+                    GithubRepoFolder folderrepo = new GithubRepoFolder();
+                    if (item.Contains(@"href") && item.Contains(@"kozarovv/PS2-Configs/tree/master/"))
+                    {
+                        /*try and get the title*/
+                        try
+                        {
+                            int starrstring = item.IndexOf(@"title=""");
+                            int endstring = item.IndexOf(@"id=");
+                            string substring = item.Substring(starrstring, endstring - starrstring);
+                            folderrepo.FolderName = substring.Replace("title=", "").Replace("\"", "");
+
+                        }
+                        catch
+                        {
+
+                        }
+                        /*try and get url*/
+                        try
+                        {
+                            int starrstring = item.IndexOf(@"href=""");
+                            int endstring = item.IndexOf(@""">" + folderrepo.FolderName.Replace(" ", ""));
+                            string substring = item.Substring(starrstring, endstring - starrstring);
+                            folderrepo.FolderUrl = substring.Replace(@"href=""", "").Replace("\"", "");
+
+                            /*when url found add to list*/
+                            if (!RepoFolders.Contains(folderrepo))
+                            {
+                                RepoFolders.Add(folderrepo);
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+
+                /*after looping is done we get those pages and just look for a possible patch*/
+                for (int i = 0; i < RepoFolders.Count; i++)
+                {
+
+
+                    using (WebClient client = new WebClient())
+                    {
+                        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+                        client.Headers.Add("user-agent", "Only a test!");
+                        string urlfrom = "https:/github.com/" + RepoFolders[i].FolderUrl;
+                        if (urlfrom.Contains("https:/"))
+                            urlfrom = urlfrom.Replace("https:/", "https://");
+                        if (urlfrom.Contains("http:/"))
+                            urlfrom = urlfrom.Replace("http:/", "http://");
+                        Uri urltodownload = new Uri(urlfrom);
+                        HTMLCodeofsite = client.DownloadString(urltodownload);
+                        //once we have the code try and search for the id inside the page 
+                        if (HTMLCodeofsite.Contains(PS2TitleId))
+                        {
+                            UpdateString("Found custom " + RepoFolders[i].FolderName + "\nTrying to download");
+                            //winner winner chicken dinner
+                            //open that page and see if we can get the dam raw data from there 
+                            //find the tag location with the ps2id
+                            string[] arrayofcode = HTMLCodeofsite.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+                            foreach (String item in arrayofcode)
+                            {
+                                if (item.Contains(@"href") && item.Contains(PS2TitleId))
+                                {
+                                    /*download htmlstring*/
+                                    /*try and get url*/
+                                    try
+                                    {
+                                        string ifoundit = item;
+                                        int starrstring = item.IndexOf(@"href=""");
+                                        int endstring = item.IndexOf(@""">" + PS2TitleId.Replace(" ", ""));
+                                        string substring = item.Substring(starrstring, endstring - starrstring);
+                                        string FileUrl = substring.Replace(@"href=""", "").Replace("\"", "");
+                                        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+                                        client.Headers.Add("user-agent", "Only a test!");
+                                        urlfrom = "https:/github.com/" + FileUrl;
+                                        if (urlfrom.Contains("https:/"))
+                                            urlfrom = urlfrom.Replace("https:/", "https://");
+                                        if (urlfrom.Contains("http:/"))
+                                            urlfrom = urlfrom.Replace("http:/", "http://");
+                                        Uri urltodownloadfile = new Uri(urlfrom);
+                                        string filetodownloadhtml = client.DownloadString(urltodownloadfile);
+
+                                        //now we need to find the raw. file location
+                                        string[] arrayofcodetogetraw = filetodownloadhtml.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                                        foreach (String items in arrayofcodetogetraw)
+                                        {
+                                            if (items.Contains(@"raw-url"))
+                                            {
+                                                starrstring = items.IndexOf(@"href=""");
+                                                endstring = items.IndexOf(@">Raw</a>");
+                                                substring = items.Substring(starrstring, endstring - starrstring);
+                                                FileUrl = substring.Replace(@"href=""", "").Replace("\"", "");
+                                                string rawurl = items;
+                                                urlfrom = "https:/github.com/" + FileUrl;
+                                                if (urlfrom.Contains("https:/"))
+                                                    urlfrom = urlfrom.Replace("https:/", "https://");
+                                                if (urlfrom.Contains("http:/"))
+                                                    urlfrom = urlfrom.Replace("http:/", "http://");
+                                                urltodownloadfile = new Uri(urlfrom);
+                                                string ActualRawFile = client.DownloadString(urltodownloadfile);
+
+                                                //now we need to decide how to save these items
+                                                //speaking to kozarovv right now checking into github cause i want to format my pc
+
+                                            }
+
+                                        }
+                                    }
+                                    catch
+                                    {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
 
         public bool doesStringMatch()
         {

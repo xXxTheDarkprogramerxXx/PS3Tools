@@ -11,7 +11,11 @@
         <ImageBrush ImageSource="Resources/flow.png"/>
     </Window.Background>
     <Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="209" Margin="10,10,0,0" VerticalAlignment="Top" Width="506" SelectionChanged="listBox_SelectionChanged" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource ListBoxStyle1}" KeyDown="listBox_KeyDown">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="109*"/>
+            <ColumnDefinition Width="416*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="189" Margin="10,30,0,0" VerticalAlignment="Top" Width="506" SelectionChanged="listBox_SelectionChanged" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource ListBoxStyle1}" KeyDown="listBox_KeyDown" Grid.ColumnSpan="2">
             <ListBox.Background>
                 <ImageBrush/>
             </ListBox.Background>
@@ -29,10 +33,11 @@
             ButtonBrush="Transparent" 
             ButtonHighlightBrush="Transparent" 
             ButtonPressedBrush="LightBlue" 
-            PulseColor="White" Click="btnRemove_Click"
+            PulseColor="White" Click="btnRemove_Click" Grid.ColumnSpan="2"
     />
-        <Label x:Name="lblTitleId" Content="PS2 Content ID" HorizontalAlignment="Left" Margin="174,224,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" />
-        <Label x:Name="lblSize" Content="Size:" HorizontalAlignment="Left" Margin="373,224,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" />
+        <Label x:Name="lblTitleId" Content="PS2 Content ID" HorizontalAlignment="Left" Margin="64.883,224,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Grid.Column="1" />
+        <Label x:Name="lblSize" Content="Size:" HorizontalAlignment="Left" Margin="263.883,224,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Grid.Column="1" />
+        <Label x:Name="lblTitleId_Copy" Content="&#xF8BC;" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="PS4Icon" Foreground="#FFFFFFFF" />
 
     </Grid>
 </Window>
