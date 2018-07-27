@@ -65,22 +65,28 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
         public void LoadIsoFiles()
         {
-            listBox.Items.Clear();
-            TotalSizeOfPkg = 0;
-           
-            //foreach iso file
-            for (int i = 0; i < MainWindow.isoFiles.Count; i++)
+            try
             {
-                string File = MainWindow.isoFiles[i].ToString();
-                listBox.Items.Add(System.IO.Path.GetFileName(File));
-                CheckForCustomConfig(i);
-                long length = new System.IO.FileInfo(MainWindow.isoFiles[i].ToString()).Length;
-                TotalSizeOfPkg += length;
+                listBox.Items.Clear();
+                TotalSizeOfPkg = 0;
+
+                //foreach iso file
+                for (int i = 0; i < MainWindow.isoFiles.Count; i++)
+                {
+                    string File = MainWindow.isoFiles[i].ToString();
+                    listBox.Items.Add(System.IO.Path.GetFileName(File));
+                    CheckForCustomConfig(i);
+                    long length = new System.IO.FileInfo(MainWindow.isoFiles[i].ToString()).Length;
+                    TotalSizeOfPkg += length;
+                }
+
+                //after all the iso files are added add about 30mb
+                lblSize.Content = CalculateBytes(TotalSizeOfPkg);
             }
-
-            //after all the iso files are added add about 30mb
-            lblSize.Content = CalculateBytes(TotalSizeOfPkg);
-
+            catch(Exception ex)
+            {
+                PS4_MessageBoxResult result = new MessageBox(ex.Message, "MutliIso Error", PS4_MessageBoxButton.OK, SoundClass.Sound.Error);
+            }
         }
 
         public void CheckForCustomConfig(int id)

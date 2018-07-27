@@ -1,8 +1,6 @@
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.exe.config
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.exe
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.pdb
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.exe.manifest
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.application
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.exe
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.pdb
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\DiscUtils.Common.dll
@@ -35,5 +33,12 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classi
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.g.resources
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4_PS2_Classics_Gui__WPF_.Properties.Resources.resources
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics Gui (WPF).csproj.GenerateResource.Cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Resources\PS4Icon.ttf
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI_Content.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\PS4 PS2 Classics GUI.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.TrustInfo.xml
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.exe.manifest
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\HowToUse\HowToUse.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\HowToUse\HowToUse.baml

@@ -13,14 +13,14 @@
     <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PS4 PS2 Classics GUI.exe.manifest" size="6595">
+    <dependentAssembly dependencyType="install" codebase="PS4 PS2 Classics GUI.exe.manifest" size="8109">
       <assemblyIdentity name="PS4 PS2 Classics GUI.exe" version="1.0.0.11" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1OwwWd/L291rTSbsUHMG6oJFueakysAjKPu5m9Yd6tw=</dsig:DigestValue>
+        <dsig:DigestValue>uc/m2TUvy5/ATAtGT4WwzaVZf+xdVqUWCIEO3Wd+fng=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

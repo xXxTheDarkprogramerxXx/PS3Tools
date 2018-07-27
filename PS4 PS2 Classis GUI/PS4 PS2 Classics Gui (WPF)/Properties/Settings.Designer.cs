@@ -142,5 +142,17 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
                 this["FirstTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FontInstalled {
+            get {
+                return ((bool)(this["FontInstalled"]));
+            }
+            set {
+                this["FontInstalled"] = value;
+            }
+        }
     }
 }

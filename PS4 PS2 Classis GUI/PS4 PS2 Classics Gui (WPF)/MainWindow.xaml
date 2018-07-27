@@ -25,6 +25,8 @@
                     <!--<MenuItem Header="Add Custom .lua configs" Click="MenuItem_Click_3" />-->
                     <Separator/>
                     <MenuItem Header="Credits" Click="MenuItem_Click_4" />
+                    <Separator/>
+                    <MenuItem Header="How To Use" Click="MenuItem_Click_8" />
                 </MenuItem>
             </Menu>
 
@@ -81,6 +83,7 @@
                 </Grid>
                 <Grid x:Name="OptionS" MouseDown="Grid_MouseDown" Background="Black" Opacity="0.71" Width="390" HorizontalAlignment="Right" VerticalAlignment="Stretch">
                     <Label x:Name="PS2Titlelbl" Content="PS2 ISO:" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="15" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Background="{x:Null}" />
+                    
                     <TextBox x:Name="txtPath" Text="" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Height="40" Background="{x:Null}" Width="250"/>
                     <Button x:Name="btnSelectISO" Content="" HorizontalAlignment="Left" Margin="265,76,0,0" VerticalAlignment="Top" Width="53" Height="40" Click="btnSelectISO_Click" BorderBrush="Black">
                         <Button.Background>

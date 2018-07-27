@@ -199,4 +199,46 @@
   <data name="icon_sound_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_sound_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PS4Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PS4Icon.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="icons8_go_back_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-go-back-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_go_back_24__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-go-back-24 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainUI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MainUI.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainUIFile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MainUIFile.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SettingsView" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SettingsView.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Custom_Create" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Custom Create.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MultiISO1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MultiISO1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MultiISO2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MultiISO2.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MultiISO3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MultiISO3.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Mute_Inmute" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Mute Inmute.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PS2_NP_Title_ID" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PS2 NP Title ID.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PS2_Single_ISO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PS2 Single ISO.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PS2_Title" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PS2 Title.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

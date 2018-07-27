@@ -29,7 +29,7 @@
     <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/PS2Classics/</UpdateUrl>
     <PublisherName>The Darkprogramer</PublisherName>
     <SuiteName>PSTools</SuiteName>
-    <ApplicationRevision>11</ApplicationRevision>
+    <ApplicationRevision>12</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -70,6 +70,13 @@
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DiscUtils, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -115,6 +122,10 @@
     <Compile Include="Busy.xaml.cs">
       <DependentUpon>Busy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FontInstaller.cs" />
+    <Compile Include="HowToUse\HowToUse.xaml.cs">
+      <DependentUpon>HowToUse.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MessageBox.xaml.cs">
       <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
@@ -139,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Busy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HowToUse\HowToUse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,17 +201,34 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\SettingsView.PNG" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="PS4 PS2 Classis GUI_2_TemporaryKey.pfx" />
+    <Resource Include="Resources\icons8-go-back-24.png" />
+    <Resource Include="Resources\icons8-go-back-24 %281%29.png" />
+    <None Include="Resources\MainUI.PNG" />
+    <None Include="Resources\MainUIFile.PNG" />
+    <None Include="Resources\Mute Inmute.PNG" />
+    <None Include="Resources\PS2 NP Title ID.PNG" />
+    <None Include="Resources\PS2 Single ISO.PNG" />
+    <None Include="Resources\MultiISO1.PNG" />
+    <None Include="Resources\MultiISO2.PNG" />
+    <None Include="Resources\MultiISO3.PNG" />
+    <None Include="Resources\PS2 Title.PNG" />
+    <None Include="Resources\Custom Create.PNG" />
+    <Content Include="Resources\PS4Icon.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\PS2.zip" />
     <Resource Include="Resources\ext.zip" />
     <Resource Include="Resources\param.sfo" />
@@ -288,6 +320,7 @@
   <ItemGroup>
     <Resource Include="Resources\icon_sound_on.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

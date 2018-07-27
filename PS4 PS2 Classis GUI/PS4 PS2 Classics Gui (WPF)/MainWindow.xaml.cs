@@ -1,4 +1,6 @@
-﻿using DiscUtils.Iso9660;
+﻿#region << Usinings >>
+
+using DiscUtils.Iso9660;
 using Microsoft.Win32;
 using NAudio.Wave;
 using System;
@@ -30,6 +32,9 @@ using System.Drawing.Drawing2D;
 using System.Windows.Threading;
 using System.Runtime.InteropServices;
 using System.Net;
+using System.Security.Principal;
+
+#endregion << Usinings >>
 
 namespace PS4_PS2_Classics_Gui__WPF_
 {
@@ -376,6 +381,13 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
             selecttitle.Content = txtTitle.Text.Trim();
         }
 
+        private static bool IsAdministrator()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
         /// <summary>
         /// Load Method
         /// </summary>
@@ -385,10 +397,30 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
         { 
             try
             {
+                #region << Admin Access is Required for some of our features >>
+
+                if (IsAdministrator() == false && !Debugger.IsAttached)
+                {
+                    this.Hide();
+
+                    // Restart program and run as admin
+                    var exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+                    ProcessStartInfo startInfo = new ProcessStartInfo(exeName);
+                    startInfo.Verb = "runas";
+                    System.Diagnostics.Process.Start(startInfo);
+                    Application.Current.Shutdown();
+                    
+                    return;
+                }
+
+
+
+                #endregion << Admin Access is Required for some of our features  >>
+
 
                 #region << First Time Settings >>
 
-                if(Properties.Settings.Default.FirstTime == true)
+                if (Properties.Settings.Default.FirstTime == true)
                 {
                     /*Fist Time User Boots Up Ask User if he wants to use a custom path*/
                    var ps4message =  new MessageBox(@"Do you want to use a custom path to run the GUI from this is mainly ideal
@@ -408,8 +440,38 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                         }
                         Properties.Settings.Default.Save();//save the settings
                     }
+
+                    var ps4askforhelp = new MessageBox(@"Would you like to know how to use PS2 Classics ?", "PS2 Classics", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Options);
+                    ps4askforhelp.ShowDialog();
+                    if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                    {
+                        HowToUse.HowToUse howtouse = new HowToUse.HowToUse();
+                        howtouse.ShowDialog();
+                    }
                 }
                 #endregion << FirsTime >>
+
+                #region << Font Installer >>
+
+                if(Properties.Settings.Default.FontInstalled == false)
+                {
+                    if (!File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "PS4Icon.ttf"))
+                    {
+                        System.IO.File.WriteAllBytes(System.AppDomain.CurrentDomain.BaseDirectory + "PS4Icon.ttf", Properties.Resources.PS4Icon);
+                    }
+                    /*Install the font*/
+                    FontInstaller.RegisterFont("PS4Icon.ttf");
+                    if (File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "PS4Icon.ttf"))
+                    {
+                        //sony icon file so we need to delete this
+                        File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "PS4Icon.ttf");
+                    }
+
+                }
+                Properties.Settings.Default.FontInstalled = true;
+                Properties.Settings.Default.Save();
+
+                #endregion << Font Installer >>
 
                 #region << Background Workers >>
 
@@ -647,6 +709,20 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
                 UpdateString("Creating GP4 Project");
 
+                UpdateString("Looking for Custom PS2 LUA And Config from kozarovv");
+                if (Properties.Settings.Default.EnableCustomConfigFetching == true)
+                {
+                    try
+                    {
+                        //here we get some patches from our friend https://twitter.com/kozarovv
+                        SearchGithubForCorrespondingPatches(OriginalPS2ID);
+                    }
+                    catch(Exception ex)
+                    {
+
+                    }
+                }
+
                 SaveGp4();
 
 
@@ -687,44 +763,38 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                         });
                 UpdateString("Moving Custom PS2 Config");
                 //add custom config
-                if (AddCustomPS2Config == true)
+                if (AddCustomPS2Config == true && CustomConfigLocation != string.Empty)
                 {
                     //move custom ps2 classics config
                     UpdateString("Copying Custom config");
                     File.Copy(CustomConfigLocation, AppCommonPath() + @"PS2\config-emu-ps4.txt", true);//overwrite the file
                 }
-                UpdateString("Looking for Custom PS2 LUA And Config from kozarovv");
-                if (Properties.Settings.Default.EnableCustomConfigFetching == true)
-                {
-                    //here we get some patches from our friend https://twitter.com/kozarovv
-                    SearchGithubForCorrespondingPatches(OriginalPS2ID);
-
-
-                }
+               
 
                 UpdateString("Creating Custom PS2 LUA And Config");
                 if (PS2CutomLua.Count > 1)
                 {
-                    for (int i = 0; i < PS2CutomLua.Count; i++)
-                    {
-                        //we write all text to a file
-                        if (!Directory.Exists(AppCommonPath() + @"PS2\patches\"))
-                        {
-                            Directory.CreateDirectory(AppCommonPath() + @"PS2\patches\");
-                        }
+                    //this function no longer is in use we use koz patches now
+                    //for (int i = 0; i < PS2CutomLua.Count; i++)
+                    //{
+                    //    //we write all text to a file
+                    //    if (!Directory.Exists(AppCommonPath() + @"PS2\patches\"))
+                    //    {
+                    //        Directory.CreateDirectory(AppCommonPath() + @"PS2\patches\");
+                    //    }
 
-                        File.WriteAllText(AppCommonPath() + @"PS2\patches\"+PS2TitleId[i].ToString()+ "_cli.conf",PS2CutomLua[i].ToString());
-                    }
-                    for (int i = 0; i < PS2CutomLua.Count; i++)
-                    {
-                        //we write all text to a file
-                        if (!Directory.Exists(AppCommonPath() + @"PS2\lua_include\"))
-                        {
-                            Directory.CreateDirectory(AppCommonPath() + @"PS2\lua_include\");
-                        }
+                    //    File.WriteAllText(AppCommonPath() + @"PS2\patches\"+PS2TitleId[i].ToString()+ "_cli.conf",PS2CutomLua[i].ToString());
+                    //}
+                    //for (int i = 0; i < PS2CutomLua.Count; i++)
+                    //{
+                    //    //we write all text to a file
+                    //    if (!Directory.Exists(AppCommonPath() + @"PS2\lua_include\"))
+                    //    {
+                    //        Directory.CreateDirectory(AppCommonPath() + @"PS2\lua_include\");
+                    //    }
 
-                        File.WriteAllText(AppCommonPath() + @"PS2\lua_include\" + PS2TitleId[i].ToString().Replace(".","") + "_config.lua", "apiRequest(0.1)"/*write custom data here for now just plain and simple stuff*/);
-                    }
+                    //    File.WriteAllText(AppCommonPath() + @"PS2\lua_include\" + PS2TitleId[i].ToString().Replace(".","") + "_config.lua", "apiRequest(0.1)"/*write custom data here for now just plain and simple stuff*/);
+                    //}
                 }
                 //now we need to check the config file
                 if (isoFiles.Count > 1)
@@ -1135,6 +1205,16 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                                                 //now we need to decide how to save these items
                                                 //speaking to kozarovv right now checking into github cause i want to format my pc
 
+                                                if (!Directory.Exists(AppCommonPath() + @"PS2\lua_include\"))
+                                                {
+                                                    Directory.CreateDirectory(AppCommonPath() + @"PS2\lua_include\");
+                                                }
+
+                                                File.WriteAllText(AppCommonPath() + @"\PS2\lua_include\" + PS2TitleId.Replace(".", "") + @"_config.lua", ActualRawFile);
+
+                                                AddCustomPS2Config = true;
+                                                PS2CutomLua.Add(PS2TitleId.Replace(".", ""));
+
                                             }
 
                                         }
@@ -1440,21 +1520,28 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
         public static void DeleteDirectory(string target_dir)
         {
-            string[] files = Directory.GetFiles(target_dir);
-            string[] dirs = Directory.GetDirectories(target_dir);
-
-            foreach (string file in files)
+            try
             {
-                File.SetAttributes(file, FileAttributes.Normal);
-                File.Delete(file);
-            }
+                string[] files = Directory.GetFiles(target_dir);
+                string[] dirs = Directory.GetDirectories(target_dir);
 
-            foreach (string dir in dirs)
+                foreach (string file in files)
+                {
+                    File.SetAttributes(file, FileAttributes.Normal);
+                    File.Delete(file);
+                }
+
+                foreach (string dir in dirs)
+                {
+                    DeleteDirectory(dir);
+                }
+
+                Directory.Delete(target_dir, false);
+            }
+            catch(Exception ex)
             {
-                DeleteDirectory(dir);
+                //we dont log anything here it should be okay
             }
-
-            Directory.Delete(target_dir, false);
         }
 
         public static string AppCommonPath()
@@ -1664,5 +1751,19 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
         #endregion << Orbis >>
 
         #endregion << Methods >>
+
+        private void MenuItem_Click_8(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Info_Pannel_Sound);
+                PS4_PS2_Classics_Gui__WPF_.HowToUse.HowToUse thisisatutorial = new PS4_PS2_Classics_Gui__WPF_.HowToUse.HowToUse();
+                thisisatutorial.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
     }
 }
