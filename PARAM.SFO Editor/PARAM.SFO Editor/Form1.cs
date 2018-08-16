@@ -39,7 +39,7 @@ namespace PARAM.SFO_Editor
         string MainPath;
         bool InitialLoad, CheckBoxBusy = false;
 
-        PeXploit.PARAM_SFO psfo;
+        Param_SFO.PARAM_SFO psfo;
 
         Playstation version;
 
@@ -51,264 +51,40 @@ namespace PARAM.SFO_Editor
             psp = 3,
         }
 
-        #region << Header >>
-        //Magic
-        public bool checkMagic (FileStream path)
-        {
-            //MAGIC
-            int startHeader = 0x0;
-            int endheader = 0x04;
+        #region << For The Image Loop >>
 
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string Magic = ByteArrayToAscii(itemSection, 0, itemSection.Length, false);
-            if (Magic != "PSF")
+        public void RunTimer()
+        {
+            timer1 = new System.Windows.Forms.Timer();
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Interval = Convert.ToInt32(TimeSpan.FromSeconds(5).TotalMilliseconds); // in milliseconds
+            timer1.Start();
+            if (backgroundWorker1.IsBusy == false)
             {
-                return false;
+                backgroundWorker1.RunWorkerAsync();
             }
-            else return true;
-            
-        }
-        //Version
-        public string getVersion (FileStream path)
-        {
-            //Version
-            int startHeader = 0x04;
-            int endheader = 0x08;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string Version = BitConverter.ToString(itemSection,0,2);
-            Version = Version.Replace("-", ".");
-            return Version;
-        }
-        //Key_table_start
-        public string getKeyTableStart(FileStream path)
-        {
-            int startHeader = 0x08;
-            int endheader = 0x0C;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string key_table_start = BitConverter.ToString(itemSection,0,1);
-            return key_table_start;
-
-        }
-        //data_table_start
-        public string getDataTableStart(FileStream path)
-        {
-            int startHeader = 0x0C;
-            int endheader = 0x10;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string date_table_start = BitConverter.ToString(itemSection, 0, 1);
-            return date_table_start;
-        }
-        //table_entries
-        public string getTableEntries(FileStream path)
-        {
-            int startHeader = 0x10;
-            int endheader = 0x14;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string table_entries = BitConverter.ToString(itemSection, 0, 1);
-            return table_entries;
-        }
-        #endregion << Header >>
-
-        #region << index_table >>
-        public string getkey_1_offset(FileStream path)
-        {
-            int startHeader = 0x14;
-            int endheader = 0x16;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string key_1_offset = BitConverter.ToString(itemSection, 0, 2);
-            return key_1_offset;
-
         }
 
-        private string getdata_1_fmt(FileStream path)
+        public void Stoptimer()
         {
-            int startHeader = 0x16;
-            int endheader = 0x18;
+            timer1.Stop();
+        }
 
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string data_1_fmt = BitConverter.ToString(itemSection, 0, 2);
-            if (data_1_fmt == "04-02")
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(backgroundWorker1.IsBusy == false && backgroundWorker1.CancellationPending == false)
             {
-                data_1_fmt = "UTF8";
+                backgroundWorker1.RunWorkerAsync();
             }
-            return data_1_fmt;
         }
 
-        private string getdata_1_len(FileStream path)
-        {
-            int startHeader = 0x18;
-            int endheader = 0x1C;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string getdata_1_len = BitConverter.ToString(itemSection, 0, 1);
-            return getdata_1_len;
-        }
-
-        private string getdata_1_max_len(FileStream path)
-        {
-            int startHeader = 0x1C;
-            int endheader = 0x20;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string data_1_max_len = BitConverter.ToString(itemSection, 0, 1);
-            return data_1_max_len;
-        }
-
-        private string getdata_1_offset(FileStream path)
-        {
-            int startHeader = 0x20;
-            int endheader = 0x24;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string data_1_max_len = BitConverter.ToString(itemSection, 0, 1);
-            if(data_1_max_len != "00")
-            {
-                errors = true;
-                errorcount++;
-                MessageBox.Show("Data offset mismatch", "DataCorrupt", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return data_1_max_len;
-        }
-
-        #endregion << index_table >>
-
-        #region << key_table >>
-
-        public string getkey_1(FileStream path)
-        {
-            int startHeader = 0x24;
-            int endheader = 0x2D;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string key_1 = BitConverter.ToString(itemSection, 0, 9);
-            return key_1;
-        }
-
-        #endregion << key_table >>
-
-        #region <<< Title ID >>>
-
-        public string getTitleID(FileStream path)
-        {
-            int startHeader = 0xA30;
-            int endheader = 0xA40;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string key_1 = ByteArrayToAscii(itemSection, 0,20,false );
-            return key_1;
-        }
-
-        #endregion <<< Title ID >>>
-
-        #region <<< Table Content >>>
-
-        public string getAccountID(FileStream path)
-        {
-            //ACCOUNT_ID[edit]
-            //Info
-            //param_fmt: utf8 - S
-            //param_max_len: 0x10(16 bytes)           
-            //param_len: 0x10(16 bytes)
-            //Tip
-            //Used by: Save Data
-            //PSN User Account stored as utf8 - S.The string is compared with the user info in XRegistry.sys.The comparison can only return two values, right, or wrong, if the comparison returns right the SaveData is valid.
-            //Filled with zeros when the user has not been registered in PSN.
-
-            int startHeader = 0x588;
-            int endheader = 0x597;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-            string key_1 = ByteArrayToAscii(itemSection, 0, 16,false);
-            return key_1;
-        }
-
-        public string GetAttribute(FileStream path)
-        {
-            //Info
-            //param_fmt: int32
-            //param_max_len: 0x4(4 bytes)
-            //param_len:      0x4(4 bytes)
-            //Tip
-            //Used by: HDD Game, PS1 Game, Minis Game, PSP Re-masters Game, PCEngine game, NEOGEO game, Game Data, Save Data
-            //Contains a maximum of 32 flags that can be turned on/ off to activate/ deactivate special boot modes and features of the content.
-
-            //Values are stored in "Little Endian" format inside the SFO, to represent the whole tables in a "human readable" format has been needed to convert them to "Big Endian" and then to "Binary".
-            int startHeader = 0x153;
-            int endheader = 0x157;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-
-            //Always change 3rd parameter to apply the size of the field to extract should be param_max_len
-            string key_1 = ByteArrayToAscii(itemSection, 0, 4, false);
-            return key_1;
-
-        }
-        #region <<< GAME DATA >>>
-        public string GetGameData1(FileStream path)
-        {
-            int startHeader = 0x158;
-            int endheader = 0x168;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-
-            //Always change 3rd parameter to apply the size of the field to extract should be param_max_len
-            string key_1 = ByteArrayToAscii(itemSection, 0, 17, false);
-            return key_1;
-        }
-
-        public string GetGameData2(FileStream path)
-        {
-            int startHeader = 0x169;
-            int endheader = 0x15C;
-
-            BinaryReader breader = new BinaryReader(path);
-            breader.BaseStream.Position = startHeader;
-            byte[] itemSection = breader.ReadBytes(endheader);
-
-            //Always change 3rd parameter to apply the size of the field to extract should be param_max_len
-            string key_1 = ByteArrayToAscii(itemSection, 0, 18, false);
-            return key_1;
-        }
-
-        #endregion <<< GAME DATA >>>
+        #endregion << For The Image Loop >>
 
 
-        #endregion <<< Table Content >>>
+        #region << Methods >>
+
+        #region << Swapping and bytes >>
+
 
         public static string ByteArrayToHexString(byte[] ByteArray)
         {
@@ -352,39 +128,12 @@ namespace PARAM.SFO_Editor
             return HexStringToAscii(hexPhrase, true);
         }
 
-        #region << For The Image Loop >>
-
-        public void RunTimer()
-        {
-            timer1 = new System.Windows.Forms.Timer();
-            timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Interval = Convert.ToInt32(TimeSpan.FromSeconds(5).TotalMilliseconds); // in milliseconds
-            timer1.Start();
-            if (backgroundWorker1.IsBusy == false)
-            {
-                backgroundWorker1.RunWorkerAsync();
-            }
-        }
-
-        public void Stoptimer()
-        {
-            timer1.Stop();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if(backgroundWorker1.IsBusy == false && backgroundWorker1.CancellationPending == false)
-            {
-                backgroundWorker1.RunWorkerAsync();
-            }
-        }
-
-        #endregion << For The Image Loop >>
+        #endregion << Swapping and bytes >>
 
 
-        #region << Methods >>
-
-
+        /// <summary>
+        /// Uncheck all Resolution boxes (PS3)
+        /// </summary>
         private void Uncheck_Resolution_All()
         {
             chb720.Checked = false;
@@ -395,9 +144,245 @@ namespace PARAM.SFO_Editor
             chbx576Wide.Checked = false;
         }
 
+        /// <summary>
+        /// Gets the common path for PS4Tools
+        /// I like to put it inside AppData/Roaming
+        /// </summary>
+        /// <returns></returns>
+        private string AppCommonPath()
+        {
+            string returnstring = "";
+
+            returnstring = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Ps4Tools\";
+
+            return returnstring;
+        }
+
+        /// <summary>
+        /// This will extract all resources for the solution
+        /// v0.2- This Extracts SCE tools to the appdata folder
+        /// V1.1+ - This only creates the working directory as we no longer need sce tools
+        /// </summary>
+        public void ExtractAllResources()
+        {
+            if (!Directory.Exists(AppCommonPath()))
+            {
+                Directory.CreateDirectory(AppCommonPath());
+            }
+
+
+            #region << (NO LONGER REQUIRED)>>
+            //if (!Directory.Exists(AppCommonPath() + @"\ext\"))
+            //{
+            //    Directory.CreateDirectory(AppCommonPath() + @"\ext\");
+            //}
+            ////We will replace every file each time we call any toolkit to stop issues with different versions ext ext
+
+            //////SCE Files 
+            ////copy byte files
+
+            ////ext
+            //System.IO.File.WriteAllBytes(AppCommonPath() + @"\ext\" + "di.exe", Properties.Resources.di);
+            //System.IO.File.WriteAllBytes(AppCommonPath() + @"\ext\" + "sc.exe", Properties.Resources.sc);
+            //System.IO.File.WriteAllBytes(AppCommonPath() + @"\ext\" + "libatrac9.dll", Properties.Resources.libatrac9);
+            ////orbis
+            //System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-cmd.exe", Properties.Resources.orbis_pub_cmd);
+            //System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-rx.dll", Properties.Resources.orbis_pub_prx);
+
+            ////copy text files
+            //System.IO.File.WriteAllText(AppCommonPath() + @"\ext\" + "trp_compare_default.css", Properties.Resources.trp_compare_default);
+
+            #endregion << (NO LONGER REQUIRED)>>
+
+            //Delete Working Directory and re-create it
+            if (Directory.Exists(AppCommonPath() + @"\Working\"))
+            {
+                DeleteDirectory(AppCommonPath() + @"\Working\");
+            }
+            Directory.CreateDirectory(AppCommonPath() + @"\Working\");
+
+        }
+
+        /// <summary>
+        /// Recursively delete directory
+        /// </summary>
+        /// <param name="target_dir">The Main Target Directory</param>
+        public static void DeleteDirectory(string target_dir)
+        {
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
+
+            Directory.Delete(target_dir, false);
+        }
+
+
+        #region << SFX/SFO As XML >>
+
+        public void CreateSFX(Param_SFO.PARAM_SFO psfo, SaveFileDialog dlg)
+        {
+            string FileHeader;
+            if (version == Form1.Playstation.ps4)
+            {
+                //list items we don't want to see in the SFX
+                List<string> Blockeditems = new List<string>();
+                Blockeditems.Add("PUBTOOLINFO");
+                Blockeditems.Add("DEV_FLAG");
+                Blockeditems.Add("PUBTOOLVER");
+
+                //table items
+                FileHeader = CreateSFXHeader();
+                string XMLItem = FileHeader + "\n<paramsfo>";//begin the tag
+                foreach (var item in psfo.Tables)
+                {
+                    if (!Blockeditems.Contains(item.Name))
+                        XMLItem += "\n\t<param key=\"" + item.Name + "\">" + item.Value + "</param>";
+                }
+                XMLItem += "\n</paramsfo>";//close the tag
+                //we dont aks user where he wants to save the file 
+
+
+
+                System.IO.File.WriteAllText(AppCommonPath() + @"\Working\param.sfx", XMLItem);
+
+                System.IO.File.Copy(AppCommonPath() + @"\Working\param.sfx", dlg.FileName, true);//overwrite the file if it already exists
+
+                System.Diagnostics.Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(dlg.FileName));//start explorer
+                //System.IO.File.Delete(AppCommonPath() + @"\Working\param.sfx");//remove the SFX
+
+                MessageBox.Show("SFX Created", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                psfo.SaveSFO(psfo, dlg.FileName);
+
+                MessageBox.Show("SFX Created", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+
+        }
+
+        public string CreateSFXHeader()
+        {
+            return "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>";
+        }
+
+        #endregion << SFX/SFO As XML >>
+
+
         #endregion << Methods >>
 
         #region << Events >>
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Process.Start(Path.GetDirectoryName(Application.StartupPath));
+        }
+
+        private void txtTitleId_TextChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Count; i++)
+            {
+                if (psfo.Tables[i].Name == "TITLE_ID")
+                {
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = txtTitleId.Text.Trim();
+                    psfo.Tables[i] = tempitem;
+                }
+            }
+        }
+
+        private void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Count; i++)
+            {
+                if (psfo.Tables[i].Name == "TITLE")
+                {
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = txtTitle.Text.Trim();
+                    psfo.Tables[i] = tempitem;
+                }
+            }
+        }
+
+        private void cbSystemVersion_TextChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Count; i++)
+            {
+                if (psfo.Tables[i].Name == "SYSTEM_VER" || psfo.Tables[i].Name == "PS3_SYSTEM_VER")
+                {
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbSystemVersion.Text.Trim();
+                    psfo.Tables[i] = tempitem;
+                }
+            }
+        }
+
+        private void cbxParent_TextChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Count; i++)
+            {
+                if (psfo.Tables[i].Name == cbxParent.Tag.ToString())
+                {
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbxParent.Text.Trim();
+                    psfo.Tables[i] = tempitem;
+                }
+            }
+        }
+
+        private void cbxParent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Count; i++)
+            {
+                if (psfo.Tables[i].Name == cbxParent.Tag.ToString())
+                {
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbxParent.Text.Trim();
+                    psfo.Tables[i] = tempitem;
+                }
+            }
+        }
+
+        private void cbVersion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Count; i++)
+            {
+                if (psfo.Tables[i].Name == cbVersion.Tag.ToString())
+                {
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbVersion.Text.Trim();
+                    psfo.Tables[i] = tempitem;
+                }
+            }
+        }
+
+        private void cbxAppVersion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < psfo.Tables.Count; i++)
+            {
+                if (psfo.Tables[i].Name == cbxAppVersion.Tag.ToString())
+                {
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbxAppVersion.Text.Trim();
+                    psfo.Tables[i] = tempitem;
+                }
+            }
+        }
+
+
         /// <summary>
         /// Load Button Event ( Loads a psfo from a location )
         /// </summary>
@@ -405,6 +390,7 @@ namespace PARAM.SFO_Editor
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            //disable everything that is not needed
             gbxSoundFormat.Enabled = false;
             gbxVideo.Enabled = false;
             tbControl.TabPages.Remove(tbPS4);
@@ -412,7 +398,7 @@ namespace PARAM.SFO_Editor
             tbControl.TabPages.Add(tbPS4);
             tbControl.TabPages.Add(tbPS3);
 
-
+            //clear pannels
             cbxAddon.Items.Clear();
             cbVersion.Items.Clear();
             cbSystemVersion.Items.Clear();
@@ -430,7 +416,7 @@ namespace PARAM.SFO_Editor
                 using (FileStream str = File.OpenRead(thedialog.FileName.ToString()))
                 {
 
-                     psfo = new PeXploit.PARAM_SFO(thedialog.FileName.ToString());
+                     psfo = new Param_SFO.PARAM_SFO(thedialog.FileName.ToString());
 
                     MainPath = System.IO.Path.GetDirectoryName(thedialog.FileName.ToString());
 
@@ -441,31 +427,36 @@ namespace PARAM.SFO_Editor
                         InitialLoad = true;
 
                         List<string> AlreadyAdded = new List<string>();
-                        foreach (PeXploit.PARAM_SFO.Table t in psfo.Tables)
+                        foreach (Param_SFO.PARAM_SFO.Table t in psfo.Tables.ToList())
                         {
                             if(t.Name == "TITLE_ID")
                             {
                                 txtTitleId.Text = t.Value.Trim();
                                 txtTitleId.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
+                                //and here we have it now we can add max lengths so users can't break anything
+                                txtTitleId.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
                             }
                             if(t.Name == "CONTENT_ID")
                             {
                                 txtContentId.Text = t.Value.Trim();
                                 txtContentId.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
+                                txtContentId.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
                             }
                             if (t.Name == "TITLE")
                             {
                                 txtTitle.Text = t.Value.Trim();
                                 txtTitle.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
+                                txtTitle.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
                             }
                             if(t.Name == "CATEGORY")
                             {
-                                txtCATEGORY.Text =((PeXploit.PARAM_SFO.DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
+                                txtCATEGORY.Text = ((Param_SFO.PARAM_SFO.DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
                                 txtCATEGORY.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
+                                txtCATEGORY.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
                             }
                             if(t.Name == "APP_VER")
                             {
@@ -473,6 +464,13 @@ namespace PARAM.SFO_Editor
                                 cbxAppVersion.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                                 cbxAppVersion.SelectedIndex = 0;
+                                cbxAppVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                            }
+                            if(t.Name == "APP_TYPE")
+                            {
+                                cbxPS4AppVersion.Tag = t.Name;
+                                AlreadyAdded.Add(t.Name);
+                                cbxPS4AppVersion.SelectedIndex = Convert.ToInt32(t.Value);
                             }
                             if(t.Name == "VERSION")
                             {
@@ -480,6 +478,7 @@ namespace PARAM.SFO_Editor
                                 cbVersion.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                                 cbVersion.SelectedIndex = 0;
+                                cbVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
                             }
                             if(t.Name == "PARENTAL_LEVEL")
                             {
@@ -492,6 +491,7 @@ namespace PARAM.SFO_Editor
                                     cbxParent.Tag = t.Name;
                                     cbxParent.SelectedIndex = Convert.ToInt32(t.Value);
                                     AlreadyAdded.Add(t.Name);
+                                    cbxParent.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
                                 }
                             }
                             if(t.Name == "PS3_SYSTEM_VER")
@@ -504,6 +504,7 @@ namespace PARAM.SFO_Editor
                                 cbSystemVersion.SelectedIndex = 0;
                                 version = Playstation.ps3;
                                 tbControl.TabPages.Remove(tbPS4);
+                                cbSystemVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
                             }
                             if(t.Name == "SYSTEM_VER")
                             {
@@ -514,6 +515,7 @@ namespace PARAM.SFO_Editor
                                 cbSystemVersion.SelectedIndex = 0;
                                 version = Playstation.ps4;
                                 tbControl.TabPages.Remove(tbPS3);
+                                cbSystemVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
                             }
                             if (t.Name == "RESOLUTION")
                             {
@@ -927,16 +929,10 @@ namespace PARAM.SFO_Editor
             raw.Show();
         }
 
-        private void CheckUpdate()
-        {
-            //i spesefy a url for the file
-            DateTime modification = File.GetLastWriteTime(@"C:\test.txt");
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             //check for updates on start up 
-            CheckUpdate();
+            //no longer required as we no use click once
 
             ExtractAllResources();
 
@@ -944,72 +940,6 @@ namespace PARAM.SFO_Editor
             tbControl.TabPages.Remove(tbPS3);
         }
 
-        #endregion << Events >>
-
-        private string AppCommonPath()
-        {
-            string returnstring = "";
-
-            returnstring = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Ps4Tools\";
-
-            return returnstring;
-        }
-
-
-        public void ExtractAllResources()
-        {
-            if (!Directory.Exists(AppCommonPath()))
-            {
-                Directory.CreateDirectory(AppCommonPath());
-            }
-            if (!Directory.Exists(AppCommonPath() + @"\ext\"))
-            {
-                Directory.CreateDirectory(AppCommonPath() + @"\ext\");
-            }
-            //We will replace every file each time we call any toolkit to stop issues with different versions ext ext
-
-            ////SCE Files
-            //copy byte files
-
-            //ext
-            System.IO.File.WriteAllBytes(AppCommonPath() + @"\ext\" + "di.exe", Properties.Resources.di);
-            System.IO.File.WriteAllBytes(AppCommonPath() + @"\ext\" + "sc.exe", Properties.Resources.sc);
-            System.IO.File.WriteAllBytes(AppCommonPath() + @"\ext\" + "libatrac9.dll", Properties.Resources.libatrac9);
-            //orbis
-            System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-cmd.exe", Properties.Resources.orbis_pub_cmd);
-            System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-rx.dll", Properties.Resources.orbis_pub_prx);
-
-            //copy text files
-            System.IO.File.WriteAllText(AppCommonPath() + @"\ext\" + "trp_compare_default.css", Properties.Resources.trp_compare_default);
-
-            //Delete Working Directory and recreate it
-            if (Directory.Exists(AppCommonPath() + @"\Working\"))
-            {
-                DeleteDirectory(AppCommonPath() + @"\Working\");
-            }
-
-            Directory.CreateDirectory(AppCommonPath() + @"\Working\");
-
-        }
-
-        public static void DeleteDirectory(string target_dir)
-        {
-            string[] files = Directory.GetFiles(target_dir);
-            string[] dirs = Directory.GetDirectories(target_dir);
-
-            foreach (string file in files)
-            {
-                File.SetAttributes(file, FileAttributes.Normal);
-                File.Delete(file);
-            }
-
-            foreach (string dir in dirs)
-            {
-                DeleteDirectory(dir);
-            }
-
-            Directory.Delete(target_dir, false);
-        }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -1097,13 +1027,14 @@ namespace PARAM.SFO_Editor
 
         private void cbxAddon_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (PeXploit.PARAM_SFO.Table item in psfo.Tables)
+            foreach (Param_SFO.PARAM_SFO.Table item in psfo.Tables)
             {
-                if(item.Name == cbxAddon.SelectedItem.ToString().Trim() && item.Name != string.Empty)
+                if (item.Name == cbxAddon.SelectedItem.ToString().Trim() && item.Name != string.Empty)
                 {
                     CheckBoxBusy = true;
                     txtAddonData.Text = item.Value.ToString();
                     CheckBoxBusy = false;
+                    txtAddonData.MaxLength = Convert.ToInt32(item.Indextable.param_data_max_len); 
                 }
             }
         }
@@ -1113,10 +1044,11 @@ namespace PARAM.SFO_Editor
             //on leave save the info to the table
             for (int i = 0; i < psfo.Tables.Count; i++)
             {
-                if(psfo.Tables[i].Name == cbxAddon.SelectedItem.ToString().Trim())
+                if (psfo.Tables[i].Name == cbxAddon.SelectedItem.ToString().Trim())
                 {
                     var tempitem = psfo.Tables[i];
                     tempitem.Value = txtAddonData.Text.Trim();
+                    psfo.Tables[i] = tempitem;
                 }
             }
         }
@@ -1128,12 +1060,12 @@ namespace PARAM.SFO_Editor
                 //item has been cancled
                 MessageBox.Show("Prog Cancled");
             }
-           
+
         }
 
         private void txtAddonData_TextChanged(object sender, EventArgs e)
         {
-            if(cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+            if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
             {
                 Uncheck_Resolution_All();
                 #region << PS3 Resolution >>
@@ -1471,9 +1403,12 @@ namespace PARAM.SFO_Editor
                 {
                     var tempitem = psfo.Tables[i];
                     tempitem.Value = txtAddonData.Text.Trim();
+                    psfo.Tables[i] = tempitem;
                 }
             }
         }
+
+        #region << Resolutions >>
 
         private void chb720_CheckedChanged(object sender, EventArgs e)
         {
@@ -1502,6 +1437,7 @@ namespace PARAM.SFO_Editor
 
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue + 4).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1512,6 +1448,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue - 4).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1546,6 +1483,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue + 32).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1556,6 +1494,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue - 32).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1590,6 +1529,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue + 2).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1600,6 +1540,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue - 2).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1634,6 +1575,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue + 16).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1644,6 +1586,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue - 16).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1678,6 +1621,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue + 1).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1688,6 +1632,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue - 1).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1698,7 +1643,7 @@ namespace PARAM.SFO_Editor
 
         private void chbx1080_CheckedChanged(object sender, EventArgs e)
         {
-            if(InitialLoad == true || CheckBoxBusy == true)
+            if (InitialLoad == true || CheckBoxBusy == true)
             {
                 return;
             }
@@ -1707,7 +1652,7 @@ namespace PARAM.SFO_Editor
 
             //first get the value from param table
             int iValue = 0, psfoValue = 0;
-             
+
             for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == "RESOLUTION")
@@ -1722,7 +1667,8 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue + 8).ToString();
-                if(cbxAddon.SelectedItem.ToString() == "RESOLUTION")
+                psfo.Tables[iValue] = tempitem;
+                if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
                     CheckBoxBusy = false;
@@ -1732,6 +1678,7 @@ namespace PARAM.SFO_Editor
             {
                 var tempitem = psfo.Tables[iValue];
                 tempitem.Value = (psfoValue - 8).ToString();
+                psfo.Tables[iValue] = tempitem;
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1740,9 +1687,11 @@ namespace PARAM.SFO_Editor
             }
         }
 
+        #endregion << Resolutions >>
+
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1751,201 +1700,30 @@ namespace PARAM.SFO_Editor
             dlg.Filter = "PARAM.SFO (PARAM.SFO)|PARAM.SFO";
             dlg.DefaultExt = "SFO";
             dlg.AddExtension = true;
-            if(dlg.ShowDialog() == DialogResult.OK)
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
                 //user wants to save in a new location or whatever
-                psfo.SaveSFO(psfo, dlg.FileName); //this will be added back as soon as this code is working this is for the initial release of the tool for PS4 sfo saving 
+                psfo.SaveSFO(psfo, dlg.FileName);
                 //CreateSFX(psfo, dlg);/*Old Method using CMD*/
-            }
-        }
-
-        public void CreateSFX(PeXploit.PARAM_SFO psfo, SaveFileDialog dlg)
-        {
-            string FileHeader;
-            if (version == Form1.Playstation.ps4)
-            {
-                List<string> Blockeditems = new List<string>();
-                Blockeditems.Add("PUBTOOLINFO");
-                Blockeditems.Add("DEV_FLAG");
-                Blockeditems.Add("PUBTOOLVER");
-
-                //table items
-                FileHeader = CreateSFXHeader();
-                string XMLItem = FileHeader + "\n<paramsfo>";//begin the tag
-                foreach (var item in psfo.Tables)
-                {
-                    if(!Blockeditems.Contains(item.Name))
-                    XMLItem += "\n\t<param key=\"" + item.Name + "\">" + item.Value + "</param>";
-                }
-                XMLItem += "\n</paramsfo>";//close the tag
-                                           //we dont aks user where he wants to save the file 
-
-
-
-                System.IO.File.WriteAllText(AppCommonPath() + @"\Working\param.sfx", XMLItem);
-                Orbis_CMD("", "sfo_create \"" + AppCommonPath() + @"\Working\" + "param.sfx" + "\" \"" + dlg.FileName + "\"");
                 MessageBox.Show("SFO Created", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                System.Diagnostics.Process.Start("explorer.exe", System.IO.Path.GetDirectoryName(dlg.FileName));
-                System.IO.File.Delete(AppCommonPath() + @"\Working\param.sfx");//remove the SFX
-            
-
-                
-
             }
-            else
-            {
-                MessageBox.Show("SFO Saving For PS3 may be a bit buggy", "SFO Build", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //FileHeader = CreateSFXHeader();
-                //string XMLItem = FileHeader + "\n<paramsfo>";//begin the tag
-                //foreach (var item in psfo.Tables)
-                //{
-                //    #region << Get Format >>
-                //    var frmt = "";
-                //    if (item.Indextable.param_data_fmt == PeXploit.PARAM_SFO.FMT.ASCII)
-                //    {
-                //        frmt = "utf8-S";
-                //    }
-                //    if (item.Indextable.param_data_fmt == PeXploit.PARAM_SFO.FMT.UINT32)
-                //    {
-                //        frmt = "int32";
-                //    }
-                //    if (item.Indextable.param_data_fmt == PeXploit.PARAM_SFO.FMT.UTF_8)
-                //    {
-                //        frmt = "utf8";
-                //    }
-                //    #endregion << Get Format >>
-
-
-                //    XMLItem += "\n\t<param key=\"" + item.Name + "\"" + "fmt=\"" + frmt + "\" max_len=\"" + item.Indextable.param_data_max_len + "\"" + ">" + item.Value + "</param>";
-                //}
-                //XMLItem += "\n</paramsfo>";//close the tag
-
-                psfo.SaveFile(psfo,dlg.FileName);
-
-                MessageBox.Show("SFO Created", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-
-
         }
 
-        public string CreateSFXHeader()
-        {
-            return "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>";
-        }
-
-        private void txtTitleId_TextChanged(object sender, EventArgs e)
+        private void cbxPS4AppVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < psfo.Tables.Count; i++)
             {
-                if(psfo.Tables[i].Name == "TITLE_ID")
+                if (psfo.Tables[i].Name == cbxPS4AppVersion.Tag.ToString())
                 {
                     var tempitem = psfo.Tables[i];
-                    tempitem.Value = txtTitleId.Text.Trim();
+                    tempitem.Value = cbxPS4AppVersion.SelectedIndex.ToString().Trim();
+                    psfo.Tables[i] = tempitem;
                 }
             }
         }
 
-        private void txtTitle_TextChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < psfo.Tables.Count; i++)
-            {
-                if (psfo.Tables[i].Name == "TITLE")
-                {
-                    var tempitem = psfo.Tables[i];
-                    tempitem.Value = txtTitle.Text.Trim();
-                }
-            }
-        }
+        #endregion << Events >>
 
-        private void cbSystemVersion_TextChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < psfo.Tables.Count; i++)
-            {
-                if (psfo.Tables[i].Name == "SYSTEM_VER" || psfo.Tables[i].Name == "PS3_SYSTEM_VER")
-                {
-                    var tempitem = psfo.Tables[i];
-                    tempitem.Value = cbSystemVersion.Text.Trim();
-                }
-            }
-        }
-
-        private void cbxParent_TextChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < psfo.Tables.Count; i++)
-            {
-                if (psfo.Tables[i].Name == cbxParent.Tag.ToString())
-                {
-                    var tempitem = psfo.Tables[i];
-                    tempitem.Value = cbxParent.Text.Trim();
-                }
-            }
-        }
-
-        private void cbxParent_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < psfo.Tables.Count; i++)
-            {
-                if (psfo.Tables[i].Name == cbxParent.Tag.ToString())
-                {
-                    var tempitem = psfo.Tables[i];
-                    tempitem.Value = cbxParent.Text.Trim();
-                }
-            }
-        }
-
-        private void cbVersion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < psfo.Tables.Count; i++)
-            {
-                if (psfo.Tables[i].Name == cbVersion.Tag.ToString())
-                {
-                    var tempitem = psfo.Tables[i];
-                    tempitem.Value = cbVersion.Text.Trim();
-                }
-            }
-        }
-
-        private void cbxAppVersion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < psfo.Tables.Count; i++)
-            {
-                if (psfo.Tables[i].Name == cbxAppVersion.Tag.ToString())
-                {
-                    var tempitem = psfo.Tables[i];
-                    tempitem.Value = cbxAppVersion.Text.Trim();
-                }
-            }
-        }
-
-        //orbis
-        public string Orbis_CMD(string command, string arguments)
-        {
-            ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = AppCommonPath() + "orbis-pub-cmd.exe " + command;
-            start.Arguments = arguments;
-            start.UseShellExecute = false;
-            start.RedirectStandardOutput = true;
-            start.CreateNoWindow = true;
-            using (Process process = Process.Start(start))
-            {
-                process.ErrorDataReceived += Process_ErrorDataReceived;
-                using (StreamReader reader = process.StandardOutput)
-                {
-                    string result = reader.ReadToEnd();
-                    return result;
-                }
-            }
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            Process.Start(Path.GetDirectoryName(Application.StartupPath));
-        }
-
-        private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            MessageBox.Show("Error Creating SFO\n" + e.Data.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        
     }
 }

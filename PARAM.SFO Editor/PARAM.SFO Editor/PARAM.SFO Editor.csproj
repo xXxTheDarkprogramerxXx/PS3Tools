@@ -100,9 +100,6 @@
     <Compile Include="SFO\Functions.cs" />
     <Compile Include="SFO\PARAM_SFO.cs" />
     <Compile Include="SFO\SecureFileInfo.cs" />
-    <Compile Include="SFO\StringType.cs" />
-    <Compile Include="SFO\StructReader.cs" />
-    <Compile Include="SFO\StructWritter.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

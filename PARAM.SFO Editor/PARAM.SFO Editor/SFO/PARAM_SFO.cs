@@ -1,5 +1,8 @@
-﻿/* Copyright (c) 2013 - 2014 Jappi88 (Jappi88 at Gmail dot com)
+﻿/* Copyright (c) 2015 - 2018 TheDarkporgramer
 *
+* This was originally done by Jappi88 (Jappi88 at Gmail dot com) https://github.com/Jappi88
+* All modifications have been TheDarkporgramer (save sfo ext ext ) https://github.com/xXxTheDarkprogramerxXx
+* 
 * This(software Is provided) 'as-is', without any express or implied
 * warranty. In no event will the authors be held liable for any damages arising from the use of this software.
 *
@@ -18,6 +21,7 @@
 *
 * *Contact must be made to discuses permission and terms.
 */
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,10 +30,11 @@ using PARAM.SFO_Editor.SFO;
 using System.Runtime.InteropServices;
 using System.Linq;
 
-namespace PeXploit
+namespace Param_SFO
 {
     public class PARAM_SFO
     {
+        #region << Enums >>
         public enum DataTypes : uint
         {
             PSN_Game =18248,
@@ -66,47 +71,15 @@ namespace PeXploit
             UINT32 = 0x0404,
         }
 
-        public PARAM_SFO()
-        {
-            
-        }
+        #endregion << Enums >>
 
-        public PARAM_SFO(string filepath)
-        {
-            Init(new FileStream(filepath, FileMode.Open, FileAccess.Read, FileShare.Read));
-        }
-
-        public PARAM_SFO(byte[] inputdata)
-        {
-            Init(new MemoryStream(inputdata));
-        }
-
-        public PARAM_SFO(Stream input)
-        {
-            Init(input);
-        }
-
+        #region << Vars>>
         public List<Table> Tables { get; private set; }
 
-        public DataTypes DataType
-        {
-            get
-            {
-                if (Tables == null)
-                    return DataTypes.None;
-                foreach (Table t in Tables)
-                    if (t.Name == "CATEGORY")
-                        return ((DataTypes) BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0));
-                return DataTypes.None;
-            }
-        }
+        #endregion << Vars>>
 
-        //public Header HeaderData
-        //{
-        //    get;
-        //    private set;
-        //}
-
+        #region << Example Of Calling Functions >>
+        //ypu can use this as SFO.Atribute 
         public string Attribute
         {
             get
@@ -119,6 +92,19 @@ namespace PeXploit
                         return t.Value;
                 }
                 return "";
+            }
+        }
+
+        public DataTypes DataType
+        {
+            get
+            {
+                if (Tables == null)
+                    return DataTypes.None;
+                foreach (Table t in Tables)
+                    if (t.Name == "CATEGORY")
+                        return ((DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0));
+                return DataTypes.None;
             }
         }
 
@@ -200,82 +186,9 @@ namespace PeXploit
             }
         }
 
-        private string ReadValue(BinaryReader br, index_table table)
-        {
-            br.BaseStream.Position = ((Header.DataTableStart) + table.param_data_offset);
-            switch (table.param_data_fmt)
-            {
-                case FMT.ASCII:
-                    //return Encoding.GetEncoding(1252).GetString(br.ReadBytes((int) table.param_data_max_len)).Replace("\0", "");
-                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
-                case FMT.UINT32:
-                    return br.ReadUInt32().ToString();
-                case FMT.UTF_8:
-                    return Encoding.UTF8.GetString(br.ReadBytes((int) table.param_data_max_len)).Replace("\0", "");
-                case FMT.Utf8Null:
-                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
-                default:
-                    return null;
-            }
-        }
+        #endregion << Example Of Calling Functions >>
 
-        private string ReadValueSpecialChars(BinaryReader br, index_table table)
-        {
-            br.BaseStream.Position = ((Header.DataTableStart) + table.param_data_offset);
-            switch (table.param_data_fmt)
-            {
-                case FMT.ASCII:
-                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
-                case FMT.UINT32:
-                    return br.ReadUInt32().ToString();
-                case FMT.UTF_8:
-                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
-                default:
-                    return null;
-            }
-        }
-
-        private string ReadName(BinaryReader br, index_table table)
-        {
-            br.BaseStream.Position = (Header.KeyTableStart + table.param_key_offset);
-            string name = "";
-            while (((byte) br.PeekChar()) != 0)
-                name += br.ReadChar();
-            br.BaseStream.Position++;
-            return name;
-        }
-
-
-        private void Init(Stream input)
-        {
-            using (var br = new BinaryReader(input))
-            {
-                Header.Read(br);
-                if (!Functions.CompareBytes(Header.Magic, new byte[] {0, 0x50, 0x53, 0x46}))
-                    throw new Exception("Invalid PARAM.SFO Header Magic");
-                var tables = new List<index_table>();
-                for (int i = 0; i < Header.IndexTableEntries; i++)
-                {
-                    var t = new index_table();
-                    t.Read(br);
-                    tables.Add(t);
-                }
-                var xtables = new List<Table>();
-                int count = 0;
-                foreach (index_table t in tables)
-                {
-                    var x = new Table();
-                    x.index = count;
-                    x.Indextable = t;
-                    x.Name = ReadName(br, t);                  
-                    x.Value = ReadValue(br, t);
-                    count++;
-                    xtables.Add(x);
-                }
-                Tables = xtables;
-                br.Close();
-            }
-        }
+        #region Param.SFO Struct 
 
         public struct Header
         {
@@ -402,53 +315,68 @@ namespace PeXploit
             Si32Integer = 4
         }
 
-        [StructLayout(LayoutKind.Sequential)]
-        struct INDEX_TABLE_ENTRY
+        #endregion Param.SFO Struct
+
+        #region << Methods >>
+
+
+        public PARAM_SFO()
         {
-            public ushort KeyNameOffset;
-            public byte Unknown;
-            public DATA_TYPE DataType;
-            public uint ValueDataSize;
-            public uint ValueDataSizePlusPadding;
-            public uint DataValueOffset;
+
+        }
+
+        public PARAM_SFO(string filepath)
+        {
+            Init(new FileStream(filepath, FileMode.Open, FileAccess.Read, FileShare.Read));
+        }
+
+        public PARAM_SFO(byte[] inputdata)
+        {
+            Init(new MemoryStream(inputdata));
+        }
+
+        public PARAM_SFO(Stream input)
+        {
+            Init(input);
         }
 
 
-
-        #region SFO File Structs
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct SFO_HEADER
-        {
-            public byte magic;           // 00
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
-            public char[] signature;    // PSF
-            public byte FileVersionHigh; // 01
-            public byte FileVersionLow;  // 01
-            public short Unknown1;
-            public uint Start_of_Variable_Name_Table; // Offset...
-            public uint Start_of_Variable_Data_Table; // Offset...
-            public uint NumberOfVariables; // Variables count
-        }
-
-        #endregion SFO File Structs
-
+        /// <summary>
+        /// This is the SaveSFO Function for PS3/PS4/PSVita/And PSP no longer needed for Sony's CMD
+        /// </summary>
+        /// <param name="psfo">SFO That has been opened</param>
+        /// <param name="filename">Save Location</param>
         public void SaveSFO(PARAM_SFO psfo, string filename)
         {
+            //we start by opening the stream to the file
             using (var stream = File.Open(filename, FileMode.Create, FileAccess.Write, FileShare.Read))
             {
                 if (!stream.CanSeek)
-                    throw new ArgumentException("Stream must be seekable");
+                    throw new ArgumentException("Stream must be seekable");//throw this error we cant seek the stream
 
-                var utf8 = new UTF8Encoding(false);
-                using (var writer = new BinaryWriter(stream, utf8, true))
+                var utf8 = new UTF8Encoding(false);//encoding
+                using (var writer = new BinaryWriter(stream, utf8, true))//start binary reader
                 {
-                    writer.Write(Header.Magic);//write magic "\0PSF"
-                    writer.Write(Header.version);//write version info this is mayjor and minor
-                    //writer.Write(Reserved1);
-                    Header.KeyTableStart = 0x14 + Header.IndexTableEntries * 0x10;/*26//we can write all this lovely info back*/
+
+                    #region << Header Info (DevWiki) >>
+                    /*
+                     Header	
+                     *  0x00	0x04	magic	PSF	
+                        0x04	0x04	version	01 01 00 00	1.01
+                        0x08	0x04	key_table_start	24 00 00 00	Absolute start offset of key_table = 0x24
+                        0x0C	0x04	data_table_start	30 00 00 00	Absolute start offset of data_table = 0x30
+                        0x10	0x04	tables_entries	01 00 00 00	Number of entries in index_table, key_table, and data_table = 1
+                     */
+
+                    #endregion <<Header Info >>
+
+                    //so lets start writing the info
+                    writer.Write(Header.Magic);//write magic "\0PSF" 
+                    writer.Write(Header.version);//write version info this is mayjor and minor (01 01 00 00	1.01)
+                    Header.KeyTableStart = 0x14 + Header.IndexTableEntries * 0x10;/*we can write all this lovely info from the tables back*/
                     writer.Write(Header.KeyTableStart);
-                    Header.DataTableStart = Convert.ToUInt32(Header.KeyTableStart + Tables.Sum(i => i.Name.Length + 1));
+                    
+                    Header.DataTableStart = Convert.ToUInt32(Header.KeyTableStart + Tables.Sum(i => i.Name.Length + 1));//needs to be Uint
                     if (Header.DataTableStart % 4 != 0)
                         Header.DataTableStart = (Header.DataTableStart / 4 + 1) * 4;
                     writer.Write(Header.DataTableStart);
@@ -460,16 +388,7 @@ namespace PeXploit
                     for (var i = 0; i < Tables.Count; i++)
                     {
                         var entry = Tables[i];
-                        if(entry.Name == "APP_TYPE" || entry.Name == "TITLE")
-                        {
-                            string breakheredebug = "";
-                        }
 
-                        if(i == Tables.Count - 1)
-                        {
-                            //last item
-                            string debugtest = "";
-                        }
                         writer.BaseStream.Seek(0x14 + i * 0x10, SeekOrigin.Begin);
                         writer.Write((ushort)(lastKeyOffset - Header.KeyTableStart));
 
@@ -489,278 +408,107 @@ namespace PeXploit
                         writer.Write(entry.ValueBuffer);
                         lastValueOffset = (int)writer.BaseStream.Position;
                     }
+
+                    //I'm doing this to just rewrite the first item (Some Cleanup will be needed)
+                    //Or maybe not as when I checked this gives a 1 - 1 match with how the Sony tool works
+                    //we need to rewrite that first item (PS4/PS3/PSV should be APP-VER)
+                    lastKeyOffset = Convert.ToInt32(Header.KeyTableStart);
+                    lastValueOffset = Convert.ToInt32(Header.DataTableStart);
+
+                    var tableentry = Tables[0];
+                   
+                    writer.BaseStream.Seek(lastKeyOffset, SeekOrigin.Begin);
+                    writer.Write(utf8.GetBytes(tableentry.Name));
+                    writer.Write((byte)0);
+                    lastKeyOffset = (int)writer.BaseStream.Position;
+
                 }
             }
 
         }
 
-        public static string StringToBinary(string data)
+        private string ReadValue(BinaryReader br, index_table table)
         {
-            StringBuilder sb = new StringBuilder();
-
-            foreach (char c in data.ToCharArray())
+            br.BaseStream.Position = ((Header.DataTableStart) + table.param_data_offset);
+            switch (table.param_data_fmt)
             {
-                sb.Append(Convert.ToString(c, 2).PadLeft(8, '0'));
+                case FMT.ASCII:
+                    //return Encoding.GetEncoding(1252).GetString(br.ReadBytes((int) table.param_data_max_len)).Replace("\0", "");
+                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
+                case FMT.UINT32:
+                    return br.ReadUInt32().ToString();
+                case FMT.UTF_8:
+                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
+                case FMT.Utf8Null:
+                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
+                default:
+                    return null;
             }
-            return sb.ToString();
         }
-        //orginal save file method no longer used as it was buy as hell
-        public void SaveFile(PARAM_SFO psfo,string filename)
-        {
-            // Sort the values before we save them to the sfo file
-            //Array.Sort(psfo.Tables);
 
-            using (FileStream stream = File.Create(filename))
+        private string ReadValueSpecialChars(BinaryReader br, index_table table)
+        {
+            br.BaseStream.Position = ((Header.DataTableStart) + table.param_data_offset);
+            switch (table.param_data_fmt)
             {
-               using(StructWriter sw = new StructWriter(ByteOrder.LSB, stream))
+                case FMT.ASCII:
+                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
+                case FMT.UINT32:
+                    return br.ReadUInt32().ToString();
+                case FMT.UTF_8:
+                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
+                default:
+                    return null;
+            }
+        }
+
+        private string ReadName(BinaryReader br, index_table table)
+        {
+            br.BaseStream.Position = (Header.KeyTableStart + table.param_key_offset);
+            string name = "";
+            while (((byte)br.PeekChar()) != 0)
+                name += br.ReadChar();
+            br.BaseStream.Position++;
+            return name;
+        }
+
+        /// <summary>
+        /// Start Reading the Parameter file
+        /// </summary>
+        /// <param name="input">Input Stream</param>
+        private void Init(Stream input)
+        {
+            using (var br = new BinaryReader(input))
+            {
+                Header.Read(br);
+                if (!Functions.CompareBytes(Header.Magic, new byte[] { 0, 0x50, 0x53, 0x46 }))
+                    throw new Exception("Invalid PARAM.SFO Header Magic");
+                var tables = new List<index_table>();
+                for (int i = 0; i < Header.IndexTableEntries; i++)
                 {
-                    //build index table
-                    INDEX_TABLE_ENTRY[] indexes = new INDEX_TABLE_ENTRY[psfo.Tables.Count];
-                    List<PARAM_SFO.Table> mytables = psfo.Tables;
-                    PARAM_SFO.index_table[] myindexes = new index_table[psfo.Tables.Count];
-
-                    string[] variablenames = new string[psfo.Tables.Count];
-                    string[] variablevalues = new string[psfo.Tables.Count];
-
-                    int curkeynameoffset = 0;
-                    uint curvalueoffset = 0;
-
-                    for (int idx = 0; idx < psfo.Tables.Count; idx++)
-                    {
-                        PARAM_SFO.Table value = psfo.Tables[idx];
-                             
-
-                        PARAM_SFO.FMT datatype = FMT.UINT32;
-                        uint datasize = 0;
-                        switch (value.Indextable.param_data_fmt)
-                        {
-                            case FMT.ASCII:
-                                {
-                                    datatype = FMT.ASCII;
-                                    datasize = (uint)Encoding.UTF8.GetBytes(value.Value.ToString()).Length + 1;
-                                    break;
-                                }
-                            case FMT.UINT32:
-                                {
-                                    datatype = FMT.UINT32;
-                                    datasize = 4;
-                                    break;
-                                }
-                            case FMT.UTF_8:
-                                {
-                                    datatype = FMT.UTF_8;
-                                    datasize = (uint)Encoding.UTF8.GetBytes(value.Value.ToString()).Length + 1;
-                                    break;
-                                }
-                            default:
-                                {
-                                    throw new Exception("Unknown SFOType!");
-                                }
-                        }
-
-
-                        if(value.Indextable.param_key_offset != (ushort)curkeynameoffset)
-                        {
-                            string breakpoint ="This is for debug testing";
-                        }
-                        //value.Indextable.param_key_offset = (ushort)curkeynameoffset;
-                        
-                        if (value.Indextable.param_data_fmt != datatype)
-                        {
-                            string breakpoint = "This is for debug testing";
-                        }
-                        //value.Indextable.param_data_fmt = datatype;
-
-                        if (value.Indextable.param_data_len != datasize)
-                        {
-                            string breakpoint = "This is for debug testing";
-                        }
-                        //value.Indextable.param_data_len = datasize;
-
-                        //if (value.Indextable.param_data_max_len != GetPaddingSize(value.Name, datasize))
-                        //{
-                        //    string breakpoint = "This is for debug testing";
-                        //}
-                        //value.Indextable.param_data_max_len = GetPaddingSize(value.Name, datasize);
-
-                        if(value.Indextable.param_data_offset != curvalueoffset)
-                        {
-                            string breakpoint = "This is for debug testing";
-                        }
-                        //value.Indextable.param_data_offset = curvalueoffset;
-
-                        //we already have all the keynames
-                        
-                        curvalueoffset += value.Indextable.param_data_max_len;
-
-                        
-
-                        indexes[idx].KeyNameOffset = (ushort)curkeynameoffset;
-                        indexes[idx].Unknown = 4;
-                        if (datatype == FMT.UTF_8)
-                        {
-                            indexes[idx].DataType = DATA_TYPE.BinaryData;
-                        }
-                        if (datatype == FMT.ASCII)
-                        {
-                            indexes[idx].DataType = DATA_TYPE.Utf8Text;
-                        }
-                        if (datatype == FMT.UINT32)
-                        {
-                            indexes[idx].DataType = DATA_TYPE.Si32Integer;
-                        }
-                        indexes[idx].ValueDataSize = datasize;
-                        indexes[idx].ValueDataSizePlusPadding = GetPaddingSize(value.Name, datasize);
-                        indexes[idx].DataValueOffset = curvalueoffset;
-
-
-                        curkeynameoffset += value.Name.Length + 1;
-
-
-                        variablenames[idx] = value.Name;
-
-                        myindexes[idx] = value.Indextable;
-                        variablevalues[idx] = value.Value;
-                    }
-
-
-                    SFO_HEADER sfoheader = new SFO_HEADER();
-                    sfoheader.magic = 0;
-                    sfoheader.signature = new char[] { 'P', 'S', 'F' };
-                    sfoheader.FileVersionHigh = 1;
-                    sfoheader.FileVersionLow = 1;
-                    sfoheader.Unknown1 = 0;
-                    sfoheader.Start_of_Variable_Name_Table = Header.KeyTableStart;//PadOffset(Marshal.SizeOf(sfoheader) + (psfo.Tables.Length * Marshal.SizeOf(typeof(PARAM_SFO.index_table))));//
-                    sfoheader.Start_of_Variable_Data_Table = Header.DataTableStart;//PadOffset(sfoheader.Start_of_Variable_Name_Table + curkeynameoffset);//
-                    sfoheader.NumberOfVariables = Header.IndexTableEntries;//(uint)psfo.Tables.Length;//
-
-                    sw.WriteStruct(sfoheader);
-
-
-                    // Write variable information...
-                    sw.WriteStructs(indexes);
-
-                    WritePadBytes(sw, sw.BaseStream.Position, sfoheader.Start_of_Variable_Name_Table);
-
-                    // Write variable names...
-                    sw.WriteStrings(StringType.NullTerminated, variablenames);
-
-                    WritePadBytes(sw, sw.BaseStream.Position, sfoheader.Start_of_Variable_Data_Table);
-
-                    // Write variable data...
-                    for (int idx = 0; idx < psfo.Tables.Count; idx++)
-                    {
-                        PARAM_SFO.Table value = psfo.Tables[idx];
-
-                        switch (value.Indextable.param_data_fmt)
-                        {
-                            case FMT.UTF_8:
-                                {
-                                    sw.Write(value.Value);
-                                    break;
-                                }
-                            case FMT.UINT32:
-                                {
-                                    sw.Write(Convert.ToUInt32(value.Value));
-                                    break;
-                                }
-                            case FMT.ASCII:
-                                {
-                                    sw.Write(value.Value);
-                                    break;
-                                }
-                        }
-
-                        long pos = sw.BaseStream.Position;
-
-                        WritePadBytes(sw, myindexes[idx].param_data_len, myindexes[idx].param_data_max_len);
-                    }
+                    var t = new index_table();
+                    t.Read(br);
+                    tables.Add(t);
                 }
+                var xtables = new List<Table>();
+                int count = 0;
+                foreach (index_table t in tables)
+                {
+                    var x = new Table();
+                    x.index = count;
+                    x.Indextable = t;
+                    x.Name = ReadName(br, t);
+                    x.Value = ReadValue(br, t);
+                    count++;
+                    xtables.Add(x);
+                }
+                Tables = xtables;
+                br.Close();
             }
         }
 
-        private void WritePadBytes(StructWriter sw, long curlen, long wantedlen)
-        {
-            long padlength = wantedlen - curlen;
-            if (padlength <= 0)
-                return;
 
-
-            byte[] buffer = new byte[padlength];
-            for (int padidx = 0; padidx < buffer.Length; padidx++)
-            {
-                buffer[padidx] = 0;
-            }
-
-            sw.Write(buffer);
-        }
-
-        private uint GetPaddingSize(string keyname, uint datasize)
-        {
-            uint knownlength = 0;
-            switch (keyname.ToUpper())
-            {
-                //case "LICENSE":
-                //    {
-                //        knownlength = 512;
-                //        break;
-                //    }
-                //case "TITLE":
-                //    {
-                //        knownlength = 128;
-                //        break;
-                //    }
-                //case "TITLE_ID":
-                //    {
-                //        knownlength = 16;
-                //        break;
-                //    }
-            }
-
-            if (knownlength > 0)
-            {
-                if (datasize > knownlength)
-                    throw new Exception(string.Format("{0} too long. Max length = {1}.", keyname, knownlength));
-                return knownlength;
-            }
-
-
-            if (datasize <= 4)
-                return 4;
-
-            if (datasize <= 8)
-                return 8;
-
-            if (datasize <= 16)
-                return 16;
-
-            // for (int curbit = 2; curbit < 12; curbit++)
-            for (int curbit = 7; curbit < 12; curbit++)
-            {
-                int cursize = 1 << curbit;
-
-                if (datasize <= cursize)
-                    return (uint)cursize;
-            }
-
-            return PadOffset(datasize);
-        }
-
-        private uint PadOffset(long offset)
-        {
-            return PadOffset((uint)offset);
-        }
-
-        private uint PadOffset(int offset)
-        {
-            return PadOffset((uint)offset);
-        }
-
-        private uint PadOffset(uint offset)
-        {
-            // Pad the value to 4 bytes
-            return (uint)((offset + 3) / 4) * 4;
-        }
+        #endregion << Methods >>
 
     }
 }

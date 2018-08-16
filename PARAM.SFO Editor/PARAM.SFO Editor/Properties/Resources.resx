@@ -130,20 +130,11 @@
   <data name="icons8_open_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-open-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="orbis_pub_prx" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\orbis-pub-prx.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="_688626734_ccee13e0_ea05_400a_83b8_d4d354fdeedc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\688626734_ccee13e0-ea05-400a-83b8-d4d354fdeedc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ps4-logo-white1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ps4-logo-white1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="di" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\di.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="trp_compare_default" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\trp_compare_default.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,20 +145,11 @@
   <data name="icons8_binary_file_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-binary-file-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sc.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="_688632230_88b22244_2e4c_4d50_bcad_e7efb6d4f5e2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\688632230_88b22244-2e4c-4d50-bcad-e7efb6d4f5e2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LogoMakr_4y3rYY" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LogoMakr_4y3rYY.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="libatrac9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\libatrac9.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="orbis_pub_cmd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\orbis-pub-cmd.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="_688623019_28d86b52_09fd_4e41_b24b_73e0343dbda4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\688623019_28d86b52-09fd-4e41-b24b-73e0343dbda4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

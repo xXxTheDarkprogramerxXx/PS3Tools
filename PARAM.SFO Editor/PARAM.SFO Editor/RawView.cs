@@ -12,7 +12,7 @@ namespace PARAM.SFO_Editor
 {
     public partial class RawView : Form
     {
-        PeXploit.PARAM_SFO pSFO;
+        Param_SFO.PARAM_SFO pSFO;
         Form1.Playstation version;
 
         public RawView()
@@ -20,7 +20,7 @@ namespace PARAM.SFO_Editor
             InitializeComponent();
         }
 
-        public RawView(PeXploit.PARAM_SFO _sfo,Form1.Playstation _version)
+        public RawView(Param_SFO.PARAM_SFO _sfo,Form1.Playstation _version)
         {
             pSFO = _sfo;
             version = _version;
@@ -49,7 +49,7 @@ namespace PARAM.SFO_Editor
 
         #region << Create SFX >>
 
-        public void CreateSFX(PeXploit.PARAM_SFO psfo)
+        public void CreateSFX(Param_SFO.PARAM_SFO psfo)
         {
             string FileHeader;
             if (version == Form1.Playstation.ps4)
@@ -84,15 +84,19 @@ namespace PARAM.SFO_Editor
                 {
                     #region << Get Format >>
                     var frmt = "";
-                    if(item.Indextable.param_data_fmt == PeXploit.PARAM_SFO.FMT.ASCII)
+                    if(item.Indextable.param_data_fmt == Param_SFO.PARAM_SFO.FMT.ASCII)
                     {
                         frmt = "utf8-S";
                     }
-                    if (item.Indextable.param_data_fmt == PeXploit.PARAM_SFO.FMT.UINT32)
+                    if (item.Indextable.param_data_fmt == Param_SFO.PARAM_SFO.FMT.UINT32)
                     {
                         frmt = "int32";
                     }
-                    if (item.Indextable.param_data_fmt == PeXploit.PARAM_SFO.FMT.UTF_8)
+                    if (item.Indextable.param_data_fmt == Param_SFO.PARAM_SFO.FMT.UTF_8)
+                    {
+                        frmt = "utf8";
+                    }
+                    if (item.Indextable.param_data_fmt == Param_SFO.PARAM_SFO.FMT.Utf8Null)
                     {
                         frmt = "utf8";
                     }

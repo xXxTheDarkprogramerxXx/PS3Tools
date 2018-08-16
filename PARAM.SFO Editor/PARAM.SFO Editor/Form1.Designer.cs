@@ -114,6 +114,8 @@
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tbPS4 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cbxPS4AppVersion = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoAndBackground)).BeginInit();
@@ -127,6 +129,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tbControl.SuspendLayout();
+            this.tbPS4.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label4
@@ -1120,6 +1124,7 @@
             // 
             // tbPS4
             // 
+            this.tbPS4.Controls.Add(this.groupBox7);
             this.tbPS4.Location = new System.Drawing.Point(4, 25);
             this.tbPS4.Name = "tbPS4";
             this.tbPS4.Padding = new System.Windows.Forms.Padding(3);
@@ -1138,6 +1143,34 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.cbxPS4AppVersion);
+            this.groupBox7.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Location = new System.Drawing.Point(6, 6);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(251, 56);
+            this.groupBox7.TabIndex = 33;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Application Type";
+            // 
+            // cbxPS4AppVersion
+            // 
+            this.cbxPS4AppVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxPS4AppVersion.FormattingEnabled = true;
+            this.cbxPS4AppVersion.Items.AddRange(new object[] {
+            "Not Specified",
+            "Paid Standalone Full App",
+            "Upgradable App",
+            "Demo App",
+            "Freemium App"});
+            this.cbxPS4AppVersion.Location = new System.Drawing.Point(7, 22);
+            this.cbxPS4AppVersion.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxPS4AppVersion.Name = "cbxPS4AppVersion";
+            this.cbxPS4AppVersion.Size = new System.Drawing.Size(237, 24);
+            this.cbxPS4AppVersion.TabIndex = 26;
+            this.cbxPS4AppVersion.SelectedIndexChanged += new System.EventHandler(this.cbxPS4AppVersion_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -1199,6 +1232,8 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tbControl.ResumeLayout(false);
+            this.tbPS4.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1291,6 +1326,8 @@
         private System.Windows.Forms.TabPage tbPS4;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.ComboBox cbxPS4AppVersion;
     }
 }
 
