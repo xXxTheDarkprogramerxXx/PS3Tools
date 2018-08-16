@@ -24,6 +24,7 @@ using System.IO;
 using System.Text;
 using PARAM.SFO_Editor.SFO;
 using System.Runtime.InteropServices;
+using System.Linq;
 
 namespace PeXploit
 {
@@ -59,9 +60,10 @@ namespace PeXploit
 
         public enum FMT : ushort
         {
-            UTF_8 = 0x0400,
+            UTF_8 = 0x0004,
             ASCII = 0x0402,
-            UINT32 = 0x0404
+            Utf8Null = 0x0204,
+            UINT32 = 0x0404,
         }
 
         public PARAM_SFO()
@@ -84,7 +86,7 @@ namespace PeXploit
             Init(input);
         }
 
-        public Table[] Tables { get; private set; }
+        public List<Table> Tables { get; private set; }
 
         public DataTypes DataType
         {
@@ -210,6 +212,8 @@ namespace PeXploit
                     return br.ReadUInt32().ToString();
                 case FMT.UTF_8:
                     return Encoding.UTF8.GetString(br.ReadBytes((int) table.param_data_max_len)).Replace("\0", "");
+                case FMT.Utf8Null:
+                    return Encoding.UTF8.GetString(br.ReadBytes((int)table.param_data_max_len)).Replace("\0", "");
                 default:
                     return null;
             }
@@ -268,7 +272,7 @@ namespace PeXploit
                     count++;
                     xtables.Add(x);
                 }
-                Tables = xtables.ToArray();
+                Tables = xtables;
                 br.Close();
             }
         }
@@ -314,17 +318,17 @@ namespace PeXploit
             public string Value;
             public int index;
 
-            private byte[] NameBuffer
+            public byte[] NameBuffer
             {
                 get
                 {
                     var buffer = new byte[Name.Length + 1];
-                    Array.Copy(Encoding.UTF8.GetBytes(Name), 0, buffer, 0, Name.Length);
+                    Array.Copy(Encoding.UTF8.GetBytes(Name), 0, buffer, 0, Encoding.UTF8.GetBytes(Name).Length);
                     return buffer;
                 }
             }
 
-            private byte[] ValueBuffer
+            public byte[] ValueBuffer
             {
                 get
                 {
@@ -333,13 +337,17 @@ namespace PeXploit
                     {
                         case FMT.ASCII:
                             buffer = new byte[Indextable.param_data_max_len];
-                            Array.Copy(Encoding.ASCII.GetBytes(Value), 0, buffer, 0, Value.Length);
+                            Array.Copy(Encoding.ASCII.GetBytes(Value), 0, buffer, 0, Encoding.UTF8.GetBytes(Value).Length);
                             return buffer;
                         case FMT.UINT32:
                             return BitConverter.GetBytes(uint.Parse(Value));
                         case FMT.UTF_8:
                             buffer = new byte[Indextable.param_data_max_len];
-                            Array.Copy(Encoding.UTF8.GetBytes(Value), 0, buffer, 0, Value.Length);
+                            Array.Copy(Encoding.UTF8.GetBytes(Value), 0, buffer, 0, Encoding.UTF8.GetBytes(Value).Length);
+                            return buffer;
+                        case FMT.Utf8Null:
+                            buffer = new byte[Indextable.param_data_max_len];
+                            Array.Copy(Encoding.UTF8.GetBytes(Value), 0, buffer, 0, Encoding.UTF8.GetBytes(Value).Length);/*write the length of the array*/
                             return buffer;
                         default:
                             return null;
@@ -368,7 +376,7 @@ namespace PeXploit
                 {
                     var data = new byte[16];
                     Array.Copy(BitConverter.GetBytes(param_key_offset), 0, data, 0, 2);
-                    Array.Copy(BitConverter.GetBytes(((ushort) param_data_fmt).SwapByteOrder()), 0, data, 2, 2);
+                    Array.Copy(BitConverter.GetBytes(((ushort) param_data_fmt)), 0, data, 2, 2);
                     Array.Copy(BitConverter.GetBytes(param_data_len), 0, data, 4, 4);
                     Array.Copy(BitConverter.GetBytes(param_data_max_len), 0, data, 8, 4);
                     Array.Copy(BitConverter.GetBytes(param_data_offset), 0, data, 12, 4);
@@ -379,7 +387,7 @@ namespace PeXploit
             public void Read(BinaryReader input)
             {
                 param_key_offset = input.ReadUInt16();
-                param_data_fmt = (FMT) input.ReadUInt16().SwapByteOrder();
+                param_data_fmt = (FMT) input.ReadUInt16();
                 param_data_len = input.ReadUInt32();
                 param_data_max_len = input.ReadUInt32();
                 param_data_offset = input.ReadUInt32();
@@ -425,6 +433,78 @@ namespace PeXploit
 
         #endregion SFO File Structs
 
+        public void SaveSFO(PARAM_SFO psfo, string filename)
+        {
+            using (var stream = File.Open(filename, FileMode.Create, FileAccess.Write, FileShare.Read))
+            {
+                if (!stream.CanSeek)
+                    throw new ArgumentException("Stream must be seekable");
+
+                var utf8 = new UTF8Encoding(false);
+                using (var writer = new BinaryWriter(stream, utf8, true))
+                {
+                    writer.Write(Header.Magic);//write magic "\0PSF"
+                    writer.Write(Header.version);//write version info this is mayjor and minor
+                    //writer.Write(Reserved1);
+                    Header.KeyTableStart = 0x14 + Header.IndexTableEntries * 0x10;/*26//we can write all this lovely info back*/
+                    writer.Write(Header.KeyTableStart);
+                    Header.DataTableStart = Convert.ToUInt32(Header.KeyTableStart + Tables.Sum(i => i.Name.Length + 1));
+                    if (Header.DataTableStart % 4 != 0)
+                        Header.DataTableStart = (Header.DataTableStart / 4 + 1) * 4;
+                    writer.Write(Header.DataTableStart);
+                    Header.IndexTableEntries = Convert.ToUInt32(Tables.Count);
+                    writer.Write(Header.IndexTableEntries);
+
+                    int lastKeyOffset = Convert.ToInt32(Header.KeyTableStart);
+                    int lastValueOffset = Convert.ToInt32(Header.DataTableStart);
+                    for (var i = 0; i < Tables.Count; i++)
+                    {
+                        var entry = Tables[i];
+                        if(entry.Name == "APP_TYPE" || entry.Name == "TITLE")
+                        {
+                            string breakheredebug = "";
+                        }
+
+                        if(i == Tables.Count - 1)
+                        {
+                            //last item
+                            string debugtest = "";
+                        }
+                        writer.BaseStream.Seek(0x14 + i * 0x10, SeekOrigin.Begin);
+                        writer.Write((ushort)(lastKeyOffset - Header.KeyTableStart));
+
+
+                        writer.Write((ushort)entry.Indextable.param_data_fmt);
+
+                        writer.Write(entry.Indextable.param_data_len);
+                        writer.Write(entry.Indextable.param_data_max_len);
+                        writer.Write(lastValueOffset - Header.DataTableStart);
+
+                        writer.BaseStream.Seek(lastKeyOffset, SeekOrigin.Begin);
+                        writer.Write(utf8.GetBytes(entry.Name));
+                        writer.Write((byte)0);
+                        lastKeyOffset = (int)writer.BaseStream.Position;
+
+                        writer.BaseStream.Seek(lastValueOffset, SeekOrigin.Begin);
+                        writer.Write(entry.ValueBuffer);
+                        lastValueOffset = (int)writer.BaseStream.Position;
+                    }
+                }
+            }
+
+        }
+
+        public static string StringToBinary(string data)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char c in data.ToCharArray())
+            {
+                sb.Append(Convert.ToString(c, 2).PadLeft(8, '0'));
+            }
+            return sb.ToString();
+        }
+        //orginal save file method no longer used as it was buy as hell
         public void SaveFile(PARAM_SFO psfo,string filename)
         {
             // Sort the values before we save them to the sfo file
@@ -435,17 +515,17 @@ namespace PeXploit
                using(StructWriter sw = new StructWriter(ByteOrder.LSB, stream))
                 {
                     //build index table
-                    INDEX_TABLE_ENTRY[] indexes = new INDEX_TABLE_ENTRY[psfo.Tables.Length];
-                    PARAM_SFO.Table[] mytables = psfo.Tables;
-                    PARAM_SFO.index_table[] myindexes = new index_table[psfo.Tables.Length];
+                    INDEX_TABLE_ENTRY[] indexes = new INDEX_TABLE_ENTRY[psfo.Tables.Count];
+                    List<PARAM_SFO.Table> mytables = psfo.Tables;
+                    PARAM_SFO.index_table[] myindexes = new index_table[psfo.Tables.Count];
 
-                    string[] variablenames = new string[psfo.Tables.Length];
-                    string[] variablevalues = new string[psfo.Tables.Length];
+                    string[] variablenames = new string[psfo.Tables.Count];
+                    string[] variablevalues = new string[psfo.Tables.Count];
 
                     int curkeynameoffset = 0;
                     uint curvalueoffset = 0;
-                   
-                    for (int idx = 0; idx < psfo.Tables.Length; idx++)
+
+                    for (int idx = 0; idx < psfo.Tables.Count; idx++)
                     {
                         PARAM_SFO.Table value = psfo.Tables[idx];
                              
@@ -568,7 +648,7 @@ namespace PeXploit
                     WritePadBytes(sw, sw.BaseStream.Position, sfoheader.Start_of_Variable_Data_Table);
 
                     // Write variable data...
-                    for (int idx = 0; idx < psfo.Tables.Length; idx++)
+                    for (int idx = 0; idx < psfo.Tables.Count; idx++)
                     {
                         PARAM_SFO.Table value = psfo.Tables[idx];
 

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PARAM.SFO_Editor.exe" size="8518624">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PARAM.SFO_Editor.exe" size="8520672">
       <assemblyIdentity name="PARAM.SFO_Editor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SoI1OHBZez2j/Uv/E3ri6T2/dzmL6lUdUtZy6zmg+v8=</dsig:DigestValue>
+        <dsig:DigestValue>dQczH+UpVz2WGOo9/suMZR/JZ764HVx5mzNYqSFjNE8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -48,6 +48,7 @@ namespace PARAM.SFO_Editor
             ps3 = 0,
             psvita = 1,
             ps4 = 2,
+            psp = 3,
         }
 
         #region << Header >>
@@ -1110,11 +1111,12 @@ namespace PARAM.SFO_Editor
         private void txtAddonData_Leave(object sender, EventArgs e)
         {
             //on leave save the info to the table
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if(psfo.Tables[i].Name == cbxAddon.SelectedItem.ToString().Trim())
                 {
-                    psfo.Tables[i].Value = txtAddonData.Text.Trim();
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = txtAddonData.Text.Trim();
                 }
             }
         }
@@ -1463,11 +1465,12 @@ namespace PARAM.SFO_Editor
                 #endregion << PS3 Resolution >>
             }
             //set all other data
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == cbxAddon.SelectedText.ToString())
                 {
-                    psfo.Tables[i].Value = txtAddonData.Text.Trim();
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = txtAddonData.Text.Trim();
                 }
             }
         }
@@ -1484,7 +1487,7 @@ namespace PARAM.SFO_Editor
             //first get the value from param table
             int iValue = 0, psfoValue = 0;
 
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == "RESOLUTION")
                 {
@@ -1496,7 +1499,9 @@ namespace PARAM.SFO_Editor
             //now we add or subtract
             if (chb720.Checked == true)
             {
-                psfo.Tables[iValue].Value = (psfoValue + 4).ToString();
+
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue + 4).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1505,7 +1510,8 @@ namespace PARAM.SFO_Editor
             }
             else
             {
-                psfo.Tables[iValue].Value = (psfoValue - 4).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue - 4).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1526,7 +1532,7 @@ namespace PARAM.SFO_Editor
             //first get the value from param table
             int iValue = 0, psfoValue = 0;
 
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == "RESOLUTION")
                 {
@@ -1538,7 +1544,8 @@ namespace PARAM.SFO_Editor
             //now we add or subtract
             if (chbx576Wide.Checked == true)
             {
-                psfo.Tables[iValue].Value = (psfoValue + 32).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue + 32).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1547,7 +1554,8 @@ namespace PARAM.SFO_Editor
             }
             else
             {
-                psfo.Tables[iValue].Value = (psfoValue - 32).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue - 32).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1568,7 +1576,7 @@ namespace PARAM.SFO_Editor
             //first get the value from param table
             int iValue = 0, psfoValue = 0;
 
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == "RESOLUTION")
                 {
@@ -1580,7 +1588,8 @@ namespace PARAM.SFO_Editor
             //now we add or subtract
             if (chbx576.Checked == true)
             {
-                psfo.Tables[iValue].Value = (psfoValue + 2).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue + 2).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1589,7 +1598,8 @@ namespace PARAM.SFO_Editor
             }
             else
             {
-                psfo.Tables[iValue].Value = (psfoValue - 2).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue - 2).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1610,7 +1620,7 @@ namespace PARAM.SFO_Editor
             //first get the value from param table
             int iValue = 0, psfoValue = 0;
 
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == "RESOLUTION")
                 {
@@ -1622,7 +1632,8 @@ namespace PARAM.SFO_Editor
             //now we add or subtract
             if (chbx480Wide.Checked == true)
             {
-                psfo.Tables[iValue].Value = (psfoValue + 16).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue + 16).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1631,7 +1642,8 @@ namespace PARAM.SFO_Editor
             }
             else
             {
-                psfo.Tables[iValue].Value = (psfoValue - 16).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue - 16).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1652,7 +1664,7 @@ namespace PARAM.SFO_Editor
             //first get the value from param table
             int iValue = 0, psfoValue = 0;
 
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == "RESOLUTION")
                 {
@@ -1664,7 +1676,8 @@ namespace PARAM.SFO_Editor
             //now we add or subtract
             if (chbx480.Checked == true)
             {
-                psfo.Tables[iValue].Value = (psfoValue + 1).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue + 1).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1673,7 +1686,8 @@ namespace PARAM.SFO_Editor
             }
             else
             {
-                psfo.Tables[iValue].Value = (psfoValue - 1).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue - 1).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1694,7 +1708,7 @@ namespace PARAM.SFO_Editor
             //first get the value from param table
             int iValue = 0, psfoValue = 0;
              
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == "RESOLUTION")
                 {
@@ -1706,7 +1720,8 @@ namespace PARAM.SFO_Editor
             //now we add or subtract
             if (chbx1080.Checked == true)
             {
-                psfo.Tables[iValue].Value = (psfoValue + 8).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue + 8).ToString();
                 if(cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1715,7 +1730,8 @@ namespace PARAM.SFO_Editor
             }
             else
             {
-                psfo.Tables[iValue].Value = (psfoValue - 8).ToString();
+                var tempitem = psfo.Tables[iValue];
+                tempitem.Value = (psfoValue - 8).ToString();
                 if (cbxAddon.SelectedItem.ToString() == "RESOLUTION")
                 {
                     txtAddonData.Text = psfo.Tables[iValue].Value.ToString();
@@ -1738,8 +1754,8 @@ namespace PARAM.SFO_Editor
             if(dlg.ShowDialog() == DialogResult.OK)
             {
                 //user wants to save in a new location or whatever
-                //psfo.SaveFile(psfo,dlg.FileName); //this will be added back as soon as this code is working this is for the initial release of the tool for PS4 sfo saving 
-                CreateSFX(psfo, dlg);
+                psfo.SaveSFO(psfo, dlg.FileName); //this will be added back as soon as this code is working this is for the initial release of the tool for PS4 sfo saving 
+                //CreateSFX(psfo, dlg);/*Old Method using CMD*/
             }
         }
 
@@ -1820,77 +1836,84 @@ namespace PARAM.SFO_Editor
 
         private void txtTitleId_TextChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if(psfo.Tables[i].Name == "TITLE_ID")
                 {
-                    psfo.Tables[i].Value = txtTitleId.Text.Trim();
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = txtTitleId.Text.Trim();
                 }
             }
         }
 
         private void txtTitle_TextChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == "TITLE")
                 {
-                    psfo.Tables[i].Value = txtTitle.Text.Trim();
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = txtTitle.Text.Trim();
                 }
             }
         }
 
         private void cbSystemVersion_TextChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == "SYSTEM_VER" || psfo.Tables[i].Name == "PS3_SYSTEM_VER")
                 {
-                    psfo.Tables[i].Value = cbSystemVersion.Text.Trim();
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbSystemVersion.Text.Trim();
                 }
             }
         }
 
         private void cbxParent_TextChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == cbxParent.Tag.ToString())
                 {
-                    psfo.Tables[i].Value = cbxParent.Text.Trim();
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbxParent.Text.Trim();
                 }
             }
         }
 
         private void cbxParent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == cbxParent.Tag.ToString())
                 {
-                    psfo.Tables[i].Value = cbxParent.Text.Trim();
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbxParent.Text.Trim();
                 }
             }
         }
 
         private void cbVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == cbVersion.Tag.ToString())
                 {
-                    psfo.Tables[i].Value = cbVersion.Text.Trim();
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbVersion.Text.Trim();
                 }
             }
         }
 
         private void cbxAppVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            for (int i = 0; i < psfo.Tables.Length; i++)
+            for (int i = 0; i < psfo.Tables.Count; i++)
             {
                 if (psfo.Tables[i].Name == cbxAppVersion.Tag.ToString())
                 {
-                    psfo.Tables[i].Value = cbxAppVersion.Text.Trim();
+                    var tempitem = psfo.Tables[i];
+                    tempitem.Value = cbxAppVersion.Text.Trim();
                 }
             }
         }
