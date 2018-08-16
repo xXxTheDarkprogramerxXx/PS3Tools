@@ -116,6 +116,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.cbxPS4AppVersion = new System.Windows.Forms.ComboBox();
+            this.txtSFOpath = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoAndBackground)).BeginInit();
@@ -331,7 +333,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(170, 13);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(643, 68);
+            this.pictureBox1.Size = new System.Drawing.Size(643, 54);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -1172,12 +1174,33 @@
             this.cbxPS4AppVersion.TabIndex = 26;
             this.cbxPS4AppVersion.SelectedIndexChanged += new System.EventHandler(this.cbxPS4AppVersion_SelectedIndexChanged);
             // 
+            // txtSFOpath
+            // 
+            this.txtSFOpath.Location = new System.Drawing.Point(287, 66);
+            this.txtSFOpath.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSFOpath.Name = "txtSFOpath";
+            this.txtSFOpath.Size = new System.Drawing.Size(526, 22);
+            this.txtSFOpath.TabIndex = 41;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(170, 67);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 19);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "SFO Path :";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1097, 583);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtSFOpath);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.tbControl);
             this.Controls.Add(this.cbSystemVersion);
@@ -1328,6 +1351,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.ComboBox cbxPS4AppVersion;
+        private System.Windows.Forms.TextBox txtSFOpath;
+        private System.Windows.Forms.Label label2;
     }
 }
 

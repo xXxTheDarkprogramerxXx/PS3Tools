@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="PARAM.SFO_Editor.exe" version="0.2.0.9" publicKeyToken="6498da1acde4ad61" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="sfoeditor.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="PARAM.SFO_Editor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="PARAM.SFO_Editor.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PARAM.SFO_Editor.exe" size="574944">
+      <assemblyIdentity name="PARAM.SFO_Editor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>7/wGLr7dIcM7ksG8xEv47mIQPyCkTni55rb7fJH/pQE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="PARAM.SFO_Editor.exe.config" size="187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="sfoeditor.ico" size="32988">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>erXic85q7BC+GrmvaMZjZM4DiTRvbIFU/XDKJ6D5V8w=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=3deEchelon\3deEchelon" issuerKeyHash="55a21b91645569f1e08dd6a07a67e9e4c9c519c0" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>urnUAP0Hx+eL6eXH+ptk4oRm2b/uHSTaQzZoERzBvV8=</DigestValue></Reference></SignedInfo><SignatureValue>j5JkW30EMzRs7dIxxfKTIFdZYwdi9wBx11TIPcGZdA9HdV1TvLD5p0ZIDa3Drz92yAExQfy97R6u5Z1vYqZe0ChhcbI9admunW6QTTYUFsKvTTlBdv3a4JiORD1G+RwFsr984U15Fm9HCNgy0iGDaPq3XxpeqsAocnah7xFxN78=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>sy0zC09g6KDhtn/pzGS3oa8V7sAxjm7krjwfXyORx1K3y9wtufvuw+4Qmv7pyCnJ2NYiFv1sB2WMlqZxmE4Ag539GjsQ12vsH3xIqs6hSxJEYVxvkK+XUsQXjp0NesYwpQC7UVb9xgGniGNmKiUdrdabwGmGJ/PwKS17y5exUck=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="5fbdc11c11683643da241deebfd96684e2649bfac7e5e98be7c707fd00d4b9ba" Description="" Url=""><as:assemblyIdentity name="PARAM.SFO_Editor.exe" version="0.2.0.9" publicKeyToken="6498da1acde4ad61" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=3deEchelon\3deEchelon</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>CGqdFTscjXcfQflOdOeIuDwsrKwPCHxcn0BFvxvgJ2M=</DigestValue></Reference></SignedInfo><SignatureValue>qO0QGA6QpC2UpXfLyNeUP7Zmc0ZPi//3zg7mCJlfsL4WMtlgxTAgMoEKiTYJIJA9rPpsawaVep3kJVXiOWbcSXVTr/WB9eMz2AKvclMnTXbdaXGHzmRsIxqXZjiPaBnKIl26btAb0LlKzSGNelnDiGppQvlO01xATkKhlepvTY4=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>sy0zC09g6KDhtn/pzGS3oa8V7sAxjm7krjwfXyORx1K3y9wtufvuw+4Qmv7pyCnJ2NYiFv1sB2WMlqZxmE4Ag539GjsQ12vsH3xIqs6hSxJEYVxvkK+XUsQXjp0NesYwpQC7UVb9xgGniGNmKiUdrdabwGmGJ/PwKS17y5exUck=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVagAwIBAgIQINkhDqdP1ptNFd9hr9IH8TANBgkqhkiG9w0BAQsFADA1MTMwMQYDVQQDHioAMwBkAGUARQBjAGgAZQBsAG8AbgBcADMAZABlAEUAYwBoAGUAbABvAG4wHhcNMTgwMzI5MjA1OTA5WhcNMTkwMzMwMDI1OTA5WjA1MTMwMQYDVQQDHioAMwBkAGUARQBjAGgAZQBsAG8AbgBcADMAZABlAEUAYwBoAGUAbABvAG4wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALMtMwtPYOig4bZ/6cxkt6GvFe7AMY5u5K48H18jkcdSt8vcLbn77sPuEJr+6cgpydjWIhb9bAdljJamcZhOAIOd/Ro7ENdr7B98SKrOoUsSRGFcb5Cvl1LEF46dDXrGMKUAu1FW/cYBp4hjZiolHa3Wm8Bphifz8Ckte8uXsVHJAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAJmi7wDbd2cMc3XDKx9Hd1peTJIQ37C19OMlnbMvQ1sBNcbHO0rI9wHarIdS7HwYm0Ab5L646Bq2H+chHt/OyBCOagvxrGVX0zqIx0ka+WVAiACvuZirh3EjiS1hCud0jAE9WtW8YeQAlHkrlWZKPnLYUvadExFXz5Uakeh64qtg=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

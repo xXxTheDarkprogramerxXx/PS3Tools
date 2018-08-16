@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Threading;
 using System.Diagnostics;
+using System.Reflection;
+using System.Deployment.Application;
 
 namespace PARAM.SFO_Editor
 {
@@ -19,15 +21,15 @@ namespace PARAM.SFO_Editor
         {
             InitializeComponent();
         }
-       
+
         #region << Error Code >>
 
         //----The Point of this is to simulate ps3 data corrupt for whatever reason
         int errorcount = 0;
         bool errors = false;
         public void errormessage(int errorcount)
-        { 
-            string message = "The Parameters of the System File Object has errors they have been marked\n\n\r\t Total Errors "+errorcount+"\n\n\r\t";
+        {
+            string message = "The Parameters of the System File Object has errors they have been marked\n\n\r\t Total Errors " + errorcount + "\n\n\r\t";
             MessageBox.Show(message, "Errors Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
@@ -42,6 +44,8 @@ namespace PARAM.SFO_Editor
         Param_SFO.PARAM_SFO psfo;
 
         Playstation version;
+
+        System.Timers.Timer timer;
 
         public enum Playstation
         {
@@ -72,7 +76,7 @@ namespace PARAM.SFO_Editor
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(backgroundWorker1.IsBusy == false && backgroundWorker1.CancellationPending == false)
+            if (backgroundWorker1.IsBusy == false && backgroundWorker1.CancellationPending == false)
             {
                 backgroundWorker1.RunWorkerAsync();
             }
@@ -411,17 +415,20 @@ namespace PARAM.SFO_Editor
             thedialog.Title = "PARAM.SFO";
             thedialog.Filter = ".SFO|*.SFO";
             thedialog.InitialDirectory = System.Environment.SpecialFolder.MyComputer.ToString();
-            if(thedialog.ShowDialog() == DialogResult.OK)
+            if (thedialog.ShowDialog() == DialogResult.OK)
             {
+                txtSFOpath.Text = thedialog.FileName.ToString();
+                timer.Stop();
+                pbLogo.Image = null;
                 using (FileStream str = File.OpenRead(thedialog.FileName.ToString()))
                 {
 
-                     psfo = new Param_SFO.PARAM_SFO(thedialog.FileName.ToString());
+                    psfo = new Param_SFO.PARAM_SFO(thedialog.FileName.ToString());
 
                     MainPath = System.IO.Path.GetDirectoryName(thedialog.FileName.ToString());
 
                     //Check MAGIC
-                     if (psfo != null)
+                    if (psfo != null)
                     {
                         //set initial load too true so we dont do anything unnasasary 
                         InitialLoad = true;
@@ -429,58 +436,58 @@ namespace PARAM.SFO_Editor
                         List<string> AlreadyAdded = new List<string>();
                         foreach (Param_SFO.PARAM_SFO.Table t in psfo.Tables.ToList())
                         {
-                            if(t.Name == "TITLE_ID")
+                            if (t.Name == "TITLE_ID")
                             {
                                 txtTitleId.Text = t.Value.Trim();
                                 txtTitleId.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                                 //and here we have it now we can add max lengths so users can't break anything
-                                txtTitleId.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                                txtTitleId.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                             }
-                            if(t.Name == "CONTENT_ID")
+                            if (t.Name == "CONTENT_ID")
                             {
                                 txtContentId.Text = t.Value.Trim();
                                 txtContentId.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
-                                txtContentId.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                                txtContentId.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                             }
                             if (t.Name == "TITLE")
                             {
                                 txtTitle.Text = t.Value.Trim();
                                 txtTitle.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
-                                txtTitle.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                                txtTitle.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                             }
-                            if(t.Name == "CATEGORY")
+                            if (t.Name == "CATEGORY")
                             {
                                 txtCATEGORY.Text = ((Param_SFO.PARAM_SFO.DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
                                 txtCATEGORY.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
-                                txtCATEGORY.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                                txtCATEGORY.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                             }
-                            if(t.Name == "APP_VER")
+                            if (t.Name == "APP_VER")
                             {
                                 cbxAppVersion.Items.Add(t.Value.Trim());
                                 cbxAppVersion.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                                 cbxAppVersion.SelectedIndex = 0;
-                                cbxAppVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                                cbxAppVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                             }
-                            if(t.Name == "APP_TYPE")
+                            if (t.Name == "APP_TYPE")
                             {
                                 cbxPS4AppVersion.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                                 cbxPS4AppVersion.SelectedIndex = Convert.ToInt32(t.Value);
                             }
-                            if(t.Name == "VERSION")
+                            if (t.Name == "VERSION")
                             {
                                 cbVersion.Items.Add(t.Value.Trim());
                                 cbVersion.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                                 cbVersion.SelectedIndex = 0;
-                                cbVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                                cbVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                             }
-                            if(t.Name == "PARENTAL_LEVEL")
+                            if (t.Name == "PARENTAL_LEVEL")
                             {
                                 if (t.Value == "")
                                 {
@@ -491,10 +498,10 @@ namespace PARAM.SFO_Editor
                                     cbxParent.Tag = t.Name;
                                     cbxParent.SelectedIndex = Convert.ToInt32(t.Value);
                                     AlreadyAdded.Add(t.Name);
-                                    cbxParent.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                                    cbxParent.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                                 }
                             }
-                            if(t.Name == "PS3_SYSTEM_VER")
+                            if (t.Name == "PS3_SYSTEM_VER")
                             {
                                 cbSystemVersion.Tag = t.Name;
                                 //we know its PS3
@@ -504,9 +511,9 @@ namespace PARAM.SFO_Editor
                                 cbSystemVersion.SelectedIndex = 0;
                                 version = Playstation.ps3;
                                 tbControl.TabPages.Remove(tbPS4);
-                                cbSystemVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                                cbSystemVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                             }
-                            if(t.Name == "SYSTEM_VER")
+                            if (t.Name == "SYSTEM_VER")
                             {
                                 cbSystemVersion.Tag = t.Name;
                                 cbSystemVersion.Items.Add(t.Value.ToString());
@@ -515,7 +522,7 @@ namespace PARAM.SFO_Editor
                                 cbSystemVersion.SelectedIndex = 0;
                                 version = Playstation.ps4;
                                 tbControl.TabPages.Remove(tbPS3);
-                                cbSystemVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len); 
+                                cbSystemVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                             }
                             if (t.Name == "RESOLUTION")
                             {
@@ -523,7 +530,7 @@ namespace PARAM.SFO_Editor
                                 #region << PS3 Resolution >>
                                 int Val = 0;
                                 int.TryParse(t.Value.Trim(), out Val);
-                                switch(Val)
+                                switch (Val)
                                 {
                                     case 1:
                                         chbx480.Checked = true;
@@ -703,7 +710,7 @@ namespace PARAM.SFO_Editor
                                         chbx576.Checked = true;
                                         chbx480.Checked = true;
                                         break;
-                                    case 40 :
+                                    case 40:
                                         chbx576Wide.Checked = true;
                                         chbx1080.Checked = true;
                                         break;
@@ -723,7 +730,7 @@ namespace PARAM.SFO_Editor
                                         chbx576.Checked = true;
                                         chbx480.Checked = true;
                                         break;
-                                    case 44:                                  
+                                    case 44:
                                         chbx1080.Checked = true;
                                         chbx576Wide.Checked = true;
                                         chb720.Checked = true;
@@ -872,9 +879,9 @@ namespace PARAM.SFO_Editor
                                 #region << PS3 Sound Format >>
                                 int Val = 0;
                                 int.TryParse(t.Value.Trim(), out Val);
-                                switch(Val)
+                                switch (Val)
                                 {
-                                    case 1 :
+                                    case 1:
                                         chbxLPCM2.Checked = true;
                                         break;
                                     default:
@@ -883,7 +890,7 @@ namespace PARAM.SFO_Editor
                                 #endregion << PS3 Sound Format >>
                             }
 
-                            if(!AlreadyAdded.Contains(t.Name))
+                            if (!AlreadyAdded.Contains(t.Name))
                             {
                                 cbxAddon.Items.Add(t.Name);
                             }
@@ -893,7 +900,7 @@ namespace PARAM.SFO_Editor
 
                         //after loading we need to spesify some things
                         cbxAddon.SelectedIndex = 0;
-                        if(backgroundWorker1.IsBusy == true)
+                        if (backgroundWorker1.IsBusy == true)
                         {
                             Stoptimer();
                             backgroundWorker1.CancelAsync();
@@ -906,9 +913,9 @@ namespace PARAM.SFO_Editor
                     }
                     else
                     {
-                        MessageBox.Show("The file selected isn't a valid SFO","File Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show("The file selected isn't a valid SFO", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-               
+
                 }
             }
             else
@@ -925,7 +932,7 @@ namespace PARAM.SFO_Editor
 
         private void button3_Click(object sender, EventArgs e)
         {
-            RawView raw = new RawView(psfo,version);
+            RawView raw = new RawView(psfo, version);
             raw.Show();
         }
 
@@ -938,6 +945,44 @@ namespace PARAM.SFO_Editor
 
             tbControl.TabPages.Remove(tbPS4);
             tbControl.TabPages.Remove(tbPS3);
+
+            timer = new System.Timers.Timer(TimeSpan.FromSeconds(3).TotalMilliseconds);
+            timer.Elapsed += timer_Elapsed;
+            timer.Enabled = true;
+            LoadRanomImage();
+
+
+            Version v = Assembly.GetExecutingAssembly().GetName().Version;
+            //Check to see if we are ClickOnce Deployed.
+            //i.e. the executing code was installed via ClickOnce
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                //Collect the ClickOnce Current Version
+                v = ApplicationDeployment.CurrentDeployment.CurrentVersion;
+            }
+
+            //Show the version in a simple manner
+            this.Text = string.Format("PARAM.SFO EDITOR : {0}", v);
+        }
+
+        public void LoadRanomImage()
+        {
+            Random r = new Random();
+            int switcher = r.Next(0, 3);
+
+            switch (switcher)
+            {
+                case 0:
+                    { pbLogo.Image = Properties.Resources.ps_vita_logo; } break;
+                case 1:
+                    { pbLogo.Image = Properties.Resources.ps4_logo_white1; } break;
+                case 2:
+                    { pbLogo.Image = Properties.Resources.images; } break;
+            }
+        }
+        void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            LoadRanomImage();
         }
 
 
@@ -1034,7 +1079,7 @@ namespace PARAM.SFO_Editor
                     CheckBoxBusy = true;
                     txtAddonData.Text = item.Value.ToString();
                     CheckBoxBusy = false;
-                    txtAddonData.MaxLength = Convert.ToInt32(item.Indextable.param_data_max_len); 
+                    txtAddonData.MaxLength = Convert.ToInt32(item.Indextable.param_data_max_len);
                 }
             }
         }
@@ -1724,6 +1769,5 @@ namespace PARAM.SFO_Editor
 
         #endregion << Events >>
 
-        
     }
 }
