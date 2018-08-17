@@ -12,6 +12,8 @@ using System.Threading;
 using System.Diagnostics;
 using System.Reflection;
 using System.Deployment.Application;
+using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 namespace PARAM.SFO_Editor
 {
@@ -21,6 +23,47 @@ namespace PARAM.SFO_Editor
         {
             InitializeComponent();
         }
+
+        public Form1(string FileLocation)
+        {
+            InitializeComponent();
+
+            //disable everything that is not needed
+            gbxSoundFormat.Enabled = false;
+            gbxVideo.Enabled = false;
+            tbControl.TabPages.Remove(tbPS4);
+            tbControl.TabPages.Remove(tbPS3);
+            tbControl.TabPages.Add(tbPS4);
+            tbControl.TabPages.Add(tbPS3);
+
+            //clear pannels
+            cbxAddon.Items.Clear();
+            cbVersion.Items.Clear();
+            cbSystemVersion.Items.Clear();
+            cbxAppVersion.Items.Clear();
+
+            chbBoot.Enabled = false;
+            chbBoot.Text = "Bootable";
+
+
+            txtSFOpath.Text = FileLocation;
+            pbLogo.Image = null;
+            using (FileStream str = File.OpenRead(FileLocation))
+            {
+
+                psfo = new Param_SFO.PARAM_SFO(FileLocation);
+
+                //WriteToXmlFile(Application.StartupPath + @"\testing.xml", psfo.Tables, true);
+
+
+                MainPath = System.IO.Path.GetDirectoryName(FileLocation);
+
+                //Check MAGIC
+                if (psfo != null)
+                    ReloadSFO();
+            }
+        }
+        
 
         #region << Error Code >>
 
@@ -386,7 +429,21 @@ namespace PARAM.SFO_Editor
             }
         }
 
-
+        public static void WriteToXmlFile<T>(string filePath, T objectToWrite, bool append = false) where T : new()
+        {
+            TextWriter writer = null;
+            try
+            {
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+                writer = new StreamWriter(filePath, append);
+                serializer.Serialize(writer, objectToWrite);
+            }
+            finally
+            {
+                if (writer != null)
+                    writer.Close();
+            }
+        }
         /// <summary>
         /// Load Button Event ( Loads a psfo from a location )
         /// </summary>
@@ -417,6 +474,7 @@ namespace PARAM.SFO_Editor
             thedialog.InitialDirectory = System.Environment.SpecialFolder.MyComputer.ToString();
             if (thedialog.ShowDialog() == DialogResult.OK)
             {
+                button5.Visible = true;
                 txtSFOpath.Text = thedialog.FileName.ToString();
                 timer.Stop();
                 pbLogo.Image = null;
@@ -424,6 +482,9 @@ namespace PARAM.SFO_Editor
                 {
 
                     psfo = new Param_SFO.PARAM_SFO(thedialog.FileName.ToString());
+
+                    //WriteToXmlFile(Application.StartupPath + @"\testing.xml", psfo.Tables, true);
+
 
                     MainPath = System.IO.Path.GetDirectoryName(thedialog.FileName.ToString());
 
@@ -444,6 +505,25 @@ namespace PARAM.SFO_Editor
                                 //and here we have it now we can add max lengths so users can't break anything
                                 txtTitleId.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
                             }
+                            if (t.Name == "PUBTOOLINFO")
+                            {
+                                txtPS4Pub.Text = t.Value.Trim();
+                                txtPS4Pub.Tag = t.Name;
+                                AlreadyAdded.Add(t.Name);
+                                //and here we have it now we can add max lengths so users can't break anything
+                                txtPS4Pub.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                            }
+                            if (t.Name == "PUBTOOLVER")
+                            {
+                                //cbxPS4Pub
+                                int value = Convert.ToInt32(t.Value);
+                                string hexOutput = String.Format("{0:X}", value);
+                                cbxPS4Pub.Items.Add(hexOutput);
+                                cbxPS4Pub.Tag = t.Name;
+                                AlreadyAdded.Add(t.Name);
+                                cbxPS4Pub.SelectedIndex = 0;
+                                cbxPS4Pub.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                            }
                             if (t.Name == "CONTENT_ID")
                             {
                                 txtContentId.Text = t.Value.Trim();
@@ -460,7 +540,18 @@ namespace PARAM.SFO_Editor
                             }
                             if (t.Name == "CATEGORY")
                             {
+                                //we need to know what version of the sfo this is either ps3 / psvita(ps4)
+                                //this id use for ps4 i geus vita can work 2
+                                var hex = (BitConverter.ToString(t.ValueBuffer, 0, Convert.ToInt32(t.Indextable.param_data_max_len))).ToString().Replace("-", string.Empty);
+                                var temp = Convert.ToInt32(hex).ToString("X4");
+                                txtCATEGORY.Text = ((Param_SFO.PARAM_SFO.DataTypes)Convert.ToInt32(hex)).ToString();
+
+                                //ps3
                                 txtCATEGORY.Text = ((Param_SFO.PARAM_SFO.DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
+
+                                //for now straight 
+                                txtCATEGORY.Text = t.Value;
+                                var remp = BitConverter.ToUInt16(Encoding.Default.GetBytes(hex), 0);
                                 txtCATEGORY.Tag = t.Name;
                                 AlreadyAdded.Add(t.Name);
                                 txtCATEGORY.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
@@ -505,7 +596,7 @@ namespace PARAM.SFO_Editor
                             {
                                 cbSystemVersion.Tag = t.Name;
                                 //we know its PS3
-                                cbSystemVersion.Items.Add(t.Value.ToString());
+                                cbSystemVersion.Items.Add(t.Value);
                                 pbLogo.Image = Properties.Resources.images;
                                 AlreadyAdded.Add(t.Name);
                                 cbSystemVersion.SelectedIndex = 0;
@@ -516,13 +607,16 @@ namespace PARAM.SFO_Editor
                             if (t.Name == "SYSTEM_VER")
                             {
                                 cbSystemVersion.Tag = t.Name;
-                                cbSystemVersion.Items.Add(t.Value.ToString());
+                                int value = Convert.ToInt32(t.Value);
+                                string hexOutput = String.Format("{0:X}", value);
+                                cbSystemVersion.Items.Add(hexOutput);
                                 pbLogo.Image = Properties.Resources.ps4_logo_white1;
                                 AlreadyAdded.Add(t.Name);
                                 cbSystemVersion.SelectedIndex = 0;
                                 version = Playstation.ps4;
                                 tbControl.TabPages.Remove(tbPS3);
                                 cbSystemVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                                
                             }
                             if (t.Name == "RESOLUTION")
                             {
@@ -942,9 +1036,6 @@ namespace PARAM.SFO_Editor
             //no longer required as we no use click once
 
             ExtractAllResources();
-
-            tbControl.TabPages.Remove(tbPS4);
-            tbControl.TabPages.Remove(tbPS3);
 
             timer = new System.Timers.Timer(TimeSpan.FromSeconds(3).TotalMilliseconds);
             timer.Elapsed += timer_Elapsed;
@@ -1768,6 +1859,652 @@ namespace PARAM.SFO_Editor
         }
 
         #endregion << Events >>
+
+      
+
+        public List<Param_SFO.PARAM_SFO.Table> AddNewItem(int Index,string Name,string Value,Param_SFO.PARAM_SFO.FMT format,int lenght,int maxlength,List<Param_SFO.PARAM_SFO.Table> xtable)
+        {
+            Param_SFO.PARAM_SFO.index_table indextable = new Param_SFO.PARAM_SFO.index_table();
+
+            Param_SFO.PARAM_SFO.Table tableitem = new Param_SFO.PARAM_SFO.Table();
+
+            indextable.param_data_fmt = format;
+            indextable.param_data_len = Convert.ToUInt32(lenght);
+            indextable.param_data_max_len = Convert.ToUInt32(maxlength);
+            tableitem.index = Index;
+            tableitem.Indextable = indextable;
+            tableitem.Name = Name;
+            tableitem.Value = Value;
+            xtable.Add(tableitem);
+
+            return xtable;
+        }
+
+        int NewItemIndex = 0; //this var is used for item indexes
+        List<Param_SFO.PARAM_SFO.Table> xtables = new List<Param_SFO.PARAM_SFO.Table>();
+        private void button4_Click(object sender, EventArgs e)
+        {
+            NewSFO newsfo = new NewSFO();
+            newsfo.ShowDialog();
+            //vita and ps3 seem to be relatively similar 
+            if (newsfo._SfoToMake == NewSFO.SFOToMake.PS4 || newsfo._SfoToMake == NewSFO.SFOToMake.PSVita)
+            {
+                button5.Visible = true;
+
+                xtables = new List<Param_SFO.PARAM_SFO.Table>();
+
+                AddNewItem(NewItemIndex++, "APP_TYPE", "0", Param_SFO.PARAM_SFO.FMT.UINT32, 4, 4, xtables);
+
+                AddNewItem(NewItemIndex++, "ATTRIBUTE", "0", Param_SFO.PARAM_SFO.FMT.UINT32, 4, 4, xtables);
+
+                AddNewItem(NewItemIndex++, "APP_VER", "01.00", Param_SFO.PARAM_SFO.FMT.Utf8Null, 5, 8, xtables);
+
+                AddNewItem(NewItemIndex++, "CATEGORY", "gd", Param_SFO.PARAM_SFO.FMT.Utf8Null, 3, 4, xtables);
+
+                AddNewItem(NewItemIndex++, "CONTENT_ID", "XXYYYY-XXXXYYYYY_00-ZZZZZZZZZZZZZZZZ", Param_SFO.PARAM_SFO.FMT.Utf8Null, 37, 48, xtables);
+
+                AddNewItem(NewItemIndex++, "DOWNLOAD_DATA_SIZE", "0", Param_SFO.PARAM_SFO.FMT.UINT32, 4, 4, xtables);
+
+                AddNewItem(NewItemIndex++, "FORMAT", "obs", Param_SFO.PARAM_SFO.FMT.Utf8Null, 4, 4, xtables);
+
+                AddNewItem(NewItemIndex++, "PARENTAL_LEVEL", "1", Param_SFO.PARAM_SFO.FMT.UINT32, 4, 4, xtables);
+
+                AddNewItem(NewItemIndex++, "REMOTE_PLAY_KEY_ASSIGN", "1", Param_SFO.PARAM_SFO.FMT.UINT32, 4, 4, xtables);
+
+                for (int i = 1; i < 8; i++)
+                {
+                    AddNewItem(NewItemIndex++, "SERVICE_ID_ADDCONT_ADD_" + i, "", Param_SFO.PARAM_SFO.FMT.Utf8Null, 1, 20, xtables);
+                }
+
+                AddNewItem(NewItemIndex++, "SYSTEM_VER", "0", Param_SFO.PARAM_SFO.FMT.UINT32, 4, 4, xtables);
+
+                AddNewItem(NewItemIndex++, "TITLE", "Your Game Title ID", Param_SFO.PARAM_SFO.FMT.Utf8Null, 19, 128, xtables);
+
+                AddNewItem(NewItemIndex++, "TITLE_ID", "XXXXYYYYY", Param_SFO.PARAM_SFO.FMT.Utf8Null, 10, 12, xtables);
+
+                AddNewItem(NewItemIndex++, "VERSION", "01.00", Param_SFO.PARAM_SFO.FMT.Utf8Null, 6, 8, xtables);
+
+
+                psfo = new Param_SFO.PARAM_SFO();
+
+
+                Param_SFO.PARAM_SFO.Header.IndexTableEntries = Convert.ToUInt32(NewItemIndex);
+
+                psfo.Tables = xtables;
+            }
+
+            ReloadSFO();
+          
+           
+        }
+
+        public void ReloadSFO()
+        {
+            if (psfo != null)
+            {
+                //set initial load too true so we dont do anything unnasasary 
+                InitialLoad = true;
+
+                cbxAddon.Items.Clear();
+                cbSystemVersion.Items.Clear();
+                cbVersion.Items.Clear();
+                cbxAppVersion.Items.Clear();
+                //cbxParent.Items.Clear();
+                //cbxPS4AppVersion.Items.Clear();
+                cbxPS4Pub.Items.Clear();
+                
+
+                List<string> AlreadyAdded = new List<string>();
+                foreach (Param_SFO.PARAM_SFO.Table t in psfo.Tables.ToList())
+                {
+                    if (t.Name == "TITLE_ID")
+                    {
+                        txtTitleId.Text = t.Value.Trim();
+                        txtTitleId.Tag = t.Name;
+                        AlreadyAdded.Add(t.Name);
+                        //and here we have it now we can add max lengths so users can't break anything
+                        txtTitleId.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                    }
+                    if (t.Name == "PUBTOOLINFO")
+                    {
+                        txtPS4Pub.Text = t.Value.Trim();
+                        txtPS4Pub.Tag = t.Name;
+                        AlreadyAdded.Add(t.Name);
+                        //and here we have it now we can add max lengths so users can't break anything
+                        txtPS4Pub.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                    }
+                    if (t.Name == "PUBTOOLVER")
+                    {
+                        //cbxPS4Pub
+                        int value = Convert.ToInt32(t.Value);
+                        string hexOutput = String.Format("{0:X}", value);
+                        cbxPS4Pub.Items.Add(hexOutput);
+                        cbxPS4Pub.Tag = t.Name;
+                        AlreadyAdded.Add(t.Name);
+                        cbxPS4Pub.SelectedIndex = 0;
+                        cbxPS4Pub.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                    }
+                    if (t.Name == "CONTENT_ID")
+                    {
+                        txtContentId.Text = t.Value.Trim();
+                        txtContentId.Tag = t.Name;
+                        AlreadyAdded.Add(t.Name);
+                        txtContentId.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                    }
+                    if (t.Name == "TITLE")
+                    {
+                        txtTitle.Text = t.Value.Trim();
+                        txtTitle.Tag = t.Name;
+                        AlreadyAdded.Add(t.Name);
+                        txtTitle.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                    }
+                    if (t.Name == "CATEGORY")
+                    {
+                        //we need to know what version of the sfo this is either ps3 / psvita(ps4)
+                        //this id use for ps4 i geus vita can work 2
+                        var hex = (BitConverter.ToString(t.ValueBuffer, 0, Convert.ToInt32(t.Indextable.param_data_max_len))).ToString().Replace("-", string.Empty);
+                        var temp = Convert.ToInt32(hex).ToString("X4");
+                        txtCATEGORY.Text = ((Param_SFO.PARAM_SFO.DataTypes)Convert.ToInt32(hex)).ToString();
+
+                        //ps3
+                        txtCATEGORY.Text = ((Param_SFO.PARAM_SFO.DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
+
+                        //for now straight 
+                        txtCATEGORY.Text = t.Value;
+                        var remp = BitConverter.ToUInt16(Encoding.Default.GetBytes(hex), 0);
+                        txtCATEGORY.Tag = t.Name;
+                        AlreadyAdded.Add(t.Name);
+                        txtCATEGORY.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                    }
+                    if (t.Name == "APP_VER")
+                    {
+                        cbxAppVersion.Items.Add(t.Value.Trim());
+                        cbxAppVersion.Tag = t.Name;
+                        AlreadyAdded.Add(t.Name);
+                        cbxAppVersion.SelectedIndex = 0;
+                        cbxAppVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                    }
+                    if (t.Name == "APP_TYPE")
+                    {
+                        cbxPS4AppVersion.Tag = t.Name;
+                        AlreadyAdded.Add(t.Name);
+                        cbxPS4AppVersion.SelectedIndex = Convert.ToInt32(t.Value);
+                    }
+                    if (t.Name == "VERSION")
+                    {
+                        cbVersion.Items.Add(t.Value.Trim());
+                        cbVersion.Tag = t.Name;
+                        AlreadyAdded.Add(t.Name);
+                        cbVersion.SelectedIndex = 0;
+                        cbVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                    }
+                    if (t.Name == "PARENTAL_LEVEL")
+                    {
+                        if (t.Value == "")
+                        {
+                            cbxParent.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            cbxParent.Tag = t.Name;
+                            cbxParent.SelectedIndex = Convert.ToInt32(t.Value);
+                            AlreadyAdded.Add(t.Name);
+                            cbxParent.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                        }
+                    }
+                    if (t.Name == "PS3_SYSTEM_VER")
+                    {
+                        cbSystemVersion.Tag = t.Name;
+                        //we know its PS3
+                        cbSystemVersion.Items.Add(t.Value);
+                        pbLogo.Image = Properties.Resources.images;
+                        AlreadyAdded.Add(t.Name);
+                        cbSystemVersion.SelectedIndex = 0;
+                        version = Playstation.ps3;
+                        tbControl.TabPages.Remove(tbPS4);
+                        cbSystemVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+                    }
+                    if (t.Name == "SYSTEM_VER")
+                    {
+                        cbSystemVersion.Tag = t.Name;
+                        int value = Convert.ToInt32(t.Value);
+                        string hexOutput = String.Format("{0:X}", value);
+                        cbSystemVersion.Items.Add(hexOutput);
+                        pbLogo.Image = Properties.Resources.ps4_logo_white1;
+                        AlreadyAdded.Add(t.Name);
+                        cbSystemVersion.SelectedIndex = 0;
+                        version = Playstation.ps4;
+                        tbControl.TabPages.Remove(tbPS3);
+                        cbSystemVersion.MaxLength = Convert.ToInt32(t.Indextable.param_data_max_len);
+
+                    }
+                    if (t.Name == "RESOLUTION")
+                    {
+                        gbxVideo.Enabled = true;
+                        #region << PS3 Resolution >>
+                        int Val = 0;
+                        int.TryParse(t.Value.Trim(), out Val);
+                        switch (Val)
+                        {
+                            case 1:
+                                chbx480.Checked = true;
+                                break;
+                            case 2:
+                                chbx576.Checked = true;
+                                break;
+                            case 3:
+                                chbx480.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 4:
+                                chb720.Checked = true;
+                                break;
+                            case 5:
+                                chb720.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 6:
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 7:
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 8:
+                                chbx1080.Checked = true;
+                                break;
+                            case 9:
+                                chbx1080.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 10:
+                                chbx1080.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 11:
+                                chbx1080.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 12:
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                break;
+                            case 13:
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 14:
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 15:
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 16:
+                                chbx480Wide.Checked = true;
+                                break;
+                            case 17:
+                                chbx480Wide.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 18:
+                                chbx480Wide.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 19:
+                                chbx480.Checked = true;
+                                chbx480Wide.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 20:
+                                chbx480Wide.Checked = true;
+                                chb720.Checked = true;
+                                break;
+                            case 21:
+                                chbx480.Checked = true;
+                                chbx480Wide.Checked = true;
+                                chb720.Checked = true;
+                                break;
+                            case 22:
+                                chbx480Wide.Checked = true;
+                                chbx576.Checked = true;
+                                chb720.Checked = true;
+                                break;
+                            case 23:
+                                chbx480Wide.Checked = true;
+                                chbx480.Checked = true;
+                                chbx576.Checked = true;
+                                chb720.Checked = true;
+                                break;
+                            case 24:
+                                chbx1080.Checked = true;
+                                chbx480Wide.Checked = true;
+                                break;
+                            case 25:
+                                chbx1080.Checked = true;
+                                chbx480.Checked = true;
+                                chbx480Wide.Checked = true;
+                                break;
+                            case 26:
+                                chbx1080.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480Wide.Checked = true;
+                                break;
+                            case 27:
+                                chbx1080.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                chbx480Wide.Checked = true;
+                                break;
+                            case 28:
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx480Wide.Checked = true;
+                                break;
+                            case 29:
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx480.Checked = true;
+                                chbx480Wide.Checked = true;
+                                break;
+                            case 30:
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480Wide.Checked = true;
+                                break;
+                            case 31:
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx480.Checked = true;
+                                chbx480Wide.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 32:
+                                chbx576Wide.Checked = true;
+                                break;
+                            case 33:
+                                chbx576Wide.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 34:
+                                chbx576Wide.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 35:
+                                chbx576Wide.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 36:
+                                chbx576Wide.Checked = true;
+                                chb720.Checked = true;
+                                break;
+                            case 37:
+                                chb720.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 38:
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                chbx576Wide.Checked = true;
+                                break;
+                            case 39:
+                                chb720.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 40:
+                                chbx576Wide.Checked = true;
+                                chbx1080.Checked = true;
+                                break;
+                            case 41:
+                                chbx1080.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 42:
+                                chbx1080.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 43:
+                                chbx1080.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 44:
+                                chbx1080.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chb720.Checked = true;
+                                break;
+                            case 45:
+                                chbx1080.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chb720.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 46:
+                                chbx1080.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 47:
+                                chbx1080.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 48:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                break;
+                            case 49:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 50:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 51:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 52:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chb720.Checked = true;
+                                break;
+                            case 53:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chb720.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 54:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 55:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 56:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx1080.Checked = true;
+                                break;
+                            case 57:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx1080.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 58:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx1080.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 59:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx1080.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 60:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                break;
+                            case 61:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            case 62:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                break;
+                            case 63:
+                                chbx480Wide.Checked = true;
+                                chbx576Wide.Checked = true;
+                                chbx1080.Checked = true;
+                                chb720.Checked = true;
+                                chbx576.Checked = true;
+                                chbx480.Checked = true;
+                                break;
+                            default:
+                                break;
+                        }
+                        #endregion << PS3 Resolution >>
+                    }
+                    if (t.Name == "BOOTABLE")
+                    {
+                        chbBoot.Enabled = true;
+                        if (t.Value.ToString() == "0")
+                        {
+                            chbBoot.Checked = false;
+                        }
+                        if (t.Value == "1")
+                        {
+                            chbBoot.Checked = true;
+                            chbBoot.Text = "Bootable (Mode 1)";
+                        }
+                        if (t.Value == "2")
+                        {
+                            chbBoot.Checked = true;
+                            chbBoot.Text = "Bootable (Mode 2)";
+                        }
+                    }
+                    if (t.Name == "SOUND_FORMAT")
+                    {
+                        gbxSoundFormat.Enabled = true;
+                        #region << PS3 Sound Format >>
+                        int Val = 0;
+                        int.TryParse(t.Value.Trim(), out Val);
+                        switch (Val)
+                        {
+                            case 1:
+                                chbxLPCM2.Checked = true;
+                                break;
+                            default:
+                                break;
+                        }
+                        #endregion << PS3 Sound Format >>
+                    }
+
+                    if (!AlreadyAdded.Contains(t.Name))
+                    {
+                        cbxAddon.Items.Add(t.Name);
+                    }
+
+
+                }
+
+                //after loading we need to spesify some things
+                cbxAddon.SelectedIndex = 0;
+                if (backgroundWorker1.IsBusy == true)
+                {
+                    Stoptimer();
+                    backgroundWorker1.CancelAsync();
+                }
+
+                RunTimer();
+                btnRaw.Enabled = true;
+                InitialLoad = false;
+                button2.Enabled = true;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            NewSFOItem newitem = new NewSFOItem();
+            if(newitem.ShowDialog() == DialogResult.OK)
+            {
+                //for saftey
+                xtables = psfo.Tables;
+
+                if (NewItemIndex != 0)
+                {
+                    AddNewItem(NewItemIndex++, newitem.tableItemAdded.Name, newitem.tableItemAdded.Value, newitem.Indextableadded.param_data_fmt, Convert.ToInt32(newitem.Indextableadded.param_data_len), Convert.ToInt32(newitem.Indextableadded.param_data_max_len), xtables);
+                }
+                else
+                {
+                    NewItemIndex = Convert.ToInt32(Param_SFO.PARAM_SFO.Header.IndexTableEntries) + 1;
+                    
+                    AddNewItem(NewItemIndex++, newitem.tableItemAdded.Name, newitem.tableItemAdded.Value, newitem.Indextableadded.param_data_fmt, Convert.ToInt32(newitem.Indextableadded.param_data_len), Convert.ToInt32(newitem.Indextableadded.param_data_max_len), xtables);
+                }
+                psfo = new Param_SFO.PARAM_SFO();
+
+                Param_SFO.PARAM_SFO.Header.IndexTableEntries = Convert.ToUInt32(NewItemIndex);
+
+
+                psfo.Tables = xtables;
+                ReloadSFO();
+
+                tbControl.TabPages.Remove(tbPS4);
+                tbControl.TabPages.Remove(tbPS3);
+                tbControl.TabPages.Add(tbPS4);
+                tbControl.TabPages.Add(tbPS3);
+
+                tbControl.TabPages.Remove(tbPS3);
+
+                btnRaw.Enabled = true;
+                InitialLoad = false;
+                button2.Enabled = true;
+            }
+        }
 
     }
 }

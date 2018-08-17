@@ -84,6 +84,7 @@
             this.ClientSize = new System.Drawing.Size(275, 253);
             this.Controls.Add(this.splitContainer1);
             this.Name = "RawView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RawView";
             this.Load += new System.EventHandler(this.RawView_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

@@ -44,14 +44,8 @@
             this.cbxAppVersion = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.cbxAddon = new System.Windows.Forms.ComboBox();
-            this.btnRaw = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.pbLogoAndBackground = new System.Windows.Forms.PictureBox();
             this.cbSystemVersion = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbxSoundFormat = new System.Windows.Forms.GroupBox();
@@ -113,14 +107,23 @@
             this.checkBox31 = new System.Windows.Forms.CheckBox();
             this.tbControl = new System.Windows.Forms.TabControl();
             this.tbPS4 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.txtPS4Pub = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbxPS4Pub = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.cbxPS4AppVersion = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.txtSFOpath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogoAndBackground)).BeginInit();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.pbLogoAndBackground = new System.Windows.Forms.PictureBox();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.btnRaw = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbxSoundFormat.SuspendLayout();
             this.gbxVideo.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -132,7 +135,11 @@
             this.groupBox5.SuspendLayout();
             this.tbControl.SuspendLayout();
             this.tbPS4.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoAndBackground)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
@@ -302,64 +309,6 @@
             this.cbxAddon.TabIndex = 26;
             this.cbxAddon.SelectedIndexChanged += new System.EventHandler(this.cbxAddon_SelectedIndexChanged);
             // 
-            // btnRaw
-            // 
-            this.btnRaw.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.icons8_raw_48;
-            this.btnRaw.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRaw.Enabled = false;
-            this.btnRaw.Location = new System.Drawing.Point(493, 89);
-            this.btnRaw.Name = "btnRaw";
-            this.btnRaw.Size = new System.Drawing.Size(70, 60);
-            this.btnRaw.TabIndex = 17;
-            this.btnRaw.UseVisualStyleBackColor = true;
-            this.btnRaw.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.Save;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(407, 89);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(79, 59);
-            this.button2.TabIndex = 6;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::PARAM.SFO_Editor.Properties.Resources.LogoMakr_4y3rYY;
-            this.pictureBox1.Location = new System.Drawing.Point(170, 13);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(643, 54);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.icons8_open_48;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(332, 89);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(67, 59);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pbLogo
-            // 
-            this.pbLogo.Location = new System.Drawing.Point(16, 12);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(147, 71);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbLogo.TabIndex = 27;
-            this.pbLogo.TabStop = false;
-            // 
             // txtTitle
             // 
             this.txtTitle.Location = new System.Drawing.Point(127, 126);
@@ -379,15 +328,6 @@
             this.lblTitle.Size = new System.Drawing.Size(53, 19);
             this.lblTitle.TabIndex = 28;
             this.lblTitle.Text = "Title :";
-            // 
-            // pbLogoAndBackground
-            // 
-            this.pbLogoAndBackground.Location = new System.Drawing.Point(820, 11);
-            this.pbLogoAndBackground.Name = "pbLogoAndBackground";
-            this.pbLogoAndBackground.Size = new System.Drawing.Size(265, 105);
-            this.pbLogoAndBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbLogoAndBackground.TabIndex = 30;
-            this.pbLogoAndBackground.TabStop = false;
             // 
             // cbSystemVersion
             // 
@@ -1126,6 +1066,7 @@
             // 
             // tbPS4
             // 
+            this.tbPS4.Controls.Add(this.groupBox8);
             this.tbPS4.Controls.Add(this.groupBox7);
             this.tbPS4.Location = new System.Drawing.Point(4, 25);
             this.tbPS4.Name = "tbPS4";
@@ -1135,22 +1076,52 @@
             this.tbPS4.Text = "PS4";
             this.tbPS4.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // groupBox8
             // 
-            this.button3.Location = new System.Drawing.Point(738, 88);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 40;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.groupBox8.Controls.Add(this.txtPS4Pub);
+            this.groupBox8.Controls.Add(this.label3);
+            this.groupBox8.Controls.Add(this.cbxPS4Pub);
+            this.groupBox8.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox8.Location = new System.Drawing.Point(13, 68);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(251, 124);
+            this.groupBox8.TabIndex = 34;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Pub Tool Info";
+            // 
+            // txtPS4Pub
+            // 
+            this.txtPS4Pub.Location = new System.Drawing.Point(7, 21);
+            this.txtPS4Pub.Multiline = true;
+            this.txtPS4Pub.Name = "txtPS4Pub";
+            this.txtPS4Pub.Size = new System.Drawing.Size(237, 46);
+            this.txtPS4Pub.TabIndex = 28;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 70);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 19);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Pub Tool Version :";
+            // 
+            // cbxPS4Pub
+            // 
+            this.cbxPS4Pub.FormattingEnabled = true;
+            this.cbxPS4Pub.Location = new System.Drawing.Point(7, 93);
+            this.cbxPS4Pub.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxPS4Pub.Name = "cbxPS4Pub";
+            this.cbxPS4Pub.Size = new System.Drawing.Size(237, 24);
+            this.cbxPS4Pub.TabIndex = 26;
             // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.cbxPS4AppVersion);
             this.groupBox7.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(6, 6);
+            this.groupBox7.Location = new System.Drawing.Point(13, 6);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(251, 56);
             this.groupBox7.TabIndex = 33;
@@ -1174,6 +1145,17 @@
             this.cbxPS4AppVersion.TabIndex = 26;
             this.cbxPS4AppVersion.SelectedIndexChanged += new System.EventHandler(this.cbxPS4AppVersion_SelectedIndexChanged);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(738, 88);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 40;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // txtSFOpath
             // 
             this.txtSFOpath.Location = new System.Drawing.Point(287, 66);
@@ -1193,12 +1175,107 @@
             this.label2.TabIndex = 42;
             this.label2.Text = "SFO Path :";
             // 
+            // button5
+            // 
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button5.Image = global::PARAM.SFO_Editor.Properties.Resources.icons8_binary_file_48;
+            this.button5.Location = new System.Drawing.Point(794, 155);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(112, 105);
+            this.button5.TabIndex = 44;
+            this.button5.Text = "Add new item";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.icons8_add_64;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.Location = new System.Drawing.Point(568, 93);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(70, 60);
+            this.button4.TabIndex = 43;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // pbLogoAndBackground
+            // 
+            this.pbLogoAndBackground.Location = new System.Drawing.Point(820, 11);
+            this.pbLogoAndBackground.Name = "pbLogoAndBackground";
+            this.pbLogoAndBackground.Size = new System.Drawing.Size(265, 105);
+            this.pbLogoAndBackground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogoAndBackground.TabIndex = 30;
+            this.pbLogoAndBackground.TabStop = false;
+            // 
+            // pbLogo
+            // 
+            this.pbLogo.Location = new System.Drawing.Point(16, 12);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(147, 71);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogo.TabIndex = 27;
+            this.pbLogo.TabStop = false;
+            // 
+            // btnRaw
+            // 
+            this.btnRaw.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.icons8_raw_50;
+            this.btnRaw.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRaw.Enabled = false;
+            this.btnRaw.Location = new System.Drawing.Point(493, 94);
+            this.btnRaw.Name = "btnRaw";
+            this.btnRaw.Size = new System.Drawing.Size(70, 60);
+            this.btnRaw.TabIndex = 17;
+            this.btnRaw.UseVisualStyleBackColor = true;
+            this.btnRaw.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.icons8_save_as_50;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(407, 94);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 59);
+            this.button2.TabIndex = 6;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::PARAM.SFO_Editor.Properties.Resources.LogoMakr_4y3rYY;
+            this.pictureBox1.Location = new System.Drawing.Point(170, 13);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(643, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.BackgroundImage = global::PARAM.SFO_Editor.Properties.Resources.icons8_open_50;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Location = new System.Drawing.Point(332, 92);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(67, 59);
+            this.button1.TabIndex = 0;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1097, 583);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSFOpath);
             this.Controls.Add(this.button3);
@@ -1233,9 +1310,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PARAM.SFO EDITOR v1.1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogoAndBackground)).EndInit();
             this.gbxSoundFormat.ResumeLayout(false);
             this.gbxSoundFormat.PerformLayout();
             this.gbxVideo.ResumeLayout(false);
@@ -1256,7 +1330,12 @@
             this.groupBox5.PerformLayout();
             this.tbControl.ResumeLayout(false);
             this.tbPS4.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoAndBackground)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1353,6 +1432,12 @@
         private System.Windows.Forms.ComboBox cbxPS4AppVersion;
         private System.Windows.Forms.TextBox txtSFOpath;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox txtPS4Pub;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbxPS4Pub;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 

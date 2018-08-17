@@ -1,8 +1,6 @@
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO_Editor.exe.config
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.exe
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.pdb
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO_Editor.exe.manifest
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO_Editor.application
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO_Editor.exe
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO_Editor.pdb
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csprojResolveAssemblyReference.cache
@@ -10,5 +8,10 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.Properties.Resources.resources
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.RawView.resources
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO Editor.csproj.GenerateResource.Cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.NewSFO.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.NewSFOItem.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO_Editor.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO_Editor.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.TrustInfo.xml
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.exe.manifest
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.application

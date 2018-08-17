@@ -57,9 +57,11 @@ namespace Param_SFO
             VideoRoot = 0x5652,
             ThemeRoot = 0x5452,
             DiscMovie = 0x444D,
-            PS4_Game_Application = 25703,
+            Game_Digital_Application = 0x4081AC0,//GD
             PS4_Game_Application_Patch = 28775,
-            PS4_Additional_Content = 25441,
+            Additional_Content = 25441,//PSvita PS4
+            GameContent=25447,//PSVITA
+            Blu_Ray_Disc = 25698,//PS4
             None
         }
 
@@ -74,7 +76,7 @@ namespace Param_SFO
         #endregion << Enums >>
 
         #region << Vars>>
-        public List<Table> Tables { get; private set; }
+        public List<Table> Tables { get; set; }
 
         #endregion << Vars>>
 
@@ -223,7 +225,7 @@ namespace Param_SFO
             }
             
         }
-
+        [Serializable]
         public struct Table : IComparable
         {
             public index_table Indextable;
@@ -273,7 +275,7 @@ namespace Param_SFO
                 throw new NotImplementedException();
             }
         }
-
+        [Serializable]
         public struct index_table
         {
             public FMT param_data_fmt; /* param_data data type */
@@ -307,7 +309,7 @@ namespace Param_SFO
             }
         }
 
-
+        [Serializable]
         private enum DATA_TYPE : byte
         {
             BinaryData = 0,
