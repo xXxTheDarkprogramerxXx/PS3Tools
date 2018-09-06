@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<psproject fmt="gp4" version="1000">
+  <volume>
+    <volume_type>pkg_ps4_app</volume_type>
+    <volume_id>PS4VOLUME</volume_id>
+    <volume_ts>2018-05-18 15:21:41</volume_ts>
+    <package content_id="UP9000-CUSA05289_00-UCUS987020000001" passcode="00000000000000000000000000000000" storage_type="bd50" app_type="full"/>
+    <chunk_info chunk_count="1" scenario_count="1">
+      <chunks>
+        <chunk id="0" layer_no="0" label="Chunk #0"/>
+      </chunks>
+      <scenarios default_id="0">
+        <scenario id="0" type="sp" initial_chunk_count="1" label="Scenario #0">0</scenario>
+      </scenarios>
+    </chunk_info>
+  </volume>
+  <files img_no="0">
+    <file targ_path="data/game.iso" orig_path="..\PSP\data\game.iso"/>
+    <file targ_path="feature_data/UCUS98702/UCUS98702_features.lua" orig_path="..\PSP\feature_data\UCUS98702\UCUS98702_features.lua"/>
+    <file targ_path="lua_include/ax-gpr-alias.lua" orig_path="..\PSP\lua_include\ax-gpr-alias.lua"/>
+    <file targ_path="lua_include/pad.lua" orig_path="..\PSP\lua_include\pad.lua"/>
+    <file targ_path="patches/UCUS98702/UCUS98702_patches.lua" orig_path="..\PSP\patches\UCUS98702\UCUS98702_patches.lua"/>
+    <file targ_path="sce_module/libc.prx" orig_path="..\PSP\sce_module\libc.prx"/>
+    <file targ_path="sce_module/libSceFios2.prx" orig_path="..\PSP\sce_module\libSceFios2.prx"/>
+    <file targ_path="sce_module/libSceNpToolkit2.prx" orig_path="..\PSP\sce_module\libSceNpToolkit2.prx"/>
+    <file targ_path="sce_sys/icon0.png" orig_path="..\PSP\sce_sys\icon0.png"/>
+    <file targ_path="sce_sys/npbind.dat" orig_path="..\PSP\sce_sys\npbind.dat"/>
+    <file targ_path="sce_sys/nptitle.dat" orig_path="..\PSP\sce_sys\nptitle.dat"/>
+    <file targ_path="sce_sys/param.sfo" orig_path="..\PSP\sce_sys\param.sfo"/>
+    <file targ_path="sce_sys/pic0.png" orig_path="..\PSP\sce_sys\pic0.png"/>
+    <file targ_path="sce_sys/pic1.png" orig_path="..\PSP\sce_sys\pic1.png"/>
+    <file targ_path="sce_sys/pronunciation.sig" orig_path="..\PSP\sce_sys\pronunciation.sig"/>
+    <file targ_path="sce_sys/pronunciation.xml" orig_path="..\PSP\sce_sys\pronunciation.xml"/>
+    <file targ_path="sce_sys/save_data.png" orig_path="..\PSP\sce_sys\save_data.png"/>
+    <file targ_path="sce_sys/shareparam.json" orig_path="..\PSP\sce_sys\shareparam.json"/>
+    <file targ_path="sce_sys/snd0.at9" orig_path="..\PSP\sce_sys\snd0.at9"/>
+    <file targ_path="sce_sys/trophy/trophy00.trp" orig_path="..\PSP\sce_sys\trophy\trophy00.trp"/>
+    <file targ_path="trophy_data/UCUS98702/UCUS98702_trophies.lua" orig_path="..\PSP\trophy_data\UCUS98702\UCUS98702_trophies.lua"/>
+    <file targ_path="config-emu-ps4.txt" orig_path="..\PSP\config-emu-ps4.txt"/>
+    <file targ_path="eboot.bin" orig_path="..\PSP\eboot.bin"/>
+  </files>
+  <rootdir>
+    <dir targ_name="addon">
+      <dir targ_name="MUSIC"/>
+    </dir>
+    <dir targ_name="audio"/>
+    <dir targ_name="data"/>
+    <dir targ_name="feature_data">
+      <dir targ_name="UCUS98702"/>
+    </dir>
+    <dir targ_name="lua_include"/>
+    <dir targ_name="midi"/>
+    <dir targ_name="patches">
+      <dir targ_name="UCUS98702"/>
+    </dir>
+    <dir targ_name="samplereplace"/>
+    <dir targ_name="sce_module"/>
+    <dir targ_name="sce_sys">
+      <dir targ_name="trophy"/>
+    </dir>
+    <dir targ_name="texreplace"/>
+    <dir targ_name="trophy_data">
+      <dir targ_name="UCUS98702"/>
+    </dir>
+    <dir targ_name="videos"/>
+  </rootdir>
+</psproject>

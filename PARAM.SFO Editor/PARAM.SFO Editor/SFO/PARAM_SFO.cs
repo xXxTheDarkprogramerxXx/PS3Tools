@@ -188,6 +188,47 @@ namespace Param_SFO
             }
         }
 
+        public string Category
+        {
+            get
+            {
+                if (Tables == null)
+                    return "";
+                foreach (Table t in Tables)
+                    if (t.Name == "CATEGORY")
+                        return t.Value;
+                return "";
+            }
+        }
+
+        public PARAM.SFO_Editor.Form1.Playstation PlaystationVersion
+        {
+            get
+            {
+                if (Tables == null)
+                    return PARAM.SFO_Editor.Form1.Playstation.unknown;
+                foreach (Table t in Tables)
+                {
+                    if (t.Name == "PS3_SYSTEM_VER")
+                        return PARAM.SFO_Editor.Form1.Playstation.ps3;//this is the unique offset for ps3
+                    if (t.Name == "PSP2_SYSTEM_VER")
+                    {
+                        return PARAM.SFO_Editor.Form1.Playstation.psvita;//this is the only flag that tells us its a psvita
+                    }
+                    if (t.Name == "PSP_SYSTEM_VER")
+                    {
+                        return PARAM.SFO_Editor.Form1.Playstation.psp;//this is how we know its a psp
+                    }
+                    if (t.Name == "SYSTEM_VER")//i believe this to be only ps4
+                    {
+                        return PARAM.SFO_Editor.Form1.Playstation.ps4;
+                    }
+                }  
+                return PARAM.SFO_Editor.Form1.Playstation.unknown;
+            }
+        }
+
+
         #endregion << Example Of Calling Functions >>
 
         #region Param.SFO Struct 

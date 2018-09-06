@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80AAC2F6-E660-4071-81C1-8E67F9AA2FE1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PS4_PSP_Classics_GUI</RootNamespace>
+    <AssemblyName>PS4 PSP Classics GUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DiscUtils, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Discutils.0.11.0.2\lib\net40\DiscUtils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Common, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Discutils.0.11.0.2\lib\net40\DiscUtils.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NAudio">
+      <HintPath>..\..\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="PSP_Tools">
+      <HintPath>..\..\..\..\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\PSP_Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="PulseButton">
+      <HintPath>..\..\..\..\..\Downloads\Code_20150709\PulseButton\bin\Debug\PulseButton.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpMod">
+      <HintPath>..\..\..\..\..\Downloads\WPFluent-master\WPFluent-master\bin\Debug\SharpMod.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Core.2.2.1\lib\net45\Vlc.DotNet.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Core.Interops, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Core.Interops.2.2.1\lib\net45\Vlc.DotNet.Core.Interops.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Forms, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Forms.2.2.1\lib\net45\Vlc.DotNet.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Wpf, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vlc.DotNet.Wpf.2.2.1\lib\net45\Vlc.DotNet.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PSPLayoutIdea.xaml.cs">
+      <DependentUpon>PSPLayoutIdea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Util\FileType.cs" />
+    <Compile Include="Util\SoundPlayer.cs" />
+    <Compile Include="Views\Advanced.xaml.cs" />
+    <Compile Include="PS3SFO.cs" />
+    <Compile Include="Set.cs" />
+    <Compile Include="Views\SettingsWindow.xaml.cs" />
+    <Compile Include="SoundClass.cs" />
+    <Compile Include="StructReader.cs" />
+    <Compile Include="StructWriter.cs" />
+    <Compile Include="Views\VideoScreen.xaml.cs" />
+    <Compile Include="Views\VLC.xaml.cs">
+      <DependentUpon>VLC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowsTEst.xaml.cs">
+      <DependentUpon>WindowsTEst.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BinaryByteOrder.cs" />
+    <Compile Include="Views\Busy.xaml.cs" />
+    <Compile Include="MainWindow.xaml.cs" />
+    <Compile Include="Views\MessageBox.xaml.cs" />
+    <Compile Include="Views\MultipleISO_s.xaml.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Resources\PSP.zip" />
+    <None Include="Resources\quickbuild.gp4">
+      <SubType>Designer</SubType>
+    </None>
+    <Resource Include="Resources\ext.zip" />
+    <Resource Include="Resources\param.sfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="PSPLayoutIdea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Advanced.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Views\Busy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MultipleISO_s.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VideoScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VLC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowsTEst.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_sound_mute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_sound_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8-iso-50 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pkg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\playstation store.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\psplus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\theme.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\theme2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\what%27s new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PSP Logo.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\orbis-pub-cmd.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PS4 Notification.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PS4 Shutdown.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PS4 Options Pannel.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Ps4 Error Sound.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PS4 Options Pannel Close.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PS4 Navigation Sound.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ps4BGM.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sfo.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\libvlc.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\libvlccore.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PSP_E1000_illustration.svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\xmbih1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_default_game_icon.32bit.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

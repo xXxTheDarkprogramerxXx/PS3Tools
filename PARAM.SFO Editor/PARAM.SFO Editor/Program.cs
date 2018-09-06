@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,16 +24,30 @@ namespace PARAM.SFO_Editor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData != null)
+            //Check to see if we are ClickOnce Deployed.
+            //i.e. the executing code was installed via ClickOnce
+            if (ApplicationDeployment.IsNetworkDeployed)
             {
                 try
                 {
-                    Application.Run(new Form1(AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData[0].ToString()));
+                    foreach (string commandLineFile in AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData)
+                    {
+                        //MessageBox.Show(string.Format("Command Line File: {0}", commandLineFile));
+                        Application.Run(new Form1(commandLineFile.Replace("file:///","")));
+                        return;
+                    }
+                   
                 }
-                catch(Exception ex)
+
+                catch (Exception ex)
                 {
                     Application.Run(new Form1());
+                    return;
                 }
+            }
+            else if(args.Length > 0)
+            {
+                Application.Run(new Form1(args[0].ToString()));
             }
             else
             {

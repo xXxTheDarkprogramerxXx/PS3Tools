@@ -1,0 +1,9 @@
+﻿<Application x:Class="PS4_PSP_Classics_GUI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PS4_PSP_Classics_GUI"
+             StartupUri="PSPLayoutIdea.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

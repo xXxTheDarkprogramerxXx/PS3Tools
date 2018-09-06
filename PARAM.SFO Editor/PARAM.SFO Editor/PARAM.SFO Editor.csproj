@@ -28,7 +28,7 @@
     <PublisherName>TheDarkprogramer</PublisherName>
     <SuiteName>PS Tools</SuiteName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>1.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -88,6 +88,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomLookup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomLookup.Designer.cs">
+      <DependentUpon>CustomLookup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     <Compile Include="SFO\Functions.cs" />
     <Compile Include="SFO\PARAM_SFO.cs" />
     <Compile Include="SFO\SecureFileInfo.cs" />
+    <EmbeddedResource Include="CustomLookup.resx">
+      <DependentUpon>CustomLookup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,9 +164,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IMAGES\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\cooltext118235191746368.png" />
   </ItemGroup>
@@ -251,6 +258,11 @@
     <None Include="Resources\icons8-add-64.png" />
     <None Include="Resources\icons8-raw-50.png" />
     <None Include="Resources\icons8-save-as-50.png" />
+    <None Include="Resources\icons8-plus-50.png" />
+    <None Include="Resources\icons8-delete-64.png" />
+    <None Include="Resources\icons8-compose-30.png" />
+    <None Include="Resources\PSP-Logo-PlayStation-Portable-logo.png" />
+    <None Include="Resources\icons8-google-web-search-32.png" />
     <Content Include="sfoeditor.ico" />
   </ItemGroup>
   <ItemGroup>

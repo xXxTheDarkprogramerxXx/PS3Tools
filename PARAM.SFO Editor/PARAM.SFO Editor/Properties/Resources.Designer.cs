@@ -153,9 +153,39 @@ namespace PARAM.SFO_Editor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_compose_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-compose-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_delete_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-delete-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_github_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8_github_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_google_web_search_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_google_web_search_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +216,16 @@ namespace PARAM.SFO_Editor.Properties {
         internal static System.Drawing.Bitmap icons8_open_50__1_ {
             get {
                 object obj = ResourceManager.GetObject("icons8-open-50 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_plus_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-plus-50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -276,6 +316,16 @@ namespace PARAM.SFO_Editor.Properties {
         internal static System.Drawing.Bitmap ps4_logo_white1 {
             get {
                 object obj = ResourceManager.GetObject("ps4-logo-white1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PSP_Logo_PlayStation_Portable_logo {
+            get {
+                object obj = ResourceManager.GetObject("PSP_Logo_PlayStation_Portable_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

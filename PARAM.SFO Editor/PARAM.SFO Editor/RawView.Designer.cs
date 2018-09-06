@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RawView));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnSaveAdvanced = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,6 +64,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnSaveAdvanced);
             this.splitContainer1.Panel2.Controls.Add(this.btnSave);
             this.splitContainer1.Size = new System.Drawing.Size(275, 253);
             this.splitContainer1.SplitterDistance = 200;
@@ -77,12 +80,23 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnSaveAdvanced
+            // 
+            this.btnSaveAdvanced.Location = new System.Drawing.Point(115, 10);
+            this.btnSaveAdvanced.Name = "btnSaveAdvanced";
+            this.btnSaveAdvanced.Size = new System.Drawing.Size(148, 27);
+            this.btnSaveAdvanced.TabIndex = 1;
+            this.btnSaveAdvanced.Text = "Save Custom";
+            this.btnSaveAdvanced.UseVisualStyleBackColor = true;
+            this.btnSaveAdvanced.Click += new System.EventHandler(this.btnSaveAdvanced_Click);
+            // 
             // RawView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(275, 253);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RawView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RawView";
@@ -100,5 +114,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnSaveAdvanced;
     }
 }

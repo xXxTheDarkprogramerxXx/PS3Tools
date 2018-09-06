@@ -1,0 +1,50 @@
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI.csprojResolveAssemblyReference.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\App.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\MainWindow.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI_MarkupCompile.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI_MarkupCompile.lref
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PS4 PSP Classics GUI.exe.config
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PS4 PSP Classics GUI.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PS4 PSP Classics GUI.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\DiscUtils.Common.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\DiscUtils.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\NAudio.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PulseButton.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\DiscUtils.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\DiscUtils.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\DiscUtils.Common.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\DiscUtils.Common.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\NAudio.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PulseButton.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\MainWindow.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI.g.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4_PSP_Classics_GUI.Properties.Resources.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI.csproj.GenerateResource.Cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\Advanced.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\Busy.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\MessageBox.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\MultipleISO_s.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\SettingsWindow.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\VideoScreen.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\WindowsTEst.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\Advanced.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\Busy.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\MessageBox.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\MultipleISO_s.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\SettingsWindow.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\VideoScreen.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\WindowsTEst.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PSP_Tools.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PSP_Tools.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\SharpMod.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\Vlc.DotNet.Forms.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\Vlc.DotNet.Wpf.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\Vlc.DotNet.Core.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\Vlc.DotNet.Core.Interops.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PSPLayoutIdea.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PSPLayoutIdea.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\VLC.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\VLC.baml

@@ -1,0 +1,84 @@
+﻿<Window x:Class="PS4_PSP_Classics_GUI.Busy"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PS4_PSP_Classics_GUI"
+        xmlns:controls="clr-namespace:NMT.Wpf.Controls;assembly=PulseButton"
+        mc:Ignorable="d"
+        Title="" Height="480" Width="960" WindowStartupLocation="CenterScreen" Icon="/PS4 PSP Classics GUI;component/Resources/favicon.ico" Loaded="Window_Loaded">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/PS4 PSP Classics GUI;component/Resources/flow.png"/>
+        </Grid.Background>
+        <StackPanel Orientation="Vertical">
+            <Label x:Name="lblTitle" Content="PSP HD Gui" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Margin="21,10,0,0"/>
+            <Separator Height="27" Margin="0" Background="White"/>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="lblTask" Height="134" Margin="105,0,104.6,0" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Width="744">
+                    <TextBlock.Background>
+                        <ImageBrush/>
+                    </TextBlock.Background>
+                </TextBlock>
+                <ProgressBar Height="20" Margin="105,0,104.6,0" Value="50" Foreground="#FFFFFFFF" Background="#e5e5e5" IsIndeterminate="True"/>
+                <TextBlock x:Name="txtExtraInfo" Height="89" Margin="105,0,104.6,0" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Width="744">
+                    <TextBlock.Background>
+                        <ImageBrush/>
+                    </TextBlock.Background>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <!--<Button x:Name="btnPositive" Content="Yes" Height="44" Width="200" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Margin="105,0,0,0">
+                        <Button.Background>
+                            <ImageBrush/>
+                        </Button.Background>
+                    </Button>-->
+                    
+                    <controls:PulseButton x:Name="btnPositive" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Margin="100,0,0,0" 
+                              IsEllipsis="False" 
+                              PulseScale="1.2" 
+                              PulseWidth="2" 
+                              PulseSpeed="0:0:5" 
+                              Pulses="1" 
+        	                  RadiusX="3" 
+                              RadiusY="3" 
+                              Content="Yes" 
+                              ButtonBrush="Transparent" 
+                              ButtonHighlightBrush="Transparent" 
+                              ButtonPressedBrush="LightBlue" 
+                              PulseColor="White"
+                              Height="44" Width="200" Visibility="Hidden"/>
+                    <!--<Button x:Name="btnPositive" Content="Yes" Height="44" Width="200" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Margin="105,0,0,0">
+                        <Button.Background>
+                            <ImageBrush/>
+                        </Button.Background>
+                    </Button>-->
+                    <Button x:Name="btnNutral" Visibility="Hidden" Content="Cancle" Height="44" Width="200" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" HorizontalContentAlignment="Center" Margin="75,0,0,0">
+                        <Button.Background>
+                            <ImageBrush/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="btnNegative" Visibility="Hidden" Content="No" Height="44" Width="200" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" HorizontalContentAlignment="Center" Margin="70,0,0,0">
+                        <Button.Background>
+                            <ImageBrush/>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+              
+
+            </StackPanel>
+            <Separator Height="27" Margin="0" Background="White"/>
+            <StackPanel Orientation="Horizontal">
+                <Image HorizontalAlignment="Left" Height="30" Width="30" Margin="680,0,0,0" VerticalAlignment="Top" Source="/Resources/user.png" />
+                <Label x:Name="Username" Content="User1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFFFFFFF" FontSize="16" />
+            </StackPanel>
+
+
+
+        </StackPanel>
+        <StackPanel Visibility="Hidden" x:Name="OptionsView" Orientation="Vertical" Background="Black" Opacity="0.7" Margin="714,0,-0.4,0.4">
+            <Label x:Name="LabelOn" Content="On" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,212,0,211.6" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" />
+            <Label x:Name="labelOff" Content="Off" HorizontalAlignment="Center" Margin="0,-200,0,0" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" VerticalAlignment="Top" />
+        </StackPanel>
+    </Grid>
+</Window>
