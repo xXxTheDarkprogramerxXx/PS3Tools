@@ -48,3 +48,10 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Class
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\VLC.g.cs
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\VLC.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PARAM.SFO.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\zlib.net.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PARAM.SFO.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PS4 PSP Classics GUI.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PS4 PSP Classics GUI.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI.exe.manifest
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI.application

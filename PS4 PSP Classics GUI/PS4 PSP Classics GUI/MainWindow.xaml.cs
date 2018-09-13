@@ -317,7 +317,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
             //UpdateInfo("Open File Dialog");
             //Open File Dialog For ISO Files
             OpenFileDialog thedialog = new OpenFileDialog();
-            thedialog.Title = "Select ISO";
+            thedialog.Title = "Select PSP Game";
             thedialog.Filter = "PSP Image File (*.iso,*.cso,*.pbp,*.ISO,*.CSO,*.PBP)|*.iso;*.cso;*.pbp;*.ISO;*.CSO;*.PBP";
             //"Plain text files (*.csv;*.txt)|*.csv;*.txt";
             thedialog.Multiselect = false;//psp emu only supports 1.8Gig so we might as well only allow one iso/pbp/cso file
@@ -600,6 +600,13 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
         {        
             try
             {
+                if(Properties.Settings.Default.EnablePSPMode == true)
+                {
+                    PSPLayoutIdea psplayout = new PSPLayoutIdea();
+                    psplayout.ShowDialog();
+                    this.Close();
+                }
+
                 #region << Background Workers >>
                 
                 bgWorkerSS.DoWork += bgWorkerSS_DoWork;
@@ -714,26 +721,27 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
         {
             #region << PMF and AT3 >>
 
+            if (Directory.Exists(Path.Combine(AppCommonPath(), "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64")))
+            {
+                var vlcLibDirectory = new DirectoryInfo(Path.Combine(AppCommonPath(), "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
 
-            var vlcLibDirectory = new DirectoryInfo(Path.Combine(AppCommonPath(), "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
+                //for testing do this 
+                //var vlcLibDirectory = new DirectoryInfo(AppCommonPath());
+                System.Windows.Application.Current.Dispatcher.Invoke(
+    DispatcherPriority.Normal,
+    (ThreadStart)delegate
+    {
 
-            //for testing do this 
-            //var vlcLibDirectory = new DirectoryInfo(AppCommonPath());
-            System.Windows.Application.Current.Dispatcher.Invoke(
-DispatcherPriority.Normal,
-(ThreadStart)delegate
-{
-
-    tempvlc = new Vlc.DotNet.Forms.VlcControl();
-    tempvlc.BeginInit();
-    tempvlc.VlcLibDirectory = vlcLibDirectory;// /*libvlc's directory*/;
-                                              //this.MyControl.VlcMediaplayerOptions = new[] { "-vv" };
+        tempvlc = new Vlc.DotNet.Forms.VlcControl();
+        tempvlc.BeginInit();
+        tempvlc.VlcLibDirectory = vlcLibDirectory;// /*libvlc's directory*/;
+                                                  //this.MyControl.VlcMediaplayerOptions = new[] { "-vv" };
 
     string[] options =
-    new string[] { "input-repeat=65535" };
-    var mediaOptions = new string[] { "input-repeat=-1" };
-    tempvlc.VlcMediaplayerOptions = options;
-    this.WindowsFormsHost.Child = tempvlc;
+        new string[] { "input-repeat=65535" };
+        var mediaOptions = new string[] { "input-repeat=-1" };
+        tempvlc.VlcMediaplayerOptions = options;
+        this.WindowsFormsHost.Child = tempvlc;
 
 
 
@@ -741,15 +749,15 @@ DispatcherPriority.Normal,
 
     tempvlc.EndInit();
 
-    Util.SoundClass.atr3vlc = new Vlc.DotNet.Forms.VlcControl();
-    Util.SoundClass.atr3vlc.BeginInit();
-    Util.SoundClass.atr3vlc.VlcLibDirectory = vlcLibDirectory;// /*libvlc's directory*/;
-                                                              //this.MyControl.VlcMediaplayerOptions = new[] { "-vv" };
+        Util.SoundClass.atr3vlc = new Vlc.DotNet.Forms.VlcControl();
+        Util.SoundClass.atr3vlc.BeginInit();
+        Util.SoundClass.atr3vlc.VlcLibDirectory = vlcLibDirectory;// /*libvlc's directory*/;
+                                                                  //this.MyControl.VlcMediaplayerOptions = new[] { "-vv" };
     Util.SoundClass.atr3vlc.EndInit();
 
-});
+    });
 
-
+            }
             #endregion << PMF and AT3 >>
         }
 

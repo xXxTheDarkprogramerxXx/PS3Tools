@@ -7,31 +7,44 @@
         xmlns:controls="clr-namespace:PS4_PSP_Classics_GUI.Views"
         mc:Ignorable="d"
         AllowsTransparency="True"
-        Title="PSPLayoutIdea" Height="294.403" Width="701.866" ResizeMode="NoResize"  WindowStyle="None" WindowStartupLocation="CenterScreen" Foreground="{x:Null}" Loaded="Window_Loaded" Icon="Resources/favicon.ico">
+        Title="PSPLayoutIdea" Height="294.403" Width="701.866" ResizeMode="NoResize"  WindowStyle="None" WindowStartupLocation="CenterScreen" Foreground="{x:Null}" Loaded="Window_Loaded" Icon="Resources/favicon.ico" Closing="Window_Closing" MouseDown="Window_MouseDown">
     <Window.Background>
         <ImageBrush ImageSource="Resources/PSP_E1000_illustration.svg.png" Stretch="Uniform"/>
     </Window.Background>
-    <Grid Margin="155,21,155.6,44.4">
-        <Button x:Name="psBUtton" Content="Button" HorizontalAlignment="Left" Height="22" Margin="10,239,0,-32" VerticalAlignment="Top" Width="21" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="psBUtton_Click"/>
+    <Grid Margin="155,21,155.6,44.4" >
+        <Grid  Visibility="Visible" x:Name="MainDisplay" >
+         <Image x:Name="xmbOverlay" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Resources/xmbih1.png" Stretch="Fill" Width="391"/>
+        <MediaElement Visibility="Hidden" Source="Resources/PSP Wave Background loop - blue color.mp4" x:Name="Wave"  Stretch="Fill" LoadedBehavior="Manual"></MediaElement>
+            <Grid Background="Transparent">
+                <Image x:Name="btnSettings" HorizontalAlignment="Left" Height="30" Margin="6,47,0,0" VerticalAlignment="Top" Width="28" MouseLeftButtonDown="btnSettings_MouseLeftButtonDown"/>
+                <Image x:Name="btnPhoto" HorizontalAlignment="Left" Visibility="Hidden" Height="30" Margin="145,47,0,0" VerticalAlignment="Top" Width="28" Stretch="UniformToFill" />
+                <Image x:Name="btnMusic" HorizontalAlignment="Left" Height="30" Margin="210,47,0,0" VerticalAlignment="Top" Width="28"/>
+                <Image x:Name="btnMovie" HorizontalAlignment="Left" Height="30" Margin="272,47,0,0" VerticalAlignment="Top" Width="35"/>
+                <Image x:Name="btnGame" HorizontalAlignment="Left" Height="30" Margin="337,47,0,0" VerticalAlignment="Top" Width="35"/>
+            </Grid>
+            <Button x:Name="psBUtton" Content="Button" HorizontalAlignment="Left" Height="22" Margin="10,239,0,-32" VerticalAlignment="Top" Width="21" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="psBUtton_Click"/>
         <Button x:Name="volDown" Content="Button" HorizontalAlignment="Left" Height="22" Margin="57,239,0,-32" VerticalAlignment="Top" Width="21" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
         <Button x:Name="volUp" Content="Button" HorizontalAlignment="Left" Height="22" Margin="105,239,0,-32" VerticalAlignment="Top" Width="21" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
         <Button x:Name="btnStart" Content="Button" HorizontalAlignment="Left" Height="22" Margin="342,240,-1,-33" VerticalAlignment="Top" Width="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnStart_Click"/>
-        <Button x:Name="btnSelect" Content="Button" HorizontalAlignment="Left" Height="22" Margin="284,239,0,-32" VerticalAlignment="Top" Width="49" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnSelect_Click"/>
-        <Image x:Name="xmbOverlay" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Resources/xmbih1.png" Stretch="Fill" Width="391"/>
-        <Image x:Name="Icon0" HorizontalAlignment="Left" Height="41" Margin="43,95,0,0"  VerticalAlignment="Top" Width="81" Source="Resources/tex_default_game_icon.32bit.bmp"/>
-        <TextBox Text="" x:Name="txtTitle" HorizontalAlignment="Left" Margin="129,102,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="14" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Height="26" Background="{x:Null}" Width="252" TextChanged="txtContentID_Copy_TextChanged"/>
-        <MediaElement x:Name="MediaPlayer" Visibility="Hidden" Source="Resources/PS2 Logo.mp4" Stretch="Fill" LoadedBehavior="Manual"/>
+            <Button x:Name="btnSelect" Content="Button" HorizontalAlignment="Left" Height="22" Margin="284,239,0,-32" VerticalAlignment="Top" Width="49" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnSelect_Click"/>
+            <Image x:Name="Icon0" HorizontalAlignment="Left" Height="41" Margin="43,95,0,0"  VerticalAlignment="Top" Width="81" Source="Resources/tex_default_game_icon.32bit.bmp"/>
+            <TextBox Text="" x:Name="txtTitle" HorizontalAlignment="Left" Margin="129,102,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="14" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Height="26" Background="{x:Null}" Width="252" TextChanged="txtContentID_Copy_TextChanged"/>
+            <MediaElement x:Name="MediaPlayer" Visibility="Hidden" Source="Resources/PS2 Logo.mp4" Stretch="Fill" LoadedBehavior="Manual"/>
         <Image x:Name="messagescreen" Visibility="Hidden" HorizontalAlignment="Left" Height="229" VerticalAlignment="Top" Width="391" Source="Resources/flow.png" Stretch="Fill"/>
         <Button x:Name="btnRight" Content="Button" HorizontalAlignment="Left" Margin="-58,87,0,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <Button x:Name="btnUp" Content="" HorizontalAlignment="Left" Margin="-93,56,0,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <Button x:Name="btnLeft" Content="" HorizontalAlignment="Left" Margin="-127,87,0,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <Button x:Name="btnDown" Content="" HorizontalAlignment="Left" Margin="-93,118,0,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
+        <Button x:Name="btnUp" Content="Button" HorizontalAlignment="Left" Margin="-93,56,0,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
+        <Button x:Name="btnLeft" Content="Button" HorizontalAlignment="Left" Margin="-127,87,0,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
+        <Button x:Name="btnDown" Content="Button" HorizontalAlignment="Left" Margin="-93,118,0,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
         <Button x:Name="btnCircle" Content="Button" HorizontalAlignment="Left" Margin="491,88,-138,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <Button x:Name="btnTriangle" Content="" HorizontalAlignment="Left" Margin="452,47,-99,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <Button x:Name="btnSquare" Content="" HorizontalAlignment="Left" Margin="411,88,-58,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <Button x:Name="btnX" Content="" HorizontalAlignment="Left" Margin="451,128,-98,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <Button x:Name="btnR" Content="" HorizontalAlignment="Left" Margin="411,-27,-112,0" VerticalAlignment="Top" Width="92" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <Button x:Name="btnL" Content="" HorizontalAlignment="Left" Margin="-112,-27,0,0" VerticalAlignment="Top" Width="92" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
-        <controls:VLC x:Name="WindowsFormsHost" HorizontalAlignment="Left" Height="41" Margin="43,95,0,0"  VerticalAlignment="Top" Width="81" />
+        <Button x:Name="btnTriangle" Content="Button" HorizontalAlignment="Left" Margin="452,47,-99,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
+        <Button x:Name="btnSquare" Content="Button" HorizontalAlignment="Left" Margin="411,88,-58,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
+        <Button x:Name="btnX" Content="Button" HorizontalAlignment="Left" Margin="451,128,-98,0" VerticalAlignment="Top" Width="38" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="btnX_Click"/>
+        <Button x:Name="btnR" Content="Button" HorizontalAlignment="Left" Margin="411,-27,-112,0" VerticalAlignment="Top" Width="92" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
+        <Button x:Name="btnL" Content="Button" HorizontalAlignment="Left" Margin="-112,-27,0,0" VerticalAlignment="Top" Width="92" Height="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}"/>
+        <controls:VLC Opacity="0.9" x:Name="WindowsFormsHost" HorizontalAlignment="Left" Height="41" Margin="43,95,0,0"  VerticalAlignment="Top" Width="81" />
+        <Rectangle Visibility="Hidden" HorizontalAlignment="Left" Height="27" Margin="0,202,0,0" Stroke="Black" VerticalAlignment="Top" Width="391"/>
+        </Grid>
+        <Grid></Grid>
     </Grid>
+    
 </Window>

@@ -142,5 +142,29 @@ namespace PS4_PSP_Classics_GUI.Properties {
                 this["EnablePMF"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnablePSPMode {
+            get {
+                return ((bool)(this["EnablePSPMode"]));
+            }
+            set {
+                this["EnablePSPMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableMysisPatch {
+            get {
+                return ((bool)(this["EnableMysisPatch"]));
+            }
+            set {
+                this["EnableMysisPatch"] = value;
+            }
+        }
     }
 }

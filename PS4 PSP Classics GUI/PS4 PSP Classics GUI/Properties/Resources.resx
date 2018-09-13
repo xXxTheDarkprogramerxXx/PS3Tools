@@ -205,4 +205,1042 @@
   <data name="tex_default_game_icon_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tex_default_game_icon.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bg_index" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg_index.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PSP_Wave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PSP Wave Background loop - blue color.mp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_1seg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_1seg.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_1seg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_1seg.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_1seg2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_1seg.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_1seg_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_1seg.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_account" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_account.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_account1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_account.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_account2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_account.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_account_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_account.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_browser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_browser.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_browser1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_browser.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_browser2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_browser.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_browser_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_browser.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_camera.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_camera1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_camera.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_camera2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_camera.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_camera_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_camera.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_bluetooth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_bluetooth.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_bluetooth1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_bluetooth.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_bluetooth2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_bluetooth.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_bluetooth_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_bluetooth.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_date" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_date.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_date1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_date.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_date2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_date.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_date_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_date.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_display" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_display.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_display1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_display.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_display2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_display.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_display_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_display.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_network" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_network.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_network1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_network.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_network2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_network.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_network_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_network.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_password" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_password.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_password1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_password.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_password2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_password.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_password_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_password.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_photo.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_photo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_photo.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_photo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_photo.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_photo_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_photo.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_psp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_psp.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_psp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_psp.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_psp2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_psp.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_psp_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_psp.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_rss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_rss.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_rss1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_rss.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_rss2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_rss.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_rss_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_rss.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_save_energy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_save_energy.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_save_energy1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_save_energy.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_save_energy2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_save_energy.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_save_energy_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_save_energy.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_sound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_sound.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_sound1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_sound.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_sound2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_sound.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_sound_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_sound.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_theme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_theme.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_theme1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_theme.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_theme2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_theme.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_theme_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_theme.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_update" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_update.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_update1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_update.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_update2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_update.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_update_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_update.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_usb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_usb.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_usb1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_usb.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_usb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_usb.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_usb_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_usb.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_video" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_video.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_cnf_video1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_video.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_video2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_video.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_cnf_video_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_cnf_video.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_ef0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_ef0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_ef01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_ef0.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_ef02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_ef0.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_ef0_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_ef0.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_1seg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_1seg.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_1seg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_1seg.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_1seg2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_1seg.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_1seg_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_1seg.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_account" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_account.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_account1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_account.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_account2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_account.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_account_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_account.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_browser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_browser.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_browser1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_browser.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_browser2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_browser.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_browser_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_browser.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_camera" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_camera.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_camera1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_camera.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_camera2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_camera.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_camera_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_camera.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_bluetooth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_bluetooth.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_bluetooth1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_bluetooth.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_bluetooth2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_bluetooth.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_bluetooth_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_bluetooth.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_date" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_date.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_date1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_date.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_date2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_date.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_date_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_date.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_display" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_display.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_display1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_display.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_display2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_display.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_display_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_display.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_network" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_network.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_network1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_network.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_network2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_network.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_network_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_network.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_password" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_password.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_password1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_password.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_password2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_password.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_password_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_password.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_photo.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_photo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_photo.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_photo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_photo.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_photo_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_photo.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_psp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_psp.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_psp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_psp.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_psp2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_psp.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_psp_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_psp.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_rss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_rss.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_rss1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_rss.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_rss2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_rss.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_rss_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_rss.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_save_energy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_save_energy.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_save_energy1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_save_energy.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_save_energy2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_save_energy.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_save_energy_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_save_energy.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_sound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_sound.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_sound1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_sound.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_sound2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_sound.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_sound_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_sound.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_theme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_theme.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_theme1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_theme.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_theme2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_theme.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_theme_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_theme.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_update" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_update.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_update1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_update.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_update2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_update.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_update_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_update.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_usb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_usb.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_usb1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_usb.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_usb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_usb.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_usb_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_usb.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_video" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_video.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_cnf_video1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_video.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_video2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_video.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_cnf_video_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_cnf_video.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_ef0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_ef0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_ef01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_ef0.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_ef02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_ef0.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_ef0_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_ef0.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_hb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_hb.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_hb1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_hb.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_hb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_hb.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_hb_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_hb.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_help.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_help1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_help.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_help2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_help.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_help_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_help.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_infomation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_infomation.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_infomation1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_infomation.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_infomation2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_infomation.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_infomation_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_infomation.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_lftv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_lftv.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_lftv1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_lftv.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_lftv2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_lftv.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_lftv_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_lftv.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_MS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_MS.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_MS1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_MS.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_MS2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_MS.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_MS_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_MS.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_podcast" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_podcast.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_podcast1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_podcast.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_podcast2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_podcast.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_podcast_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_podcast.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_premo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_premo.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_premo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_premo.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_premo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_premo.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_premo_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_premo.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_psstore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_psstore.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_psstore1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_psstore.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_psstore2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_psstore.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_psstore_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_psstore.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_radio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_radio.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_radio1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_radio.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_radio2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_radio.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_radio_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_radio.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_savedata" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_savedata.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_savedata1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_savedata.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_savedata2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_savedata.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_savedata_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_savedata.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_sd_ef0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sd_ef0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_sd_ef01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sd_ef0.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_sd_ef02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sd_ef0.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_sd_ef0_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sd_ef0.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_search.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_search1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_search.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_search2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_search.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_search_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_search.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_sensme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sensme.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_sensme1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sensme.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_sensme2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sensme.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_sensme_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sensme.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_sharing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sharing.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_sharing1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sharing.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_sharing2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sharing.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_sharing_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_sharing.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_signup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_signup.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_signup1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_signup.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_signup2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_signup.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_signup_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_signup.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_skype" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_skype.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_skype1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_skype.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_skype2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_skype.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_skype_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_skype.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_spot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_spot.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_spot1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_spot.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_spot2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_spot.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_spot_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_spot.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_tdmb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_tdmb.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_tdmb1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_tdmb.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_tdmb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_tdmb.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_tdmb_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_tdmb.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_UMD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_UMD.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_UMD1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_UMD.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_UMD2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_UMD.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_UMD_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_UMD.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_update" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_update.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_fcs_update1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_update.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_update2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_update.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_fcs_update_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_fcs_update.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_game" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_game.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_game1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_game.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_game2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_game.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_game_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_game.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_hb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_hb.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_hb1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_hb.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_hb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_hb.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_hb_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_hb.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_help.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_help1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_help.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_help2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_help.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_help_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_help.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_infomation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_infomation.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_infomation1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_infomation.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_infomation2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_infomation.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_infomation_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_infomation.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_lftv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_lftv.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_lftv1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_lftv.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_lftv2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_lftv.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_lftv_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_lftv.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_ms" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_ms.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_ms1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_ms.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_ms2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_ms.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_ms_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_ms.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_music" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_music.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_music1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_music.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_music2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_music.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_music_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_music.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_network" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_network.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_network1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_network.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_network2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_network.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_network_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_network.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_photo.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_photo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_photo.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_photo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_photo.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_photo_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_photo.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_podcast" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_podcast.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_podcast1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_podcast.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_podcast2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_podcast.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_podcast_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_podcast.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_premo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_premo.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_premo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_premo.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_premo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_premo.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_premo_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_premo.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_psn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_psn.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_psn1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_psn.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_psn2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_psn.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_psn_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_psn.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_psstore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_psstore.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_psstore1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_psstore.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_psstore2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_psstore.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_psstore_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_psstore.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_radio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_radio.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_radio1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_radio.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_radio2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_radio.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_radio_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_radio.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_savedata" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_savedata.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_savedata1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_savedata.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_savedata2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_savedata.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_savedata_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_savedata.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_sd_ef0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sd_ef0.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_sd_ef01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sd_ef0.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_sd_ef02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sd_ef0.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_sd_ef0_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sd_ef0.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_search.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_search1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_search.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_search2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_search.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_search_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_search.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_sensme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sensme.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_sensme1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sensme.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_sensme2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sensme.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_sensme_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sensme.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_sharing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sharing.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_sharing1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sharing.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_sharing2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sharing.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_sharing_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_sharing.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_signup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_signup.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_signup1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_signup.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_signup2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_signup.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_signup_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_signup.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_skype" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_skype.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_skype1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_skype.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_skype2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_skype.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_skype_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_skype.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_spot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_spot.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_spot1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_spot.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_spot2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_spot.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_spot_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_spot.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_system" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_system.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_system1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_system.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_system2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_system.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_system_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_system.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_tdmb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_tdmb.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_tdmb1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_tdmb.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_tdmb2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_tdmb.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_tdmb_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_tdmb.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_tv" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_tv.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_tv1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_tv.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_tv2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_tv.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_tv_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_tv.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_umd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_umd.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_umd1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_umd.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_umd2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_umd.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_umd_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_umd.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_update" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_update.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_update1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_update.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_update2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_update.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_update_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_update.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_video" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_video.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tex_video1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_video.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_video2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_video.gim;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tex_video_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tex_video.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

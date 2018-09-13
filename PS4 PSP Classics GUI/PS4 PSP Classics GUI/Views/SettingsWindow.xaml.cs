@@ -2,8 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading;
@@ -34,6 +37,8 @@ namespace PS4_PSP_Classics_GUI
         int CurrentIdx = 0;
         MouseButtonEventArgs ButtonLick;
 
+        private readonly BackgroundWorker bgWorkerSS = new BackgroundWorker();
+        public static bool bgwClose;
 
         public class SettingValue
         {
@@ -47,6 +52,7 @@ namespace PS4_PSP_Classics_GUI
 
         List<SettingValue> Values = new List<SettingValue>();
 
+        Stopwatch sw = new Stopwatch();
 
         public void AddEsttingValues(string SettingName,string DefaultValue, Control TypeOfContorl)
         {
@@ -115,6 +121,25 @@ namespace PS4_PSP_Classics_GUI
                         DefaultValue = "Off";
                     }
                     break;
+                case "Enable PSP UI":
+                    if (Properties.Settings.Default.EnablePSPMode == true)
+                    {
+                        DefaultValue = "On";
+                    }
+                    else
+                    {
+                        DefaultValue = "Off";
+                    }
+                    break;
+                case "Enable Mysis Patch":
+                    if(Properties.Settings.Default.EnableMysisPatch == true)
+                    {
+                        DefaultValue = "On";
+                    }
+                    else
+                    {
+                        DefaultValue = "Off";
+                    }
                     break;
             }
             set.SValue = DefaultValue;
@@ -136,6 +161,9 @@ namespace PS4_PSP_Classics_GUI
 
             AddEsttingValues("Enable PSP PMF + AT3", "Off", new ListView());
 
+            AddEsttingValues("Enable PSP UI", "Off", new ListView());
+
+            AddEsttingValues("Enable Mysis Patch", "Off", new ListView());
 
             for (int i = 0; i < Values.Count; i++)
             {
@@ -149,11 +177,41 @@ namespace PS4_PSP_Classics_GUI
 
             //listView.Items.Add(new { SettingValue = "Off" });
 
-
+            bgWorkerSS.DoWork += bgWorkerSS_DoWork;
+            bgWorkerSS.WorkerReportsProgress = true;
+            bgWorkerSS.WorkerSupportsCancellation = true;
+            bgWorkerSS.RunWorkerCompleted += BgWorkerSS_RunWorkerCompleted;
 
             LoadCompleted = true;
         }
 
+        /// <summary>
+        /// Background Worker For Progres Bar Screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void bgWorkerSS_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                Application.Current.Dispatcher.Invoke((Action)delegate {
+                    // your code
+
+                    Busy Busy = new Busy(bgWorkerSS);
+                    Busy.ShowDialog();
+                    Busy.Focus();
+                });
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void BgWorkerSS_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Properties.Settings.Default.EnablePMF = true;
+        }
 
         public void ClearAndAddList()
         {
@@ -177,7 +235,6 @@ namespace PS4_PSP_Classics_GUI
                 SoundClass.PlayPS4Sound(SoundClass.Sound.Navigation);
             }
         }
-
 
         private void OptionsView_KeyDown(object sender, KeyEventArgs e)
         {
@@ -273,9 +330,22 @@ namespace PS4_PSP_Classics_GUI
 
                             break;
                         case "Enable PSP PMF + AT3":
-                            Properties.Settings.Default.EnablePMF = true;
+                            MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                            ps4mes.ShowDialog();
+                            if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                            {
+                                bgWorkerSS.RunWorkerAsync();
+                                startDownload();
+                            }
                             break;
-
+                        case "Enable PSP UI":
+                            Properties.Settings.Default.EnablePSPMode = true;
+                            ps4mes = new MessageBox("Please Restart The Application to enable settings", "Done", PS4_MessageBoxButton.OK, SoundClass.Sound.Notification);
+                            ps4mes.ShowDialog();
+                            break;
+                        case "Enable Mysis Patch":
+                            Properties.Settings.Default.EnableMysisPatch = true;
+                            break;
 
                     }
                     Properties.Settings.Default.Save();//save the settings
@@ -304,7 +374,12 @@ namespace PS4_PSP_Classics_GUI
                         case "Enable PSP PMF + AT3":
                             Properties.Settings.Default.EnablePMF = false;
                             break;
-
+                        case "Enable PSP UI":
+                            Properties.Settings.Default.EnablePSPMode = false;
+                            break;
+                        case "Enable Mysis Patch":
+                            Properties.Settings.Default.EnableMysisPatch = false;
+                            break;
                     }
                     Properties.Settings.Default.Save();//save the settings
                 }
@@ -329,6 +404,123 @@ namespace PS4_PSP_Classics_GUI
             listBox.Background = System.Windows.Media.Brushes.Transparent;
 
             ClearAndAddList();
+        }
+
+        private void UpdateString(string txt)
+        {
+            //UpdateInfo(txt);
+            OpenCloseWaitScreen(true);
+            Busy.INFO = txt;
+            //lblTask.Invoke(new Action(() => lblTask.Text = txt));
+        }
+
+        private void OpenCloseWaitScreen(bool open)
+        {
+            if (open)
+            {
+                //Info Screen Wait screen
+                Busy.INFO = "Loading Data";
+                bgwClose = false;
+                if (!bgWorkerSS.IsBusy)
+                {
+                    bgWorkerSS.RunWorkerAsync();
+                }
+            }
+            else
+            {
+                //Wait screen/ info Screen
+                bgwClose = true;
+                bgWorkerSS.CancelAsync();
+                bgWorkerSS.Dispose();
+            }
+        }
+
+        public static string AppCommonPath()
+        {
+            string returnstring = "";
+            if (Properties.Settings.Default.OverwriteTemp == true && Properties.Settings.Default.TempPath != string.Empty)
+            {
+                returnstring = Properties.Settings.Default.TempPath + @"\Ps4Tools\";
+                if (!Directory.Exists(returnstring))
+                {
+                    Directory.CreateDirectory(returnstring);
+                }
+            }
+            else
+            {
+                returnstring = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Ps4Tools\";
+            }
+            return returnstring;
+        }
+
+        private void startDownload()
+        {
+            Thread thread = new Thread(() =>
+            {
+                sw.Start();
+                WebClient client = new WebClient();
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+                
+                var os = IntPtr.Size == 4 ? "win-x86" : "win-x64";
+                if (os == "win-x86")
+                    client.DownloadFileAsync(new Uri("http://www.nigmacontractors.co.za/pstools/psphd/libvlc/win-x86.zip"), AppCommonPath() + "win-x86.zip");
+                if (os == "win-x64")
+                    client.DownloadFileAsync(new Uri("http://www.nigmacontractors.co.za/pstools/psphd/libvlc/win-x64.zip"), AppCommonPath() + "win-x64.zip");
+            });
+            thread.Start();
+        }
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+           
+
+            // Calculate download speed and output it to labelSpeed.
+            string speed = string.Format("{0} kb/s", (e.BytesReceived / 1024d / sw.Elapsed.TotalSeconds).ToString("0.00"));
+
+           
+
+            // Show the percentage on our label.
+          string percantage= e.ProgressPercentage.ToString() + "%";
+
+            // Update the label with how much data have been downloaded so far and the total size of the file we are currently downloading
+            string download = string.Format("{0} MB's / {1} MB's",
+                (e.BytesReceived / 1024d / 1024d).ToString("0.00"),
+                (e.TotalBytesToReceive / 1024d / 1024d).ToString("0.00"));
+            string Builder = string.Format(@"Downloading libvlc extension {1}
+Downloaded : {0}
+Speed : {2}
+                              ",download, percantage,speed);
+
+            UpdateString(Builder);
+
+        }
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            OpenCloseWaitScreen(false);
+            sw.Reset();
+            //create libvlc directory 
+            if (!Directory.Exists(AppCommonPath() + "libvlc"))
+            {
+                Directory.CreateDirectory(AppCommonPath() + "libvlc");
+            }
+
+            var os = IntPtr.Size == 4 ? "win-x86" : "win-x64";
+            if (os == "win-x86")
+            {
+                ZipFile.ExtractToDirectory(AppCommonPath() + "win-x86.zip", AppCommonPath() + @"\libvlc\");
+            }
+            else
+            {
+              
+                ZipFile.ExtractToDirectory(AppCommonPath() + "win-x64.zip", AppCommonPath() + @"\libvlc\");
+
+            }
+            Application.Current.Dispatcher.Invoke((Action)delegate {
+                // your code
+            
+            MessageBox ps4mes = new MessageBox("Content Downloaded and Added\n\nPlease Restart The Application", "Done", PS4_MessageBoxButton.OK, SoundClass.Sound.Notification);
+            ps4mes.ShowDialog();
+            });
         }
 
         private void ListView_MouseDown(object sender, MouseButtonEventArgs e)

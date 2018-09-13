@@ -16,6 +16,28 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\Publish\PSP Classics\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.nigmacontractors.co.za/PSTools/PSPClassics/</InstallUrl>
+    <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/PSPClassics/</UpdateUrl>
+    <PublisherName>The Darkprogramer</PublisherName>
+    <SuiteName>PSTools</SuiteName>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <ExcludeDeploymentUrl>true</ExcludeDeploymentUrl>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,6 +61,18 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C1F8DAA62FE9978EF05D3AD513804ABC9A1069EE</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>PS4 PSP Classics GUI_2_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DiscUtils, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Discutils.0.11.0.2\lib\net40\DiscUtils.dll</HintPath>
@@ -50,6 +84,9 @@
     </Reference>
     <Reference Include="NAudio">
       <HintPath>..\..\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="PARAM.SFO">
+      <HintPath>..\..\PARAM.SFO Editor\PARAM.SFO\bin\Debug\PARAM.SFO.dll</HintPath>
     </Reference>
     <Reference Include="PSP_Tools">
       <HintPath>..\..\..\..\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\PSP_Tools.dll</HintPath>
@@ -149,10 +186,183 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="PS4 PSP Classics GUI_2_TemporaryKey.pfx" />
     <None Include="Resources\PSP.zip" />
     <None Include="Resources\quickbuild.gp4">
       <SubType>Designer</SubType>
     </None>
+    <Resource Include="Resources\tex_1seg.dat" />
+    <Resource Include="Resources\tex_1seg.gim" />
+    <Resource Include="Resources\tex_account.dat" />
+    <Resource Include="Resources\tex_account.gim" />
+    <Resource Include="Resources\tex_browser.dat" />
+    <Resource Include="Resources\tex_browser.gim" />
+    <Resource Include="Resources\tex_camera.dat" />
+    <Resource Include="Resources\tex_camera.gim" />
+    <Resource Include="Resources\tex_cnf_bluetooth.dat" />
+    <Resource Include="Resources\tex_cnf_bluetooth.gim" />
+    <Resource Include="Resources\tex_cnf_date.dat" />
+    <Resource Include="Resources\tex_cnf_date.gim" />
+    <Resource Include="Resources\tex_cnf_display.dat" />
+    <Resource Include="Resources\tex_cnf_display.gim" />
+    <Resource Include="Resources\tex_cnf_network.dat" />
+    <Resource Include="Resources\tex_cnf_network.gim" />
+    <Resource Include="Resources\tex_cnf_password.dat" />
+    <Resource Include="Resources\tex_cnf_password.gim" />
+    <Resource Include="Resources\tex_cnf_photo.dat" />
+    <Resource Include="Resources\tex_cnf_photo.gim" />
+    <Resource Include="Resources\tex_cnf_psp.dat" />
+    <Resource Include="Resources\tex_cnf_psp.gim" />
+    <Resource Include="Resources\tex_cnf_rss.dat" />
+    <Resource Include="Resources\tex_cnf_rss.gim" />
+    <Resource Include="Resources\tex_cnf_save_energy.dat" />
+    <Resource Include="Resources\tex_cnf_save_energy.gim" />
+    <Resource Include="Resources\tex_cnf_sound.dat" />
+    <Resource Include="Resources\tex_cnf_sound.gim" />
+    <Resource Include="Resources\tex_cnf_theme.dat" />
+    <Resource Include="Resources\tex_cnf_theme.gim" />
+    <Resource Include="Resources\tex_cnf_update.dat" />
+    <Resource Include="Resources\tex_cnf_update.gim" />
+    <Resource Include="Resources\tex_cnf_usb.dat" />
+    <Resource Include="Resources\tex_cnf_usb.gim" />
+    <Resource Include="Resources\tex_cnf_video.dat" />
+    <Resource Include="Resources\tex_cnf_video.gim" />
+    <Resource Include="Resources\tex_ef0.dat" />
+    <Resource Include="Resources\tex_ef0.gim" />
+    <Resource Include="Resources\tex_fcs_1seg.dat" />
+    <Resource Include="Resources\tex_fcs_1seg.gim" />
+    <Resource Include="Resources\tex_fcs_account.dat" />
+    <Resource Include="Resources\tex_fcs_account.gim" />
+    <Resource Include="Resources\tex_fcs_browser.dat" />
+    <Resource Include="Resources\tex_fcs_browser.gim" />
+    <Resource Include="Resources\tex_fcs_camera.dat" />
+    <Resource Include="Resources\tex_fcs_camera.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_bluetooth.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_bluetooth.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_date.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_date.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_display.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_display.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_network.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_network.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_password.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_password.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_photo.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_photo.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_psp.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_psp.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_rss.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_rss.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_save_energy.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_save_energy.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_sound.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_sound.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_theme.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_theme.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_update.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_update.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_usb.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_usb.gim" />
+    <Resource Include="Resources\tex_fcs_cnf_video.dat" />
+    <Resource Include="Resources\tex_fcs_cnf_video.gim" />
+    <Resource Include="Resources\tex_fcs_ef0.dat" />
+    <Resource Include="Resources\tex_fcs_ef0.gim" />
+    <Resource Include="Resources\tex_fcs_hb.dat" />
+    <Resource Include="Resources\tex_fcs_hb.gim" />
+    <Resource Include="Resources\tex_fcs_help.dat" />
+    <Resource Include="Resources\tex_fcs_help.gim" />
+    <Resource Include="Resources\tex_fcs_infomation.dat" />
+    <Resource Include="Resources\tex_fcs_infomation.gim" />
+    <Resource Include="Resources\tex_fcs_lftv.dat" />
+    <Resource Include="Resources\tex_fcs_lftv.gim" />
+    <Resource Include="Resources\tex_fcs_MS.dat" />
+    <Resource Include="Resources\tex_fcs_MS.gim" />
+    <Resource Include="Resources\tex_fcs_podcast.dat" />
+    <Resource Include="Resources\tex_fcs_podcast.gim" />
+    <Resource Include="Resources\tex_fcs_premo.dat" />
+    <Resource Include="Resources\tex_fcs_premo.gim" />
+    <Resource Include="Resources\tex_fcs_psstore.dat" />
+    <Resource Include="Resources\tex_fcs_psstore.gim" />
+    <Resource Include="Resources\tex_fcs_radio.dat" />
+    <Resource Include="Resources\tex_fcs_radio.gim" />
+    <Resource Include="Resources\tex_fcs_savedata.dat" />
+    <Resource Include="Resources\tex_fcs_savedata.gim" />
+    <Resource Include="Resources\tex_fcs_sd_ef0.dat" />
+    <Resource Include="Resources\tex_fcs_sd_ef0.gim" />
+    <Resource Include="Resources\tex_fcs_search.dat" />
+    <Resource Include="Resources\tex_fcs_search.gim" />
+    <Resource Include="Resources\tex_fcs_sensme.dat" />
+    <Resource Include="Resources\tex_fcs_sensme.gim" />
+    <Resource Include="Resources\tex_fcs_sharing.dat" />
+    <Resource Include="Resources\tex_fcs_sharing.gim" />
+    <Resource Include="Resources\tex_fcs_signup.dat" />
+    <Resource Include="Resources\tex_fcs_signup.gim" />
+    <Resource Include="Resources\tex_fcs_skype.dat" />
+    <Resource Include="Resources\tex_fcs_skype.gim" />
+    <Resource Include="Resources\tex_fcs_spot.dat" />
+    <Resource Include="Resources\tex_fcs_spot.gim" />
+    <Resource Include="Resources\tex_fcs_tdmb.dat" />
+    <Resource Include="Resources\tex_fcs_tdmb.gim" />
+    <Resource Include="Resources\tex_fcs_UMD.dat" />
+    <Resource Include="Resources\tex_fcs_UMD.gim" />
+    <Resource Include="Resources\tex_fcs_update.dat" />
+    <Resource Include="Resources\tex_fcs_update.gim" />
+    <Resource Include="Resources\tex_game.dat" />
+    <Resource Include="Resources\tex_game.gim" />
+    <Resource Include="Resources\tex_hb.dat" />
+    <Resource Include="Resources\tex_hb.gim" />
+    <Resource Include="Resources\tex_help.dat" />
+    <Resource Include="Resources\tex_help.gim" />
+    <Resource Include="Resources\tex_infomation.dat" />
+    <Resource Include="Resources\tex_infomation.gim" />
+    <Resource Include="Resources\tex_lftv.dat" />
+    <Resource Include="Resources\tex_lftv.gim" />
+    <Resource Include="Resources\tex_ms.dat" />
+    <Resource Include="Resources\tex_ms.gim" />
+    <Resource Include="Resources\tex_music.dat" />
+    <Resource Include="Resources\tex_music.gim" />
+    <Resource Include="Resources\tex_network.dat" />
+    <Resource Include="Resources\tex_network.gim" />
+    <Resource Include="Resources\tex_photo.dat" />
+    <Resource Include="Resources\tex_photo.gim" />
+    <Resource Include="Resources\tex_podcast.dat" />
+    <Resource Include="Resources\tex_podcast.gim" />
+    <Resource Include="Resources\tex_premo.dat" />
+    <Resource Include="Resources\tex_premo.gim" />
+    <Resource Include="Resources\tex_psn.dat" />
+    <Resource Include="Resources\tex_psn.gim" />
+    <Resource Include="Resources\tex_psstore.dat" />
+    <Resource Include="Resources\tex_psstore.gim" />
+    <Resource Include="Resources\tex_radio.dat" />
+    <Resource Include="Resources\tex_radio.gim" />
+    <Resource Include="Resources\tex_savedata.dat" />
+    <Resource Include="Resources\tex_savedata.gim" />
+    <Resource Include="Resources\tex_sd_ef0.dat" />
+    <Resource Include="Resources\tex_sd_ef0.gim" />
+    <Resource Include="Resources\tex_search.dat" />
+    <Resource Include="Resources\tex_search.gim" />
+    <Resource Include="Resources\tex_sensme.dat" />
+    <Resource Include="Resources\tex_sensme.gim" />
+    <Resource Include="Resources\tex_sharing.dat" />
+    <Resource Include="Resources\tex_sharing.gim" />
+    <Resource Include="Resources\tex_signup.dat" />
+    <Resource Include="Resources\tex_signup.gim" />
+    <Resource Include="Resources\tex_skype.dat" />
+    <Resource Include="Resources\tex_skype.gim" />
+    <Resource Include="Resources\tex_spot.dat" />
+    <Resource Include="Resources\tex_spot.gim" />
+    <Resource Include="Resources\tex_system.dat" />
+    <Resource Include="Resources\tex_system.gim" />
+    <Resource Include="Resources\tex_tdmb.dat" />
+    <Resource Include="Resources\tex_tdmb.gim" />
+    <Resource Include="Resources\tex_tv.dat" />
+    <Resource Include="Resources\tex_tv.gim" />
+    <Resource Include="Resources\tex_umd.dat" />
+    <Resource Include="Resources\tex_umd.gim" />
+    <Resource Include="Resources\tex_update.dat" />
+    <Resource Include="Resources\tex_update.gim" />
+    <Resource Include="Resources\tex_video.dat" />
+    <Resource Include="Resources\tex_video.gim" />
     <Resource Include="Resources\ext.zip" />
     <Resource Include="Resources\param.sfo" />
   </ItemGroup>
@@ -290,6 +500,540 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\tex_default_game_icon.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bg_index.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PSP Wave Background loop - blue color.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_1seg.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_1seg.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_account.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_account.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_browser.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_browser.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_camera.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_camera.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_bluetooth.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_bluetooth.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_date.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_date.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_display.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_display.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_network.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_network.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_password.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_password.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_photo.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_photo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_psp.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_psp.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_rss.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_rss.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_save_energy.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_save_energy.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_sound.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_sound.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_theme.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_theme.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_update.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_update.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_usb.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_usb.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_video.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_cnf_video.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_ef0.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_ef0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_1seg.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_1seg.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_account.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_account.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_browser.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_browser.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_camera.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_camera.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_bluetooth.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_bluetooth.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_date.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_date.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_display.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_display.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_network.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_network.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_password.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_password.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_photo.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_photo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_psp.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_psp.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_rss.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_rss.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_save_energy.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_save_energy.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_sound.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_sound.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_theme.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_theme.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_update.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_update.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_usb.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_usb.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_video.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_cnf_video.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_ef0.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_ef0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_hb.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_hb.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_help.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_help.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_infomation.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_infomation.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_lftv.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_lftv.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_MS.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_MS.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_podcast.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_podcast.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_premo.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_premo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_psstore.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_psstore.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_radio.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_radio.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_savedata.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_savedata.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_sd_ef0.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_sd_ef0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_search.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_search.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_sensme.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_sensme.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_sharing.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_sharing.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_signup.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_signup.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_skype.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_skype.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_spot.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_spot.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_tdmb.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_tdmb.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_UMD.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_UMD.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_update.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_fcs_update.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_game.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_game.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_hb.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_hb.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_help.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_help.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_infomation.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_infomation.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_lftv.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_lftv.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_ms.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_ms.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_music.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_music.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_network.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_network.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_photo.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_photo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_podcast.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_podcast.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_premo.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_premo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_psn.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_psn.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_psstore.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_psstore.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_radio.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_radio.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_savedata.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_savedata.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_sd_ef0.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_sd_ef0.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_search.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_search.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_sensme.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_sensme.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_sharing.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_sharing.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_signup.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_signup.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_skype.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_skype.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_spot.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_spot.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_system.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_system.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_tdmb.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_tdmb.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_tv.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_tv.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_umd.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_umd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_update.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_update.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_video.32bit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tex_video.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
