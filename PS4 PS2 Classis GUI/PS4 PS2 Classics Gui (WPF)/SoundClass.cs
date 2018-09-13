@@ -79,168 +79,176 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
         public static void PlayPS4Sound(Sound Soundtoplay)
         {
-            switch (Soundtoplay)
+            try
             {
+                switch (Soundtoplay)
+                {
 
-                case Sound.Notification:
-                    {
-                        new Thread(() =>
+                    case Sound.Notification:
                         {
+                            new Thread(() =>
+                            {
                             //set the thread as a background worker
                             Thread.CurrentThread.IsBackground = true;
 
-                            IWavePlayer waveOutDevice = new WaveOut();
-                            WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Notification);
+                                IWavePlayer waveOutDevice = new WaveOut();
+                                WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Notification);
 
-                            TimeSpan ts = mp3file.TotalTime;
+                                TimeSpan ts = mp3file.TotalTime;
 
-                            waveOutDevice.Init(mp3file);
+                                waveOutDevice.Init(mp3file);
 
-                            waveOutDevice.Volume = 0.7f;
-                            waveOutDevice.Play();
+                                waveOutDevice.Volume = 0.7f;
+                                waveOutDevice.Play();
 
 
                             /* run your code here */
-                            Thread.Sleep(ts);
-                            waveOutDevice.Dispose();
-                            waveOutDevice.Stop();
+                                Thread.Sleep(ts);
+                                waveOutDevice.Dispose();
+                                waveOutDevice.Stop();
 
-                        }).Start();
-                    }
-                    break;
-                case Sound.Error:
-                    {             
-                        new Thread(() =>
+                            }).Start();
+                        }
+                        break;
+                    case Sound.Error:
                         {
+                            new Thread(() =>
+                            {
                             //set the thread as a background worker
                             Thread.CurrentThread.IsBackground = true;
 
-                            IWavePlayer waveOutDevice = new WaveOut();
-                            WaveStream mp3file = CreateInputStream(Properties.Resources.Ps4_Error_Sound);
+                                IWavePlayer waveOutDevice = new WaveOut();
+                                WaveStream mp3file = CreateInputStream(Properties.Resources.Ps4_Error_Sound);
 
-                            TimeSpan ts = mp3file.TotalTime;
+                                TimeSpan ts = mp3file.TotalTime;
 
-                            waveOutDevice.Init(mp3file);
+                                waveOutDevice.Init(mp3file);
 
-                            waveOutDevice.Volume = 0.5f;
-                            waveOutDevice.Play();
+                                waveOutDevice.Volume = 0.5f;
+                                waveOutDevice.Play();
 
 
                             /* run your code here */
-                            Thread.Sleep(ts);
-                            waveOutDevice.Dispose();
-                            waveOutDevice.Stop();
-                           
-                        }).Start();
-                    }
-                    break;
-                case Sound.Shutdown:
-                    {
-                        WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Shutdown);
-                        TimeSpan ts = mp3file.TotalTime;
-                        waveOutDevice.Init(mp3file);
+                                Thread.Sleep(ts);
+                                waveOutDevice.Dispose();
+                                waveOutDevice.Stop();
 
-                        waveOutDevice.Volume = 0.5f;
-                        waveOutDevice.Play();
-
-                        new Thread(() =>
+                            }).Start();
+                        }
+                        break;
+                    case Sound.Shutdown:
                         {
-                            Thread.CurrentThread.IsBackground = true;
-                            /* run your code here */
-                            Thread.Sleep(ts);
-                            waveOutDevice.Stop();
-                            //waveOutDevice.Dispose();
-                        }).Start();
-                    }
-                    break;
-                case Sound.PS4_Info_Pannel_Sound:
-                    {
-                        new Thread(() =>
-                        {
-                            //set the thread as a background worker
-                            Thread.CurrentThread.IsBackground = true;
-
-                            IWavePlayer waveOutDevice = new WaveOut();
-
-                            WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Notification);
+                            WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Shutdown);
                             TimeSpan ts = mp3file.TotalTime;
                             waveOutDevice.Init(mp3file);
 
                             waveOutDevice.Volume = 0.5f;
                             waveOutDevice.Play();
 
-                            Thread.Sleep(ts);
-                            waveOutDevice.Stop();
-                        }).Start();
-                        break;
-                    }
-                case Sound.Options:
-                    {
-
-                        WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Options_Pannel);
-                        TimeSpan ts = mp3file.TotalTime;
-                        waveOutDevice.Init(mp3file);
-
-                        waveOutDevice.Volume = 0.5f;
-                        waveOutDevice.Play();
-
-                        new Thread(() =>
-                        {
-                            Thread.CurrentThread.IsBackground = true;
+                            new Thread(() =>
+                            {
+                                Thread.CurrentThread.IsBackground = true;
                             /* run your code here */
-                            Thread.Sleep(ts);
-                            waveOutDevice.Stop();
+                                Thread.Sleep(ts);
+                                waveOutDevice.Stop();
                             //waveOutDevice.Dispose();
                         }).Start();
+                        }
                         break;
-                    }
-                case Sound.Navigation:
-                    {
-                        new Thread(() =>
+                    case Sound.PS4_Info_Pannel_Sound:
                         {
+                            new Thread(() =>
+                            {
+                            //set the thread as a background worker
                             Thread.CurrentThread.IsBackground = true;
-                            IWavePlayer waveOutDevice = new WaveOut();
 
-                            WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Navigation_Sound);
+                                IWavePlayer waveOutDevice = new WaveOut();
+
+                                WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Notification);
+                                TimeSpan ts = mp3file.TotalTime;
+                                waveOutDevice.Init(mp3file);
+
+                                waveOutDevice.Volume = 0.5f;
+                                waveOutDevice.Play();
+
+                                Thread.Sleep(ts);
+                                waveOutDevice.Stop();
+                            }).Start();
+                            break;
+                        }
+                    case Sound.Options:
+                        {
+
+                            WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Options_Pannel);
                             TimeSpan ts = mp3file.TotalTime;
                             waveOutDevice.Init(mp3file);
 
                             waveOutDevice.Volume = 0.5f;
                             waveOutDevice.Play();
 
+                            new Thread(() =>
+                            {
+                                Thread.CurrentThread.IsBackground = true;
+                            /* run your code here */
+                                Thread.Sleep(ts);
+                                waveOutDevice.Stop();
+                            //waveOutDevice.Dispose();
+                        }).Start();
+                            break;
+                        }
+                    case Sound.Navigation:
+                        {
+                            new Thread(() =>
+                            {
+                                Thread.CurrentThread.IsBackground = true;
+                                IWavePlayer waveOutDevice = new WaveOut();
+
+                                WaveStream mp3file = CreateInputStream(Properties.Resources.PS4_Navigation_Sound);
+                                TimeSpan ts = mp3file.TotalTime;
+                                waveOutDevice.Init(mp3file);
+
+                                waveOutDevice.Volume = 0.5f;
+                                waveOutDevice.Play();
+
 
                             /* run your code here */
-                            Thread.Sleep(ts);
-                            waveOutDevice.Stop();
+                                Thread.Sleep(ts);
+                                waveOutDevice.Stop();
                             //waveOutDevice.Dispose();
                         }).Start();
 
 
+                            break;
+                        }
+                    case Sound.PS4_Music:
+                        {
+
+                            WaveStream mp3file = CreateInputStream(Properties.Resources.ps4BGM);
+
+                            ////PS4BGMDevice = new AsioOut("ASIO4ALL v2");
+                            ////PS4BGMDevice.Init(mp3file);
+                            ////PS4BGMDevice.Play();
+
+                            TimeSpan ts = mp3file.TotalTime;
+
+                            PS4BGMDevice.Init(mp3file);
+
+                            PS4BGMDevice.Volume = 0.5f;
+                            PS4BGMDevice.Play();
+                        }
                         break;
-                    }
-                case Sound.PS4_Music:
-                    {
 
-                        WaveStream mp3file = CreateInputStream(Properties.Resources.ps4BGM);
-
-                        ////PS4BGMDevice = new AsioOut("ASIO4ALL v2");
-                        ////PS4BGMDevice.Init(mp3file);
-                        ////PS4BGMDevice.Play();
-
-                        TimeSpan ts = mp3file.TotalTime;
-
-                        PS4BGMDevice.Init(mp3file);
-
-                        PS4BGMDevice.Volume = 0.5f;
-                        PS4BGMDevice.Play();
-                    }
-                    break;
-
-                default:
-                    break;
+                    default:
+                        break;
 
 
 
+                }
+            }
+            catch(Exception ex)
+            {
+                //encolsed the entire sound class to not crash on issue #13 
+                //it will still break but atleast the application should not crash
             }
         }
     }
