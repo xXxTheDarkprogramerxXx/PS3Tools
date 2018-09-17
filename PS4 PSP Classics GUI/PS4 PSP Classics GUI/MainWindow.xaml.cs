@@ -295,13 +295,20 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
             txtPath.IsEnabled = true;
             lblPS2ID.Visibility = Visibility.Visible;
             Icon0.Visibility = Visibility.Visible;
-            if (Util.SoundClass.atr3vlc.IsPlaying)
+            try
             {
-                Util.SoundClass.atr3vlc.Stop();
+                if (Util.SoundClass.atr3vlc.IsPlaying)
+                {
+                    Util.SoundClass.atr3vlc.Stop();
+                }
+                if (tempvlc.IsPlaying)
+                {
+                    tempvlc.Stop();
+                }
             }
-            if (tempvlc.IsPlaying)
+            catch
             {
-                tempvlc.Stop();
+
             }
             if (Properties.Settings.Default.EnablePMF == false)
             {
@@ -600,25 +607,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
         {        
             try
             {
-                if(Properties.Settings.Default.EnablePSPMode == true)
-                {
-                    PSPLayoutIdea psplayout = new PSPLayoutIdea();
-                    psplayout.ShowDialog();
-                    this.Close();
-                }
-
-                #region << Background Workers >>
-                
-                bgWorkerSS.DoWork += bgWorkerSS_DoWork;
-                bgWorkerSS.WorkerSupportsCancellation = true;
-                bgWorkerVLC.DoWork += BgWorkerVLC_DoWork;
-
-
-                backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
-                backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
-                bgWorkerVLC.RunWorkerCompleted += BgWorkerVLC_RunWorkerCompleted;
-
-                #endregion << Background Workers >>
+               
 
                 #region << Quick Sound/Video Extract >>
 
@@ -634,6 +623,26 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                 System.IO.File.WriteAllBytes(AppCommonPath() + @"\PSPEmu\" + "param.sfo", Properties.Resources.param);
 
                 #endregion <<Quick Sound/Video Extract >>
+
+                if (Properties.Settings.Default.EnablePSPMode == true)
+                {
+                    PSPLayoutIdea psplayout = new PSPLayoutIdea();
+                    psplayout.ShowDialog();
+                    this.Close();
+                }
+
+                #region << Background Workers >>
+
+                bgWorkerSS.DoWork += bgWorkerSS_DoWork;
+                bgWorkerSS.WorkerSupportsCancellation = true;
+                bgWorkerVLC.DoWork += BgWorkerVLC_DoWork;
+
+
+                backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+                backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+                bgWorkerVLC.RunWorkerCompleted += BgWorkerVLC_RunWorkerCompleted;
+
+                #endregion << Background Workers >>
 
                 #region << Boot Screen Settings >>
 
@@ -1593,14 +1602,16 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
             if (Properties.Settings.Default.OverwriteTemp == true && Properties.Settings.Default.TempPath != string.Empty)
             {
                 returnstring = Properties.Settings.Default.TempPath + @"\Ps4Tools\";
-                if (!Directory.Exists(returnstring))
-                {
-                    Directory.CreateDirectory(returnstring);
-                }
+             
             }
             else
             {
                 returnstring = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Ps4Tools\";
+            }
+
+            if (!Directory.Exists(returnstring))
+            {
+                Directory.CreateDirectory(returnstring);
             }
             return returnstring;
         }

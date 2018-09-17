@@ -111,9 +111,27 @@ namespace PS4_PSP_Classics_GUI
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
+         
+
+            #region << Quick Sound/Video Extract >>
+
+
+            System.IO.File.WriteAllBytes(AppCommonPath() + "PS4.mp3", Properties.Resources.ps4BGM);
+            System.IO.File.WriteAllBytes(AppCommonPath() + "PSP.mp4", Properties.Resources.PSP_Logo);
+            System.IO.File.WriteAllBytes(AppCommonPath() + "PSPWave.mp4", Properties.Resources.PSP_Wave);
+
+            if (!Directory.Exists(AppCommonPath() + @"\PSPEmu\"))
+            {
+                UpdateInfo("Created Directory" + AppCommonPath() + @"\PSPEmu\");
+                Directory.CreateDirectory(AppCommonPath() + @"\PSPEmu\");
+            }
+            System.IO.File.WriteAllBytes(AppCommonPath() + @"\PSPEmu\" + "param.sfo", Properties.Resources.param);
+
+            #endregion <<Quick Sound/Video Extract >>
+
             #region << PSP Gim Files Extraction >>
 
-            
+
             PSP_Tools.GIM gimmy = new PSP_Tools.GIM(Properties.Resources.tex_system2);
 
             var images = gimmy.ConvertToBitmaps();
@@ -137,22 +155,6 @@ namespace PS4_PSP_Classics_GUI
             backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
 
             #endregion << Background Workers >>
-
-            #region << Quick Sound/Video Extract >>
-
-
-            System.IO.File.WriteAllBytes(AppCommonPath() + "PS4.mp3", Properties.Resources.ps4BGM);
-            System.IO.File.WriteAllBytes(AppCommonPath() + "PSP.mp4", Properties.Resources.PSP_Logo);
-            System.IO.File.WriteAllBytes(AppCommonPath() + "PSPWave.mp4", Properties.Resources.PSP_Wave);
-
-            if (!Directory.Exists(AppCommonPath() + @"\PSPEmu\"))
-            {
-                UpdateInfo("Created Directory" + AppCommonPath() + @"\PSPEmu\");
-                Directory.CreateDirectory(AppCommonPath() + @"\PSPEmu\");
-            }
-            System.IO.File.WriteAllBytes(AppCommonPath() + @"\PSPEmu\" + "param.sfo", Properties.Resources.param);
-
-            #endregion <<Quick Sound/Video Extract >>
 
             #region << Boot Screen Settings >>
 
@@ -314,13 +316,20 @@ namespace PS4_PSP_Classics_GUI
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             Icon0.Visibility = Visibility.Visible;
-            if (Util.SoundClass.atr3vlc.IsPlaying)
+            try
             {
-                Util.SoundClass.atr3vlc.Stop();
+                if (Util.SoundClass.atr3vlc.IsPlaying)
+                {
+                    Util.SoundClass.atr3vlc.Stop();
+                }
+                if (tempvlc.IsPlaying)
+                {
+                    tempvlc.Stop();
+                }
             }
-            if (tempvlc.IsPlaying)
+            catch
             {
-                tempvlc.Stop();
+
             }
             if (Properties.Settings.Default.EnablePMF == false)
             {
@@ -889,15 +898,46 @@ namespace PS4_PSP_Classics_GUI
                     else
                     {
                         //we need to handle iso creation from PBP
+                        if(type == FileType.FileTypes.PBP)
+                        {
 
+                            UpdateString("Extracting PBP");
 
-                        //clean up the blank file
-                        File.Delete(AppCommonPath() + @"\PSP\DATA\GAME.iso");
-                        string currentimage = "";
-                        currentimage = pspfiles[0].ToString().Trim();//first and only item
-                        File.Copy(currentimage, AppCommonPath() + @"\PSP\DATA\GAME.iso", true);
+                            //we need to extart all files to a folder within working 
+                            //we want an eboot and a boot.bin so we create both (since the PS4 Boots boot.bin 
+                            pbp.WritePBPFiles(AppCommonPath() + @"\Working\PSPISO\", pspdata: "EBOOT.BIN", psrdata: "DATA.BIN", make_eboot_boot: true);
 
-                        BusyCoping = false;
+                            //clean up blank file
+                            File.Delete(AppCommonPath() + @"\PSP\DATA\GAME.iso");
+
+                            //now pack the pbp as an iso 
+                            PSP_Tools.UMD.ISO umdiso = new PSP_Tools.UMD.ISO();
+                            umdiso.PSPTitle = psfo.Title;//set the title of the iso to that which is inside the sfo
+                            umdiso.CreateISO(@"\Working\PSPISO\", @"\PSP\DATA\GAME.iso");//fake sign should not have to apply here 
+
+                            UpdateString("Creating ISO");
+
+                            while (umdiso.Status == PSP_Tools.UMD.ISO.ISOStatus.Busy)
+                            {
+                                //sleep the thread
+                                DoEvents();
+                            }
+                            if(umdiso.Status == PSP_Tools.UMD.ISO.ISOStatus.Completed)
+                            {
+                                BusyCoping = false;
+                            }
+                        }
+
+                        if (type == FileType.FileTypes.ISO)
+                        {
+                            //clean up the blank file
+                            File.Delete(AppCommonPath() + @"\PSP\DATA\GAME.iso");
+                            string currentimage = "";
+                            currentimage = pspfiles[0].ToString().Trim();//first and only item
+                            File.Copy(currentimage, AppCommonPath() + @"\PSP\DATA\GAME.iso", true);
+
+                            BusyCoping = false;
+                        }
                     }
 
                     BusyCoping = false;
