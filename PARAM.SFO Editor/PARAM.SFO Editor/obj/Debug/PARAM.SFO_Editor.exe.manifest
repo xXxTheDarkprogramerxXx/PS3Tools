@@ -43,14 +43,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PARAM.SFO_Editor.exe" size="742368">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PARAM.SFO.dll" size="16384">
+      <assemblyIdentity name="PARAM.SFO" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>+9YXzxNCddQhGOpybHsCeBY5hdvhJahkLvAYav6+YEE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PARAM.SFO_Editor.exe" size="732128">
       <assemblyIdentity name="PARAM.SFO_Editor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>4D+NAmq6aLEWzQ/Gy8q0n/73MQr7sPnVoj5did9o+LQ=</dsig:DigestValue>
+        <dsig:DigestValue>p06xUGE4ZcNncMF7i+V4Vd/yDWRreA087HDZ6L/u8Ak=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -26,7 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using PARAM.SFO_Editor.SFO;
+using PARAM.SFO;
 using System.Runtime.InteropServices;
 using System.Linq;
 
@@ -201,30 +201,39 @@ namespace Param_SFO
             }
         }
 
-        public PARAM.SFO_Editor.Form1.Playstation PlaystationVersion
+        public enum Playstation
+        {
+            ps3 = 0,
+            psvita = 1,
+            ps4 = 2,
+            psp = 3,
+            unknown = 4,//there will be a time i no longer support the scene this will be for ps5+ most probabbly
+        }
+
+        public Playstation PlaystationVersion
         {
             get
             {
                 if (Tables == null)
-                    return PARAM.SFO_Editor.Form1.Playstation.unknown;
+                    return Playstation.unknown;
                 foreach (Table t in Tables)
                 {
                     if (t.Name == "PS3_SYSTEM_VER")
-                        return PARAM.SFO_Editor.Form1.Playstation.ps3;//this is the unique offset for ps3
+                        return Playstation.ps3;//this is the unique offset for ps3
                     if (t.Name == "PSP2_SYSTEM_VER")
                     {
-                        return PARAM.SFO_Editor.Form1.Playstation.psvita;//this is the only flag that tells us its a psvita
+                        return Playstation.psvita;//this is the only flag that tells us its a psvita
                     }
                     if (t.Name == "PSP_SYSTEM_VER")
                     {
-                        return PARAM.SFO_Editor.Form1.Playstation.psp;//this is how we know its a psp
+                        return Playstation.psp;//this is how we know its a psp
                     }
                     if (t.Name == "SYSTEM_VER")//i believe this to be only ps4
                     {
-                        return PARAM.SFO_Editor.Form1.Playstation.ps4;
+                        return Playstation.ps4;
                     }
                 }  
-                return PARAM.SFO_Editor.Form1.Playstation.unknown;
+                return Playstation.unknown;
             }
         }
 

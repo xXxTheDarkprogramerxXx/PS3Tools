@@ -25,9 +25,8 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Threading;
-using System.Windows.Forms;
 
-namespace Param_SFO
+namespace PARAM.SFO
 {
     internal static class Functions
     {

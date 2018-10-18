@@ -14,14 +14,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PARAM.SFO_Editor.exe.manifest" size="5476">
+    <dependentAssembly dependencyType="install" codebase="PARAM.SFO_Editor.exe.manifest" size="6112">
       <assemblyIdentity name="PARAM.SFO_Editor.exe" version="1.2.0.15" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>In0id1BpCDTH9DuZVgW1s/0UOJs2qFMWjUkv3KU6dg4=</dsig:DigestValue>
+        <dsig:DigestValue>GZ2x61s/xdrMEtQ2rjZMxZ4ZwGRYe7cRwEMAaaFfSlA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -14,6 +14,8 @@ using System.Reflection;
 using System.Deployment.Application;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
+using Param_SFO;
+
 
 namespace PARAM.SFO_Editor
 {
@@ -86,18 +88,9 @@ namespace PARAM.SFO_Editor
 
        public static Param_SFO.PARAM_SFO psfo;
 
-        Playstation version;
+        public static Param_SFO.PARAM_SFO.Playstation version;
 
         System.Timers.Timer timer;
-
-        public enum Playstation
-        {
-            ps3 = 0,
-            psvita = 1,
-            ps4 = 2,
-            psp = 3,
-            unknown = 4,//there will be a time i no longer support the scene this will be for ps5+ most probabbly
-        }
 
         #region << For The Image Loop >>
 
@@ -290,7 +283,7 @@ namespace PARAM.SFO_Editor
         public void CreateSFX(Param_SFO.PARAM_SFO psfo, SaveFileDialog dlg)
         {
             string FileHeader;
-            if (version == Form1.Playstation.ps4)
+            if (version == PARAM_SFO.Playstation.ps4)
             {
                 //list items we don't want to see in the SFX
                 List<string> Blockeditems = new List<string>();
@@ -599,7 +592,7 @@ namespace PARAM.SFO_Editor
                 while (i == 0)
                 {
                     #region << PS3 >>
-                    if (version == Playstation.ps3)
+                    if (version == Param_SFO.PARAM_SFO.Playstation.ps3)
                     {
 
                         if (Directory.Exists(MainPath + @"\C00\") && i == 0)
@@ -637,7 +630,7 @@ namespace PARAM.SFO_Editor
                     try
                     {
                         #region << PS3 >>
-                        if (version == Playstation.ps3)
+                        if (version == PARAM_SFO.Playstation.ps3)
                         {
                             if (Directory.Exists(MainPath + @"\C00\") && i == 1)
                             {
@@ -1063,7 +1056,7 @@ namespace PARAM.SFO_Editor
             }
             if (cbxAddon.SelectedItem.ToString() == "ATTRIBUTE")
             {
-                if (version == Playstation.psvita)
+                if (version == PARAM_SFO.Playstation.psvita)
                 {
                     Uncheck_Attribute_All();
 
@@ -1452,7 +1445,7 @@ namespace PARAM.SFO_Editor
                 //if ps4 add pub tool info 
                 //we do need to check if this is all valid
 
-                if (psfo.PlaystationVersion == Playstation.ps4)
+                if (psfo.PlaystationVersion == PARAM_SFO.Playstation.ps4)
                 {
                     bool foundpubinfo = false;
                     bool foundpubver = false;
@@ -1612,7 +1605,7 @@ namespace PARAM.SFO_Editor
 
                 version = psfo.PlaystationVersion;
 
-                if(version == Playstation.ps4)
+                if (version == PARAM_SFO.Playstation.ps4)
                 {
                     tbControl.TabPages.Add(tbPS4);
                     tbControl.TabPages.Remove(tbPS3);
@@ -1621,7 +1614,7 @@ namespace PARAM.SFO_Editor
                     pictureBox2.Visible = true;
                 }
 
-                if (version == Playstation.ps3)
+                if (version == PARAM_SFO.Playstation.ps3)
                 {
                     tbControl.TabPages.Remove(tbPS4);
                     tbControl.TabPages.Add(tbPS3);
@@ -1629,7 +1622,7 @@ namespace PARAM.SFO_Editor
                     tbControl.TabPages.Remove(tbPSVita);
                 }
 
-                if (version == Playstation.psvita)
+                if (version == PARAM_SFO.Playstation.psvita)
                 {
                     tbControl.TabPages.Remove(tbPS4);
                     tbControl.TabPages.Remove(tbPS3);
@@ -1637,7 +1630,7 @@ namespace PARAM.SFO_Editor
                     tbControl.TabPages.Add(tbPSVita);
                 }
 
-                if (version == Playstation.psp)
+                if (version == PARAM_SFO.Playstation.psp)
                 {
                     tbControl.TabPages.Remove(tbPS4);
                     tbControl.TabPages.Remove(tbPS3);
@@ -2116,7 +2109,7 @@ namespace PARAM.SFO_Editor
                         int Val = 0;
                         int.TryParse(t.Value.Trim(), out Val);
                         #region << PS4 >>
-                        if (psfo.PlaystationVersion == Playstation.ps4)
+                        if (psfo.PlaystationVersion == PARAM_SFO.Playstation.ps4)
                         {
                             switch (Val)
                             {
@@ -2131,7 +2124,7 @@ namespace PARAM.SFO_Editor
                         }
                         #endregion << PS4 >>
                         #region << PSVita >>
-                        if (psfo.PlaystationVersion == Playstation.psvita)
+                        if (psfo.PlaystationVersion == PARAM_SFO.Playstation.psvita)
                         {
                             switch (Val)
                             {
@@ -2211,7 +2204,7 @@ namespace PARAM.SFO_Editor
                     if (t.Name == "BOOTABLE")
                     {
                         #region << PS3 >>
-                        if (version == Playstation.ps3)
+                        if (version == PARAM_SFO.Playstation.ps3)
                         {
                             chbBoot.Enabled = true;
                             if (t.Value.ToString() == "0")
@@ -2232,7 +2225,7 @@ namespace PARAM.SFO_Editor
 
                         #endregion << PS3 >>
                         #region << PSP >>
-                        else if(version == Playstation.psp)
+                        else if (version == PARAM_SFO.Playstation.psp)
                         {
                             cbxVitaBoot.Enabled = true;
                             if (t.Value.ToString() == "0")
@@ -2272,7 +2265,7 @@ namespace PARAM.SFO_Editor
                     {
                         //we need to know what version of the sfo this is either ps3 / psvita(ps4)
                         //this id use for ps4 i geus vita can work 2
-                        if (version == Playstation.ps4)
+                        if (version == PARAM_SFO.Playstation.ps4)
                         {
                             var hex = (BitConverter.ToString(t.ValueBuffer, 0, Convert.ToInt32(t.Indextable.param_data_max_len))).ToString().Replace("-", string.Empty);
                             var temp = Convert.ToInt32(hex).ToString("X4");
@@ -2281,7 +2274,7 @@ namespace PARAM.SFO_Editor
 
                             txtCATEGORY.Text = ((Param_SFO.PARAM_SFO.DataTypes)Convert.ToInt32(hex)).ToString();
                         }
-                        else if (version == Playstation.ps3)
+                        else if (version == PARAM_SFO.Playstation.ps3)
                             //ps3
                             txtCATEGORY.Text = ((Param_SFO.PARAM_SFO.DataTypes)BitConverter.ToUInt16(Encoding.UTF8.GetBytes(t.Value), 0)).ToString();
                         else
@@ -2362,7 +2355,8 @@ namespace PARAM.SFO_Editor
                         cbSystemVersion.Tag = t.Name;
                         //we know its a psp
                         cbSystemVersion.Items.Add(t.Value);
-                        pbLogo.Image = Properties.Resources.PSP_Logo_PlayStation_Portable_logo;
+                        pbLogo.Image = Properties.Resources.PSP_Logo_Playstation_Portable_logo;
+                       
                         AlreadyAdded.Add(t.Name);
                         cbSystemVersion.SelectedIndex = 0;
                         tbControl.TabPages.Remove(tbPS4);

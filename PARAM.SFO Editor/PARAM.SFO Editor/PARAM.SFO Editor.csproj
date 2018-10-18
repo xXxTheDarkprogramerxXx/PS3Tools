@@ -114,16 +114,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RawView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RawView.Designer.cs">
       <DependentUpon>RawView.cs</DependentUpon>
     </Compile>
-    <Compile Include="SFO\BinaryByteOrder.cs" />
-    <Compile Include="SFO\Functions.cs" />
-    <Compile Include="SFO\PARAM_SFO.cs" />
-    <Compile Include="SFO\SecureFileInfo.cs" />
     <EmbeddedResource Include="CustomLookup.resx">
       <DependentUpon>CustomLookup.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,15 +138,10 @@
       <DependentUpon>NewSFOItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="RawView.resx">
       <DependentUpon>RawView.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,7 +160,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PARAM.SFO\PARAM.SFO.csproj">
+      <Project>{5b28d7b3-ad5f-4070-95aa-040374b59d52}</Project>
+      <Name>PARAM.SFO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cooltext118235191746368.png" />
   </ItemGroup>

@@ -1,0 +1,5 @@
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO\obj\Debug\PARAM.SFO.csprojResolveAssemblyReference.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO\bin\Debug\PARAM.SFO.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO\bin\Debug\PARAM.SFO.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO\obj\Debug\PARAM.SFO.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO\obj\Debug\PARAM.SFO.pdb

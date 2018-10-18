@@ -16,3 +16,5 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.exe.manifest
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.application
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\obj\Debug\PARAM.SFO_Editor.CustomLookup.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PARAM.SFO Editor\PARAM.SFO Editor\bin\Debug\PARAM.SFO.pdb

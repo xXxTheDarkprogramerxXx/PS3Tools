@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 
-namespace PARAM.SFO_Editor.SFO
+namespace PARAM.SFO
 {
     //public enum ByteOrder { LSB, MSB };
 

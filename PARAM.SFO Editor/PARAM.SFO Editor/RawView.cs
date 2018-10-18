@@ -14,14 +14,14 @@ namespace PARAM.SFO_Editor
     public partial class RawView : Form
     {
         Param_SFO.PARAM_SFO pSFO;
-        Form1.Playstation version;
+        Param_SFO.PARAM_SFO.Playstation version;
 
         public RawView()
         {
             InitializeComponent();
         }
 
-        public RawView(Param_SFO.PARAM_SFO _sfo,Form1.Playstation _version)
+        public RawView(Param_SFO.PARAM_SFO _sfo,Param_SFO.PARAM_SFO.Playstation _version)
         {
             pSFO = _sfo;
             version = _version;
@@ -58,7 +58,7 @@ namespace PARAM.SFO_Editor
         public void CreateSFX(Param_SFO.PARAM_SFO psfo)
         {
             string FileHeader;
-            if (version == Form1.Playstation.ps4)
+            if (version == Param_SFO.PARAM_SFO.Playstation.ps4)
             {
                 //table items
                 FileHeader = CreateSFXHeader();

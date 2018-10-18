@@ -121,8 +121,8 @@
   <data name="icons8-open-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-open-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="1024px-PlayStation_Certified.svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1024px-PlayStation_Certified.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="1024px-Playstation_Certified.svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1024px-Playstation_Certified.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-add-64 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-add-64 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,7 +202,7 @@
   <data name="icons8-compose-30" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-compose-30.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PSP_Logo_PlayStation_Portable_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="PSP-Logo-Playstation-Portable-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PSP-Logo-PlayStation-Portable-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_google_web_search_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
