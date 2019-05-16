@@ -1087,7 +1087,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                             else
                             {
                                 UpdateString("Creating ISO File from Bin/Cue This May Take Some Time");
-                                PS2_Tools.Backups.Bin_Cue.Convert_To_ISO(currentimage, AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso");
+                                PS2_Tools.Backups.Bin_Cue.Convert_To_ISO(currentimage, AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1));
                             }
                             BusyCoping = false;
 
