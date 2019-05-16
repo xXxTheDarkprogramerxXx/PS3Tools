@@ -418,6 +418,7 @@ namespace PS4_PSP_Classics_GUI
                         if (sfo.DISC_ID != "")
                         {
                             txtContentID.Text = sfo.DISC_ID;//disc id of PSP Game
+                            PSPID = sfo.DISC_ID;
                         }
                         txtTitle.Text = sfo.Title;
                         byte[] Icon0Png = pbp.ReadFileFromPBP(PSP_Tools.Pbp.DataType.Icon0Png);
@@ -905,6 +906,10 @@ namespace PS4_PSP_Classics_GUI
 
                             //we need to extart all files to a folder within working 
                             //we want an eboot and a boot.bin so we create both (since the PS4 Boots boot.bin 
+                            if(!Directory.Exists(AppCommonPath() + @"\Working\PSPISO\"))
+                            {
+                                Directory.CreateDirectory(AppCommonPath() + @"\Working\PSPISO\");
+                            }
                             pbp.WritePBPFiles(AppCommonPath() + @"\Working\PSPISO\", pspdata: "EBOOT.BIN", psrdata: "DATA.BIN", make_eboot_boot: true);
 
                             //clean up blank file
@@ -913,7 +918,7 @@ namespace PS4_PSP_Classics_GUI
                             //now pack the pbp as an iso 
                             PSP_Tools.UMD.ISO umdiso = new PSP_Tools.UMD.ISO();
                             umdiso.PSPTitle = psfo.Title;//set the title of the iso to that which is inside the sfo
-                            umdiso.CreateISO(@"\Working\PSPISO\", @"\PSP\DATA\GAME.iso");//fake sign should not have to apply here 
+                            umdiso.CreateISO(AppCommonPath() + @"\Working\PSPISO\", AppCommonPath() + @"\PSP\DATA\GAME.iso",false);//fake sign should not have to apply here 
 
                             UpdateString("Creating ISO");
 
@@ -1495,6 +1500,7 @@ namespace PS4_PSP_Classics_GUI
                 Console.Write("(" + alphanum1.ToString() + ")" + "(" + c1.ToString() + ")" + "(" + w1.ToString() + ")" + "(" + w2.ToString() + ")" + "(" + w3.ToString() + ")" + "(" + w4.ToString() + ")" + "(" + d1.ToString() + ")" + "(" + d2.ToString() + ")" + "(" + d3.ToString() + ")" + "(" + d4.ToString() + ")" + "(" + d5.ToString() + ")" + "(" + c2.ToString() + ")" + "(" + int1.ToString() + ")" + "(" + c3.ToString() + ")" + "(" + alphanum2.ToString() + ")" + "\n");
                 return true;
             }
+            //we need to make this work somehow
             return false;
         }
 

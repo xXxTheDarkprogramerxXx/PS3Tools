@@ -33,6 +33,8 @@ using System.Windows.Threading;
 using System.Runtime.InteropServices;
 using System.Net;
 using System.Security.Principal;
+using LibOrbisPkg.GP4;
+using LibOrbisPkg.PKG;
 
 #endregion << Usinings >>
 
@@ -256,6 +258,28 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
 
         }
 
+        static public List<int> SearchBytePattern(byte[] pattern, byte[] bytes)
+        {
+            List<int> positions = new List<int>();
+            int patternLength = pattern.Length;
+            int totalLength = bytes.Length;
+            byte firstMatchByte = pattern[0];
+            for (int i = 0; i < totalLength; i++)
+            {
+                if (firstMatchByte == bytes[i] && totalLength - i >= patternLength)
+                {
+                    byte[] match = new byte[patternLength];
+                    Array.Copy(bytes, i, match, 0, patternLength);
+                    if (match.SequenceEqual<byte>(pattern))
+                    {
+                        positions.Add(i);
+                        i += patternLength - 1;
+                    }
+                }
+            }
+            return positions;
+        }
+
 
         /// <summary>
         /// This Loads the PS2 Iso Info 
@@ -279,7 +303,7 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
             //Open File Dialog For ISO Files
             OpenFileDialog thedialog = new OpenFileDialog();
             thedialog.Title = "Select ISO";
-            thedialog.Filter = "Image File|*.iso";
+            thedialog.Filter = "Image File|*.iso;*.cue";
             thedialog.Multiselect = true;
             thedialog.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
             if (thedialog.ShowDialog() == true)
@@ -306,61 +330,153 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                     txtPath.Focus();
                     txtPath.CaretIndex = txtPath.Text.Length;
 
-
-                    //now using the file stream we can read the CNF file
-                    using (FileStream isoStream = File.OpenRead(isopath))
+                    if (System.IO.Path.GetExtension(isopath).ToUpper() == ".ISO")
                     {
-                        //use disk utils to read iso quickly
-                        CDReader cd = new CDReader(isoStream, true);
-                        //look for the spesific file
-                        Stream fileStream = cd.OpenFile(@"SYSTEM.CNF", FileMode.Open);
-                        // Use fileStream...
-                        TextReader tr = new StreamReader(fileStream);
-                        string fullstring = tr.ReadToEnd();//read string to end this will read all the info we need
 
-                        //mine for info
-                        string Is = @"\";
-                        string Ie = ";";
-
-                        //mine the start and end of the string
-                        int start = fullstring.ToString().IndexOf(Is) + Is.Length;
-                        int end = fullstring.ToString().IndexOf(Ie, start);
-                        if (end > start)
+                        //now using the file stream we can read the CNF file
+                        using (FileStream isoStream = File.OpenRead(isopath))
                         {
-                            string PS2Id = fullstring.ToString().Substring(start, end - start);
+                            //use disk utils to read iso quickly
+                            CDReader cd = new CDReader(isoStream, true);
+                            //look for the spesific file
+                            Stream fileStream = cd.OpenFile(@"SYSTEM.CNF", FileMode.Open);
+                            // Use fileStream...
+                            TextReader tr = new StreamReader(fileStream);
+                            string fullstring = tr.ReadToEnd();//read string to end this will read all the info we need
 
-                            if (PS2Id != string.Empty)
+                            //mine for info
+                            string Is = @"\";
+                            string Ie = ";";
+
+                            //mine the start and end of the string
+                            int start = fullstring.ToString().IndexOf(Is) + Is.Length;
+                            int end = fullstring.ToString().IndexOf(Ie, start);
+                            if (end > start)
                             {
-                                OriginalPS2ID = PS2Id;
-                                PS2ID = PS2Id.Replace(".", "");
-                                lblPS2ID.Content = "PS2 ID : " + PS2Id.Replace(".", "");
+                                string PS2Id = fullstring.ToString().Substring(start, end - start);
 
-                                if (Properties.Settings.Default.EnablePS2IDReplace == true)
+                                if (PS2Id != string.Empty)
                                 {
-                                    txtContentID.Text = PS2ID.Replace("_", "");
+                                    OriginalPS2ID = PS2Id;
+                                    PS2ID = PS2Id.Replace(".", "");
+                                    lblPS2ID.Content = "PS2 ID : " + PS2Id.Replace(".", "");
+
+                                    if (Properties.Settings.Default.EnablePS2IDReplace == true)
+                                    {
+                                        txtContentID.Text = PS2ID.Replace("_", "");
+                                    }
+
+                                    #region << PS2 Tools >>
+                                    try
+                                    {
+                                        var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
+
+                                        BitmapImage image = new BitmapImage();
+                                        image.BeginInit();
+                                        image.UriSource = new Uri(ps2item.Picture);
+                                        image.EndInit();
+                                        Icon0.Source = image;
+                                        Icon0.Stretch = Stretch.Fill;
+
+                                        txtTitle.Text = ps2item.PS2_Title;
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        //ps2 tools through an error
+                                    }
+                                    #endregion << PS2 Tools >>
+
+                                }
+                                else
+                                {
+                                    System.Windows.MessageBox.Show("Could not load PS2 ID");
                                 }
                             }
                             else
                             {
-                                System.Windows.MessageBox.Show("Could not load PS2 ID");
-                            }
-                        }
-                        else
-                        {
-                            MessageBoxResult msrlt = System.Windows.MessageBox.Show("Could not load PS2 ID\n\n wpuld you like to submit an issue ?", "Error Reporting", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
-                            if (msrlt == MessageBoxResult.Yes)
-                            {
-                                //load github issue page
-                                Process.Start(@"https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues");
-                            }
+                                MessageBoxResult msrlt = System.Windows.MessageBox.Show("Could not load PS2 ID\n\n wpuld you like to submit an issue ?", "Error Reporting", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+                                if (msrlt == MessageBoxResult.Yes)
+                                {
+                                    //load github issue page
+                                    Process.Start(@"https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues");
+                                }
 
+                            }
                         }
+                    }
+                    else if(System.IO.Path.GetExtension(isopath).ToUpper() == ".CUE")//cue file
+                    {
+                        PS2_Tools.BinCue.CueFile file = new PS2_Tools.BinCue.CueFile(isopath);
+                        //load some info from the binfile 
+                        var temp = File.ReadAllBytes(file.BinFileName);
+
+                        byte[] cdrom = new byte[] { 0x42, 0x4F, 0x4F, 0x54, 0x32, 0x20, 0x3D, 0x20, 0x63, 0x64, 0x72, 0x6F, 0x6D, 0x30, 0x3A, 0x5C };
+
+                        List<int> positions = SearchBytePattern(cdrom, temp);
+                        //found it 
+                        if (positions.Count > 0)
+                        {
+                            // as a separate buffer
+                            byte[] copy = new byte[30];
+                            Buffer.BlockCopy(temp, positions[0], copy, 0, copy.Length);
+                            string fullstring = Encoding.ASCII.GetString(copy);
+
+                            //mine for info
+                            string Is = @"\";
+                            string Ie = ";";
+
+                            //mine the start and end of the string
+                            int start = fullstring.ToString().IndexOf(Is) + Is.Length;
+                            int end = fullstring.ToString().IndexOf(Ie, start);
+                            if (end > start)
+                            {
+                                string PS2Id = fullstring.ToString().Substring(start, end - start);
+
+                                if (PS2Id != string.Empty)
+                                {
+                                    OriginalPS2ID = PS2Id;
+                                    PS2ID = PS2Id.Replace(".", "");
+                                    lblPS2ID.Content = "PS2 ID : " + PS2Id.Replace(".", "");
+
+                                    if (Properties.Settings.Default.EnablePS2IDReplace == true)
+                                    {
+                                        txtContentID.Text = PS2ID.Replace("_", "");
+                                    }
+                                    #region << PS2 Tools >>
+                                    try
+                                    {
+                                        var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
+
+                                        BitmapImage image = new BitmapImage();
+                                        image.BeginInit();
+                                        image.UriSource = new Uri(ps2item.Picture);
+                                        image.EndInit();
+                                        Icon0.Source = image;
+                                        Icon0.Stretch = Stretch.Fill;
+
+                                        txtTitle.Text = ps2item.PS2_Title;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        //ps2 tools through an error
+                                    }
+                                    #endregion << PS2 Tools >>
+
+                                }
+                                else
+                                {
+                                    System.Windows.MessageBox.Show("Could not load PS2 ID");
+                                }
+
+                            }
+                        }
+
                     }
 
                     #endregion << For Single File >>
                 }
                 else if (isoFiles.Count > 1)
-                {
+                {           
                     //UpdateInfo("Multi ISO Method");
                     txtPath.IsEnabled = false;
                     lblPS2ID.Visibility = Visibility.Hidden;
@@ -638,74 +754,172 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                 xmldoc = new XmlDataDocument();
                 //nodelist 
                 XmlNodeList xmlnode;
-                //load the xml file from the base directory
-                UpdateInfo("Loading SFO as xml");
-                xmldoc.Load(AppCommonPath() + @"\Working\" + "sfo.xml");
-                //now load the nodes
-                xmlnode = xmldoc.GetElementsByTagName("paramsfo");//volume is inside the xml
-                UpdateInfo("Update Content ID and other ifno in SFO");                                           //loop to get all info from the node list
-                foreach (XmlNode xn in xmlnode)
-                {
-                    XmlNode xNode = xn.SelectSingleNode("CONTENT_ID");
-                    XmlNodeList nodes = xmldoc.SelectNodes("//param[@key='CONTENT_ID']");
-                    if (nodes != null)
-                    {
 
-                        if (isoFiles.Count > 1)
+                #region << SFO Handeling >>
+
+                #region << OLD CODE >>
+
+                ////load the xml file from the base directory
+                //UpdateInfo("Loading SFO as xml");
+                //xmldoc.Load(AppCommonPath() + @"\Working\" + "sfo.xml");
+
+                ////now load the nodes
+                //xmlnode = xmldoc.GetElementsByTagName("paramsfo");//volume is inside the xml
+                //UpdateInfo("Update Content ID and other ifno in SFO");                                           //loop to get all info from the node list
+                //foreach (XmlNode xn in xmlnode)
+                //{
+                //    XmlNode xNode = xn.SelectSingleNode("CONTENT_ID");
+                //    XmlNodeList nodes = xmldoc.SelectNodes("//param[@key='CONTENT_ID']");
+                //    if (nodes != null)
+                //    {
+
+                //        if (isoFiles.Count > 1)
+                //        {
+                //            System.Windows.Application.Current.Dispatcher.Invoke(
+                //       DispatcherPriority.Normal,
+                //       (ThreadStart)delegate
+                //       {
+                //           xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + txtContentID.Text.Trim() + "0000001";//make this the same no ps2 id required
+                //       });
+                //            nodes[0].InnerText = xmlcontentid;
+                //        }
+                //        else
+                //        {
+                //            System.Windows.Application.Current.Dispatcher.Invoke(
+                //        DispatcherPriority.Normal,
+                //        (ThreadStart)delegate
+                //        {
+                //            xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PS2ID.Replace("_", "") + "0000001";
+                //        });
+                //            nodes[0].InnerText = xmlcontentid;
+                //        }
+                //        //});
+                //    }
+                //    nodes = xmldoc.SelectNodes("//param[@key='TITLE']");
+                //    if (nodes != null)
+                //    {
+                //        System.Windows.Application.Current.Dispatcher.Invoke(
+                //        DispatcherPriority.Normal,
+                //        (ThreadStart)delegate
+                //        {
+                //            nodes[0].InnerText = txtTitle.Text.Trim();
+                //        });
+                //    }
+                //    nodes = xmldoc.SelectNodes("//param[@key='TITLE_ID']");
+                //    if (nodes != null)
+                //    {
+                //        System.Windows.Application.Current.Dispatcher.Invoke(
+                //        DispatcherPriority.Normal,
+                //        (ThreadStart)delegate
+                //        {
+                //            nodes[0].InnerText = txtContentID.Text.Trim();
+                //        });
+                //    }
+                //    for (int i = 1; i < 7; i++)
+                //    {
+                //        //fix the enter key issue i have found in some in
+                //        nodes = xmldoc.SelectNodes("//param[@key='SERVICE_ID_ADDCONT_ADD_" + i + "']");
+                //        if (nodes != null)
+                //        {
+                //            nodes[0].InnerText = string.Empty;
+                //        }
+                //    }
+                //}
+                ////save this into the working folder
+                //xmldoc.Save(AppCommonPath() + @"\Working\" + "sfo.xml");
+
+                #endregion << OLD CODE >>
+
+                #region << PARAM.SFO EDITOR CODE >>
+
+                Param_SFO.PARAM_SFO sfo = new Param_SFO.PARAM_SFO(Properties.Resources.param);//load param directly from resources
+
+                #region << Set Content ID >>
+
+                if (isoFiles.Count > 1)
+                {
+                    System.Windows.Application.Current.Dispatcher.Invoke(
+               DispatcherPriority.Normal,
+               (ThreadStart)delegate
+               {
+                   for (int i = 0; i < sfo.Tables.Count; i++)
+                   {
+                       if (sfo.Tables[i].Name == "CONTENT_ID")
+                       {
+                           var tempitem = sfo.Tables[i];
+                           tempitem.Value = "UP9000-" + txtContentID.Text.Trim() + "_00-" + txtContentID.Text.Trim() + "0000001";//make this the same no ps2 id required
+                           sfo.Tables[i] = tempitem;
+                       }
+                   }
+               });
+                }
+                else
+                {
+                    System.Windows.Application.Current.Dispatcher.Invoke(
+                DispatcherPriority.Normal,
+                (ThreadStart)delegate
+                {
+
+                    xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PS2ID.Replace("_", "") + "0000001";
+                    for (int i = 0; i < sfo.Tables.Count; i++)
+                    {
+                        if (sfo.Tables[i].Name == "CONTENT_ID")
                         {
-                            System.Windows.Application.Current.Dispatcher.Invoke(
+                            var tempitem = sfo.Tables[i];
+                            tempitem.Value = xmlcontentid;
+                            sfo.Tables[i] = tempitem;
+                        }
+                    }
+                });
+
+                }
+
+                #endregion << Set Content ID >>
+
+                #region << Set Title >>
+
+                System.Windows.Application.Current.Dispatcher.Invoke(
                        DispatcherPriority.Normal,
                        (ThreadStart)delegate
                        {
-                           xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + txtContentID.Text.Trim() + "0000001";//make this the same no ps2 id required
-                       });
-                            nodes[0].InnerText = xmlcontentid;
-                        }
-                        else
-                        {
-                            System.Windows.Application.Current.Dispatcher.Invoke(
-                        DispatcherPriority.Normal,
-                        (ThreadStart)delegate
-                        {
-                            xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PS2ID.Replace("_", "") + "0000001";
-                        });
-                            nodes[0].InnerText = xmlcontentid;
-                        }
-                        //});
-                    }
-                    nodes = xmldoc.SelectNodes("//param[@key='TITLE']");
-                    if (nodes != null)
-                    {
-                        System.Windows.Application.Current.Dispatcher.Invoke(
-                        DispatcherPriority.Normal,
-                        (ThreadStart)delegate
-                        {
-                            nodes[0].InnerText = txtTitle.Text.Trim();
-                        });
-                    }
-                    nodes = xmldoc.SelectNodes("//param[@key='TITLE_ID']");
-                    if (nodes != null)
-                    {
-                        System.Windows.Application.Current.Dispatcher.Invoke(
-                        DispatcherPriority.Normal,
-                        (ThreadStart)delegate
-                        {
-                            nodes[0].InnerText = txtContentID.Text.Trim();
-                        });
-                    }
-                    for (int i = 1; i < 7; i++)
-                    {
-                        //fix the enter key issue i have found in some in
-                        nodes = xmldoc.SelectNodes("//param[@key='SERVICE_ID_ADDCONT_ADD_" + i + "']");
-                        if (nodes != null)
-                        {
-                            nodes[0].InnerText = string.Empty;
-                        }
-                    }
-                }
-                //save this into the working folder
-                xmldoc.Save(AppCommonPath() + @"\Working\" + "sfo.xml");
+                           for (int i = 0; i < sfo.Tables.Count; i++)
+                           {
+                               if (sfo.Tables[i].Name == "TITLE")
+                               {
+                                   var tempitem = sfo.Tables[i];
+                                   tempitem.Value = txtTitle.Text.Trim();
+                                   sfo.Tables[i] = tempitem;
+                               }
+                           }
 
+                       });
+
+                #endregion << Set Title >>
+
+                #region << Title ID >>
+
+                System.Windows.Application.Current.Dispatcher.Invoke(
+                DispatcherPriority.Normal,
+                (ThreadStart)delegate
+                {
+                    for (int i = 0; i < sfo.Tables.Count; i++)
+                    {
+                        if (sfo.Tables[i].Name == "TITLE_ID")
+                        {
+                            var tempitem = sfo.Tables[i];
+                            tempitem.Value = txtContentID.Text.Trim();
+                            sfo.Tables[i] = tempitem;
+                        }
+                    }
+                });
+            
+                #endregion << Title Id >>
+
+                //change all the items we need changed
+
+                #endregion << PARAM.SFO EDITOR CODE >>
+
+                #endregion << SFO Handeling >>
 
                 UpdateString("Creating GP4 Project");
 
@@ -727,8 +941,12 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
 
                 UpdateString("Creating SFO File");
+                //We no longer want to call any orbis functions so we are moving this to param.sfo items
+
                 //now call orbis and create sfo
-                Orbis_CMD("", "sfo_create \"" + AppCommonPath() + @"\Working\" + "sfo.xml" + "\" \"" + AppCommonPath() + @"\Working\" + "param.sfo" + "\"");
+                //Orbis_CMD("", "sfo_create \"" + AppCommonPath() + @"\Working\" + "sfo.xml" + "\" \"" + AppCommonPath() + @"\Working\" + "param.sfo" + "\"");
+
+                sfo.SaveSFO(sfo, AppCommonPath() + @"\Working\" + "param.sfo");
 
                 //move SFO to main directory with locations of new images 
 
@@ -799,6 +1017,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                 //now we need to check the config file
                 if (isoFiles.Count > 1)
                 {
+
                     //modify config file 
                     var textfile = File.ReadAllText(AppCommonPath() + @"PS2\config-emu-ps4.txt");
                     if (textfile.Contains("--max-disc-num="))
@@ -830,10 +1049,26 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                     {
                         if (MainWindow.isoFiles.Count > 1)
                         {
-                            UpdateString("Moving ISO File " + (i + 1) + "/" + MainWindow.isoFiles.Count + " This May Take Some Time");
+                            //we need to do our check here and below because if it is a cue file it needs to be changed
+                            if (System.IO.Path.GetExtension(MainWindow.isoFiles[i].ToString()).ToUpper() == ".ISO")
+                            {
+                                UpdateString("Moving ISO File " + (i + 1) + "/" + MainWindow.isoFiles.Count + " This May Take Some Time");
 
-                            //CopyFileWithProgress(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso");
-                            File.Copy(isoFiles[i].ToString().Trim(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso", true);
+                                //CopyFileWithProgress(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso");
+                                File.Copy(isoFiles[i].ToString().Trim(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso", true);
+                            }
+                            else//its a cue file
+                            {
+                                UpdateString("Creating ISO File from Cue/Bin " + (i + 1) + "/" + MainWindow.isoFiles.Count + " This May Take Some Time");
+
+                                //CopyFileWithProgress(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso");
+                                //File.Copy(isoFiles[i].ToString().Trim(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso", true);
+                                if(File.Exists(AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso"))
+                                {
+                                    File.Delete(AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso");
+                                }
+                                PS2_Tools.Backups.Bin_Cue.Convert_To_ISO(MainWindow.isoFiles[i].ToString(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso");
+                            }
 
                         }
                         else
@@ -845,8 +1080,15 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                             txtPath.Dispatcher.Invoke(
     DispatcherPriority.Normal,
     (ThreadStart)delegate { currentimage = txtPath.Text.Trim(); });
-                            File.Copy(currentimage, AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso", true);
-
+                            if (System.IO.Path.GetExtension(MainWindow.isoFiles[i].ToString()).ToUpper() == ".ISO")
+                            {
+                                File.Copy(currentimage, AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso", true);
+                            }
+                            else
+                            {
+                                UpdateString("Creating ISO File from Bin/Cue This May Take Some Time");
+                                PS2_Tools.Backups.Bin_Cue.Convert_To_ISO(currentimage, AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso");
+                            }
                             BusyCoping = false;
 
                         }
@@ -864,12 +1106,32 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
                 UpdateString("Creating PS4 PKG");
                 BusyCoping = true;
-                new System.Threading.Thread(new System.Threading.ThreadStart(delegate
-                {
-                    Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
-                    //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
-                    BusyCoping = false;
-                })).Start();
+                //System.Windows.Application.Current.Dispatcher.Invoke(
+                //        DispatcherPriority.Normal,
+                //        (ThreadStart)delegate
+                //        {
+                            //LibOrbisPkg.GP4.Gp4Project project = LibOrbisPkg.GP4.Gp4Project.ReadFrom(new FileStream(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", FileMode.Open));
+                            //LibOrbisPkg.PKG.PkgProperties props = LibOrbisPkg.PKG.PkgProperties.FromGp4(project, AppCommonPath() + @"\PS2\");
+                            //LibOrbisPkg.PFS.PfsProperties pfsprops = LibOrbisPkg.PFS.PfsProperties.MakeInnerPFSProps(props);
+                            //LibOrbisPkg.PKG.PkgBuilder builder = new LibOrbisPkg.PKG.PkgBuilder(props);
+                            //LibOrbisPkg.PFS.PfsBuilder pfsbuilder = new LibOrbisPkg.PFS.PfsBuilder(pfsprops);
+                            //builder.BuildPkg(pfsbuilder.CalculatePfsSize());
+                            //LibOrbisPkg.PKG.PkgWriter writer = new LibOrbisPkg.PKG.PkgWriter();
+                            //builder.Write(saveFileDialog1.SelectedPath + @"\" + props.ContentId + ".pkg");
+
+                            //Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
+                            //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
+
+                            var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
+                            var project = Gp4Project.ReadFrom(File.OpenRead(proj));
+                            var props = PkgProperties.FromGp4(project, System.IO.Path.GetDirectoryName(proj));
+                            var outputPath = saveFileDialog1.SelectedPath;
+                            new PkgBuilder(props).Write(System.IO.Path.Combine(
+                              outputPath,
+                              project.volume.Package.ContentId.ToString()+".pkg"));
+
+                            BusyCoping = false;
+                       // });
 
                 while (BusyCoping == true)
                 {

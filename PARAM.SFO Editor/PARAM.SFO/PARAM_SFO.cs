@@ -407,7 +407,7 @@ namespace Param_SFO
                     throw new ArgumentException("Stream must be seekable");//throw this error we cant seek the stream
 
                 var utf8 = new UTF8Encoding(false);//encoding
-                using (var writer = new BinaryWriter(stream, utf8, true))//start binary reader
+                using (var writer = new BinaryWriter(stream, utf8))//start binary reader
                 {
 
                     #region << Header Info (DevWiki) >>

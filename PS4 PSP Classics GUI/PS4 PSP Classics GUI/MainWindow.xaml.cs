@@ -72,6 +72,8 @@ namespace PS4_PSP_Classics_GUI
        
         PSP_Tools.Pbp pbp = new PSP_Tools.Pbp();
 
+        FileType.FileTypes type = FileType.FileTypes.Unknown;
+
         #endregion << File Tyoes and Instances >>
 
         #endregion << Vars' >>
@@ -334,7 +336,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
             {
 
                 //get the file type 
-                FileType.FileTypes type = FileType.LoadFileInfo(thedialog.FileName);
+                type = FileType.LoadFileInfo(thedialog.FileName);
 
                 if(type == FileType.FileTypes.Unknown)
                 {
@@ -345,9 +347,34 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
 
                 if(type == FileType.FileTypes.CSO)
                 {
-                    MessageBox errormes = new MessageBox("CSO Files are currently not fully working\n\nShould be working in next update\n\nYou can manually decrypt the cso to iso", "CSO", PS4_MessageBoxButton.OK, SoundClass.Sound.Error);
-                    errormes.ShowDialog();
-                    return;
+                    UpdateString("Decompressing CISO");
+
+                    Thread threadholder = null;
+
+                    new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                        /* run your code here */
+                        threadholder = Thread.CurrentThread;
+
+                        //we will have to convert cso to iso first no way around this currently 
+                        PSP_Tools.UMD.CISO.DecompressCSO(thedialog.FileName, AppCommonPath() + "\\Working\\tempiso");
+
+                        //once decompressed fire up the new type as iso and replace file name;
+                        thedialog.FileName = AppCommonPath() + "\\Working\\tempiso";
+                        type = FileType.FileTypes.ISO;
+
+                    }).Start();
+                    while (threadholder == null)
+                    {
+                        //DoEvents();
+                    }
+                    while (threadholder.ThreadState != System.Threading.ThreadState.Stopped)
+                    {
+                        //Thread.Sleep(100);
+                        //dont know what to do here
+                    }
+                    OpenCloseWaitScreen(false);
                 }
 
                 if (type == FileType.FileTypes.PBP)
@@ -367,6 +394,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                         {
                             txtContentID.Text = sfo.DISC_ID;//disc id of PSP Game
                             lblPS2ID.Content = sfo.DISC_ID;//disc id of psp game
+                            PS2ID = sfo.DISC_ID.Replace(".", "");
                         }
                         txtTitle.Text = sfo.Title;
                         byte[] Icon0Png = pbp.ReadFileFromPBP(PSP_Tools.Pbp.DataType.Icon0Png);
@@ -824,6 +852,8 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
 
                 UpdateString("Gathering GP4 Info");
                 UpdateInfo("Gathering GP4 Info");
+
+
                 //create new XML Document 
                 xmldoc = new XmlDataDocument();
                 //nodelist 
@@ -903,16 +933,78 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
 
 
                 UpdateString("Creating SFO File");
+
+                #region << Orbis >>
+
+                //we will just modify the orginal file its way way easier
+                //also no need for SCE tools then
                 //now call orbis and create sfo
-                Orbis_CMD("", "sfo_create \"" + AppCommonPath() + @"\Working\" + "sfo.xml" + "\" \"" + AppCommonPath() + @"\Working\" + "param.sfo" + "\"");
+                //Orbis_CMD("", "sfo_create \"" + AppCommonPath() + @"\Working\" + "sfo.xml" + "\" \"" + AppCommonPath() + @"\Working\" + "param.sfo" + "\"");
 
                 //move SFO to main directory with locations of new images 
 
-                UpdateString("Moving SFO File");
-                File.Copy(AppCommonPath() + @"\Working\" + "param.sfo", AppCommonPath() + @"\PSP\sce_sys\param.sfo", true);
-                //now move ISO
+                //UpdateString("Moving SFO File");
+                //File.Copy(AppCommonPath() + @"\Working\" + "param.sfo", AppCommonPath() + @"\PSP\sce_sys\param.sfo", true);
 
-                //save images
+
+                #endregion << Orbis >>
+
+                #region << PSFO Editor>>
+
+                //Create the ContentID UP9000-
+
+                System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, (ThreadStart)delegate
+                {
+                    xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PS2ID.Replace("_", "") + "0000001";
+                });
+
+                //Load The SFO From the existing File Location
+                Param_SFO.PARAM_SFO psfo = new Param_SFO.PARAM_SFO(AppCommonPath() + @"\PSP\sce_sys\param.sfo");
+
+                //Set Item Info
+                for (int i = 0; i < psfo.Tables.Count; i++)
+                {
+                    if (psfo.Tables[i].Name == "CONTENT_ID")
+                    {
+                        var tempitem = psfo.Tables[i];
+                        tempitem.Value = xmlcontentid.Trim();
+                        psfo.Tables[i] = tempitem;
+                    }
+                    if (psfo.Tables[i].Name == "TITLE")
+                    {
+                        string title = "";
+                        System.Windows.Application.Current.Dispatcher.Invoke(
+                       DispatcherPriority.Normal,
+                       (ThreadStart)delegate
+                       {
+                           title = txtTitle.Text.Trim();
+                       });
+                        var tempitem = psfo.Tables[i];
+                        tempitem.Value = title.Trim();
+                        psfo.Tables[i] = tempitem;
+                    }
+
+                    if (psfo.Tables[i].Name == "TITLE_ID")
+                    {
+                        string title = "";
+                        System.Windows.Application.Current.Dispatcher.Invoke(
+                       DispatcherPriority.Normal,
+                       (ThreadStart)delegate
+                       {
+                           title = txtContentID.Text.Trim();
+                       });
+                        var tempitem = psfo.Tables[i];
+                        tempitem.Value = title.Trim();
+                        psfo.Tables[i] = tempitem;
+                    }
+                }
+
+                //Save SFO
+                psfo.SaveSFO(psfo, AppCommonPath() + @"\PSP\sce_sys\param.sfo");//save the sfo over the existing one
+
+                #endregion << PSFO Editor>>
+
+                #region << Save Images>>
 
                 System.Windows.Application.Current.Dispatcher.Invoke(
                         DispatcherPriority.Normal,
@@ -929,6 +1021,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                         DispatcherPriority.Normal,
                         (ThreadStart)delegate
                         {
+                            //ImageBrush b = ;
                             ImageBrush b = (ImageBrush)BackgroundImage.Background;
                             BitmapSource src = (BitmapSource)b.ImageSource;
 
@@ -937,44 +1030,18 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                             converted = ConvertTo24bpp(converted);//converts image to 24bpp
                             converted.Save(AppCommonPath() + @"PSP\sce_sys\pic1.png", System.Drawing.Imaging.ImageFormat.Png);
                         });
+
+
+                #endregion << Save Images>>
+
+                #region << Custom PSP Confog >>
+
                 UpdateString("Moving Custom PSP Config");
-                //add custom config
-                if (AddCustomPS2Config == true)
-                {
-                    //move custom ps2 classics config
-                    UpdateString("Copying Custom config");
-                    File.Copy(CustomConfigLocation, AppCommonPath() + @"PS2\config-emu-ps4.txt", true);//overwrite the file
-                }
-
-                UpdateString("Creating Custom PS2 LUA And Config");
-                if (PS2CutomLua.Count > 1)
-                {
-                    for (int i = 0; i < PS2CutomLua.Count; i++)
-                    {
-                        //we write all text to a file
-                        if (!Directory.Exists(AppCommonPath() + @"PS2\patches\"))
-                        {
-                            Directory.CreateDirectory(AppCommonPath() + @"PS2\patches\");
-                        }
-
-                        File.WriteAllText(AppCommonPath() + @"PS2\patches\"+PS2TitleId[i].ToString()+ "_cli.conf",PS2CutomLua[i].ToString());
-                    }
-                    for (int i = 0; i < PS2CutomLua.Count; i++)
-                    {
-                        //we write all text to a file
-                        if (!Directory.Exists(AppCommonPath() + @"PS2\lua_include\"))
-                        {
-                            Directory.CreateDirectory(AppCommonPath() + @"PS2\lua_include\");
-                        }
-
-                        File.WriteAllText(AppCommonPath() + @"PS2\lua_include\" + PS2TitleId[i].ToString().Replace(".","") + "_config.lua", "apiRequest(0.1)"/*write custom data here for now just plain and simple stuff*/);
-                    }
-                }
                 //now we need to check the config file
                 if (pspfiles.Count > 1)
                 {
                     //modify config file 
-                    var textfile = File.ReadAllText(AppCommonPath() + @"PS2\config-emu-ps4.txt");
+                    var textfile = File.ReadAllText(AppCommonPath() + @"PSP\config-emu-ps4.txt");
                     if (textfile.Contains("--max-disc-num="))
                     {
                         //read the nesasary info
@@ -989,40 +1056,91 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                         }
                     }
 
-                    textfile =textfile.Replace(@"#--path-patches=""/app0/patches""", @"--path-patches=""/app0/patches""");//add patches
+                    textfile = textfile.Replace(@"#--path-patches=""/app0/patches""", @"--path-patches=""/app0/patches""");//add patches
                     textfile = textfile.Replace(@"#--path-featuredata=""/app0/patches""", @"--path-featuredata=""/app0/patches""");//add featuredata
                     textfile = textfile.Replace(@"#--path-toolingscript=""/app0/patches""", @"--path-toolingscript=""/app0/patches""");//#--path-toolingscript=""/app0/patches"""
                     File.WriteAllText(AppCommonPath() + @"PSP\config-emu-ps4.txt", textfile);
                 }
 
-                //move iso
+                #endregion << Custom PSP Confog >>
+
+                #region << Enable Mysis Patches >>
+
+                //these patches where orginally done by Mysis ... a c# version was made by Pink1
+                //if (Properties.Settings.Default.EnableMysisPatch == true)
+                //{
+                //    if(type == FileType.FileTypes.PBP)
+                //    {
+                //        pbp.WritePBPFiles()
+                //    }
+                //}
+                //this will be added after initial release and when ppspp is converted correctly
+                #endregion << Enable Mysis Patches >>
+
+                #region << Move ISO >>
+
                 UpdateString("Moving ISO File This May Take Some Time");
                 BusyCoping = true;
                 new System.Threading.Thread(new System.Threading.ThreadStart(delegate
                 {
-                    for (int i = 0; i < MainWindow.pspfiles.Count; i++)
-                    {
-                        if (MainWindow.pspfiles.Count > 1)
+
+                    if (MainWindow.pspfiles.Count > 1)
+
+                        for (int i = 0; i < MainWindow.pspfiles.Count; i++)
                         {
-                            UpdateString("Moving ISO File " + (i + 1) + "/" + MainWindow.pspfiles.Count + " This May Take Some Time");
+                            {
 
-                            //CopyFileWithProgress(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso");
-                            File.Copy(pspfiles[i].ToString().Trim(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso", true);
+                                UpdateString("Moving ISO File " + (i + 1) + "/" + MainWindow.pspfiles.Count + " This May Take Some Time");
+                                File.Copy(pspfiles[i].ToString().Trim(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso", true);
 
+                            }
                         }
-                        else
+                    else
+                    {
+                        //we need to handle iso creation from PBP
+                        if (type == FileType.FileTypes.PBP)
+                        {
+
+                            UpdateString("Extracting PBP");
+
+                            //we need to extart all files to a folder within working 
+                            //we want an eboot and a boot.bin so we create both (since the PS4 Boots boot.bin 
+                            if (!Directory.Exists(AppCommonPath() + @"\Working\PSPISO\"))
+                            {
+                                Directory.CreateDirectory(AppCommonPath() + @"\Working\PSPISO\");
+                            }
+                            pbp.WritePBPFiles(AppCommonPath() + @"\Working\PSPISO\", pspdata: "EBOOT.BIN", psrdata: "DATA.BIN", make_eboot_boot: true);
+
+                            //clean up blank file
+                            File.Delete(AppCommonPath() + @"\PSP\DATA\GAME.iso");
+
+                            //now pack the pbp as an iso 
+                            PSP_Tools.UMD.ISO umdiso = new PSP_Tools.UMD.ISO();
+                            umdiso.PSPTitle = psfo.Title;//set the title of the iso to that which is inside the sfo
+                            umdiso.CreateISO(AppCommonPath() + @"\Working\PSPISO\", AppCommonPath() + @"\PSP\DATA\GAME.iso", false);//fake sign should not have to apply here 
+
+                            UpdateString("Creating ISO");
+
+                            while (umdiso.Status == PSP_Tools.UMD.ISO.ISOStatus.Busy)
+                            {
+                                //sleep the thread
+                                DoEvents();
+                            }
+                            if (umdiso.Status == PSP_Tools.UMD.ISO.ISOStatus.Completed)
+                            {
+                                BusyCoping = false;
+                            }
+                        }
+
+                        if (type == FileType.FileTypes.ISO)
                         {
                             //clean up the blank file
                             File.Delete(AppCommonPath() + @"\PSP\DATA\GAME.iso");
-                            //CopyFileWithProgress(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso");
                             string currentimage = "";
-                            txtPath.Dispatcher.Invoke(
-    DispatcherPriority.Normal,
-    (ThreadStart)delegate { currentimage = txtPath.Text.Trim(); });
+                            currentimage = pspfiles[0].ToString().Trim();//first and only item
                             File.Copy(currentimage, AppCommonPath() + @"\PSP\DATA\GAME.iso", true);
 
                             BusyCoping = false;
-
                         }
                     }
 
@@ -1033,20 +1151,22 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                 {
                     DoEvents();
                 }
+                #endregion << Move ISO >>
 
-                //now create pkg 
-
+                #region << Patch NP Title File >>
                 //updatenptitledata
                 UpdateString("Patching NP Title");
                 // Original Byte string to find and Replace "43 55 53 41 30 35 32 38 39 5F 30 30"
                 Stream FileStream = new FileStream(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
 
-                //else we check the rest
+                //Read NPTitle ID
                 FileStream.Seek(16, SeekOrigin.Begin);
                 byte[] array = new byte[9];
                 FileStream.Read(array, 0, array.Length);
-                FileStream.Close();//this is how we get the info 
+                //Close the stream
+                FileStream.Close();
 
+                //get the current stream value
                 var currentstr = Encoding.ASCII.GetString(array);
                 string contentid = currentstr;
                 System.Windows.Application.Current.Dispatcher.Invoke(
@@ -1055,9 +1175,13 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                         {
                             contentid = txtContentID.Text;
                         });
+                //encode to bytes the new content id
                 var bytes = Encoding.ASCII.GetBytes(contentid);
 
+                //read current bytes from file
                 byte[] file = File.ReadAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat");
+
+                //and replace
                 int x, j, iMax = file.Length - array.Length;
                 for (x = 0; x <= iMax; x++)
                 {
@@ -1071,6 +1195,9 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                         file[x + j] = bytes[j];
                     File.WriteAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", file);
                 }
+
+
+                #endregion << Patch NP Title File >>
 
                 UpdateString("Creating PS4 PKG");
                 BusyCoping = true;

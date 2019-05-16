@@ -1,0 +1,9 @@
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PKG Viewer\PKG Viewer\bin\Debug\PKG Viewer.exe.config
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PKG Viewer\PKG Viewer\bin\Debug\PKG Viewer.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PKG Viewer\PKG Viewer\bin\Debug\PKG Viewer.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PKG Viewer\PKG Viewer\obj\Debug\PKG Viewer.csprojResolveAssemblyReference.cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PKG Viewer\PKG Viewer\obj\Debug\PKG_Viewer.Form1.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PKG Viewer\PKG Viewer\obj\Debug\PKG_Viewer.Properties.Resources.resources
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PKG Viewer\PKG Viewer\obj\Debug\PKG Viewer.csproj.GenerateResource.Cache
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PKG Viewer\PKG Viewer\obj\Debug\PKG Viewer.exe
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PKG Viewer\PKG Viewer\obj\Debug\PKG Viewer.pdb

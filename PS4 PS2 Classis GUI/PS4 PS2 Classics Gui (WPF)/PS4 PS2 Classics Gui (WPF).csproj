@@ -29,7 +29,7 @@
     <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/PS2Classics/</UpdateUrl>
     <PublisherName>The Darkprogramer</PublisherName>
     <SuiteName>PSTools</SuiteName>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -60,7 +60,7 @@
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>B409C89EA0C32EBC262B6BE3D27247DD4DE95E0C</ManifestCertificateThumbprint>
@@ -87,8 +87,23 @@
       <HintPath>..\packages\Discutils.0.11.0.2\lib\net40\DiscUtils.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GameArchives">
+      <HintPath>..\..\..\..\..\Downloads\LibOrbisPkg-0.1.138\GameArchives.dll</HintPath>
+    </Reference>
+    <Reference Include="LibArchiveExplorer">
+      <HintPath>..\..\..\..\..\Downloads\LibOrbisPkg-0.1.138\LibArchiveExplorer.dll</HintPath>
+    </Reference>
+    <Reference Include="LibOrbisPkg">
+      <HintPath>..\..\..\..\..\Downloads\LibOrbisPkg-0.1.138\LibOrbisPkg.dll</HintPath>
+    </Reference>
     <Reference Include="NAudio">
       <HintPath>..\..\..\..\..\Downloads\NAudio-Release\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="PARAM.SFO">
+      <HintPath>..\..\PARAM.SFO Editor\PARAM.SFO\bin\Debug\PARAM.SFO.dll</HintPath>
+    </Reference>
+    <Reference Include="PS2_Tools">
+      <HintPath>..\..\..\..\Visual Studio 2015\Projects\PS2_Tools\PS2_Tools\bin\Debug\PS2_Tools.dll</HintPath>
     </Reference>
     <Reference Include="PulseButton">
       <HintPath>..\..\..\..\..\Downloads\Code_20150709\PulseButton\bin\Debug\PulseButton.dll</HintPath>
