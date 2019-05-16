@@ -1067,7 +1067,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                                 {
                                     File.Delete(AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso");
                                 }
-                                PS2_Tools.Backups.Bin_Cue.Convert_To_ISO(MainWindow.isoFiles[i].ToString(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso");
+                                PS2_Tools.Backups.Bin_Cue.Convert_To_ISO(MainWindow.isoFiles[i].ToString(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) );
                             }
 
                         }
