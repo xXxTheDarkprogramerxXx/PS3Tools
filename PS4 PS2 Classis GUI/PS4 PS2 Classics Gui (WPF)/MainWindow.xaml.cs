@@ -1122,7 +1122,9 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                             //Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
                             //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
 
+                            
                             var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
+                            
                             var project = Gp4Project.ReadFrom(File.OpenRead(proj));
                             var props = PkgProperties.FromGp4(project, System.IO.Path.GetDirectoryName(proj));
                             var outputPath = saveFileDialog1.SelectedPath;
@@ -1143,7 +1145,8 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                //System.Windows.Forms.MessageBox.Show(ex.Message);
+                CustomMessageBox(ex.Message, "Error", PS4_MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -1734,7 +1737,10 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
             UpdateInfo("Writing All Binary Files to Temp Path....");
 
             //copy byte files
-            System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", Properties.Resources.PS2Classics);
+            if (Properties.Settings.Default.UseSpesifcEmu != "Jax and Daxter")
+                System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", Properties.Resources.PS2Classics);
+            else
+                System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", Properties.Resources.JaxAndDax);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
             System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "param.sfo", Properties.Resources.param);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "param.sfo");
@@ -1778,6 +1784,29 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
             File.Delete(AppCommonPath() + "ext.zip");
             File.Delete((AppCommonPath() + "PS2.zip"));
+
+            //we need to clean up the PS2 Folder if settings have changed
+            if(Properties.Settings.Default.UseSpesifcEmu == "Jax and Daxter")
+            {
+                //user changed to Jax and Daxter
+                
+                DeleteDirectory(AppCommonPath() + @"\PS2\");
+                if (!File.Exists(AppCommonPath() + "Jax and Daxter.zip"))
+                {
+                    CustomMessageBox("Please redownload Jax and Daxter from Settings it seems the zip file is missing", "Error", PS4_MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.Application.Current.Shutdown();
+                }
+                if(Directory.Exists(AppCommonPath() + "\\Jax and Daxter"))
+                {
+                    DeleteDirectory(AppCommonPath() + "\\Jax and Daxter");
+                }
+                ZipFile.ExtractToDirectory(AppCommonPath() + "Jax and Daxter.zip", AppCommonPath() + "\\Jax and Daxter");
+                Directory.Move(AppCommonPath() + "\\Jax and Daxter", AppCommonPath() + @"\PS2\");
+                if(!Directory.Exists(AppCommonPath() + @"\PS2\image"))
+                {
+                    Directory.CreateDirectory(AppCommonPath() + @"\PS2\image");
+                }
+            }
         }
 
         public static void DeleteDirectory(string target_dir)
@@ -2026,6 +2055,13 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
             {
 
             }
+        }
+
+        private void MenuItem_Click_9(object sender, RoutedEventArgs e)
+        {
+            //Open new Window
+            config_emu_ps4 configeditor = new config_emu_ps4();
+            configeditor.ShowDialog();
         }
     }
 }

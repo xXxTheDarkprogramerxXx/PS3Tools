@@ -38,7 +38,6 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Class
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\Views\WindowsTEst.baml
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PSP_Tools.dll
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PSP_Tools.pdb
-C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\SharpMod.dll
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\Vlc.DotNet.Forms.dll
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\Vlc.DotNet.Wpf.dll
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\Vlc.DotNet.Core.dll
@@ -55,3 +54,10 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Class
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\PS4 PSP Classics GUI.application
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI.exe.manifest
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\obj\Debug\PS4 PSP Classics GUI.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\CSharpPlatform.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\CSharpUtils.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\CSPspEmu.Core.Types.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\CSharpPlatform.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\CSharpUtils.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\CSharpUtils.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PSP Classics GUI\PS4 PSP Classics GUI\bin\Debug\CSPspEmu.Core.Types.pdb

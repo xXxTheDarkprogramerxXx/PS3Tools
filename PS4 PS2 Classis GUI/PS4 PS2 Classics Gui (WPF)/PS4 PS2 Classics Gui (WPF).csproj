@@ -137,12 +137,22 @@
     <Compile Include="Busy.xaml.cs">
       <DependentUpon>Busy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="config-emu-ps4.xaml.cs">
+      <DependentUpon>config-emu-ps4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Constants.cs" />
     <Compile Include="FontInstaller.cs" />
     <Compile Include="HowToUse\HowToUse.xaml.cs">
       <DependentUpon>HowToUse.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditText.xaml.cs">
+      <DependentUpon>EditText.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MessageBox.xaml.cs">
       <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OptionsList.xaml.cs">
+      <DependentUpon>OptionsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -168,6 +178,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="config-emu-ps4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HowToUse\HowToUse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,9 +201,17 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="EditText.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OptionsList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MultipleISO_s.xaml">
       <SubType>Designer</SubType>
@@ -216,6 +238,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\JaxAndDax.gp4">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Resources\SettingsView.PNG" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

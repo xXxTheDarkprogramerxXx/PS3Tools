@@ -22,6 +22,8 @@
                     <MenuItem Header="Log an issue" Click="MenuItem_Click_1" />
                     <Separator />
                     <MenuItem Header="Add Custom ps2 config" Click="MenuItem_Click_2" />
+                    <Separator />
+                    <MenuItem Header="Edit Config Emu Ps4" Click="MenuItem_Click_9" />
                     <!--<MenuItem Header="Add Custom .lua configs" Click="MenuItem_Click_3" />-->
                     <Separator/>
                     <MenuItem Header="Credits" Click="MenuItem_Click_4" />

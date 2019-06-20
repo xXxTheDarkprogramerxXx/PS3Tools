@@ -154,5 +154,17 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
                 this["FontInstalled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
+        public string UseSpesifcEmu {
+            get {
+                return ((string)(this["UseSpesifcEmu"]));
+            }
+            set {
+                this["UseSpesifcEmu"] = value;
+            }
+        }
     }
 }

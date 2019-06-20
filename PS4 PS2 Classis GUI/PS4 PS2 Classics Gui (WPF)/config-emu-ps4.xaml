@@ -1,0 +1,63 @@
+﻿<Window x:Class="PS4_PS2_Classics_Gui__WPF_.config_emu_ps4"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PS4_PS2_Classics_Gui__WPF_"
+        xmlns:Controls="clr-namespace:NMT.Wpf.Controls;assembly=PulseButton"
+        mc:Ignorable="d"
+        Title="Config" Height="480" Width="960" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Icon="Resources/favicon.ico">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/flow.png"/>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="109*"/>
+            <ColumnDefinition Width="416*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="ListView" HorizontalAlignment="Left" Height="332" Margin="59,42,0,0" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" VerticalAlignment="Top" Width="831" SelectionChanged="listBox_SelectionChanged"  ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource ListBoxStyle1}" KeyDown="listBox_KeyDown" Grid.ColumnSpan="2">
+            <ListView.Background>
+                <ImageBrush/>
+            </ListView.Background>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" HorizontalAlignment="Left" Width="500" />
+                        <TextBlock Text="{Binding ValueForNameValue}" FontWeight="Bold" HorizontalAlignment="Right" Width="200" TextAlignment="Right"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Controls:PulseButton x:Name="btnRemove" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Margin="10,394,9.6,10.4" 
+            IsEllipsis="False" 
+            PulseScale="1.2" 
+            PulseWidth="2" 
+            PulseSpeed="0:0:5" 
+            Pulses="0" 
+            RadiusX="3" 
+            RadiusY="3" 
+            Content="Reset" 
+            ButtonBrush="Transparent" 
+            ButtonHighlightBrush="Transparent" 
+            ButtonPressedBrush="LightBlue" 
+            PulseColor="White" Click="btnRemove_Click"
+    />
+        <Label x:Name="lblTitleId_Copy" Content="Config Emu Ps4 Editor" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Grid.ColumnSpan="2" Width="228" />
+        <Controls:PulseButton x:Name="btnSave" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Margin="0,394,9.6,10.4" 
+            IsEllipsis="False" 
+            PulseScale="1.2" 
+            PulseWidth="2" 
+            PulseSpeed="0:0:5" 
+            Pulses="0" 
+            RadiusX="3" 
+            RadiusY="3" 
+            Content="Save" 
+            ButtonBrush="Transparent" 
+            ButtonHighlightBrush="Transparent" 
+            ButtonPressedBrush="LightBlue" 
+            PulseColor="White" Click="btnRemove_Click" Grid.Column="1" HorizontalAlignment="Right" Width="132"
+    />
+
+    </Grid>
+</Window>

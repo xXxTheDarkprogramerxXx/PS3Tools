@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<psproject fmt="gp4" version="1000">
+  <volume>
+    <volume_type>pkg_ps4_app</volume_type>
+    <volume_id>PS4VOLUME</volume_id>
+    <volume_ts>2019-06-19 14:43:52</volume_ts>
+   <package content_id="UP9000-SLES50386_00-SLES503860000001" passcode="00000000000000000000000000000000" storage_type="digital50" app_type="full" />
+    <chunk_info chunk_count="1" scenario_count="1">
+      <chunks>
+        <chunk id="0" layer_no="0" label="Chunk #0"/>
+      </chunks>
+      <scenarios default_id="0">
+        <scenario id="0" type="sp" initial_chunk_count="1" label="Scenario #0">0</scenario>
+      </scenarios>
+    </chunk_info>
+  </volume>
+  <files img_no="0">
+    <file targ_path="sce_sys/about/right.sprx" orig_path="..\PS2\sce_sys\about\right.sprx"/>
+    <file targ_path="sce_sys/icon0.png" orig_path="..\PS2\sce_sys\icon0.png"/>
+    <file targ_path="sce_sys/keystone" orig_path="..\PS2\sce_sys\keystone"/>
+    <file targ_path="sce_sys/param.sfo" orig_path="..\PS2\sce_sys\param.sfo"/>
+    <file targ_path="sce_sys/pic1.png" orig_path="..\PS2\sce_sys\pic1.png"/>
+    <file targ_path="trophy_data/SCPS-56003_trophies.lua" orig_path="..\PS2\trophy_data\SCPS-56003_trophies.lua"/>
+    <file targ_path="config-emu-ps4.txt" orig_path="..\PS2\config-emu-ps4.txt"/>
+    <file targ_path="eboot.bin" orig_path="..\PS2\eboot.bin"/>
+    <file targ_path="formatted.card" orig_path="..\PS2\formatted.card"/>
+    <file targ_path="ps2-emu-compiler.self" orig_path="..\PS2\ps2-emu-compiler.self"/>
+    <file targ_path="PS20220WD20050620.crack" orig_path="..\PS2\PS20220WD20050620.crack"/>
+    <file targ_path="sce_discmap.plt" orig_path="..\PS2\sce_discmap.plt"/>
+    <file targ_path="docs/revision.h" orig_path="..\PS2\docs\revision.h"/>
+    <file targ_path="feature_data/SCPS-56003_features.lua" orig_path="..\PS2\feature_data\SCPS-56003_features.lua"/>
+    <file targ_path="image/disc01.iso" orig_path="..\PS2\image\disc01.iso"/>
+    <file targ_path="lua_include/ee-cpr0-alias.lua" orig_path="..\PS2\lua_include\ee-cpr0-alias.lua"/>
+    <file targ_path="lua_include/ee-gpr-alias.lua" orig_path="..\PS2\lua_include\ee-gpr-alias.lua"/>
+    <file targ_path="lua_include/ee-hwaddr.lua" orig_path="..\PS2\lua_include\ee-hwaddr.lua"/>
+    <file targ_path="lua_include/language.lua" orig_path="..\PS2\lua_include\language.lua"/>
+    <file targ_path="lua_include/MipsInsn.lua" orig_path="..\PS2\lua_include\MipsInsn.lua"/>
+    <file targ_path="lua_include/pad-and-key.lua" orig_path="..\PS2\lua_include\pad-and-key.lua"/>
+    <file targ_path="lua_include/pad-connect-type.lua" orig_path="..\PS2\lua_include\pad-connect-type.lua"/>
+    <file targ_path="lua_include/PadStick.lua" orig_path="..\PS2\lua_include\PadStick.lua"/>
+    <file targ_path="lua_include/sprite.lua" orig_path="..\PS2\lua_include\sprite.lua"/>
+    <file targ_path="lua_include/utils.lua" orig_path="..\PS2\lua_include\utils.lua"/>
+    <file targ_path="patches/SCPS-56003_cli.conf" orig_path="..\PS2\patches\SCPS-56003_cli.conf"/>
+    <file targ_path="patches/SCPS-56003_config.lua" orig_path="..\PS2\patches\SCPS-56003_config.lua"/>
+    <file targ_path="sce_companion_httpd/html/BackCover.jpg" orig_path="..\PS2\sce_companion_httpd\html\BackCover.jpg"/>
+    <file targ_path="sce_companion_httpd/html/base/arrow_up.png" orig_path="..\PS2\sce_companion_httpd\html\base\arrow_up.png"/>
+    <file targ_path="sce_companion_httpd/html/base/sprites.png" orig_path="..\PS2\sce_companion_httpd\html\base\sprites.png"/>
+    <file targ_path="sce_companion_httpd/html/css/default-skin.png" orig_path="..\PS2\sce_companion_httpd\html\css\default-skin.png"/>
+    <file targ_path="sce_companion_httpd/html/css/styles.min.css" orig_path="..\PS2\sce_companion_httpd\html\css\styles.min.css"/>
+    <file targ_path="sce_companion_httpd/html/index.html" orig_path="..\PS2\sce_companion_httpd\html\index.html"/>
+    <file targ_path="sce_companion_httpd/html/js/app.min.js" orig_path="..\PS2\sce_companion_httpd\html\js\app.min.js"/>
+    <file targ_path="sce_companion_httpd/html/large/Box01.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Box01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Box04.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Box04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Box01.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Box01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Box04.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Box04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page01.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page02.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page02.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page03.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page03.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page04.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page05.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page05.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page06.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page06.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page07.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page07.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page08.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page08.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page09.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page09.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page10.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page10.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page11.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page11.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page12.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page12.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page13.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page13.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page14.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page14.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page15.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page15.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page16.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page16.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page17.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page17.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page18.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page18.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/landscape/Page19.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\landscape\Page19.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page01.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page02.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page02.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page03.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page03.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page04.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page05.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page05.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page06.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page06.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page07.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page07.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page08.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page08.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page09.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page09.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page10.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page10.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page11.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page11.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page12.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page12.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page13.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page13.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page14.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page14.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page15.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page15.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page16.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page16.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page17.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page17.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page18.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page18.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page19.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page19.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page20.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page20.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page21.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page21.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page22.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page22.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page23.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page23.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page24.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page24.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page25.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page25.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page26.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page26.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page27.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page27.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page28.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page28.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page29.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page29.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page30.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page30.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page31.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page31.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page32.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page32.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page33.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page33.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page34.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page34.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page35.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page35.jpg"/>
+    <file targ_path="sce_companion_httpd/html/large/Page36.jpg" orig_path="..\PS2\sce_companion_httpd\html\large\Page36.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Box01.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Box01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Box04.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Box04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Box01.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Box01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Box04.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Box04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page01.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page02.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page02.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page03.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page03.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page04.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page05.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page05.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page06.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page06.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page07.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page07.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page08.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page08.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page09.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page09.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page10.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page10.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page11.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page11.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page12.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page12.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page13.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page13.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page14.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page14.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page15.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page15.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page16.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page16.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page17.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page17.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page18.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page18.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/landscape/Page19.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\landscape\Page19.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page01.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page02.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page02.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page03.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page03.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page04.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page05.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page05.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page06.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page06.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page07.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page07.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page08.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page08.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page09.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page09.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page10.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page10.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page11.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page11.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page12.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page12.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page13.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page13.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page14.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page14.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page15.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page15.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page16.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page16.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page17.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page17.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page18.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page18.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page19.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page19.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page20.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page20.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page21.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page21.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page22.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page22.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page23.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page23.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page24.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page24.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page25.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page25.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page26.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page26.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page27.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page27.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page28.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page28.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page29.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page29.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page30.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page30.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page31.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page31.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page32.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page32.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page33.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page33.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page34.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page34.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page35.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page35.jpg"/>
+    <file targ_path="sce_companion_httpd/html/medium/Page36.jpg" orig_path="..\PS2\sce_companion_httpd\html\medium\Page36.jpg"/>
+    <file targ_path="sce_companion_httpd/html/SIEH Abbreviated Manual.zip" orig_path="..\PS2\sce_companion_httpd\html\SIEH Abbreviated Manual.zip"/>
+    <file targ_path="sce_companion_httpd/html/small/Box01.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Box01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Box04.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Box04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Box01.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Box01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Box04.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Box04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page01.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page02.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page02.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page03.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page03.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page04.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page05.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page05.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page06.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page06.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page07.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page07.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page08.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page08.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page09.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page09.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page10.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page10.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page11.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page11.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page12.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page12.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page13.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page13.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page14.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page14.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page15.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page15.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page16.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page16.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page17.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page17.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page18.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page18.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/landscape/Page19.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\landscape\Page19.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page01.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page02.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page02.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page03.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page03.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page04.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page05.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page05.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page06.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page06.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page07.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page07.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page08.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page08.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page09.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page09.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page10.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page10.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page11.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page11.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page12.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page12.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page13.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page13.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page14.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page14.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page15.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page15.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page16.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page16.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page17.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page17.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page18.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page18.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page19.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page19.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page20.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page20.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page21.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page21.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page22.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page22.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page23.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page23.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page24.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page24.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page25.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page25.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page26.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page26.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page27.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page27.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page28.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page28.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page29.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page29.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page30.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page30.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page31.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page31.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page32.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page32.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page33.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page33.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page34.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page34.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page35.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page35.jpg"/>
+    <file targ_path="sce_companion_httpd/html/small/Page36.jpg" orig_path="..\PS2\sce_companion_httpd\html\small\Page36.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/BoxThumb01.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\BoxThumb01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/BoxThumb04.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\BoxThumb04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/BoxThumb01.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\BoxThumb01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/BoxThumb04.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\BoxThumb04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb01.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb02.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb02.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb03.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb03.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb04.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb05.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb05.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb06.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb06.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb07.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb07.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb08.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb08.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb09.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb09.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb10.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb10.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb11.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb11.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb12.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb12.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb13.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb13.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb14.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb14.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb15.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb15.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb16.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb16.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb17.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb17.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb18.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb18.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/landscape/Thumb19.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\landscape\Thumb19.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb01.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb01.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb02.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb02.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb03.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb03.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb04.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb04.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb05.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb05.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb06.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb06.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb07.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb07.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb08.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb08.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb09.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb09.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb10.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb10.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb11.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb11.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb12.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb12.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb13.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb13.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb14.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb14.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb15.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb15.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb16.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb16.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb17.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb17.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb18.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb18.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb19.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb19.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb20.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb20.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb21.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb21.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb22.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb22.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb23.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb23.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb24.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb24.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb25.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb25.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb26.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb26.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb27.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb27.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb28.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb28.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb29.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb29.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb30.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb30.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb31.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb31.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb32.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb32.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb33.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb33.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb34.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb34.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb35.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb35.jpg"/>
+    <file targ_path="sce_companion_httpd/html/thumbnails/Thumb36.jpg" orig_path="..\PS2\sce_companion_httpd\html\thumbnails\Thumb36.jpg"/>
+    <file targ_path="sce_module/libc.prx" orig_path="..\PS2\sce_module\libc.prx"/>
+    <file targ_path="sce_module/libSceFios2.prx" orig_path="..\PS2\sce_module\libSceFios2.prx"/>
+  </files>
+  <rootdir>
+    <dir targ_name="docs"/>
+    <dir targ_name="feature_data"/>
+    <dir targ_name="image"/>
+    <dir targ_name="lua_include"/>
+    <dir targ_name="patches"/>
+    <dir targ_name="sce_companion_httpd">
+      <dir targ_name="html">
+        <dir targ_name="base"/>
+        <dir targ_name="css"/>
+        <dir targ_name="js"/>
+        <dir targ_name="large">
+          <dir targ_name="landscape"/>
+        </dir>
+        <dir targ_name="medium">
+          <dir targ_name="landscape"/>
+        </dir>
+        <dir targ_name="small">
+          <dir targ_name="landscape"/>
+        </dir>
+        <dir targ_name="thumbnails">
+          <dir targ_name="landscape"/>
+        </dir>
+      </dir>
+    </dir>
+    <dir targ_name="sce_module"/>
+    <dir targ_name="sce_sys">
+      <dir targ_name="about"/>
+      <dir targ_name="trophy"/>
+    </dir>
+    <dir targ_name="trophy_data"/>
+  </rootdir>
+</psproject>
