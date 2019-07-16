@@ -29,6 +29,8 @@
                     <MenuItem Header="Credits" Click="MenuItem_Click_4" />
                     <Separator/>
                     <MenuItem Header="How To Use" Click="MenuItem_Click_8" />
+                    <Separator/>
+                    <MenuItem Header="Replace Cover Image" Click="MenuItem_Click_10" />
                 </MenuItem>
             </Menu>
 

@@ -2063,5 +2063,32 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
             config_emu_ps4 configeditor = new config_emu_ps4();
             configeditor.ShowDialog();
         }
+
+        private void MenuItem_Click_10(object sender, RoutedEventArgs e)
+        {
+            var fileDialog = new System.Windows.Forms.OpenFileDialog();
+            fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            var result = fileDialog.ShowDialog();      
+            switch (result)
+            {
+                case System.Windows.Forms.DialogResult.OK:
+                    var file = fileDialog.FileName;
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.UriSource = new Uri(file);
+                    image.EndInit();
+                    Icon0.Source = image;
+                    Icon0.Stretch = Stretch.Fill;
+                    break;
+                case System.Windows.Forms.DialogResult.Cancel:
+                default:
+                 
+                    break;
+            }
+
+            var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
+
+          
+        }
     }
 }
