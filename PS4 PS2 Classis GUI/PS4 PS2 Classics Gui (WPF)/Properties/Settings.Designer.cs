@@ -166,5 +166,17 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
                 this["UseSpesifcEmu"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseLibOrbisPkg {
+            get {
+                return ((bool)(this["UseLibOrbisPkg"]));
+            }
+            set {
+                this["UseLibOrbisPkg"] = value;
+            }
+        }
     }
 }

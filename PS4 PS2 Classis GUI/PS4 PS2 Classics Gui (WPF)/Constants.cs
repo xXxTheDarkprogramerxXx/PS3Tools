@@ -83,6 +83,16 @@ namespace PS4_PS2_Classics_Gui__WPF_
                 BGM = 3,
                 Disabled = 99,
             }
+
+            public enum Host_Display_Mode
+            {
+                Disabled = -1,
+                Normal =0,
+                Full = 1,
+                _4_3= 2,
+                _16_9 =3,
+            }
+
             #endregion << Enums >>
 
             /// <summary>
@@ -267,7 +277,7 @@ namespace PS4_PS2_Classics_Gui__WPF_
                 /// normal,full,4:3,16:9
                 /// --host-display-mode=full
                 /// </summary>
-                public string display_mode = "";
+                public Host_Display_Mode display_mode =  Host_Display_Mode.Disabled;
                 /// <summary>
                 /// 0,off,minimal,verbose
                 /// --host-osd=0

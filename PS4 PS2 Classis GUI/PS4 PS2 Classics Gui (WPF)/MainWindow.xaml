@@ -31,6 +31,8 @@
                     <MenuItem Header="How To Use" Click="MenuItem_Click_8" />
                     <Separator/>
                     <MenuItem Header="Replace Cover Image" Click="MenuItem_Click_10" />
+                    <Separator/>
+                    <MenuItem Header="Release Notes" Click="MenuItem_Click_11" />
                 </MenuItem>
             </Menu>
 

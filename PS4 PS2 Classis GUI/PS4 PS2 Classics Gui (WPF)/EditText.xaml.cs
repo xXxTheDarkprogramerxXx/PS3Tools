@@ -35,8 +35,8 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
         private void BtnNegative_Click(object sender, RoutedEventArgs e)
         {
-           
 
+            _Value = "";
             this.Close();
         }
 
@@ -59,7 +59,7 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
         private void btnNegative_Click_1(object sender, RoutedEventArgs e)
         {
-            _Value = txtErrorMessage.Text.ToString();
+            //_Value = txtErrorMessage.Text.ToString();
             this.Close();
         }
     }

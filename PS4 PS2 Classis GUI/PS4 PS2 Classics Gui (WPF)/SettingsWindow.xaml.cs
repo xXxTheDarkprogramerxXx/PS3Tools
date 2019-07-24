@@ -80,6 +80,16 @@ namespace PS4_PS2_Classics_Gui__WPF_
                         DefaultValue = "";
                     }
                     break;
+                case "Use LibOrbisPkg":
+                    if(Properties.Settings.Default.UseLibOrbisPkg == true)
+                    {
+                        DefaultValue = "On";
+                    }
+                    else
+                    {
+                        DefaultValue = "Off";
+                    }
+                    break;
                 case "Replace NP Title ID With PS2 Title ID":
                     if (Properties.Settings.Default.EnablePS2IDReplace == true)
                     {
@@ -152,6 +162,8 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
             AddEsttingValues("Enable kozarovv Patches", "Off", new ListView());
             AddEsttingValues("Use Specific Emu", "Default", new ListView());
+            AddEsttingValues("Use LibOrbisPkg", "Off", new ListView());
+
             for (int i = 0; i < Values.Count; i++)
             {
                 listBox.Items.Add(new { Name = Values[i].SettingName, ValueForNameValue = Values[i].SValue });
@@ -175,7 +187,14 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
         public void ClearAndAddList()
         {
-            listBox.Items.Clear();
+            try
+            {
+                listBox.Items.Clear();
+            }
+            catch(Exception ex)
+            {
+
+            }
             for (int i = 0; i < Values.Count; i++)
             {
                 listBox.Items.Add(new { Name = Values[i].SettingName, ValueForNameValue = Values[i].SValue });
@@ -280,7 +299,7 @@ namespace PS4_PS2_Classics_Gui__WPF_
             string download = string.Format("{0} MB's / {1} MB's",
                 (e.BytesReceived / 1024d / 1024d).ToString("0.00"),
                 (e.TotalBytesToReceive / 1024d / 1024d).ToString("0.00"));
-            string Builder = string.Format(@"Downloading libvlc extension {1}
+            string Builder = string.Format(@"Downloading Addon {1}
 Downloaded : {0}
 Speed : {2}
                               ", download, percantage, speed);
@@ -449,6 +468,9 @@ Speed : {2}
                             //SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Music);
 
                             break;
+                        case "Use LibOrbisPkg":
+                            Properties.Settings.Default.UseLibOrbisPkg = true; 
+                            break;
 
                     }
                     Properties.Settings.Default.Save();//save the settings
@@ -477,6 +499,9 @@ Speed : {2}
 
                         case "Enable kozarovv Patches":
                             Properties.Settings.Default.EnableCustomConfigFetching = false;
+                            break;
+                        case "Use LibOrbisPkg":
+                            Properties.Settings.Default.UseLibOrbisPkg = false;
                             break;
                         case "Use Specific Emu":
                             Properties.Settings.Default.UseSpesifcEmu = lvi.Content.ToString();

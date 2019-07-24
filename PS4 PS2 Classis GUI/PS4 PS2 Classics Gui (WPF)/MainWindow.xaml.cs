@@ -53,6 +53,8 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
         #region << Vars' >>
 
+        public static string VersionNum = "";
+
         private readonly BackgroundWorker backgroundWorker1 = new BackgroundWorker();
         private readonly BackgroundWorker bgWorkerSS = new BackgroundWorker();
         System.Windows.Forms.FolderBrowserDialog tempkeeper = null;
@@ -513,6 +515,23 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
         { 
             try
             {
+                #region << Version Numbering >>
+
+                Version v = Assembly.GetExecutingAssembly().GetName().Version;
+                //Check to see if we are ClickOnce Deployed.
+                //i.e. the executing code was installed via ClickOnce
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    //Collect the ClickOnce Current Version
+                    v = ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                }
+                VersionNum = v.ToString();
+                //Show the version in a simple manner
+                this.Title = string.Format("PS2 Classic GUI Version : {0}", v);
+
+
+                #endregion << Version Numbering >>
+
                 #region << Admin Access is Required for some of our features >>
 
                 if (IsAdministrator() == false && !Debugger.IsAttached)
@@ -521,7 +540,7 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
 
                     // Restart program and run as admin
                     var exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-                    ProcessStartInfo startInfo = new ProcessStartInfo(exeName);
+                    ProcessStartInfo startInfo = new ProcessStartInfo(exeName, VersionNum);
                     startInfo.Verb = "runas";
                     System.Diagnostics.Process.Start(startInfo);
                     Application.Current.Shutdown();
@@ -640,23 +659,6 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                 }
 
                 #endregion << Gui Music >>
-
-                #region << Version Numbering >>
-
-                Version v = Assembly.GetExecutingAssembly().GetName().Version;
-                //Check to see if we are ClickOnce Deployed.
-                //i.e. the executing code was installed via ClickOnce
-                if (ApplicationDeployment.IsNetworkDeployed)
-                {
-                    //Collect the ClickOnce Current Version
-                    v = ApplicationDeployment.CurrentDeployment.CurrentVersion;
-                }
-
-                //Show the version in a simple manner
-                this.Title = string.Format("PS2 Classic GUI Version : {0}", v);
-
-
-                #endregion << Version Numbering >>
 
                 #region << Advanced Window >>
 
@@ -912,7 +914,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                         }
                     }
                 });
-            
+
                 #endregion << Title Id >>
 
                 //change all the items we need changed
@@ -931,7 +933,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                         //here we get some patches from our friend https://twitter.com/kozarovv
                         SearchGithubForCorrespondingPatches(OriginalPS2ID);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
 
                     }
@@ -987,7 +989,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                     UpdateString("Copying Custom config");
                     File.Copy(CustomConfigLocation, AppCommonPath() + @"PS2\config-emu-ps4.txt", true);//overwrite the file
                 }
-               
+
 
                 UpdateString("Creating Custom PS2 LUA And Config");
                 if (PS2CutomLua.Count > 1)
@@ -1034,7 +1036,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                         }
                     }
 
-                    textfile =textfile.Replace(@"#--path-patches=""/app0/patches""", @"--path-patches=""/app0/patches""");//add patches
+                    textfile = textfile.Replace(@"#--path-patches=""/app0/patches""", @"--path-patches=""/app0/patches""");//add patches
                     textfile = textfile.Replace(@"#--path-featuredata=""/app0/patches""", @"--path-featuredata=""/app0/patches""");//add featuredata
                     textfile = textfile.Replace(@"#--path-toolingscript=""/app0/patches""", @"--path-toolingscript=""/app0/patches""");//#--path-toolingscript=""/app0/patches"""
                     File.WriteAllText(AppCommonPath() + @"PS2\config-emu-ps4.txt", textfile);
@@ -1063,11 +1065,11 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
                                 //CopyFileWithProgress(txtPath.Text.Trim(), AppCommonPath() + @"\PS2\image\disc01.iso");
                                 //File.Copy(isoFiles[i].ToString().Trim(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso", true);
-                                if(File.Exists(AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso"))
+                                if (File.Exists(AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso"))
                                 {
                                     File.Delete(AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) + ".iso");
                                 }
-                                PS2_Tools.Backups.Bin_Cue.Convert_To_ISO(MainWindow.isoFiles[i].ToString(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1) );
+                                PS2_Tools.Backups.Bin_Cue.Convert_To_ISO(MainWindow.isoFiles[i].ToString(), AppCommonPath() + @"\PS2\image\disc" + String.Format("{0:D2}", i + 1));
                             }
 
                         }
@@ -1110,30 +1112,41 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                 //        DispatcherPriority.Normal,
                 //        (ThreadStart)delegate
                 //        {
-                            //LibOrbisPkg.GP4.Gp4Project project = LibOrbisPkg.GP4.Gp4Project.ReadFrom(new FileStream(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", FileMode.Open));
-                            //LibOrbisPkg.PKG.PkgProperties props = LibOrbisPkg.PKG.PkgProperties.FromGp4(project, AppCommonPath() + @"\PS2\");
-                            //LibOrbisPkg.PFS.PfsProperties pfsprops = LibOrbisPkg.PFS.PfsProperties.MakeInnerPFSProps(props);
-                            //LibOrbisPkg.PKG.PkgBuilder builder = new LibOrbisPkg.PKG.PkgBuilder(props);
-                            //LibOrbisPkg.PFS.PfsBuilder pfsbuilder = new LibOrbisPkg.PFS.PfsBuilder(pfsprops);
-                            //builder.BuildPkg(pfsbuilder.CalculatePfsSize());
-                            //LibOrbisPkg.PKG.PkgWriter writer = new LibOrbisPkg.PKG.PkgWriter();
-                            //builder.Write(saveFileDialog1.SelectedPath + @"\" + props.ContentId + ".pkg");
+                //LibOrbisPkg.GP4.Gp4Project project = LibOrbisPkg.GP4.Gp4Project.ReadFrom(new FileStream(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", FileMode.Open));
+                //LibOrbisPkg.PKG.PkgProperties props = LibOrbisPkg.PKG.PkgProperties.FromGp4(project, AppCommonPath() + @"\PS2\");
+                //LibOrbisPkg.PFS.PfsProperties pfsprops = LibOrbisPkg.PFS.PfsProperties.MakeInnerPFSProps(props);
+                //LibOrbisPkg.PKG.PkgBuilder builder = new LibOrbisPkg.PKG.PkgBuilder(props);
+                //LibOrbisPkg.PFS.PfsBuilder pfsbuilder = new LibOrbisPkg.PFS.PfsBuilder(pfsprops);
+                //builder.BuildPkg(pfsbuilder.CalculatePfsSize());
+                //LibOrbisPkg.PKG.PkgWriter writer = new LibOrbisPkg.PKG.PkgWriter();
+                //builder.Write(saveFileDialog1.SelectedPath + @"\" + props.ContentId + ".pkg");
+                if (Properties.Settings.Default.UseLibOrbisPkg == false)
+                {
+                    Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
+                    //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
+                }
+                else
 
-                            //Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
-                            //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
+                {
 
-                            
-                            var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
-                            
-                            var project = Gp4Project.ReadFrom(File.OpenRead(proj));
-                            var props = PkgProperties.FromGp4(project, System.IO.Path.GetDirectoryName(proj));
-                            var outputPath = saveFileDialog1.SelectedPath;
-                            new PkgBuilder(props).Write(System.IO.Path.Combine(
-                              outputPath,
-                              project.volume.Package.ContentId.ToString()+".pkg"));
+                    var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
 
-                            BusyCoping = false;
-                       // });
+                    var project = Gp4Project.ReadFrom(File.OpenRead(proj));
+                    var props = PkgProperties.FromGp4(project, System.IO.Path.GetDirectoryName(proj));
+                    var outputPath = saveFileDialog1.SelectedPath;
+                    try
+                    {
+                        new PkgBuilder(props).Write(System.IO.Path.Combine(
+                          outputPath,
+                          project.volume.Package.ContentId.ToString() + ".pkg"));
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+                BusyCoping = false;
+                // });
 
                 while (BusyCoping == true)
                 {
@@ -2059,6 +2072,8 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
         private void MenuItem_Click_9(object sender, RoutedEventArgs e)
         {
+            //Play Sound For Sound Pannel
+            SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Info_Pannel_Sound);
             //Open new Window
             config_emu_ps4 configeditor = new config_emu_ps4();
             configeditor.ShowDialog();
@@ -2089,6 +2104,13 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
             var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
 
           
+        }
+
+        private void MenuItem_Click_11(object sender, RoutedEventArgs e)
+        {
+            //
+
+            CustomMessageBox(Properties.Resources.Release_Notes.ToString(), "Release Notes", PS4_MessageBoxButton.OK, MessageBoxImage.Asterisk);
         }
     }
 }

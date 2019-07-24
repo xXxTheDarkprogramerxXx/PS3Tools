@@ -17,8 +17,17 @@ namespace PS4_PS2_Classics_Gui__WPF_
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            try
+            {
+                //MessageBox mess = new MessageBox("S")
+                string versionnum = e.Args[0].ToString();
+                PS4_PS2_Classics_Gui__WPF_.MainWindow.VersionNum = versionnum;
+            }
+            catch(Exception ex)
+            {
 
-           
+            }
+
         }
     }
 }

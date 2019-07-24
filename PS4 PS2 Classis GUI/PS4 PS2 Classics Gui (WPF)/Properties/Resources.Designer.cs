@@ -421,6 +421,23 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to V1.0.0.16 
+        ///Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/21 &quot;Not enough memory resources are available to process this command&quot;&quot;
+        ///Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/22 &quot;Nightshade breaks the converter&quot;
+        ///
+        ///Added new Emu selector inside sittings (currently only 2 are supported Jax and Daxter and Max Pain(Default))
+        ///Added a replace icon function on the file menu for issue #22
+        ///
+        ///Still To do :
+        ///PS4 Emu Config Editor (Currently will show just no [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Release_Notes {
+            get {
+                return ResourceManager.GetString("Release Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap SettingsView {

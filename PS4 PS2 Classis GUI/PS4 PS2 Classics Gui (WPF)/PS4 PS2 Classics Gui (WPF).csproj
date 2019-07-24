@@ -29,7 +29,7 @@
     <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/PS2Classics/</UpdateUrl>
     <PublisherName>The Darkprogramer</PublisherName>
     <SuiteName>PSTools</SuiteName>
-    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -93,8 +93,9 @@
     <Reference Include="LibArchiveExplorer">
       <HintPath>..\..\..\..\..\Downloads\LibOrbisPkg-0.1.138\LibArchiveExplorer.dll</HintPath>
     </Reference>
-    <Reference Include="LibOrbisPkg">
-      <HintPath>..\..\..\..\..\Downloads\LibOrbisPkg-0.1.138\LibOrbisPkg.dll</HintPath>
+    <Reference Include="LibOrbisPkg, Version=0.1.138.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Downloads\LibOrbisPkg-0.1.152\LibOrbisPkg.dll</HintPath>
     </Reference>
     <Reference Include="NAudio">
       <HintPath>..\..\..\..\..\Downloads\NAudio-Release\NAudio.dll</HintPath>
@@ -238,6 +239,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Release Notes.txt" />
     <None Include="Resources\JaxAndDax.gp4">
       <SubType>Designer</SubType>
     </None>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="PS4 PS2 Classics GUI.exe" version="1.0.0.16" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="PS4 PS2 Classics GUI.exe" version="1.0.0.19" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Resources\favicon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -91,14 +91,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LibOrbisPkg.dll" size="132608">
-      <assemblyIdentity name="LibOrbisPkg" version="0.1.138.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LibOrbisPkg.dll" size="134144">
+      <assemblyIdentity name="LibOrbisPkg" version="0.1.152.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7ccGsTu5RNa2u9MJeAjpfP9ex0cGn6fCyOATifbhGwM=</dsig:DigestValue>
+        <dsig:DigestValue>4R4g2Co9wfU96lHf1GlHMl3FRq93IvPFRIBlT6pHm0I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -139,14 +139,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PS4 PS2 Classics GUI.exe" size="54991360">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PS4 PS2 Classics GUI.exe" size="54996480">
       <assemblyIdentity name="PS4 PS2 Classics GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XfHtlcs1VDchkpHqY9EuYFCr6xvnmyAtKpOG2IJiC2o=</dsig:DigestValue>
+        <dsig:DigestValue>R9CPD3E+GlsEv2tg1MhxZls6d/yJhP81vq3U/4mMY0s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -162,13 +162,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="PS4 PS2 Classics GUI.exe.config" size="2385">
+  <file name="PS4 PS2 Classics GUI.exe.config" size="2513">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>R6katQloDfV56gdNdMcSjUPvgL89sTlrXhaatdEaGco=</dsig:DigestValue>
+      <dsig:DigestValue>4T55zr9dcy1d+YPGmuscPgQTjGPFl/VItSYji+UL0Nc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\favicon.ico" size="32988">

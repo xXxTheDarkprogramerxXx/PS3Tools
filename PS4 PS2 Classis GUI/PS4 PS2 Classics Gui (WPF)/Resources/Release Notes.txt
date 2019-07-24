@@ -1,0 +1,15 @@
+V1.0.0.19
+Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/24 "Package Creation Fail"
+Added a setting for users to switch between using LibOrbisPKG or not 
+
+
+V1.0.0.16 
+Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/21 "Not enough memory resources are available to process this command""
+Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/22 "Nightshade breaks the converter"
+
+Added new Emu selector inside sittings (currently only 2 are supported Jax and Daxter and Max Pain(Default))
+Added a replace icon function on the file menu for issue #22
+
+Still To do :
+PS4 Emu Config Editor (Currently will show just not do anything)
+
