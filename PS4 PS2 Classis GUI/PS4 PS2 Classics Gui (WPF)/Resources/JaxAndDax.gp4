@@ -15,9 +15,7 @@
     </chunk_info>
   </volume>
   <files img_no="0">
-    <file targ_path="sce_sys/about/right.sprx" orig_path="..\PS2\sce_sys\about\right.sprx"/>
     <file targ_path="sce_sys/icon0.png" orig_path="..\PS2\sce_sys\icon0.png"/>
-    <file targ_path="sce_sys/keystone" orig_path="..\PS2\sce_sys\keystone"/>
     <file targ_path="sce_sys/param.sfo" orig_path="..\PS2\sce_sys\param.sfo"/>
     <file targ_path="sce_sys/pic1.png" orig_path="..\PS2\sce_sys\pic1.png"/>
     <file targ_path="trophy_data/SCPS-56003_trophies.lua" orig_path="..\PS2\trophy_data\SCPS-56003_trophies.lua"/>
@@ -26,7 +24,6 @@
     <file targ_path="formatted.card" orig_path="..\PS2\formatted.card"/>
     <file targ_path="ps2-emu-compiler.self" orig_path="..\PS2\ps2-emu-compiler.self"/>
     <file targ_path="PS20220WD20050620.crack" orig_path="..\PS2\PS20220WD20050620.crack"/>
-    <file targ_path="sce_discmap.plt" orig_path="..\PS2\sce_discmap.plt"/>
     <file targ_path="docs/revision.h" orig_path="..\PS2\docs\revision.h"/>
     <file targ_path="feature_data/SCPS-56003_features.lua" orig_path="..\PS2\feature_data\SCPS-56003_features.lua"/>
     <file targ_path="image/disc01.iso" orig_path="..\PS2\image\disc01.iso"/>
@@ -316,7 +313,6 @@
     </dir>
     <dir targ_name="sce_module"/>
     <dir targ_name="sce_sys">
-      <dir targ_name="about"/>
       <dir targ_name="trophy"/>
     </dir>
     <dir targ_name="trophy_data"/>

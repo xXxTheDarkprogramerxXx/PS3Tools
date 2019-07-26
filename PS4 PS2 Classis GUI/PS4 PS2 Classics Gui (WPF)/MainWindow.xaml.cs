@@ -410,69 +410,79 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                     {
                         PS2_Tools.BinCue.CueFile file = new PS2_Tools.BinCue.CueFile(isopath);
                         //load some info from the binfile 
-                        var temp = File.ReadAllBytes(file.BinFileName);
-
-                        byte[] cdrom = new byte[] { 0x42, 0x4F, 0x4F, 0x54, 0x32, 0x20, 0x3D, 0x20, 0x63, 0x64, 0x72, 0x6F, 0x6D, 0x30, 0x3A, 0x5C };
-
-                        List<int> positions = SearchBytePattern(cdrom, temp);
-                        //found it 
-                        if (positions.Count > 0)
+                        if (!File.Exists(file.BinFileName))
                         {
-                            // as a separate buffer
-                            byte[] copy = new byte[30];
-                            Buffer.BlockCopy(temp, positions[0], copy, 0, copy.Length);
-                            string fullstring = Encoding.ASCII.GetString(copy);
 
-                            //mine for info
-                            string Is = @"\";
-                            string Ie = ";";
-
-                            //mine the start and end of the string
-                            int start = fullstring.ToString().IndexOf(Is) + Is.Length;
-                            int end = fullstring.ToString().IndexOf(Ie, start);
-                            if (end > start)
-                            {
-                                string PS2Id = fullstring.ToString().Substring(start, end - start);
-
-                                if (PS2Id != string.Empty)
-                                {
-                                    OriginalPS2ID = PS2Id;
-                                    PS2ID = PS2Id.Replace(".", "");
-                                    lblPS2ID.Content = "PS2 ID : " + PS2Id.Replace(".", "");
-
-                                    if (Properties.Settings.Default.EnablePS2IDReplace == true)
-                                    {
-                                        txtContentID.Text = PS2ID.Replace("_", "");
-                                    }
-                                    #region << PS2 Tools >>
-                                    try
-                                    {
-                                        var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
-
-                                        BitmapImage image = new BitmapImage();
-                                        image.BeginInit();
-                                        image.UriSource = new Uri(ps2item.Picture);
-                                        image.EndInit();
-                                        Icon0.Source = image;
-                                        Icon0.Stretch = Stretch.Fill;
-
-                                        txtTitle.Text = ps2item.PS2_Title;
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        //ps2 tools through an error
-                                    }
-                                    #endregion << PS2 Tools >>
-
-                                }
-                                else
-                                {
-                                    System.Windows.MessageBox.Show("Could not load PS2 ID");
-                                }
-
-                            }
                         }
 
+                        using (var fs = new FileStream(file.BinFileName, FileMode.Open, FileAccess.Read))
+                        {
+                            byte[] temp = new byte[fs.Length];
+                            int bytesRead = fs.Read(temp, 0, temp.Length);
+                            // buffer now contains the entire contents of the file
+                           // byte[] temp = new byte[10];
+
+                            byte[] cdrom = new byte[] { 0x42, 0x4F, 0x4F, 0x54, 0x32, 0x20, 0x3D, 0x20, 0x63, 0x64, 0x72, 0x6F, 0x6D, 0x30, 0x3A, 0x5C };
+
+                            List<int> positions = SearchBytePattern(cdrom, temp);
+                            //found it 
+                            if (positions.Count > 0)
+                            {
+                                // as a separate buffer
+                                byte[] copy = new byte[30];
+                                Buffer.BlockCopy(temp, positions[0], copy, 0, copy.Length);
+                                string fullstring = Encoding.ASCII.GetString(copy);
+
+                                //mine for info
+                                string Is = @"\";
+                                string Ie = ";";
+
+                                //mine the start and end of the string
+                                int start = fullstring.ToString().IndexOf(Is) + Is.Length;
+                                int end = fullstring.ToString().IndexOf(Ie, start);
+                                if (end > start)
+                                {
+                                    string PS2Id = fullstring.ToString().Substring(start, end - start);
+
+                                    if (PS2Id != string.Empty)
+                                    {
+                                        OriginalPS2ID = PS2Id;
+                                        PS2ID = PS2Id.Replace(".", "");
+                                        lblPS2ID.Content = "PS2 ID : " + PS2Id.Replace(".", "");
+
+                                        if (Properties.Settings.Default.EnablePS2IDReplace == true)
+                                        {
+                                            txtContentID.Text = PS2ID.Replace("_", "");
+                                        }
+                                        #region << PS2 Tools >>
+                                        try
+                                        {
+                                            var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
+
+                                            BitmapImage image = new BitmapImage();
+                                            image.BeginInit();
+                                            image.UriSource = new Uri(ps2item.Picture);
+                                            image.EndInit();
+                                            Icon0.Source = image;
+                                            Icon0.Stretch = Stretch.Fill;
+
+                                            txtTitle.Text = ps2item.PS2_Title;
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            //ps2 tools through an error
+                                        }
+                                        #endregion << PS2 Tools >>
+
+                                    }
+                                    else
+                                    {
+                                        System.Windows.MessageBox.Show("Could not load PS2 ID");
+                                    }
+
+                                }
+                            }
+                        }
                     }
 
                     #endregion << For Single File >>
@@ -525,7 +535,10 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                     //Collect the ClickOnce Current Version
                     v = ApplicationDeployment.CurrentDeployment.CurrentVersion;
                 }
-                VersionNum = v.ToString();
+                if (VersionNum == "")
+                {
+                    VersionNum = v.ToString();
+                }
                 //Show the version in a simple manner
                 this.Title = string.Format("PS2 Classic GUI Version : {0}", v);
 
