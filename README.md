@@ -10,6 +10,8 @@ Sorry for the mess xD
 Build Status 
 [![Build status](https://ci.appveyor.com/api/projects/status/omcf270bn57ibpn8?svg=true)](https://ci.appveyor.com/project/xXxTheDarkprogramerxXx/ps3tools-vee52)
 
+# PS4 Tools
+
 ## PS4 PS2 Classics GUI 
 
 Build Status 
