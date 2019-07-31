@@ -14,7 +14,6 @@ Build Status
 # PS4 Tools
 
 ## PS4 PS2 Classics GUI 
-
 Build Status 
 [![Build status](https://ci.appveyor.com/api/projects/status/6027am2p1u32gfhh?svg=true)](https://ci.appveyor.com/project/xXxTheDarkprogramerxXx/ps3tools)
 
