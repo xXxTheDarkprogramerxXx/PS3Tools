@@ -17,6 +17,7 @@ Build Status
 Build Status 
 [![Build status](https://ci.appveyor.com/api/projects/status/6027am2p1u32gfhh?svg=true)](https://ci.appveyor.com/project/xXxTheDarkprogramerxXx/ps3tools)
 
+[Download](https://github.com/xXxTheDarkprogramerxXx/PS3Tools/releases/download/PS4-PS2-Classics-Release(AppVoyer)/Release.zip) - POWER BY APPVOYER
 
 # PS3Tools
 Open Source PS3Tools
