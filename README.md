@@ -5,6 +5,11 @@ Currently Some PS4 Project's are also located here
 
 Sorry for the mess xD
 
+## Playstation Tools (Cross System)
+### PARAM SFO EDITOR
+Build Status 
+[![Build status](https://ci.appveyor.com/api/projects/status/omcf270bn57ibpn8?svg=true)](https://ci.appveyor.com/project/xXxTheDarkprogramerxXx/ps3tools-vee52)
+
 ## PS4 PS2 Classics GUI 
 
 Build Status 
