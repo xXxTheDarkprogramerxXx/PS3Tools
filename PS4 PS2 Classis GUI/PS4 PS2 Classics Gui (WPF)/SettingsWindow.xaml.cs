@@ -507,13 +507,26 @@ Speed : {2}
                             Properties.Settings.Default.UseSpesifcEmu = lvi.Content.ToString();
                             if (lvi.Content.ToString() == "Jax and Daxter")
                             {
-                                //check if the item is found
-                                MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
-                                ps4mes.ShowDialog();
-                                if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                //check if the item exists already
+                                if (!Directory.Exists(AppCommonPath() + "Jax And Daxter"))
                                 {
-                                    bgWorkerSS.RunWorkerAsync();
-                                    startDownload("Jax and Daxter.zip");
+                                    //check if the item is found
+                                    MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                    ps4mes.ShowDialog();
+                                    if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                    {
+                                        bgWorkerSS.RunWorkerAsync();
+                                        startDownload("Jax and Daxter.zip");
+                                    }
+                                }else
+                                {
+                                    MessageBox ps4mes = new MessageBox("Would you like to re-download the Jax And Daxter Emu ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                    ps4mes.ShowDialog();
+                                    if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                    {
+                                        bgWorkerSS.RunWorkerAsync();
+                                        startDownload("Jax and Daxter.zip");
+                                    }
                                 }
                             }
                             //SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Music);

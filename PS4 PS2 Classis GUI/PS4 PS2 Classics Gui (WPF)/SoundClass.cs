@@ -25,7 +25,10 @@ namespace PS4_PS2_Classics_Gui__WPF_
             Error = 3,
             Shutdown = 4,
             PS4_Music = 5,
-            Notification = 6
+            Notification = 6,
+            LQ =7,
+            sk = 8,
+            pete = 9,
         }
 
         public static string AppCommonPath()
@@ -237,7 +240,57 @@ namespace PS4_PS2_Classics_Gui__WPF_
                             PS4BGMDevice.Play();
                         }
                         break;
+                    case Sound.LQ:
+                        {
 
+                            WaveStream mp3file = CreateInputStream(Properties.Resources.lq);
+
+                            ////PS4BGMDevice = new AsioOut("ASIO4ALL v2");
+                            ////PS4BGMDevice.Init(mp3file);
+                            ////PS4BGMDevice.Play();
+
+                            TimeSpan ts = mp3file.TotalTime;
+
+                            PS4BGMDevice.Init(mp3file);
+
+                            PS4BGMDevice.Volume = 0.5f;
+                            PS4BGMDevice.Play();
+                        }
+                        break;
+                    case Sound.sk:
+                        {
+
+                            WaveStream mp3file = CreateInputStream(Properties.Resources.dovahkiin);
+
+                            ////PS4BGMDevice = new AsioOut("ASIO4ALL v2");
+                            ////PS4BGMDevice.Init(mp3file);
+                            ////PS4BGMDevice.Play();
+
+                            TimeSpan ts = mp3file.TotalTime;
+
+                            PS4BGMDevice.Init(mp3file);
+
+                            PS4BGMDevice.Volume = 0.5f;
+                            PS4BGMDevice.Play();
+                        }
+                        break;
+                    case Sound.pete:
+                        {
+
+                            WaveStream mp3file = CreateInputStream(Properties.Resources.priates);
+
+                            ////PS4BGMDevice = new AsioOut("ASIO4ALL v2");
+                            ////PS4BGMDevice.Init(mp3file);
+                            ////PS4BGMDevice.Play();
+
+                            TimeSpan ts = mp3file.TotalTime;
+
+                            PS4BGMDevice.Init(mp3file);
+
+                            PS4BGMDevice.Volume = 0.5f;
+                            PS4BGMDevice.Play();
+                        }
+                        break;
                     default:
                         break;
 

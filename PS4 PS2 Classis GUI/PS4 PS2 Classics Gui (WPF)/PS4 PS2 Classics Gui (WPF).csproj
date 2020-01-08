@@ -29,7 +29,7 @@
     <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/PS2Classics/</UpdateUrl>
     <PublisherName>The Darkprogramer</PublisherName>
     <SuiteName>PSTools</SuiteName>
-    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationRevision>23</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -165,6 +165,9 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SnowFlakes.xaml.cs">
+      <DependentUpon>SnowFlakes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SoundClass.cs" />
     <Compile Include="StructReader.cs" />
     <Compile Include="StructWriter.cs" />
@@ -222,6 +225,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SnowFlakes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VideoScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -268,6 +275,9 @@
     <None Include="Resources\MultiISO3.PNG" />
     <None Include="Resources\PS2 Title.PNG" />
     <None Include="Resources\Custom Create.PNG" />
+    <Resource Include="Resources\lq.mp3" />
+    <Resource Include="Resources\dovahkiin.mp3" />
+    <Resource Include="Resources\priates.mp3" />
     <Content Include="Resources\PS4Icon.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

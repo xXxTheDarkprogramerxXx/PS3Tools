@@ -247,4 +247,13 @@
   <data name="Release Notes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Release Notes.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="lq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lq.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dovahkiin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dovahkiin.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="priates" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\priates.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

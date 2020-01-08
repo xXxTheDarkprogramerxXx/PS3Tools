@@ -73,6 +73,16 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] dovahkiin {
+            get {
+                object obj = ResourceManager.GetObject("dovahkiin", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ext {
             get {
                 object obj = ResourceManager.GetObject("ext", resourceCulture);
@@ -166,6 +176,16 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         internal static byte[] JaxAndDax {
             get {
                 object obj = ResourceManager.GetObject("JaxAndDax", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] lq {
+            get {
+                object obj = ResourceManager.GetObject("lq", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -267,6 +287,16 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
             get {
                 object obj = ResourceManager.GetObject("playstation_store", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] priates {
+            get {
+                object obj = ResourceManager.GetObject("priates", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -421,15 +451,18 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to V1.0.0.16 
-        ///Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/21 &quot;Not enough memory resources are available to process this command&quot;&quot;
-        ///Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/22 &quot;Nightshade breaks the converter&quot;
+        ///   Looks up a localized string similar to V1.0.0.20
+        ///Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/30 &quot;Issue with the PS2 Classics GUI&quot;
+        ///Added a setting check for Jax and Daxter emu to ask users if they want to re-dwonload the emu if it already exists
+        ///Added a small change to fox Jax and Daxter emu
+        ///Added a few easter eggs ʘ‿ʘ
         ///
-        ///Added new Emu selector inside sittings (currently only 2 are supported Jax and Daxter and Max Pain(Default))
-        ///Added a replace icon function on the file menu for issue #22
+        ///V1.0.0.19
+        ///Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/24 &quot;Package Creation Fail&quot;
+        ///Added a setting for users to switch between using LibOrbisPKG or not 
         ///
-        ///Still To do :
-        ///PS4 Emu Config Editor (Currently will show just no [rest of string was truncated]&quot;;.
+        ///
+        ///V1.0.0 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Release_Notes {
             get {

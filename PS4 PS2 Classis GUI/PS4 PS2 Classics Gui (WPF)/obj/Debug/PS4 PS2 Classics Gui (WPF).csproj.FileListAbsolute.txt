@@ -55,3 +55,5 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classi
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.TrustInfo.xml
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.exe.manifest
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.application
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\SnowFlakes.baml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\SnowFlakes.g.cs

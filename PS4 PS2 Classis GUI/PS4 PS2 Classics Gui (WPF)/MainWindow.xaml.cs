@@ -35,6 +35,7 @@ using System.Net;
 using System.Security.Principal;
 using LibOrbisPkg.GP4;
 using LibOrbisPkg.PKG;
+using System.Windows.Media.Animation;
 
 #endregion << Usinings >>
 
@@ -290,6 +291,8 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
         /// <param name="e"></param>
         private void btnSelectISO_Click(object sender, RoutedEventArgs e)
         {
+           
+
             //set defualt values
             txtPath.IsEnabled = true;
             lblPS2ID.Visibility = Visibility.Visible;
@@ -507,6 +510,33 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
         private void txtContentID_Copy_TextChanged(object sender, TextChangedEventArgs e)
         {
             selecttitle.Content = txtTitle.Text.Trim();
+            if(txtTitle.Text.Trim().ToLower() == "dovahkiin")
+            {
+                SoundClass.PlayPS4Sound(SoundClass.Sound.sk);
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri(@"https://www.mobygames.com/images/covers/l/473949-the-elder-scrolls-v-skyrim-special-edition-playstation-4-manual.jpg");
+                image.EndInit();
+                Icon0.Source = image;
+                Icon0.Stretch = Stretch.Fill;
+            }
+            if (txtTitle.Text.Trim().ToLower() == "pete")
+            {
+                SoundClass.PlayPS4Sound(SoundClass.Sound.pete);
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri(@"https://d3fa68hw0m2vcc.cloudfront.net/ccc/185449833.jpeg");
+                image.EndInit();
+                Icon0.Source = image;
+                Icon0.Stretch = Stretch.Fill;
+            }
+            if (txtTitle.Text.Trim().ToLower() == "_snow")
+            {
+                SoundClass.PlayPS4Sound(SoundClass.Sound.LQ);
+                var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(10) };
+                timer.Tick += (s, arg) => Snow();
+                timer.Start();
+            }
         }
 
         private static bool IsAdministrator()
@@ -516,12 +546,69 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        /// <summary>
-        /// Load Method
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        readonly Random _random = new Random((int)DateTime.Now.Ticks);
+        private void Snow()
+        {
+            var xAmount = _random.Next(-500, (int)Main_Grid.ActualWidth - 100);
+            var yAmount = -100;
+            var s = _random.Next(5, 15) * 0.1;
+            var rotateAmount = _random.Next(0, 270);
+
+            RotateTransform rotateTransform = new RotateTransform(rotateAmount);
+            ScaleTransform scaleTransform = new ScaleTransform(s, s);
+            TranslateTransform translateTransform = new TranslateTransform(xAmount, yAmount);
+
+            var flake = new SnowFlakes
+            {
+                RenderTransform = new TransformGroup
+                {
+                    Children = new TransformCollection { rotateTransform, scaleTransform, translateTransform }
+                },
+
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+            };
+            Main_Grid.Children.Add(flake);
+
+            Duration duration = new Duration(TimeSpan.FromSeconds(_random.Next(1, 4)));
+
+            xAmount += _random.Next(100, 500);
+            var xAnimation = GenerateAnimation(xAmount, duration, flake, "RenderTransform.Children[2].X");
+
+            yAmount += (int)(Main_Grid.ActualHeight + 100 + 100);
+            var yAnimation = GenerateAnimation(yAmount, duration, flake, "RenderTransform.Children[2].Y");
+
+            rotateAmount += _random.Next(90, 360);
+            var rotateAnimation = GenerateAnimation(rotateAmount, duration, flake, "RenderTransform.Children[0].Angle");
+
+            Storyboard story = new Storyboard();
+            story.Completed += (sender, e) => Main_Grid.Children.Remove(flake);
+            story.Children.Add(xAnimation);
+            story.Children.Add(yAnimation);
+            story.Children.Add(rotateAnimation);
+            flake.Loaded += (sender, args) => story.Begin();
+
+        }
+
+        private static DoubleAnimation GenerateAnimation(int x, Duration duration, SnowFlakes flake, string propertyPath)
+        {
+            DoubleAnimation animation = new DoubleAnimation
+            {
+                To = x,
+                Duration = duration
+            };
+            Storyboard.SetTarget(animation, flake);
+            Storyboard.SetTargetProperty(animation, new PropertyPath(propertyPath));
+            return animation;
+        }
+    
+
+    /// <summary>
+    /// Load Method
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -546,25 +633,47 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                 #endregion << Version Numbering >>
 
                 #region << Admin Access is Required for some of our features >>
-
-                if (IsAdministrator() == false && !Debugger.IsAttached)
+                if (Properties.Settings.Default.FontInstalled == false)
                 {
-                    this.Hide();
+                    if (IsAdministrator() == false && !Debugger.IsAttached)
+                    {
+                        /*Tests font*/
 
-                    // Restart program and run as admin
-                    var exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-                    ProcessStartInfo startInfo = new ProcessStartInfo(exeName, VersionNum);
-                    startInfo.Verb = "runas";
-                    System.Diagnostics.Process.Start(startInfo);
-                    Application.Current.Shutdown();
-                    
-                    return;
+                        string fontName = "PS4Icon";
+                        float fontSize = 12;
+
+                        using (Font fontTester = new Font(
+                               fontName,
+                               fontSize,
+                               System.Drawing.FontStyle.Regular,
+                               GraphicsUnit.Pixel))
+                        {
+                            if (fontTester.Name == fontName)
+                            {
+                                // Font exists
+                            }
+                            else
+                            {
+                                // Font doesn't exist
+                                this.Hide();
+
+                                // Restart program and run as admin
+                                var exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+                                ProcessStartInfo startInfo = new ProcessStartInfo(exeName, VersionNum);
+                                startInfo.Verb = "runas";
+                                System.Diagnostics.Process.Start(startInfo);
+                                Application.Current.Shutdown();
+
+                                return;
+                            }
+                        }
+
+                       
+                    }
+
                 }
 
-
-
                 #endregion << Admin Access is Required for some of our features  >>
-
 
                 #region << First Time Settings >>
 
@@ -671,6 +780,14 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                     SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Music);
                 }
 
+                if(DateTime.Now.Day == 25 && DateTime.Now.Month == 12)
+                {
+                    SoundClass.PlayPS4Sound(SoundClass.Sound.LQ);
+                    var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(10) };
+                    timer.Tick += (s, arg) => Snow();
+                    timer.Start();
+                }
+               
                 #endregion << Gui Music >>
 
                 #region << Advanced Window >>
@@ -700,6 +817,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                 #region << Disable First Time >>
 
                 Properties.Settings.Default.FirstTime = false;
+                Properties.Settings.Default.FontInstalled = true;
                 Properties.Settings.Default.Save();
 
                 #endregion << Disable First Time >>
