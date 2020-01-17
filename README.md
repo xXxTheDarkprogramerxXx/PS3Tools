@@ -17,9 +17,7 @@ Sorry for the mess xD
 [Download](https://github.com/xXxTheDarkprogramerxXx/PS3Tools/releases/download/PS4-PS2-Classics-Release(AppVoyer)/Release.zip) - POWER BY APPVOYER
 
 ## PS4 PSP Classics GUI [![Build status](https://ci.appveyor.com/api/projects/status/j2eat6wjt2827vjm?svg=true)](https://ci.appveyor.com/project/xXxTheDarkprogramerxXx/ps3tools-95axk)
-![](https://trello-attachments.s3.amazonaws.com/5aa21ea25233ab782e875095/5b7bdcc339c3d004d4135dac/b4950a8f3538a4e795aacfb8b2bdb8a3/qJvIjHU.png)
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/_E13xqJVYTY/0.jpg)]
-(https://youtu.be/_E13xqJVYTY)
+[![PSP HD](http://img.youtube.com/vi/_E13xqJVYTY/0.jpg)](https://www.youtube.com/watch?v=_E13xqJVYTY "PSPHD DEMO")
 
 [Download](https://github.com/xXxTheDarkprogramerxXx/PS3Tools/releases/download/PS4-PSP-Classics-GUI-(AppVoyer)/PS4.PSP.Classics.GUI.zip) - POWER BY APPVOYER
 
