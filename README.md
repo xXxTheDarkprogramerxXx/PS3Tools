@@ -12,7 +12,9 @@ Sorry for the mess xD
 # PS4 Tools
 
 ## PS4 PS2 Classics GUI [![Build status](https://ci.appveyor.com/api/projects/status/6027am2p1u32gfhh?svg=true)](https://ci.appveyor.com/project/xXxTheDarkprogramerxXx/ps3tools)
-![](https://pbs.twimg.com/media/DbPVXSZWkAE4kti?format=jpg&name=large)
+[![WATCH THE VIDEO](http://img.youtube.com/vi/du0RslA1T4s/0.jpg)](https://www.youtube.com/watch?v=du0RslA1T4s "WATCH THE VIDEO")
+
+
 
 [Download](https://github.com/xXxTheDarkprogramerxXx/PS3Tools/releases/download/PS4-PS2-Classics-Release(AppVoyer)/Release.zip) - POWER BY APPVOYER
 
