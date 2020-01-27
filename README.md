@@ -5,6 +5,9 @@ Currently Some PS4 Project's are also located here
 
 Sorry for the mess xD
 
+Looking for PS4 Tools follow this [Link](https://github.com/xXxTheDarkprogramerxXx/PS4_Tools)
+
+
 ## Playstation Tools (Cross System)
 ### PARAM SFO EDITOR [![Build status](https://ci.appveyor.com/api/projects/status/omcf270bn57ibpn8?svg=true)](https://ci.appveyor.com/project/xXxTheDarkprogramerxXx/ps3tools-vee52)
 ![](https://pbs.twimg.com/media/DkzIJ2aXoAAAh68?format=jpg&name=large)
