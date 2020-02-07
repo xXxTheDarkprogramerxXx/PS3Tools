@@ -57,3 +57,20 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classi
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\PS4 PS2 Classics GUI.application
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\SnowFlakes.baml
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\obj\Debug\SnowFlakes.g.cs
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\x86\e_sqlite3.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\x64\e_sqlite3.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Microsoft.AppCenter.Analytics.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Microsoft.AppCenter.Crashes.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Microsoft.AppCenter.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Newtonsoft.Json.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\SQLite-net.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\SQLitePCLRaw.batteries_green.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\SQLitePCLRaw.core.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\SQLitePCLRaw.provider.e_sqlite3.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Microsoft.AppCenter.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Microsoft.AppCenter.Analytics.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Microsoft.AppCenter.Crashes.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Newtonsoft.Json.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\SQLite-net.xml

@@ -7,6 +7,11 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+
+
 namespace PS4_PS2_Classics_Gui__WPF_
 {
     /// <summary>
@@ -19,6 +24,9 @@ namespace PS4_PS2_Classics_Gui__WPF_
             base.OnStartup(e);
             try
             {
+                AppCenter.Start("186556f8-0b63-46ee-b823-e7fd9e697be7",
+                   typeof(Analytics), typeof(Crashes));
+
                 //MessageBox mess = new MessageBox("S")
                 string versionnum = e.Args[0].ToString();
                 PS4_PS2_Classics_Gui__WPF_.MainWindow.VersionNum = versionnum;

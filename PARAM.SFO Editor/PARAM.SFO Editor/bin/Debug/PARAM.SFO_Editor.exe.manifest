@@ -50,19 +50,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/5ubV7pveSC38+e+Af63L5mpTA588DrOm43GqDMzeCA=</dsig:DigestValue>
+        <dsig:DigestValue>ua+/nAu/SBsiLPOaX2GHPrpxhHhugJstOiWqF1hRZmE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PARAM.SFO_Editor.exe" size="732128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PARAM.SFO_Editor.exe" size="731136">
       <assemblyIdentity name="PARAM.SFO_Editor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>08UG81uRv9j1UTmFOPX0g7biAK/D4niRsRbXTmfjgIc=</dsig:DigestValue>
+        <dsig:DigestValue>ACVV6Zkxua4U1CmJ5oMDCYU9T0lw7Qqu2Z6vv+OR0DY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

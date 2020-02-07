@@ -1,9 +1,20 @@
-﻿V1.0.0.20 - 21
+﻿V1.0.0.23
+App Center integration (for app crash tracking)
+
+To Follow soon 
+* Config editor 
+* Jax and Daxter emu fix
+
+V1.0.0.22
+Hotfix
+Please note Jax and Daxter emu is still not working
+
+V1.0.0.20 - 21
 Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/30 "Issue with the PS2 Classics GUI"
-Added a setting check for Jax and Daxter emu to ask users if they want to re-dwonload the emu if it already exists
+Added a setting check for Jax and Daxter emu to ask users if they want to re-download the emu if it already exists
 Added a small change to fox Jax and Daxter emu
 Added a few easter eggs ʘ‿ʘ
-Published as soon as Jax And Daxter is fixed users can redwonload the emu
+Published as soon as Jax And Daxter is fixed users can re download the emu
 
 V1.0.0.19
 Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/24 "Package Creation Fail"

@@ -612,6 +612,15 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
         {
             try
             {
+
+                #region << App Center >>
+
+                /*Got to love MS this app center is amazing logs debugs and error logs*/
+
+
+
+                #endregion << App Center >>
+
                 #region << Version Numbering >>
 
                 Version v = Assembly.GetExecutingAssembly().GetName().Version;

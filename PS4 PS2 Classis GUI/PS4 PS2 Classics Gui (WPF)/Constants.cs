@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -134,7 +135,7 @@ namespace PS4_PS2_Classics_Gui__WPF_
                 /// No Information Provided on Wiki
                 /// </summary>
                 public string audio_image = "";
-
+                [Description("Record Audio Ext")]
                 /// <summary>
                 /// No Information Provided on Wiki
                 /// </summary>
@@ -392,6 +393,7 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
         public class ConfigEmuModel
         {
+           
             public Gs_Uprender gs_uprender = Gs_Uprender.Disabled;
 
             /// <summary>

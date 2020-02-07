@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static PS4_PS2_Classics_Gui__WPF_.Constants.Config_Emu_PS4;
 
 namespace PS4_PS2_Classics_Gui__WPF_
 {
@@ -83,7 +87,7 @@ namespace PS4_PS2_Classics_Gui__WPF_
             set.SettingName = SettingName;
             switch (SettingName)
             {
-             
+
             }
             set.SValue = DefaultValue;
             set.type = TypeOfContorl;
@@ -91,22 +95,39 @@ namespace PS4_PS2_Classics_Gui__WPF_
             Values.Add(set);
         }
         public static Constants.ConfigEmuModel config = new Constants.ConfigEmuModel();
-
+        static IEnumerable<Type> GetTypesWithHelpAttribute(Assembly assembly)
+        {
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (type.GetCustomAttributes(typeof(DescriptionAttribute), true).Length > 0)
+                {
+                    yield return type;
+                }
+            }
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //Load all settings into view
+
+            //just some added items
+     IEnumerable<Constants.Config_Emu_PS4> exporters = typeof(Constants.Config_Emu_PS4)
+      .Assembly.GetTypes()
+      .Where(t => t.IsSubclassOf(typeof(Constants.Config_Emu_PS4)) && !t.IsAbstract)
+      .Select(t => (Constants.Config_Emu_PS4)Activator.CreateInstance(t));
+
+         var itemstotest =   GetTypesWithHelpAttribute(Assembly.GetExecutingAssembly());
 
             Random r = new Random();
             InitializeComponent();
 
             //Constants.ConfigEditorUsed
-           
+
 
             AddEsttingValues("GS Uprender", new string[] { config.gs_uprender.ToString() }, new Control());
 
             AddEsttingValues("GS Upscale", new string[] { config.gs_upscale.ToString() }, new Control());
 
-            AddEsttingValues("Config Local Lua", new string[] { config.config_local_lua },new TextBox());
+            AddEsttingValues("Config Local Lua", new string[] { config.config_local_lua }, new TextBox());
 
             AddEsttingValues("Load Tooling Lua", new string[] { config.load_tooling_lua }, new ItemsControl());
 
@@ -481,6 +502,16 @@ namespace PS4_PS2_Classics_Gui__WPF_
             }
         }
 
+        private Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
+        {
+            return
+              assembly.GetTypes()
+                      .Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal))
+                      .ToArray();
+        }
+
+       // private List
+
         public void DoSettings()
         {
             //check control type
@@ -527,6 +558,9 @@ namespace PS4_PS2_Classics_Gui__WPF_
                 EditText.ShowDialog();
                 Values[ListView.SelectedIndex].SValue[0] = EditText._Value;
                 SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Info_Pannel_Sound);
+
+                string var = GetDescription<Record>(nameof(config.recod.audio_ext));
+
                 switch (Values[ListView.SelectedIndex].SettingName.ToString())
                 {
                     case "Config Local Lua":
@@ -535,16 +569,51 @@ namespace PS4_PS2_Classics_Gui__WPF_
                     case "Load Tooling Lua":
                         config.load_tooling_lua = Values[ListView.SelectedIndex].SValue[0];
                         break;
+                    case "Record Audio":
+                        config.recod.audio = Values[ListView.SelectedIndex].SValue[0];
+                        break;
+                    case "Record Audio Img":
+                        config.recod.audio_img = Values[ListView.SelectedIndex].SValue[0];
+                        break;
+                    case "Record Audio Image":
+                        config.recod.audio_img = Values[ListView.SelectedIndex].SValue[0];
+                        break;
+                    //case :
+                    //    config.recod.audio_img = Values[ListView.SelectedIndex].SValue[0];
+                    //    break;
                 }
             }
             else
             {
-               
+
                 Properties.Settings.Default.Save();//save the settings
             }
             ClearandReload();
         }
+        public string GetDescription<T>(string fieldName)
+        {
+            string result;
+            FieldInfo fi = typeof(T).GetField(fieldName.ToString());
+            if (fi != null)
+            {
+                try
+                {
+                    object[] descriptionAttrs = fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+                    DescriptionAttribute description = (DescriptionAttribute)descriptionAttrs[0];
+                    result = (description.Description);
+                }
+                catch
+                {
+                    result = null;
+                }
+            }
+            else
+            {
+                result = null;
+            }
 
+            return result;
+        }
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -556,7 +625,7 @@ namespace PS4_PS2_Classics_Gui__WPF_
             }
             catch (Exception ex)
             {
-               
+
             }
         }
     }
