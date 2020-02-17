@@ -209,6 +209,7 @@
     </Compile>
     <None Include="PS4 PS2 Classis GUI_2_TemporaryKey.pfx" />
     <None Include="Resources\ext.zip" />
+    <None Include="Resources\ext2.zip" />
     <None Include="Resources\param.sfo" />
   </ItemGroup>
   <ItemGroup>
@@ -251,9 +252,6 @@
     <None Include="Resources\icon0.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pic0.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pic1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +274,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ps4BGM.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pic0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orbis-pub-cmd2020.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

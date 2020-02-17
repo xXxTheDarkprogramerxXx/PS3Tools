@@ -178,5 +178,17 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
                 this["UseLibOrbisPkg"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableMusic {
+            get {
+                return ((bool)(this["EnableMusic"]));
+            }
+            set {
+                this["EnableMusic"] = value;
+            }
+        }
     }
 }

@@ -291,150 +291,64 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
         /// <param name="e"></param>
         private void btnSelectISO_Click(object sender, RoutedEventArgs e)
         {
-           
 
-            //set defualt values
-            txtPath.IsEnabled = true;
-            lblPS2ID.Visibility = Visibility.Visible;
-
-            //UpdateInfo("Checking if there is already a mutli iso screen open and closing it");
-
-            //close open form 
-            //this closes any open form
-            if (Application.Current.Windows.OfType<MultipleISO_s>().Count() == 1)
-                Application.Current.Windows.OfType<MultipleISO_s>().First().Close();
-            MultipleISO_s multi = new MultipleISO_s();
-            //UpdateInfo("Open File Dialog");
-            //Open File Dialog For ISO Files
-            OpenFileDialog thedialog = new OpenFileDialog();
-            thedialog.Title = "Select ISO";
-            thedialog.Filter = "Image File|*.iso;*.cue";
-            thedialog.Multiselect = true;
-            thedialog.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
-            if (thedialog.ShowDialog() == true)
+            try
             {
-                //clear the config file as well
-                PS2CutomLua.Clear();
+                //set defualt values
+                txtPath.IsEnabled = true;
+                lblPS2ID.Visibility = Visibility.Visible;
 
-                //UpdateInfo("adding iso files to list");
-                isoFiles = thedialog.FileNames.ToList<string>();//tada now we know how many iso's there is 
-                if (isoFiles.Count > 7)
+                //UpdateInfo("Checking if there is already a mutli iso screen open and closing it");
+
+                //close open form 
+                //this closes any open form
+                if (Application.Current.Windows.OfType<MultipleISO_s>().Count() == 1)
+                    Application.Current.Windows.OfType<MultipleISO_s>().First().Close();
+                MultipleISO_s multi = new MultipleISO_s();
+                //UpdateInfo("Open File Dialog");
+                //Open File Dialog For ISO Files
+                OpenFileDialog thedialog = new OpenFileDialog();
+                thedialog.Title = "Select ISO";
+                thedialog.Filter = "Image File|*.iso;*.cue";
+                thedialog.Multiselect = true;
+                thedialog.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
+                if (thedialog.ShowDialog() == true)
                 {
+                    //clear the config file as well
+                    PS2CutomLua.Clear();
 
-                    System.Windows.MessageBox.Show("Maximum amount of ISO's allowed by the PS4 in a classic is 7");
-                    isoFiles.Clear();
-                    return;
-                }
-                if (isoFiles.Count == 1)
-                {
-                    //UpdateInfo("Standard ISO Method");
-                    #region << For Single File >>
-                    //set the path and the text on the gui
-                    string isopath = thedialog.FileName;
-                    txtPath.Text = isopath;
-                    txtPath.Focus();
-                    txtPath.CaretIndex = txtPath.Text.Length;
-
-                    if (System.IO.Path.GetExtension(isopath).ToUpper() == ".ISO")
+                    //UpdateInfo("adding iso files to list");
+                    isoFiles = thedialog.FileNames.ToList<string>();//tada now we know how many iso's there is 
+                    if (isoFiles.Count > 7)
                     {
 
-                        //now using the file stream we can read the CNF file
-                        using (FileStream isoStream = File.OpenRead(isopath))
-                        {
-                            //use disk utils to read iso quickly
-                            CDReader cd = new CDReader(isoStream, true);
-                            //look for the spesific file
-                            Stream fileStream = cd.OpenFile(@"SYSTEM.CNF", FileMode.Open);
-                            // Use fileStream...
-                            TextReader tr = new StreamReader(fileStream);
-                            string fullstring = tr.ReadToEnd();//read string to end this will read all the info we need
-
-                            //mine for info
-                            string Is = @"\";
-                            string Ie = ";";
-
-                            //mine the start and end of the string
-                            int start = fullstring.ToString().IndexOf(Is) + Is.Length;
-                            int end = fullstring.ToString().IndexOf(Ie, start);
-                            if (end > start)
-                            {
-                                string PS2Id = fullstring.ToString().Substring(start, end - start);
-
-                                if (PS2Id != string.Empty)
-                                {
-                                    OriginalPS2ID = PS2Id;
-                                    PS2ID = PS2Id.Replace(".", "");
-                                    lblPS2ID.Content = "PS2 ID : " + PS2Id.Replace(".", "");
-
-                                    if (Properties.Settings.Default.EnablePS2IDReplace == true)
-                                    {
-                                        txtContentID.Text = PS2ID.Replace("_", "");
-                                    }
-
-                                    #region << PS2 Tools >>
-                                    try
-                                    {
-                                        var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
-
-                                        BitmapImage image = new BitmapImage();
-                                        image.BeginInit();
-                                        image.UriSource = new Uri(ps2item.Picture);
-                                        image.EndInit();
-                                        Icon0.Source = image;
-                                        Icon0.Stretch = Stretch.Fill;
-
-                                        txtTitle.Text = ps2item.PS2_Title;
-                                    }
-                                    catch(Exception ex)
-                                    {
-                                        //ps2 tools through an error
-                                    }
-                                    #endregion << PS2 Tools >>
-
-                                }
-                                else
-                                {
-                                    System.Windows.MessageBox.Show("Could not load PS2 ID");
-                                }
-                            }
-                            else
-                            {
-                                MessageBoxResult msrlt = System.Windows.MessageBox.Show("Could not load PS2 ID\n\n wpuld you like to submit an issue ?", "Error Reporting", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
-                                if (msrlt == MessageBoxResult.Yes)
-                                {
-                                    //load github issue page
-                                    Process.Start(@"https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues");
-                                }
-
-                            }
-                        }
+                        System.Windows.MessageBox.Show("Maximum amount of ISO's allowed by the PS4 in a classic is 7");
+                        isoFiles.Clear();
+                        return;
                     }
-                    else if(System.IO.Path.GetExtension(isopath).ToUpper() == ".CUE")//cue file
+                    if (isoFiles.Count == 1)
                     {
-                        PS2_Tools.BinCue.CueFile file = new PS2_Tools.BinCue.CueFile(isopath);
-                        //load some info from the binfile 
-                        if (!File.Exists(file.BinFileName))
+                        //UpdateInfo("Standard ISO Method");
+                        #region << For Single File >>
+                        //set the path and the text on the gui
+                        string isopath = thedialog.FileName;
+                        txtPath.Text = isopath;
+                        txtPath.Focus();
+                        txtPath.CaretIndex = txtPath.Text.Length;
+
+                        if (System.IO.Path.GetExtension(isopath).ToUpper() == ".ISO")
                         {
 
-                        }
-
-                        using (var fs = new FileStream(file.BinFileName, FileMode.Open, FileAccess.Read))
-                        {
-                            byte[] temp = new byte[fs.Length];
-                            int bytesRead = fs.Read(temp, 0, temp.Length);
-                            // buffer now contains the entire contents of the file
-                           // byte[] temp = new byte[10];
-
-                            byte[] cdrom = new byte[] { 0x42, 0x4F, 0x4F, 0x54, 0x32, 0x20, 0x3D, 0x20, 0x63, 0x64, 0x72, 0x6F, 0x6D, 0x30, 0x3A, 0x5C };
-
-                            List<int> positions = SearchBytePattern(cdrom, temp);
-                            //found it 
-                            if (positions.Count > 0)
+                            //now using the file stream we can read the CNF file
+                            using (FileStream isoStream = File.OpenRead(isopath))
                             {
-                                // as a separate buffer
-                                byte[] copy = new byte[30];
-                                Buffer.BlockCopy(temp, positions[0], copy, 0, copy.Length);
-                                string fullstring = Encoding.ASCII.GetString(copy);
+                                //use disk utils to read iso quickly
+                                CDReader cd = new CDReader(isoStream, true);
+                                //look for the spesific file
+                                Stream fileStream = cd.OpenFile(@"SYSTEM.CNF", FileMode.Open);
+                                // Use fileStream...
+                                TextReader tr = new StreamReader(fileStream);
+                                string fullstring = tr.ReadToEnd();//read string to end this will read all the info we need
 
                                 //mine for info
                                 string Is = @"\";
@@ -457,6 +371,7 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                                         {
                                             txtContentID.Text = PS2ID.Replace("_", "");
                                         }
+
                                         #region << PS2 Tools >>
                                         try
                                         {
@@ -482,23 +397,115 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                                     {
                                         System.Windows.MessageBox.Show("Could not load PS2 ID");
                                     }
+                                }
+                                else
+                                {
+                                    MessageBoxResult msrlt = System.Windows.MessageBox.Show("Could not load PS2 ID\n\n wpuld you like to submit an issue ?", "Error Reporting", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+                                    if (msrlt == MessageBoxResult.Yes)
+                                    {
+                                        //load github issue page
+                                        Process.Start(@"https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues");
+                                    }
 
                                 }
                             }
                         }
-                    }
+                        else if (System.IO.Path.GetExtension(isopath).ToUpper() == ".CUE")//cue file
+                        {
+                            PS2_Tools.BinCue.CueFile file = new PS2_Tools.BinCue.CueFile(isopath);
+                            //load some info from the binfile 
+                            if (!File.Exists(file.BinFileName))
+                            {
 
-                    #endregion << For Single File >>
+                            }
+
+                            using (var fs = new FileStream(file.BinFileName, FileMode.Open, FileAccess.Read))
+                            {
+                                byte[] temp = new byte[fs.Length];
+                                int bytesRead = fs.Read(temp, 0, temp.Length);
+                                // buffer now contains the entire contents of the file
+                                // byte[] temp = new byte[10];
+
+                                byte[] cdrom = new byte[] { 0x42, 0x4F, 0x4F, 0x54, 0x32, 0x20, 0x3D, 0x20, 0x63, 0x64, 0x72, 0x6F, 0x6D, 0x30, 0x3A, 0x5C };
+
+                                List<int> positions = SearchBytePattern(cdrom, temp);
+                                //found it 
+                                if (positions.Count > 0)
+                                {
+                                    // as a separate buffer
+                                    byte[] copy = new byte[30];
+                                    Buffer.BlockCopy(temp, positions[0], copy, 0, copy.Length);
+                                    string fullstring = Encoding.ASCII.GetString(copy);
+
+                                    //mine for info
+                                    string Is = @"\";
+                                    string Ie = ";";
+
+                                    //mine the start and end of the string
+                                    int start = fullstring.ToString().IndexOf(Is) + Is.Length;
+                                    int end = fullstring.ToString().IndexOf(Ie, start);
+                                    if (end > start)
+                                    {
+                                        string PS2Id = fullstring.ToString().Substring(start, end - start);
+
+                                        if (PS2Id != string.Empty)
+                                        {
+                                            OriginalPS2ID = PS2Id;
+                                            PS2ID = PS2Id.Replace(".", "");
+                                            lblPS2ID.Content = "PS2 ID : " + PS2Id.Replace(".", "");
+
+                                            if (Properties.Settings.Default.EnablePS2IDReplace == true)
+                                            {
+                                                txtContentID.Text = PS2ID.Replace("_", "");
+                                            }
+                                            #region << PS2 Tools >>
+                                            try
+                                            {
+                                                var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
+
+                                                BitmapImage image = new BitmapImage();
+                                                image.BeginInit();
+                                                image.UriSource = new Uri(ps2item.Picture);
+                                                image.EndInit();
+                                                Icon0.Source = image;
+                                                Icon0.Stretch = Stretch.Fill;
+
+                                                txtTitle.Text = ps2item.PS2_Title;
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                //ps2 tools through an error
+                                            }
+                                            #endregion << PS2 Tools >>
+
+                                        }
+                                        else
+                                        {
+                                            System.Windows.MessageBox.Show("Could not load PS2 ID");
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                        #endregion << For Single File >>
+                    }
+                    else if (isoFiles.Count > 1)
+                    {
+                        //UpdateInfo("Multi ISO Method");
+                        txtPath.IsEnabled = false;
+                        lblPS2ID.Visibility = Visibility.Hidden;
+                        //UpdateInfo("Opening Mutli ISO Screen");
+                        multi.Show();
+                        //multi.SetDesktopLocation(this.Location.X + this.Size.Width, this.Location.Y);
+                    }
                 }
-                else if (isoFiles.Count > 1)
-                {           
-                    //UpdateInfo("Multi ISO Method");
-                    txtPath.IsEnabled = false;
-                    lblPS2ID.Visibility = Visibility.Hidden;
-                    //UpdateInfo("Opening Mutli ISO Screen");
-                    multi.Show();
-                    //multi.SetDesktopLocation(this.Location.X + this.Size.Width, this.Location.Y);
-                }
+            }
+            catch (Exception ex)
+            {
+                var ps4message = new MessageBox(ex.Message, "Error Loading ISO", PS4_MessageBoxButton.OK, SoundClass.Sound.Error);
+                ps4message.ShowDialog();
             }
         }
 
@@ -510,7 +517,7 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
         private void txtContentID_Copy_TextChanged(object sender, TextChangedEventArgs e)
         {
             selecttitle.Content = txtTitle.Text.Trim();
-            if(txtTitle.Text.Trim().ToLower() == "dovahkiin")
+            if (txtTitle.Text.Trim().ToLower() == "dovahkiin")
             {
                 SoundClass.PlayPS4Sound(SoundClass.Sound.sk);
                 BitmapImage image = new BitmapImage();
@@ -601,14 +608,14 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
             Storyboard.SetTargetProperty(animation, new PropertyPath(propertyPath));
             return animation;
         }
-    
 
-    /// <summary>
-    /// Load Method
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void Window_Loaded(object sender, RoutedEventArgs e)
+
+        /// <summary>
+        /// Load Method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -677,7 +684,7 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                             }
                         }
 
-                       
+
                     }
 
                 }
@@ -689,8 +696,8 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                 if (Properties.Settings.Default.FirstTime == true)
                 {
                     /*Fist Time User Boots Up Ask User if he wants to use a custom path*/
-                   var ps4message =  new MessageBox(@"Do you want to use a custom path to run the GUI from this is mainly ideal
-if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.Sound.Notification);
+                    var ps4message = new MessageBox(@"Do you want to use a custom path to run the GUI from this is mainly ideal
+if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
                     ps4message.ShowDialog();
                     if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
                     {
@@ -705,8 +712,16 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                             Properties.Settings.Default.OverwriteTemp = true;
                         }
                         Properties.Settings.Default.Save();//save the settings
-                    }
 
+                    }
+                    ps4message= new MessageBox(@"Do you want to enable sound for this application?\nSay No when you don't have a sound card", "Initialization", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                    ps4message.ShowDialog();
+                    if (PS4_MessageBoxResult.No == MessageBox.ReturnResult)
+                    {
+                        Properties.Settings.Default.EnableMusic = false;
+                        Properties.Settings.Default.EnableGuiMusic = false;
+                        Properties.Settings.Default.Save();//save the settings
+                    }
                     var ps4askforhelp = new MessageBox(@"Would you like to know how to use PS2 Classics ?", "PS2 Classics", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Options);
                     ps4askforhelp.ShowDialog();
                     if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
@@ -719,7 +734,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
                 #region << Font Installer >>
 
-                if(Properties.Settings.Default.FontInstalled == false)
+                if (Properties.Settings.Default.FontInstalled == false)
                 {
                     if (!File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + "PS4Icon.ttf"))
                     {
@@ -789,14 +804,14 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                     SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Music);
                 }
 
-                if(DateTime.Now.Day == 25 && DateTime.Now.Month == 12)
+                if (DateTime.Now.Day == 25 && DateTime.Now.Month == 12)
                 {
                     SoundClass.PlayPS4Sound(SoundClass.Sound.LQ);
                     var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(10) };
                     timer.Tick += (s, arg) => Snow();
                     timer.Start();
                 }
-               
+
                 #endregion << Gui Music >>
 
                 #region << Advanced Window >>
@@ -847,7 +862,8 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
         {
             try
             {
-                Application.Current.Dispatcher.Invoke((Action)delegate {
+                Application.Current.Dispatcher.Invoke((Action)delegate
+                {
                     // your code
 
                     Busy Busy = new Busy(bgWorkerSS);
@@ -1262,6 +1278,38 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                 //builder.Write(saveFileDialog1.SelectedPath + @"\" + props.ContentId + ".pkg");
                 if (Properties.Settings.Default.UseLibOrbisPkg == false)
                 {
+                    var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
+
+                    string[] allfiles = Directory.GetFiles(AppCommonPath() + @"\PS2\", "*.*", SearchOption.AllDirectories);
+                    var project = Gp4Project.ReadFrom(File.OpenRead(proj));
+
+                    for (int i = 0; i < project.files.Items.Count; i++)
+                    {
+                        var testitem = project.files.Items[i].TargetPath;
+                        var testfile = AppCommonPath() + @"\PS2\" + testitem.Replace("/",@"\");
+                        //check if file exists 
+                        if(!File.Exists(testfile))
+                        {
+                            //we need to try and replace the file 
+                            //or remove it from the file
+                            if(testfile.Contains("pic0.png"))
+                            {
+                                //copy file from temp locations
+                                Properties.Resources.pic0.Save(testfile);
+                            }
+                            if (testfile.Contains("icon0.png"))
+                            {
+                                //copy file from temp locations
+                                Properties.Resources.icon0.Save(testfile);
+                            }
+                            if (testfile.Contains("pic1.png"))
+                            {
+                                //copy file from temp locations
+                                Properties.Resources.pic1.Save(testfile);
+                            }
+                        }
+                    }
+
                     Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
                     //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
                 }
@@ -1271,7 +1319,14 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
                     var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
 
+                    var items = Directory.GetFiles(AppCommonPath() + @"\PS2Emu\");
+                    
+
                     var project = Gp4Project.ReadFrom(File.OpenRead(proj));
+
+
+                    //we want to manually check the GP4 File and Make sure everything 
+                    
                     var props = PkgProperties.FromGp4(project, System.IO.Path.GetDirectoryName(proj));
                     var outputPath = saveFileDialog1.SelectedPath;
                     try
@@ -1310,27 +1365,33 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
         /// <param name="e"></param>
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            try
+            {
+                System.Windows.Forms.FolderBrowserDialog saveFileDialog1 = tempkeeper;
 
-            System.Windows.Forms.FolderBrowserDialog saveFileDialog1 = tempkeeper;
+                //MessageBox.Show("Convert completed");
+                //no messagebox instead play the bootlogo sound 
 
-            //MessageBox.Show("Convert completed");
-            //no messagebox instead play the bootlogo sound 
-
-            SoundClass.PlayPS4Sound(SoundClass.Sound.Notification);
-            OpenCloseWaitScreen(false);
-            Process.Start(saveFileDialog1.SelectedPath);
+                SoundClass.PlayPS4Sound(SoundClass.Sound.Notification);
+                OpenCloseWaitScreen(false);
+                Process.Start(saveFileDialog1.SelectedPath);
 
 
-            //now we delete the working directory
-            DeleteDirectory(AppCommonPath() + @"\Working\");
-            DeleteDirectory(AppCommonPath() + @"\PS2\");
-            DeleteDirectory(AppCommonPath() + @"\PS2Emu\");
+                //now we delete the working directory
+                DeleteDirectory(AppCommonPath() + @"\Working\");
+                DeleteDirectory(AppCommonPath() + @"\PS2\");
+                DeleteDirectory(AppCommonPath() + @"\PS2Emu\");
 
-            //reset some vales 
-            AddCustomPS2Config = false;
-            CustomConfigLocation = string.Empty;
+                //reset some vales 
+                AddCustomPS2Config = false;
+                CustomConfigLocation = string.Empty;
 
-            UpdateInfo("Ready");
+                UpdateInfo("Ready");
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox(ex.Message, "Error", PS4_MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
@@ -1853,7 +1914,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
                 for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
                 {
-                    builder += tempval.Replace("SLUS-20071_config.lua", PS2TitleId[i].ToString().Replace(".","") /*Game Name Here*/+ "_config.lua") + "\n";
+                    builder += tempval.Replace("SLUS-20071_config.lua", PS2TitleId[i].ToString().Replace(".", "") /*Game Name Here*/+ "_config.lua") + "\n";
                 }
 
                 alllines = File.ReadAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
@@ -1875,90 +1936,118 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
         public void ExtractAllResources()
         {
-            UpdateInfo("Checking Directory Paths");
-            if (!Directory.Exists(AppCommonPath()))
+            try
             {
-                UpdateInfo("Created Directory" + AppCommonPath());
-                Directory.CreateDirectory(AppCommonPath());
-            }
-            if (!Directory.Exists(AppCommonPath() + @"\PS2Emu\"))
-            {
-                UpdateInfo("Created Directory" + AppCommonPath() + @"\PS2Emu\");
-                Directory.CreateDirectory(AppCommonPath() + @"\PS2Emu\");
-            }
-
-            UpdateInfo("Writing All Binary Files to Temp Path....");
-
-            //copy byte files
-            if (Properties.Settings.Default.UseSpesifcEmu != "Jax and Daxter")
-                System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", Properties.Resources.PS2Classics);
-            else
-                System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", Properties.Resources.JaxAndDax);
-            UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
-            System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "param.sfo", Properties.Resources.param);
-            UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "param.sfo");
-            System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-cmd.exe", Properties.Resources.orbis_pub_cmd);
-            UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "orbis-pub-cmd.exe");
-            System.IO.File.WriteAllBytes(AppCommonPath() + "PS2.zip", Properties.Resources.PS2);
-            UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "PS2.zip");
-            System.IO.File.WriteAllBytes(AppCommonPath() + "ext.zip", Properties.Resources.ext);
-            UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "ext.zip");
-
-            UpdateInfo("Writing Image Files to Temp Path...");
-
-            //copy images for the save process
-            Properties.Resources.icon0.Save(AppCommonPath() + @"\PS2Emu\" + "icon0.png");
-            UpdateInfo("Writing Image File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "icon0.png");
-            Properties.Resources.icon0.Save(AppCommonPath() + @"\PS2Emu\" + "pic0.png");
-            UpdateInfo("Writing Image File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "pic0.png");
-            Properties.Resources.icon0.Save(AppCommonPath() + @"\PS2Emu\" + "pic1.png");
-            UpdateInfo("Writing Image File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "pic1.png");
-
-            UpdateInfo("Writing Text Files to Temp Path...");
-            //copy text files
-            System.IO.File.WriteAllText(AppCommonPath() + @"\PS2Emu\" + "sfo.xml", Properties.Resources.sfo);
-            UpdateInfo("Writing Image File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "sfo.xml");
-
-
-            UpdateInfo("Extracting Zip(s)");
-            //extarct zip
-            if (Directory.Exists(AppCommonPath() + @"\PS2\"))
-            {
-                DeleteDirectory(AppCommonPath() + @"\PS2\");
-            }
-            ZipFile.ExtractToDirectory(AppCommonPath() + "PS2.zip", AppCommonPath());
-
-
-            if (Directory.Exists(AppCommonPath() + @"\ext\"))
-            {
-                DeleteDirectory(AppCommonPath() + @"\ext\");
-            }
-            ZipFile.ExtractToDirectory(AppCommonPath() + "ext.zip", AppCommonPath());
-
-            File.Delete(AppCommonPath() + "ext.zip");
-            File.Delete((AppCommonPath() + "PS2.zip"));
-
-            //we need to clean up the PS2 Folder if settings have changed
-            if(Properties.Settings.Default.UseSpesifcEmu == "Jax and Daxter")
-            {
-                //user changed to Jax and Daxter
-                
-                DeleteDirectory(AppCommonPath() + @"\PS2\");
-                if (!File.Exists(AppCommonPath() + "Jax and Daxter.zip"))
+                UpdateInfo("Checking Directory Paths");
+                if (!Directory.Exists(AppCommonPath()))
                 {
-                    CustomMessageBox("Please redownload Jax and Daxter from Settings it seems the zip file is missing", "Error", PS4_MessageBoxButton.OK, MessageBoxImage.Error);
-                    System.Windows.Application.Current.Shutdown();
+                    UpdateInfo("Created Directory" + AppCommonPath());
+                    Directory.CreateDirectory(AppCommonPath());
                 }
-                if(Directory.Exists(AppCommonPath() + "\\Jax and Daxter"))
+                if (!Directory.Exists(AppCommonPath() + @"\PS2Emu\"))
                 {
-                    DeleteDirectory(AppCommonPath() + "\\Jax and Daxter");
+                    UpdateInfo("Created Directory" + AppCommonPath() + @"\PS2Emu\");
+                    Directory.CreateDirectory(AppCommonPath() + @"\PS2Emu\");
                 }
-                ZipFile.ExtractToDirectory(AppCommonPath() + "Jax and Daxter.zip", AppCommonPath() + "\\Jax and Daxter");
-                Directory.Move(AppCommonPath() + "\\Jax and Daxter", AppCommonPath() + @"\PS2\");
-                if(!Directory.Exists(AppCommonPath() + @"\PS2\image"))
+
+                UpdateInfo("Writing All Binary Files to Temp Path....");
+
+                //copy byte files
+                if (Properties.Settings.Default.UseSpesifcEmu != "Jax and Daxter")
+                    System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", Properties.Resources.PS2Classics);
+                else
+                    System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", Properties.Resources.JaxAndDax);
+                UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
+                System.IO.File.WriteAllBytes(AppCommonPath() + @"\PS2Emu\" + "param.sfo", Properties.Resources.param);
+                UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "param.sfo");
+                System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-cmd.exe", Properties.Resources.orbis_pub_cmd2020);
+                UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "orbis-pub-cmd.exe");
+                System.IO.File.WriteAllBytes(AppCommonPath() + "PS2.zip", Properties.Resources.PS2);
+                UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "PS2.zip");
+                System.IO.File.WriteAllBytes(AppCommonPath() + "ext.zip", Properties.Resources.ext2);
+                UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "ext.zip");
+
+                UpdateInfo("Writing Image Files to Temp Path...");
+
+                //copy images for the save process
+                Properties.Resources.icon0.Save(AppCommonPath() + @"\PS2Emu\" + "icon0.png");
+                UpdateInfo("Writing Image File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "icon0.png");
+                Properties.Resources.icon0.Save(AppCommonPath() + @"\PS2Emu\" + "pic0.png");
+                UpdateInfo("Writing Image File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "pic0.png");
+                Properties.Resources.icon0.Save(AppCommonPath() + @"\PS2Emu\" + "pic1.png");
+                UpdateInfo("Writing Image File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "pic1.png");
+
+                UpdateInfo("Writing Text Files to Temp Path...");
+                //copy text files
+                System.IO.File.WriteAllText(AppCommonPath() + @"\PS2Emu\" + "sfo.xml", Properties.Resources.sfo);
+                UpdateInfo("Writing Image File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PS2Emu\" + "sfo.xml");
+
+
+                UpdateInfo("Extracting Zip(s)");
+                //extarct zip
+                if (Directory.Exists(AppCommonPath() + @"\PS2\"))
                 {
-                    Directory.CreateDirectory(AppCommonPath() + @"\PS2\image");
+                    DeleteDirectory(AppCommonPath() + @"\PS2\");
                 }
+                ZipFile.ExtractToDirectory(AppCommonPath() + "PS2.zip", AppCommonPath());
+
+
+                if (Directory.Exists(AppCommonPath() + @"\ext\"))
+                {
+                    DeleteDirectory(AppCommonPath() + @"\ext\");
+                }
+                ZipFile.ExtractToDirectory(AppCommonPath() + "ext.zip", AppCommonPath());
+
+                File.Delete(AppCommonPath() + "ext.zip");
+                File.Delete((AppCommonPath() + "PS2.zip"));
+
+                //we need to clean up the PS2 Folder if settings have changed
+                if (Properties.Settings.Default.UseSpesifcEmu == "Jax and Daxter")
+                {
+                    //user changed to Jax and Daxter
+
+                    DeleteDirectory(AppCommonPath() + @"\PS2\");
+                    if (!File.Exists(AppCommonPath() + "Jax and Daxter.zip"))
+                    {
+                        CustomMessageBox("Please redownload Jax and Daxter from Settings it seems the zip file is missing", "Error", PS4_MessageBoxButton.OK, MessageBoxImage.Error);
+                        System.Windows.Application.Current.Shutdown();
+                    }
+                    if (Directory.Exists(AppCommonPath() + "\\Jax and Daxter"))
+                    {
+                        DeleteDirectory(AppCommonPath() + "\\Jax and Daxter");
+                    }
+                    ZipFile.ExtractToDirectory(AppCommonPath() + "Jax and Daxter.zip", AppCommonPath() + "\\Jax and Daxter");
+                    Directory.Move(AppCommonPath() + "\\Jax and Daxter", AppCommonPath() + @"\PS2\");
+                    if (!Directory.Exists(AppCommonPath() + @"\PS2\image"))
+                    {
+                        Directory.CreateDirectory(AppCommonPath() + @"\PS2\image");
+                    }
+                }
+                else if (Properties.Settings.Default.UseSpesifcEmu != "Default")
+                {
+                    //this is for all other emus
+                    DeleteDirectory(AppCommonPath() + @"\PS2\");
+                    if (!File.Exists(AppCommonPath() + Properties.Settings.Default.UseSpesifcEmu + ".zip"))
+                    {
+                        CustomMessageBox("Please redownload "+ Properties.Settings.Default.UseSpesifcEmu + " from Settings it seems the zip file is missing", "Error", PS4_MessageBoxButton.OK, MessageBoxImage.Error);
+                        System.Windows.Application.Current.Shutdown();
+                    }
+                    if (Directory.Exists(AppCommonPath() + "\\"+ Properties.Settings.Default.UseSpesifcEmu))
+                    {
+                        DeleteDirectory(AppCommonPath() + "\\" + Properties.Settings.Default.UseSpesifcEmu);
+                    }
+                    ZipFile.ExtractToDirectory(AppCommonPath() + Properties.Settings.Default.UseSpesifcEmu + ".zip", AppCommonPath() + "\\" + Properties.Settings.Default.UseSpesifcEmu);
+                    Directory.Move(AppCommonPath() + "\\" + Properties.Settings.Default.UseSpesifcEmu, AppCommonPath() + @"\PS2\");
+                    if (!Directory.Exists(AppCommonPath() + @"\PS2\image"))
+                    {
+                        Directory.CreateDirectory(AppCommonPath() + @"\PS2\image");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var ps4message = new MessageBox("Error on resource extraction are you running doubles of the app" + ex.Message, "Error On Resource Extraction", PS4_MessageBoxButton.OK, SoundClass.Sound.Error);
+                ps4message.Show();
             }
         }
 
@@ -1982,7 +2071,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
                 Directory.Delete(target_dir, false);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //we dont log anything here it should be okay
             }
@@ -2204,7 +2293,7 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
                 PS4_PS2_Classics_Gui__WPF_.HowToUse.HowToUse thisisatutorial = new PS4_PS2_Classics_Gui__WPF_.HowToUse.HowToUse();
                 thisisatutorial.ShowDialog();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -2221,29 +2310,35 @@ if you are using an SSD","Initialization",PS4_MessageBoxButton.YesNo,SoundClass.
 
         private void MenuItem_Click_10(object sender, RoutedEventArgs e)
         {
-            var fileDialog = new System.Windows.Forms.OpenFileDialog();
-            fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-            var result = fileDialog.ShowDialog();      
-            switch (result)
+            try
             {
-                case System.Windows.Forms.DialogResult.OK:
-                    var file = fileDialog.FileName;
-                    BitmapImage image = new BitmapImage();
-                    image.BeginInit();
-                    image.UriSource = new Uri(file);
-                    image.EndInit();
-                    Icon0.Source = image;
-                    Icon0.Stretch = Stretch.Fill;
-                    break;
-                case System.Windows.Forms.DialogResult.Cancel:
-                default:
-                 
-                    break;
+                var fileDialog = new System.Windows.Forms.OpenFileDialog();
+                fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                var result = fileDialog.ShowDialog();
+                switch (result)
+                {
+                    case System.Windows.Forms.DialogResult.OK:
+                        var file = fileDialog.FileName;
+                        BitmapImage image = new BitmapImage();
+                        image.BeginInit();
+                        image.UriSource = new Uri(file);
+                        image.EndInit();
+                        Icon0.Source = image;
+                        Icon0.Stretch = Stretch.Fill;
+                        break;
+                    case System.Windows.Forms.DialogResult.Cancel:
+                    default:
+
+                        break;
+                }
+
+                var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
+
             }
+            catch (Exception ex)
+            {
 
-            var ps2item = PS2_Tools.PS2_Content.GetPS2Item(PS2ID.Replace("_", "-"));
-
-          
+            }
         }
 
         private void MenuItem_Click_11(object sender, RoutedEventArgs e)

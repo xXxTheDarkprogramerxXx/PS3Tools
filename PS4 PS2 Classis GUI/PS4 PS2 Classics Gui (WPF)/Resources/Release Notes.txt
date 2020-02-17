@@ -1,4 +1,21 @@
-﻿V1.0.0.23
+﻿V1.0.0.25 (Emulator and sound support)
+* Jax and Daxter Finally Works ! Enjoy
+* Added Bully V1 and V2 As well as Destroy all Humans V1 and V2 to the emulator selection 
+  Thanks to @Vitt0x_Lar_YT
+* Added Support to disable sounds throughout the application
+* Fixed Errors #39 - #45 On Github
+
+
+V1.0.0.24 (Added @Vitt0x_Lar_YT Emulator Selection | Github Issue Fixes)
+Huge Emulator Control Update thanks to https://twitter.com/Vitt0x_Lar_YT
+ * Full Control to user will be in next update
+Fix Error On Extraction of Resources
+Please don't try and run multiple instances of this application
+Reference https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/38
+Fix Error on Emulator downloader
+Reference https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/34
+
+V1.0.0.23
 App Center integration (for app crash tracking)
 
 To Follow soon 

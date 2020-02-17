@@ -256,4 +256,19 @@
   <data name="priates" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\priates.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pic0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pic1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ext2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ext2.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="orbis_pub_cmd2020" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\orbis-pub-cmd2020.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

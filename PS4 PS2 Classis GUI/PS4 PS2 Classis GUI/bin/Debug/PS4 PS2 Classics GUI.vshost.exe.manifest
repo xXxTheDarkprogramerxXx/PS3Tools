@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PS4 PS2 Classics GUI.exe" size="28312032">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PS4 PS2 Classics GUI.exe" size="28311040">
       <assemblyIdentity name="PS4 PS2 Classics GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wuadQ7T6q3F6PYB1Q3ygjwWmDiNyqo3RdI00rfhTCIk=</dsig:DigestValue>
+        <dsig:DigestValue>DNWvhj386J2aARnEWfv7YNFVkAGYAR0qwry8L5CG91E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

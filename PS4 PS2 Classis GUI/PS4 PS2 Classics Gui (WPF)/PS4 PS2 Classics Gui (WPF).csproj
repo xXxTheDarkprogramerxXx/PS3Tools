@@ -31,7 +31,7 @@
     <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/PS2Classics/</UpdateUrl>
     <PublisherName>The Darkprogramer</PublisherName>
     <SuiteName>PSTools</SuiteName>
-    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationRevision>26</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -293,6 +293,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\ext2.zip" />
     <None Include="Resources\Release Notes.txt" />
     <None Include="Resources\JaxAndDax.gp4">
       <SubType>Designer</SubType>
@@ -325,6 +326,11 @@
     <Resource Include="Resources\lq.mp3" />
     <Resource Include="Resources\dovahkiin.mp3" />
     <Resource Include="Resources\priates.mp3" />
+    <None Include="Resources\icon0.png" />
+    <None Include="Resources\pic0.png" />
+    <None Include="Resources\pic1.png" />
+    <None Include="Resources\icon1.png" />
+    <None Include="Resources\orbis-pub-cmd2020.exe" />
     <Content Include="Resources\PS4Icon.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -364,9 +370,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\pkg.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\icon0.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\favicon.ico" />

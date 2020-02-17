@@ -84,6 +84,11 @@ namespace PS4_PS2_Classics_Gui__WPF_
         {
             try
             {
+                if(Properties.Settings.Default.EnableMusic == false)
+                {
+                    return;
+                }
+
                 switch (Soundtoplay)
                 {
 

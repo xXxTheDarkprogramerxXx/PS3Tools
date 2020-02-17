@@ -387,46 +387,55 @@ Speed : {2}
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            OpenCloseWaitScreen(false);
-            sw.Reset();
-            //if directory exists just delete it 
-            if (Directory.Exists(AppCommonPath() + "Jax And Daxter"))
+            try
             {
-                DeleteDirectory(AppCommonPath() + "Jax And Daxter");
+                string FileName = DownloadFileName.Replace(".zip","");
+                OpenCloseWaitScreen(false);
+                sw.Reset();
+
+                //if directory exists just delete it 
+                if (Directory.Exists(AppCommonPath() + FileName))
+                {
+                    DeleteDirectory(AppCommonPath() + FileName);
+                }
+
+                //create libvlc directory 
+                if (!Directory.Exists(AppCommonPath() + FileName))
+                {
+                    Directory.CreateDirectory(AppCommonPath() + FileName);
+                }
+                ZipFile.ExtractToDirectory(AppCommonPath() + DownloadFileName, AppCommonPath() + @"\"+ FileName + @"\");
+
+                Application.Current.Dispatcher.Invoke((Action)delegate
+                {
+                    // your code
+
+                    MessageBox ps4mes = new MessageBox("Content Downloaded and Added\n\nPlease Restart The Application", "Done", PS4_MessageBoxButton.OK, SoundClass.Sound.Notification);
+                    ps4mes.ShowDialog();
+                });
             }
-
-            //create libvlc directory 
-            if (!Directory.Exists(AppCommonPath() + "Jax And Daxter"))
+            catch (Exception ex)
             {
-                Directory.CreateDirectory(AppCommonPath() + "Jax And Daxter");
-            }
-
-
-
-
-
-            ZipFile.ExtractToDirectory(AppCommonPath() + "Jax And Daxter.zip", AppCommonPath() + @"\Jax And Daxter\");
-
-            Application.Current.Dispatcher.Invoke((Action)delegate
-            {
-                // your code
-
-                MessageBox ps4mes = new MessageBox("Content Downloaded and Added\n\nPlease Restart The Application", "Done", PS4_MessageBoxButton.OK, SoundClass.Sound.Notification);
+                MessageBox ps4mes = new MessageBox("Error Downloading or Extracting custom EMU\n" + ex.Message, "Error", PS4_MessageBoxButton.OK, SoundClass.Sound.Error);
                 ps4mes.ShowDialog();
-            });
+            }
+
         }
+
+        private static string DownloadFileName { get; set; }
 
         private void startDownload(string FileName)
         {
             Thread thread = new Thread(() =>
             {
+                DownloadFileName = FileName;
                 sw.Start();
                 WebClient client = new WebClient();
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
 
                
-                    client.DownloadFileAsync(new Uri("http://www.nigmacontractors.co.za/PSTools/PS2Classics/Downloads/"+ FileName), AppCommonPath() + "Jax and Daxter.zip");
+                    client.DownloadFileAsync(new Uri("http://www.nigmacontractors.co.za/PSTools/PS2Classics/Downloads/"+ FileName), AppCommonPath() + FileName);
                });
             thread.Start();
         }
@@ -505,34 +514,149 @@ Speed : {2}
                             break;
                         case "Use Specific Emu":
                             Properties.Settings.Default.UseSpesifcEmu = lvi.Content.ToString();
-                            if (lvi.Content.ToString() == "Jax and Daxter")
+                            switch (lvi.Content.ToString())
                             {
-                                //check if the item exists already
-                                if (!Directory.Exists(AppCommonPath() + "Jax And Daxter"))
-                                {
-                                    //check if the item is found
-                                    MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
-                                    ps4mes.ShowDialog();
-                                    if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                //add custom emu's here
+                                #region << Jax And Daxter >>
+                                case "Jax and Daxter":
                                     {
-                                        bgWorkerSS.RunWorkerAsync();
-                                        startDownload("Jax and Daxter.zip");
-                                    }
-                                }else
-                                {
-                                    MessageBox ps4mes = new MessageBox("Would you like to re-download the Jax And Daxter Emu ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
-                                    ps4mes.ShowDialog();
-                                    if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        //check if the item exists already
+                                        if (!Directory.Exists(AppCommonPath() + "Jax And Daxter"))
+                                        {
+                                            //check if the item is found
+                                            MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                            ps4mes.ShowDialog();
+                                            if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                            {
+                                                bgWorkerSS.RunWorkerAsync();
+                                                startDownload("Jax and Daxter.zip");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox ps4mes = new MessageBox("Would you like to re-download the Jax And Daxter Emu ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                            ps4mes.ShowDialog();
+                                            if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                            {
+                                                bgWorkerSS.RunWorkerAsync();
+                                                startDownload("Jax and Daxter.zip");
+                                            }
+                                        }
+                                    };
+                                    break;
+                                #endregion << Jax And Daxter >>
+
+                                #region << Bully >>
+                                #region << Bully V1 >>
+                                case "Bully V1":
+                                    if (!Directory.Exists(AppCommonPath() + "Bully V1"))
                                     {
-                                        bgWorkerSS.RunWorkerAsync();
-                                        startDownload("Jax and Daxter.zip");
+                                        //check if the item is found
+                                        MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Bully V1.zip");
+                                        }
                                     }
-                                }
+                                    else
+                                    {
+                                        MessageBox ps4mes = new MessageBox("Would you like to re-download the Bully (by Vitt0x_Lar_YT V1) Emu ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Bully V1.zip");
+                                        }
+                                    }
+                                    break;
+                                #endregion << Bully V1 >>
+                                #region << Bully V2 >>
+                                case "Bully V2":
+                                    if (!Directory.Exists(AppCommonPath() + "Bully V2"))
+                                    {
+                                        //check if the item is found
+                                        MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Bully V2.zip");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox ps4mes = new MessageBox("Would you like to re-download the Bully (by Vitt0x_Lar_YT V2) Emu ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Bully V2.zip");
+                                        }
+                                    }
+                                    break;
+                                #endregion << Bully V2 >>
+                                #endregion << Bully >>
+
+                                #region << DAH >>
+                                #region << DAH V2 >>
+                                case "Destroy All Humans V2":
+                                    if (!Directory.Exists(AppCommonPath() + "Destroy All Humans V2"))
+                                    {
+                                        //check if the item is found
+                                        MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Destroy All Humans V2.zip");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox ps4mes = new MessageBox("Would you like to re-download the Destroy All Humans (by Vitt0x_Lar_YT V2) Emu ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Destroy All Humans V2.zip");
+                                        }
+                                    }
+                                    break;
+                                #endregion << Bully V2 >>
+                                #region << Destroy All Humans V1 >>
+                                case "Destroy All Humans V1":
+                                    if (!Directory.Exists(AppCommonPath() + "Destroy All Humans V1"))
+                                    {
+                                        //check if the item is found
+                                        MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Destroy All Humans V1.zip");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox ps4mes = new MessageBox("Would you like to re-download the Destroy All Humans V1 (by Vitt0x_Lar_YT) Emu ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Destroy All Humans V1.zipp");
+                                        }
+                                    }
+                                    break;
+                                #endregion << Bully V2 >>
+                                #endregion << DAH >>
+
+                                //SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Music);
+                                default:
+                                    break;
                             }
-                            //SoundClass.PlayPS4Sound(SoundClass.Sound.PS4_Music);
-
                             break;
-
                     }
                     Properties.Settings.Default.Save();//save the settings
                 }
@@ -650,6 +774,10 @@ Speed : {2}
                         //itemadd.Template = (ControlTemplate)Resources["SettingTemplate"];
                         listView.Items.Add(CreateItem("Default"));
                         listView.Items.Add(CreateItem("Jax and Daxter"));
+                        listView.Items.Add(CreateItem("Bully V1"));
+                        listView.Items.Add(CreateItem("Bully V2"));
+                        listView.Items.Add(CreateItem("Destroy All Humans V1"));
+                        listView.Items.Add(CreateItem("Destroy All Humans V2"));
                         //listView.Items.Add("Jax and Daxter");
                         //HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,200,0,10"
                         //Margin="0,200,0,10"

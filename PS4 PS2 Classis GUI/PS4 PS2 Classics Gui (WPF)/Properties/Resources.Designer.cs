@@ -91,6 +91,16 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ext2 {
+            get {
+                object obj = ResourceManager.GetObject("ext2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon favicon {
@@ -136,6 +146,16 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         internal static System.Drawing.Bitmap icon0 {
             get {
                 object obj = ResourceManager.GetObject("icon0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon1 {
+            get {
+                object obj = ResourceManager.GetObject("icon1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,10 +283,40 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] orbis_pub_cmd2020 {
+            get {
+                object obj = ResourceManager.GetObject("orbis_pub_cmd2020", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] param {
             get {
                 object obj = ResourceManager.GetObject("param", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pic0 {
+            get {
+                object obj = ResourceManager.GetObject("pic0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pic1 {
+            get {
+                object obj = ResourceManager.GetObject("pic1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -451,18 +501,17 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to V1.0.0.20
-        ///Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/30 &quot;Issue with the PS2 Classics GUI&quot;
-        ///Added a setting check for Jax and Daxter emu to ask users if they want to re-dwonload the emu if it already exists
-        ///Added a small change to fox Jax and Daxter emu
-        ///Added a few easter eggs ʘ‿ʘ
+        ///   Looks up a localized string similar to V1.0.0.24 (Added @Vitt0x_Lar_YT Emulator Selection | Github Issue Fixes)
+        ///Huge Emulator Control Update thanks to https://twitter.com/Vitt0x_Lar_YT
+        /// * Full Control to user will be in next update
+        ///Fix Error On Extraction of Resources
+        ///Please don&apos;t try and run multiple instances of this application
+        ///Reference https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/38
+        ///Fix Error on Emulator downloader
+        ///Reference https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/34
         ///
-        ///V1.0.0.19
-        ///Added a fix for https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/24 &quot;Package Creation Fail&quot;
-        ///Added a setting for users to switch between using LibOrbisPKG or not 
-        ///
-        ///
-        ///V1.0.0 [rest of string was truncated]&quot;;.
+        ///V1.0.0.23
+        ///App Center integration [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Release_Notes {
             get {

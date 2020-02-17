@@ -100,6 +100,16 @@ namespace PS4_PS2_Classis_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ext2 {
+            get {
+                object obj = ResourceManager.GetObject("ext2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon favicon {
@@ -135,6 +145,16 @@ namespace PS4_PS2_Classis_GUI.Properties {
         internal static byte[] orbis_pub_cmd {
             get {
                 object obj = ResourceManager.GetObject("orbis_pub_cmd", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] orbis_pub_cmd2020 {
+            get {
+                object obj = ResourceManager.GetObject("orbis_pub_cmd2020", resourceCulture);
                 return ((byte[])(obj));
             }
         }
