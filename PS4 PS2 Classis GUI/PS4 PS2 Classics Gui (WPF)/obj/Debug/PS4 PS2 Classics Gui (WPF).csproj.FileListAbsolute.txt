@@ -74,3 +74,6 @@ C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classi
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Microsoft.AppCenter.Crashes.xml
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\Newtonsoft.Json.xml
 C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\SQLite-net.xml
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\HtmlAgilityPack.dll
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\3deEchelon\Documents\GitHub\PS3Tools\PS4 PS2 Classis GUI\PS4 PS2 Classics Gui (WPF)\bin\Debug\HtmlAgilityPack.xml

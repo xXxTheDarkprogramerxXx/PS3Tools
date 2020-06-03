@@ -121,6 +121,16 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] HZDA {
+            get {
+                object obj = ResourceManager.GetObject("HZDA", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap icon_sound_mute {
@@ -501,17 +511,20 @@ namespace PS4_PS2_Classics_Gui__WPF_.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to V1.0.0.24 (Added @Vitt0x_Lar_YT Emulator Selection | Github Issue Fixes)
-        ///Huge Emulator Control Update thanks to https://twitter.com/Vitt0x_Lar_YT
-        /// * Full Control to user will be in next update
-        ///Fix Error On Extraction of Resources
-        ///Please don&apos;t try and run multiple instances of this application
-        ///Reference https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/38
-        ///Fix Error on Emulator downloader
-        ///Reference https://github.com/xXxTheDarkprogramerxXx/PS3Tools/issues/34
+        ///   Looks up a localized string similar to V1.0.0.26 (More Emulators)
+        ///* Added more emulators
+        ///* Added another easter egg
         ///
-        ///V1.0.0.23
-        ///App Center integration [rest of string was truncated]&quot;;.
+        ///V1.0.0.25 (Emulator and sound support)
+        ///* Jax and Daxter Finally Works ! Enjoy
+        ///* Added Bully V1 and V2 As well as Destroy all Humans V1 and V2 to the emulator selection 
+        ///  Thanks to @Vitt0x_Lar_YT
+        ///* Added Support to disable sounds throughout the application
+        ///* Fixed Errors #39 - #45 On Github
+        ///
+        ///
+        ///V1.0.0.24 (Added @Vitt0x_Lar_YT Emulator Selection | Github Issue Fixes)
+        ///Huge Emulator Control Update thanks to https://twitter [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Release_Notes {
             get {

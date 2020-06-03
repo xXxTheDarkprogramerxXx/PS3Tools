@@ -31,7 +31,7 @@
     <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/PS2Classics/</UpdateUrl>
     <PublisherName>The Darkprogramer</PublisherName>
     <SuiteName>PSTools</SuiteName>
-    <ApplicationRevision>26</ApplicationRevision>
+    <ApplicationRevision>29</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -91,6 +91,10 @@
     </Reference>
     <Reference Include="GameArchives">
       <HintPath>..\..\..\..\..\Downloads\LibOrbisPkg-0.1.138\GameArchives.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.23.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.23\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="LibArchiveExplorer">
       <HintPath>..\..\..\..\..\Downloads\LibOrbisPkg-0.1.138\LibArchiveExplorer.dll</HintPath>
@@ -331,6 +335,7 @@
     <None Include="Resources\pic1.png" />
     <None Include="Resources\icon1.png" />
     <None Include="Resources\orbis-pub-cmd2020.exe" />
+    <None Include="Resources\HZDA.mp3" />
     <Content Include="Resources\PS4Icon.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

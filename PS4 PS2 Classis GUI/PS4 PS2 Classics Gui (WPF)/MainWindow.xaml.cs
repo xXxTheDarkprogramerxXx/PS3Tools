@@ -54,6 +54,23 @@ namespace PS4_PS2_Classics_Gui__WPF_
 
         #region << Vars' >>
 
+        public static bool EnableAppCenDebug = false;
+
+
+        //NTSC-Ch
+        //NTSC-U
+        //NTSC-J
+        //PAL_Unk
+        public enum PS2Region
+        {
+            PAL,
+            NTSC_J,
+            NTSC_U,
+            Unknown
+        }
+
+        public PS2Region CurrentRegion = PS2Region.Unknown;//just by default can change later
+
         public static string VersionNum = "";
 
         private readonly BackgroundWorker backgroundWorker1 = new BackgroundWorker();
@@ -130,7 +147,10 @@ namespace PS4_PS2_Classics_Gui__WPF_
             }
             catch (Exception ex)
             {
-
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
             }
         }
 
@@ -385,9 +405,29 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                                             Icon0.Stretch = Stretch.Fill;
 
                                             txtTitle.Text = ps2item.PS2_Title;
+                                            switch(ps2item.Region)
+                                            {
+                                                case "PAL-Unk":
+                                                    CurrentRegion = PS2Region.PAL;
+                                                    break;
+                                                case "NTSC-J":
+                                                    CurrentRegion = PS2Region.NTSC_J;
+                                                    break;
+                                                case "NTSC-U":
+                                                case "NTSC-Ch":
+                                                    CurrentRegion = PS2Region.NTSC_U;
+                                                    break;
+                                                default:
+                                                    CurrentRegion = PS2Region.Unknown;
+                                                    break;
+                                            }
                                         }
                                         catch (Exception ex)
                                         {
+                                            if (MainWindow.EnableAppCenDebug == true)
+                                            {
+                                                Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                                            }
                                             //ps2 tools through an error
                                         }
                                         #endregion << PS2 Tools >>
@@ -471,9 +511,29 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                                                 Icon0.Stretch = Stretch.Fill;
 
                                                 txtTitle.Text = ps2item.PS2_Title;
+                                                switch (ps2item.Region)
+                                                {
+                                                    case "PAL-Unk":
+                                                        CurrentRegion = PS2Region.PAL;
+                                                        break;
+                                                    case "NTSC-J":
+                                                        CurrentRegion = PS2Region.NTSC_J;
+                                                        break;
+                                                    case "NTSC-U":
+                                                    case "NTSC-Ch":
+                                                        CurrentRegion = PS2Region.NTSC_U;
+                                                        break;
+                                                    default:
+                                                        CurrentRegion = PS2Region.Unknown;
+                                                        break;
+                                                }
                                             }
                                             catch (Exception ex)
                                             {
+                                                if (MainWindow.EnableAppCenDebug == true)
+                                                {
+                                                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                                                }
                                                 //ps2 tools through an error
                                             }
                                             #endregion << PS2 Tools >>
@@ -488,6 +548,46 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
                                 }
                             }
                         }
+                        //we now want to check the status of the game
+
+                        if (CompatibiltyItems.Count != 0)
+                        {
+                           var item = CompatibiltyItems.Find(x => RemoveSpecialCharacters(x.Name) == RemoveSpecialCharacters(txtTitle.Text));
+                            if(item != null)
+                            {
+                                //now we need to check the status
+                                if (CurrentRegion == PS2Region.PAL)
+                                {
+                                    if (item.Pal != "Playable" && item.Pal != "PS2 Classics" && item.Pal != "Not Available" && item.Pal != "?")
+                                    {
+                                        CustomMessageBox( "It seems your game " + item.Name + " is in state " + item.Pal + "\nSome notes from the wiki \n" + item.Notes, "PS2 Classics Emulator Compatibility", PS4_MessageBoxButton.OK, MessageBoxImage.Information);
+                                    }
+                                }
+                                if (CurrentRegion == PS2Region.NTSC_J)
+                                {
+                                    if (item.NTSC_J != "Playable" && item.NTSC_J != "PS2 Classics" && item.NTSC_J != "Not Available" && item.NTSC_J != "?")
+                                    {
+                                        CustomMessageBox("It seems your game " + item.Name + " is in state " + item.NTSC_J + "\nSome notes from the wiki \n" + item.Notes, "PS2 Classics Emulator Compatibility", PS4_MessageBoxButton.OK, MessageBoxImage.Information);
+                                    }
+                                    
+
+                                }
+                                if (CurrentRegion == PS2Region.NTSC_U)
+                                {
+                                    if (item.NTSC_U_C != "Playable" && item.NTSC_U_C != "PS2 Classics" && item.NTSC_U_C != "Not Available" && item.NTSC_U_C != "?")
+                                    {
+                                        CustomMessageBox("It seems your game " + item.Name + " is in state " + item.NTSC_U_C + "\nSome notes from the wiki \n" + item.Notes, "PS2 Classics Emulator Compatibility", PS4_MessageBoxButton.OK, MessageBoxImage.Information);
+                                    }
+
+                                }
+                            }
+                            else
+                            {
+                                //try one last thing 
+                            }
+                        }
+
+
 
                         #endregion << For Single File >>
                     }
@@ -504,6 +604,10 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
             }
             catch (Exception ex)
             {
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
                 var ps4message = new MessageBox(ex.Message, "Error Loading ISO", PS4_MessageBoxButton.OK, SoundClass.Sound.Error);
                 ps4message.ShowDialog();
             }
@@ -620,6 +724,14 @@ Special thanks to zordon605 for PS2 Multi Iso Info", "Credits", PS4_MessageBoxBu
             try
             {
 
+                try
+                {
+                   Task.Run(()=> GetGamesListFromDevWiki());
+                }
+                catch
+                {
+                  
+                }
                 #region << App Center >>
 
                 /*Got to love MS this app center is amazing logs debugs and error logs*/
@@ -811,6 +923,26 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
                     timer.Tick += (s, arg) => Snow();
                     timer.Start();
                 }
+                if(DateTime.Now.Day == 28 && DateTime.Now.Month == 2)
+                {
+                    SoundClass.PlayPS4Sound(SoundClass.Sound.Aloy);
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.UriSource = new Uri(@"https://cdn.mos.cms.futurecdn.net/JP8PYVh8bQRrchusSeGYPW.jpg");
+                    image.EndInit();
+                    ImageBrush ib = new ImageBrush();
+                    ib.ImageSource = image;
+                    BackgroundImage.Background = ib;
+
+                    image = new BitmapImage();
+                    image.BeginInit();
+                    image.UriSource = new Uri(@"https://m.media-amazon.com/images/I/71mdT22nL+L._SS500_.jpg");
+                    image.EndInit();
+                    Icon0.Source = image;
+                    Icon0.Stretch = Stretch.Fill;
+
+                    //Icon0.Stretch = Stretch.Fill;
+                }
 
                 #endregion << Gui Music >>
 
@@ -848,7 +980,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             }
             catch (Exception ex)
             {
-
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
@@ -873,9 +1008,14 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             }
             catch (Exception ex)
             {
-
+                 if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
             }
         }
+
+        Gp4Project project = new Gp4Project();
 
         /// <summary>
         /// Heavy Lifter Bacground Worker this Worker Does Everything
@@ -1004,9 +1144,11 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
                    {
                        if (sfo.Tables[i].Name == "CONTENT_ID")
                        {
+                           xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + txtContentID.Text.Trim() + "0000001";//make this the same no ps2 id required
                            var tempitem = sfo.Tables[i];
-                           tempitem.Value = "UP9000-" + txtContentID.Text.Trim() + "_00-" + txtContentID.Text.Trim() + "0000001";//make this the same no ps2 id required
+                           tempitem.Value = xmlcontentid;
                            sfo.Tables[i] = tempitem;
+                      
                        }
                    }
                });
@@ -1079,23 +1221,53 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
 
                 #endregion << SFO Handeling >>
 
-                UpdateString("Creating GP4 Project");
+                #region << GP4 Handeling >>
+               
+                #endregion << GP4 Handeling >>
 
+                UpdateString("Creating GP4 Project");
+                Stream s = null;
                 UpdateString("Looking for Custom PS2 LUA And Config from kozarovv");
                 if (Properties.Settings.Default.EnableCustomConfigFetching == true)
                 {
                     try
                     {
+                        var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
+                        s= new FileStream(proj, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                        project = Gp4Project.ReadFrom(s);
                         //here we get some patches from our friend https://twitter.com/kozarovv
-                        SearchGithubForCorrespondingPatches(OriginalPS2ID);
+                        try
+                        {
+                            SearchGithubForCorrespondingPatches(OriginalPS2ID);
+                        }
+                        catch(Exception ex)
+                        {
+                            if (MainWindow.EnableAppCenDebug == true)
+                            {
+                                Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                            }
+                        }
+                        LibOrbisPkg.GP4.Gp4Project.WriteTo(project, s);
+                        s.Close();
+                        //File.Move(proj, proj + "_backup");
                     }
                     catch (Exception ex)
                     {
-
+                        if (MainWindow.EnableAppCenDebug == true)
+                        {
+                            Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                        }
                     }
                 }
-
-                SaveGp4();
+                if(project.files == null)
+                {
+                    var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
+                    s = new FileStream(proj, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                    project = Gp4Project.ReadFrom(s);
+                    s.Close();
+                }
+                //Thread.Sleep(100);
+                SaveGp4(project);
 
 
                 UpdateString("Creating SFO File");
@@ -1150,6 +1322,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
                 UpdateString("Creating Custom PS2 LUA And Config");
                 if (PS2CutomLua.Count > 1)
                 {
+                    //we need to edit the dam gp4 how did i forget this.
+
+                    //TODO: Add this fix
+                    
                     //this function no longer is in use we use koz patches now
                     //for (int i = 0; i < PS2CutomLua.Count; i++)
                     //{
@@ -1278,10 +1454,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
                 //builder.Write(saveFileDialog1.SelectedPath + @"\" + props.ContentId + ".pkg");
                 if (Properties.Settings.Default.UseLibOrbisPkg == false)
                 {
-                    var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
 
+                    var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
                     string[] allfiles = Directory.GetFiles(AppCommonPath() + @"\PS2\", "*.*", SearchOption.AllDirectories);
-                    var project = Gp4Project.ReadFrom(File.OpenRead(proj));
+                    project = Gp4Project.ReadFrom(File.OpenRead(proj));
 
                     for (int i = 0; i < project.files.Items.Count; i++)
                     {
@@ -1307,22 +1483,31 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
                                 //copy file from temp locations
                                 Properties.Resources.pic1.Save(testfile);
                             }
+                            for (int ix = 0; ix < PS2CutomLua.Count; ix++)
+                            {
+                                if (testfile.Contains(PS2CutomLua[ix]))
+                                {
+
+                                }
+                            }
+                          
                         }
                     }
 
                     Orbis_CMD("", "img_create --oformat pkg \"" + AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4\" \"" + saveFileDialog1.SelectedPath + "\"");
                     //orbis_pub_cmd.exe img_create --skip_digest --oformat pkg C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\PS2Classics.gp4 C:\Users\3deEchelon\AppData\Roaming\Ps4Tools\PS2Emu\
+                    System.IO.File.Move(saveFileDialog1.SelectedPath + @"\" + sfo.ContentID + "-A0100-V0100.pkg", saveFileDialog1.SelectedPath +@"\"+sfo.Title+".pkg" );
                 }
                 else
 
                 {
 
-                    var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
-
-                    var items = Directory.GetFiles(AppCommonPath() + @"\PS2Emu\");
                     
 
-                    var project = Gp4Project.ReadFrom(File.OpenRead(proj));
+                    var items = Directory.GetFiles(AppCommonPath() + @"\PS2Emu\");
+
+                    var proj = AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4";
+                    project = Gp4Project.ReadFrom(File.OpenRead(proj));
 
 
                     //we want to manually check the GP4 File and Make sure everything 
@@ -1337,7 +1522,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
                     }
                     catch (Exception ex)
                     {
-
+                        if (MainWindow.EnableAppCenDebug == true)
+                        {
+                            Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                        }
                     }
                 }
                 BusyCoping = false;
@@ -1353,6 +1541,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             }
             catch (Exception ex)
             {
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
                 //System.Windows.Forms.MessageBox.Show(ex.Message);
                 CustomMessageBox(ex.Message, "Error", PS4_MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -1390,6 +1582,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             }
             catch (Exception ex)
             {
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
                 CustomMessageBox(ex.Message, "Error", PS4_MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -1501,6 +1697,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             }
             catch (Exception ex)
             {
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
                 OpenCloseWaitScreen(false);
                 System.Windows.MessageBox.Show(ex.Message);
             }
@@ -1534,6 +1734,71 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
 
         #region << Methods >>
 
+        /// <summary>
+        /// Contains approximate string matching
+        /// </summary>
+        static class LevenshteinDistance
+        {
+            /// <summary>
+            /// Compute the distance between two strings.
+            /// </summary>
+            public static int Compute(string s, string t)
+            {
+                int n = s.Length;
+                int m = t.Length;
+                int[,] d = new int[n + 1, m + 1];
+
+                // Step 1
+                if (n == 0)
+                {
+                    return m;
+                }
+
+                if (m == 0)
+                {
+                    return n;
+                }
+
+                // Step 2
+                for (int i = 0; i <= n; d[i, 0] = i++)
+                {
+                }
+
+                for (int j = 0; j <= m; d[0, j] = j++)
+                {
+                }
+
+                // Step 3
+                for (int i = 1; i <= n; i++)
+                {
+                    //Step 4
+                    for (int j = 1; j <= m; j++)
+                    {
+                        // Step 5
+                        int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
+
+                        // Step 6
+                        d[i, j] = Math.Min(
+                            Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
+                            d[i - 1, j - 1] + cost);
+                    }
+                }
+                // Step 7
+                return d[n, m];
+            }
+        }
+        public static string RemoveSpecialCharacters(string str)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in str)
+            {
+                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '.' || c == '_')
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString();
+        }
         public class GithubRepoFolder
         {
             public string FolderName { get; set; }
@@ -1543,7 +1808,17 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             public string FolderUrl { get; set; }
         }
 
+        public class PS2CompatibilityItem
+        {
+            public string Name { get; set; }
+            public string Pal { get; set; }
+            public string NTSC_U_C { get; set; }
+            public string NTSC_J { get; set; }
+            public string Notes { get; set; }
+        }
+
         public List<GithubRepoFolder> RepoFolders = new List<GithubRepoFolder>();
+        List<PS2CompatibilityItem> CompatibiltyItems = new List<PS2CompatibilityItem>();
 
         public void SearchGithubForCorrespondingPatches(string PS2TitleId)
         {
@@ -1591,7 +1866,7 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
                         }
                         catch
                         {
-
+                            
                         }
                         /*try and get url*/
                         try
@@ -1609,7 +1884,7 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
                         }
                         catch
                         {
-
+                          
                         }
                     }
                 }
@@ -1693,14 +1968,28 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
 
                                                 AddCustomPS2Config = true;
                                                 PS2CutomLua.Add(PS2TitleId.Replace(".", ""));
+                                               
+                                                //Dir dir = new Dir();
+                                                //dir.TargetName
+                                                //if(project.RootDir.Contains())
+                                                //project.files.Items.Add()
+                                                var gp4file = new LibOrbisPkg.GP4.Gp4File();
+                                                gp4file.OrigPath = @"..\PS2\lua_include\" + PS2TitleId.Replace(".", "") + @"_config.lua";
+                                                gp4file.TargetPath = @"lua_include/" + PS2TitleId.Replace(".", "") + @"_config.lua";
+                                                project.files.Items.Add(gp4file);
+                                                
+
 
                                             }
 
                                         }
                                     }
-                                    catch
+                                    catch( Exception exs)
                                     {
-
+                                        if (MainWindow.EnableAppCenDebug == true)
+                                        {
+                                            Microsoft.AppCenter.Crashes.Crashes.TrackError(exs);
+                                        }
                                     }
                                 }
                             }
@@ -1711,61 +2000,196 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
 
         }
 
+        public async void GetGamesListFromDevWiki()
+        {
+            try
+            {
+                WebClient webClient = new WebClient();
+                string page = webClient.DownloadString("https://www.psdevwiki.com/ps4/PS2_Classics_Emulator_Compatibility_List");
+
+                HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                doc.LoadHtml(page);
+
+                List<List<string>> table = doc.DocumentNode.SelectNodes("//table")
+                            .Descendants("tr")
+                            .Skip(1)
+                            .Where(tr => tr.Elements("td").Count() > 1)
+                            .Select(tr => tr.Elements("td").Select(td => td.InnerText.Trim()).ToList())
+                            .ToList();
+
+
+
+                //now we do a few other modifications here
+                for (int i = 0; i < table.Count; i++)
+                {
+                    if (table[i].Count > 3)
+                    {
+
+
+                        try
+                        {
+                            //its not the headings
+                            PS2CompatibilityItem compat = new PS2CompatibilityItem();
+                            try
+                            {
+                                compat.Name = table[i][0].ToString();
+                            }
+                            catch (Exception ex)
+                            {
+                                if (MainWindow.EnableAppCenDebug == true)
+                                {
+                                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                                }
+                                compat.Name = "";
+                            }
+                            finally
+                            {
+
+                            }
+                            try
+                            {
+                                compat.Pal = table[i][1].ToString();
+                            }
+                            catch (Exception ex)
+                            {
+
+                                compat.Pal = "";
+                            }
+                            finally
+                            {
+
+                            }
+                            try
+                            {
+                                compat.NTSC_U_C = table[i][2].ToString();
+                            }
+                            catch
+                            {
+                                compat.NTSC_U_C = "";
+                            }
+                            finally
+                            {
+
+                            }
+                            try
+                            {
+                                compat.NTSC_J = table[i][3].ToString();
+                            }
+                            catch
+                            {
+                                compat.NTSC_J = "";
+                            }
+                            finally
+                            {
+
+                            }
+                            try
+                            {
+                                compat.Notes = table[i][4].ToString();
+                            }
+                            catch
+                            {
+                                compat.Notes = "";
+                            }
+                            finally
+                            {
+
+                            }
+                            try
+                            {
+                                CompatibiltyItems.Add(compat);
+                            }
+                            catch { }
+                            finally
+                            {
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            if (MainWindow.EnableAppCenDebug == true)
+                            {
+                                Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
+                //error out
+            }
+        }
+
         public bool doesStringMatch()
         {
-            if (isoFiles.Count == 0)
+            try
             {
-                return false;
+                if (isoFiles.Count == 0)
+                {
+                    return false;
+                }
+
+                string txt = string.Empty;
+                if (isoFiles.Count > 1)
+                {
+                    txt = "UP9000-" + txtContentID.Text.Trim() + "_00-" + txtContentID.Text.Trim() + "0000001";//make this the same no ps2 id required
+
+                }
+                else
+                {
+                    txt = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PS2ID.Replace("_", "") + "0000001";
+                }
+
+                string re1 = "((?:[a-z][a-z]*[0-9]+[a-z0-9]*))";    // Alphanum 1
+                string re2 = "(-)"; // Any Single Character 1
+                string re3 = "([a-z])"; // Any Single Word Character (Not Whitespace) 1
+                string re4 = "([a-z])"; // Any Single Word Character (Not Whitespace) 2
+                string re5 = "([a-z])"; // Any Single Word Character (Not Whitespace) 3
+                string re6 = "([a-z])"; // Any Single Word Character (Not Whitespace) 4
+                string re7 = "(\\d)";   // Any Single Digit 1
+                string re8 = "(\\d)";   // Any Single Digit 2
+                string re9 = "(\\d)";   // Any Single Digit 3
+                string re10 = "(\\d)";  // Any Single Digit 4
+                string re11 = "(\\d)";  // Any Single Digit 5
+                string re12 = "(_)";    // Any Single Character 2
+                string re13 = "(\\d+)"; // Integer Number 1
+                string re14 = "(-)";    // Any Single Character 3
+                string re15 = "((?:[a-z][a-z]*[0-9]+[a-z0-9]*))";   // Alphanum 2
+
+                Regex r = new Regex(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10 + re11 + re12 + re13 + re14 + re15, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Match m = r.Match(txt);
+                if (m.Success)
+                {
+                    String alphanum1 = m.Groups[1].ToString();
+                    String c1 = m.Groups[2].ToString();
+                    String w1 = m.Groups[3].ToString();
+                    String w2 = m.Groups[4].ToString();
+                    String w3 = m.Groups[5].ToString();
+                    String w4 = m.Groups[6].ToString();
+                    String d1 = m.Groups[7].ToString();
+                    String d2 = m.Groups[8].ToString();
+                    String d3 = m.Groups[9].ToString();
+                    String d4 = m.Groups[10].ToString();
+                    String d5 = m.Groups[11].ToString();
+                    String c2 = m.Groups[12].ToString();
+                    String int1 = m.Groups[13].ToString();
+                    String c3 = m.Groups[14].ToString();
+                    String alphanum2 = m.Groups[15].ToString();
+                    Console.Write("(" + alphanum1.ToString() + ")" + "(" + c1.ToString() + ")" + "(" + w1.ToString() + ")" + "(" + w2.ToString() + ")" + "(" + w3.ToString() + ")" + "(" + w4.ToString() + ")" + "(" + d1.ToString() + ")" + "(" + d2.ToString() + ")" + "(" + d3.ToString() + ")" + "(" + d4.ToString() + ")" + "(" + d5.ToString() + ")" + "(" + c2.ToString() + ")" + "(" + int1.ToString() + ")" + "(" + c3.ToString() + ")" + "(" + alphanum2.ToString() + ")" + "\n");
+                    return true;
+                }
             }
-
-            string txt = string.Empty;
-            if (isoFiles.Count > 1)
+            catch(Exception ex)
             {
-                txt = "UP9000-" + txtContentID.Text.Trim() + "_00-" + txtContentID.Text.Trim() + "0000001";//make this the same no ps2 id required
-
-            }
-            else
-            {
-                txt = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PS2ID.Replace("_", "") + "0000001";
-            }
-
-            string re1 = "((?:[a-z][a-z]*[0-9]+[a-z0-9]*))";    // Alphanum 1
-            string re2 = "(-)"; // Any Single Character 1
-            string re3 = "([a-z])"; // Any Single Word Character (Not Whitespace) 1
-            string re4 = "([a-z])"; // Any Single Word Character (Not Whitespace) 2
-            string re5 = "([a-z])"; // Any Single Word Character (Not Whitespace) 3
-            string re6 = "([a-z])"; // Any Single Word Character (Not Whitespace) 4
-            string re7 = "(\\d)";   // Any Single Digit 1
-            string re8 = "(\\d)";   // Any Single Digit 2
-            string re9 = "(\\d)";   // Any Single Digit 3
-            string re10 = "(\\d)";  // Any Single Digit 4
-            string re11 = "(\\d)";  // Any Single Digit 5
-            string re12 = "(_)";    // Any Single Character 2
-            string re13 = "(\\d+)"; // Integer Number 1
-            string re14 = "(-)";    // Any Single Character 3
-            string re15 = "((?:[a-z][a-z]*[0-9]+[a-z0-9]*))";   // Alphanum 2
-
-            Regex r = new Regex(re1 + re2 + re3 + re4 + re5 + re6 + re7 + re8 + re9 + re10 + re11 + re12 + re13 + re14 + re15, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-            Match m = r.Match(txt);
-            if (m.Success)
-            {
-                String alphanum1 = m.Groups[1].ToString();
-                String c1 = m.Groups[2].ToString();
-                String w1 = m.Groups[3].ToString();
-                String w2 = m.Groups[4].ToString();
-                String w3 = m.Groups[5].ToString();
-                String w4 = m.Groups[6].ToString();
-                String d1 = m.Groups[7].ToString();
-                String d2 = m.Groups[8].ToString();
-                String d3 = m.Groups[9].ToString();
-                String d4 = m.Groups[10].ToString();
-                String d5 = m.Groups[11].ToString();
-                String c2 = m.Groups[12].ToString();
-                String int1 = m.Groups[13].ToString();
-                String c3 = m.Groups[14].ToString();
-                String alphanum2 = m.Groups[15].ToString();
-                Console.Write("(" + alphanum1.ToString() + ")" + "(" + c1.ToString() + ")" + "(" + w1.ToString() + ")" + "(" + w2.ToString() + ")" + "(" + w3.ToString() + ")" + "(" + w4.ToString() + ")" + "(" + d1.ToString() + ")" + "(" + d2.ToString() + ")" + "(" + d3.ToString() + ")" + "(" + d4.ToString() + ")" + "(" + d5.ToString() + ")" + "(" + c2.ToString() + ")" + "(" + int1.ToString() + ")" + "(" + c3.ToString() + ")" + "(" + alphanum2.ToString() + ")" + "\n");
-                return true;
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
             }
             return false;
         }
@@ -1842,95 +2266,123 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
         /// <summary>
         /// Save the GP4 so we can build the PKG Via Command Prompt
         /// </summary>
-        public void SaveGp4()
+        public void SaveGp4(Gp4Project s = null)
         {
-            //create new XML Document 
-            xmldoc = new XmlDataDocument();
-            //nodelist 
-            XmlNodeList xmlnode;
-            //setup the resource file to be extarcted
-            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            //load the xml file from the base directory
-            xmldoc.Load(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
-            //now load the nodes
-            xmlnode = xmldoc.GetElementsByTagName("volume");//volume is inside the xml
-            //loop to get all info from the node list
-            foreach (XmlNode xn in xmlnode)
+            if (s == null)
             {
-                XmlNode xNode = xn.SelectSingleNode("package");
-                if (xNode != null)
+                //create new XML Document 
+                xmldoc = new XmlDataDocument();
+                //nodelist 
+                XmlNodeList xmlnode;
+                //setup the resource file to be extarcted
+                string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+                //load the xml file from the base directory
+                xmldoc.Load(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
+                //now load the nodes
+                xmlnode = xmldoc.GetElementsByTagName("volume");//volume is inside the xml
+                                                                //loop to get all info from the node list
+                foreach (XmlNode xn in xmlnode)
                 {
-                    //we found the info we are looking for
-                    xNode.Attributes[0].Value = xmlcontentid;//set the attribute
+                    XmlNode xNode = xn.SelectSingleNode("package");
+                    if (xNode != null)
+                    {
+                        //we found the info we are looking for
+                        xNode.Attributes[0].Value = xmlcontentid;//set the attribute
+                    }
                 }
-            }
-            ////Uncomment this if you want to use the current datetime
-            //xmlnode = xmldoc.GetElementsByTagName("volume_ts");
-            //foreach (XmlNode item in xmlnode)
-            //{
-            //    item.InnerText = DateTime.Now.ToString("YYYY-MM-DD HH:mm:ss");//2018-03-21 15:37:08
-            //}
+                ////Uncomment this if you want to use the current datetime
+                //xmlnode = xmldoc.GetElementsByTagName("volume_ts");
+                //foreach (XmlNode item in xmlnode)
+                //{
+                //    item.InnerText = DateTime.Now.ToString("YYYY-MM-DD HH:mm:ss");//2018-03-21 15:37:08
+                //}
 
-            xmldoc.Save(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
+                xmldoc.Save(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
 
-            //im cheating here a bit 
+                //im cheating here a bit 
 
-            //line builder
-            string tempval = @"    <file targ_path=""image/disc01.iso"" orig_path=""..\PS2\image\disc01.iso""" + @" />";
-            string builder = string.Empty;
-
-            for (int i = 0; i < MainWindow.isoFiles.Count; i++)
-            {
-                builder += tempval.Replace("disc01.iso", "disc0" + (i + 1) + ".iso") + "\n";
-            }
-
-            var alllines = File.ReadAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
-
-            alllines = alllines.Replace(tempval, builder.Remove(builder.Length - 1, 1));
-
-            File.WriteAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", alllines);
-
-            #region << Configs >>
-            if (isoFiles.Count > 1)
-            {
                 //line builder
-                tempval = @"    <file targ_path=""patches/SLES-50366_cli.conf"" orig_path=""..\PS2\patches\SLES-50366_cli.conf""" + @" />";
-                builder = string.Empty;
+                string tempval = @"    <file targ_path=""image/disc01.iso"" orig_path=""..\PS2\image\disc01.iso""" + @" />";
+                string builder = string.Empty;
 
-                for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
+                for (int i = 0; i < MainWindow.isoFiles.Count; i++)
                 {
-                    builder += tempval.Replace("SLES-50366_cli.conf", PS2TitleId[i].ToString() /*Game Name Here*/+ "_cli.conf") + "\n";
+                    builder += tempval.Replace("disc01.iso", "disc0" + (i + 1) + ".iso") + "\n";
                 }
 
-                alllines = File.ReadAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
+                var alllines = File.ReadAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
 
-                alllines = alllines.Replace("@addps2patchHere", builder.Remove(builder.Length - 1, 1));
+                alllines = alllines.Replace(tempval, builder.Remove(builder.Length - 1, 1));
 
                 File.WriteAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", alllines);
 
-
-                tempval = @"    <file targ_path=""lua_include/SLUS-20071_config.lua"" orig_path=""..\PS2\lua_include\SLUS-20071_config.lua""" + @" />";
-                builder = string.Empty;
-
-                for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
+                #region << Configs >>
+                if (isoFiles.Count > 1)
                 {
-                    builder += tempval.Replace("SLUS-20071_config.lua", PS2TitleId[i].ToString().Replace(".", "") /*Game Name Here*/+ "_config.lua") + "\n";
+                    //line builder
+                    tempval = @"    <file targ_path=""patches/SLES-50366_cli.conf"" orig_path=""..\PS2\patches\SLES-50366_cli.conf""" + @" />";
+                    builder = string.Empty;
+
+                    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
+                    {
+                        builder += tempval.Replace("SLES-50366_cli.conf", PS2TitleId[i].ToString() /*Game Name Here*/+ "_cli.conf") + "\n";
+                    }
+
+                    alllines = File.ReadAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
+
+                    alllines = alllines.Replace("@addps2patchHere", builder.Remove(builder.Length - 1, 1));
+
+                    File.WriteAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", alllines);
+
+
+                    tempval = @"    <file targ_path=""lua_include/SLUS-20071_config.lua"" orig_path=""..\PS2\lua_include\SLUS-20071_config.lua""" + @" />";
+                    builder = string.Empty;
+
+                    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
+                    {
+                        builder += tempval.Replace("SLUS-20071_config.lua", PS2TitleId[i].ToString().Replace(".", "") /*Game Name Here*/+ "_config.lua") + "\n";
+                    }
+
+                    alllines = File.ReadAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
+
+                    alllines = alllines.Replace("@addps2luhere", builder.Remove(builder.Length - 1, 1));
+
+                    File.WriteAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", alllines);
+
                 }
-
-                alllines = File.ReadAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
-
-                alllines = alllines.Replace("@addps2luhere", builder.Remove(builder.Length - 1, 1));
-
-                File.WriteAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", alllines);
-
+                else
+                {
+                    alllines = alllines.Replace("@addps2patchHere", "");//remove the string
+                    alllines = alllines.Replace("@addps2luhere", "");//remove the string
+                    File.WriteAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", alllines);
+                }
+                #endregion << Configs >>
             }
             else
             {
-                alllines = alllines.Replace("@addps2patchHere", "");//remove the string
-                alllines = alllines.Replace("@addps2luhere", "");//remove the string
-                File.WriteAllText(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", alllines);
+
+                if(project == null)
+                {
+                    project = Gp4Project.ReadFrom(new FileStream(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", FileMode.Open, FileAccess.Read));
+                }
+                //we will be recreating all items
+                //File.Delete(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4");
+               
+              
+                //start from 1 so disc 2 and up will be added here
+                for (int i = 1; i < MainWindow.isoFiles.Count; i++)
+                {
+                    var gp4file = new LibOrbisPkg.GP4.Gp4File();
+                    gp4file.OrigPath = @"..\PS2\image\" + "disc0" + (i + 1) + ".iso";
+                    gp4file.TargetPath = @"image/" + "disc0" + (i + 1) + ".iso";
+                    
+                    project.files.Items.Add(gp4file);
+
+                }
+                project.volume.Package.ContentId = xmlcontentid;
+                Gp4Project.WriteTo(s, new FileStream(AppCommonPath() + @"\PS2Emu\" + "PS2Classics.gp4", FileMode.OpenOrCreate, FileAccess.ReadWrite));
+
             }
-            #endregion << Configs >>
         }
 
 
@@ -2046,6 +2498,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             }
             catch (Exception ex)
             {
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
                 var ps4message = new MessageBox("Error on resource extraction are you running doubles of the app" + ex.Message, "Error On Resource Extraction", PS4_MessageBoxButton.OK, SoundClass.Sound.Error);
                 ps4message.Show();
             }
@@ -2073,6 +2529,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             }
             catch (Exception ex)
             {
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
                 //we dont log anything here it should be okay
             }
         }
@@ -2295,7 +2755,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             }
             catch (Exception ex)
             {
-
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
             }
         }
 
@@ -2337,7 +2800,10 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             }
             catch (Exception ex)
             {
-
+                if (MainWindow.EnableAppCenDebug == true)
+                {
+                    Microsoft.AppCenter.Crashes.Crashes.TrackError(ex);
+                }
             }
         }
 
@@ -2346,6 +2812,22 @@ if you are using an SSD", "Initialization", PS4_MessageBoxButton.YesNo, SoundCla
             //
 
             CustomMessageBox(Properties.Resources.Release_Notes.ToString(), "Release Notes", PS4_MessageBoxButton.OK, MessageBoxImage.Asterisk);
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.E))
+            {
+                //this will only be used when a user really wants to send debug info
+                EnableAppCenDebug = true;
+
+                Microsoft.AppCenter.AppCenter.Start("186556f8-0b63-46ee-b823-e7fd9e697be7",
+                          typeof(Microsoft.AppCenter.Analytics.Analytics), typeof(Microsoft.AppCenter.Crashes.Crashes));
+
+                CustomMessageBox("Debug mode enabled", "Debug Mode", PS4_MessageBoxButton.OK, MessageBoxImage.Information);
+
+               
+            }
         }
     }
 }

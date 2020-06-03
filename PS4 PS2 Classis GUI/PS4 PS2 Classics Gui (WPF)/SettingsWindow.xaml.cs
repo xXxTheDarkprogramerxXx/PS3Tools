@@ -544,6 +544,58 @@ Speed : {2}
                                         }
                                     };
                                     break;
+
+                                #region << Bully V1 >>
+                                case "Jax And Daxter V1":
+                                    if (!Directory.Exists(AppCommonPath() + "Jax And Daxter V1"))
+                                    {
+                                        //check if the item is found
+                                        MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Jax And Daxter V1.zip");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox ps4mes = new MessageBox("Would you like to re-download the Jax And Daxter (by Vitt0x_Lar_YT V1) Emu ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Jax And Daxter V1.zip");
+                                        }
+                                    }
+                                    break;
+                                #endregion << Bully V1 >>
+                                #region << Bully V2 >>
+                                case "Jax And Daxter V2":
+                                    if (!Directory.Exists(AppCommonPath() + "Jax And Daxter V2"))
+                                    {
+                                        //check if the item is found
+                                        MessageBox ps4mes = new MessageBox("To Allow this feature an external download is needed \nWould you like to continue ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Bully V2.zip");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox ps4mes = new MessageBox("Would you like to re-download the Jax And Daxter (by Vitt0x_Lar_YT V2) Emu ?", "Download", PS4_MessageBoxButton.YesNo, SoundClass.Sound.Notification);
+                                        ps4mes.ShowDialog();
+                                        if (PS4_MessageBoxResult.Yes == MessageBox.ReturnResult)
+                                        {
+                                            bgWorkerSS.RunWorkerAsync();
+                                            startDownload("Jax And Daxter V2.zip");
+                                        }
+                                    }
+                                    break;
+                                #endregion << Bully V2 >>
+
                                 #endregion << Jax And Daxter >>
 
                                 #region << Bully >>
@@ -778,7 +830,8 @@ Speed : {2}
                         listView.Items.Add(CreateItem("Bully V2"));
                         listView.Items.Add(CreateItem("Destroy All Humans V1"));
                         listView.Items.Add(CreateItem("Destroy All Humans V2"));
-                        //listView.Items.Add("Jax and Daxter");
+                        listView.Items.Add(CreateItem("Jax And Daxter V1"));
+                        listView.Items.Add(CreateItem("Jax And Daxter V2"));
                         //HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,200,0,10"
                         //Margin="0,200,0,10"
                         // listView.Items.Add("Default");

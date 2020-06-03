@@ -1,4 +1,18 @@
-﻿V1.0.0.25 (Emulator and sound support)
+﻿V1.0.0.28
+* Fixed issue with loading ps2 dev wiki items
+* Fixed issue with Multi Iso
+* General Bugfixes
+
+
+V1.0.0.27
+* Added a system to check the status of a game on devwiki if playable or not
+* General Bugfixes
+
+V1.0.0.26 (More Emulators)
+* Added more emulators
+* Added another easter egg
+
+V1.0.0.25 (Emulator and sound support)
 * Jax and Daxter Finally Works ! Enjoy
 * Added Bully V1 and V2 As well as Destroy all Humans V1 and V2 to the emulator selection 
   Thanks to @Vitt0x_Lar_YT

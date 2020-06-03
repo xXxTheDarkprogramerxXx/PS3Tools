@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PS4_PS2_Classics_Gui__WPF_"
         xmlns:controls="clr-namespace:NMT.Wpf.Controls;assembly=PulseButton"
         mc:Ignorable="d"
-        Title="PS2 Classics Gui " Height="480" Width="960" Icon="Resources/favicon.ico" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Closing="Window_Closing">
+        Title="PS2 Classics Gui " Height="480" Width="960" Icon="Resources/favicon.ico" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
     <Grid x:Name="Main_Grid" Margin="0,0,0,0" Focusable="True" KeyboardNavigation.DirectionalNavigation="None"  PreviewKeyDown="Page_PreviewKeyDown">
 
         <DockPanel x:Name="BackgroundImage">
