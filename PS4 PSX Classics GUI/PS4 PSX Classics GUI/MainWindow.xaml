@@ -1,0 +1,133 @@
+﻿<Window x:Class="PS4_PSX_Classics_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PS4_PSX_Classics_GUI"
+        xmlns:controls="clr-namespace:NMT.Wpf.Controls;assembly=PulseButton"
+        xmlns:Vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
+        mc:Ignorable="d"
+        Title="PSX Classics GUI " Height="480" Width="960" Icon="Resources/favicon.ico" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Closing="Window_Closing">
+    <Grid x:Name="Main_Grid" Margin="0,0,0,0" Focusable="True" KeyboardNavigation.DirectionalNavigation="None"  PreviewKeyDown="Page_PreviewKeyDown">
+
+        <DockPanel x:Name="BackgroundImage">
+            <DockPanel.Background>
+                <ImageBrush ImageSource="Resources/45978933631_e9358fa25e_b (1).png"/>
+            </DockPanel.Background>
+            <DockPanel.OpacityMask>
+                <ImageBrush ImageSource="Resources/45978933631_e9358fa25e_b (1).png"/>
+            </DockPanel.OpacityMask>
+            <Menu VerticalAlignment="Top">
+                <MenuItem Header="File" Click="MenuItem_Click_5">
+                    <MenuItem Header="Settings" Click="MenuItem_Click" />
+                    <MenuItem Header="Log an issue" Click="MenuItem_Click_1" />
+                    <Separator />
+                    <MenuItem Header="Add Custom PSX config" Click="MenuItem_Click_2" />
+                    <!--<MenuItem Header="Add Custom .lua configs" Click="MenuItem_Click_3" />-->
+                    <Separator/>
+                    <MenuItem Header="Credits" Click="MenuItem_Click_4" />
+                </MenuItem>
+            </Menu>
+
+            <Grid>
+                <Grid x:Name="homescreen" Width="840" HorizontalAlignment="Left" MouseDown="Grid_MouseDown" Height="450" Margin="0,0,0,0.4" VerticalAlignment="Bottom">
+                    <WindowsFormsHost Margin="355,127,0,0"   Tag="0" HorizontalAlignment="Left" Height="175" Width="175"  VerticalAlignment="Top" AllowDrop="True" Drop="Icon_Drop" Visibility="Visible" x:Name="WindowsFormsHost" />
+                    <Image x:Name="Icon0" Tag="1" HorizontalAlignment="Left" Height="175" Width="175"  Margin="355,127,0,0" VerticalAlignment="Top" AllowDrop="True" Source="Resources/icon0.png" Drop="Icon_Drop" >
+                        <Image.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Change Icon" Click="MenuItem_Click_6">
+                                    <MenuItem.Background>
+                                        <ImageBrush/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+
+                                <MenuItem Header="Change Background" Click="MenuItem_Click_7">
+                                    <MenuItem.Background>
+                                        <ImageBrush/>
+                                    </MenuItem.Background>
+                                </MenuItem>
+                            </ContextMenu>
+                        </Image.ContextMenu>
+
+                    </Image>
+                    <!--<Image x:Name="iconbox2" Tag="2" HorizontalAlignment="Left" Height="132" Width="132" Margin="422,140,0,0" VerticalAlignment="Top" AllowDrop="True" Source="/Resources/icon.png" Drop="Icon_Drop" Visibility="Hidden" />
+                    <Image x:Name="iconbox3" Tag="3" HorizontalAlignment="Left" Height="132" Width="132" Margin="558,140,0,0" VerticalAlignment="Top" AllowDrop="True" Source="/Resources/icon.png" Drop="Icon_Drop" Visibility="Hidden" />-->
+                    <Rectangle x:Name="homescreen_dimmer" Margin="0,0,0,610" AllowDrop="True" Drop="Home_background_Drop">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#88FFFFFF" Offset="0.0" />
+                                <GradientStop Color="#88FFFFFF" Offset="0.75" />
+                                <GradientStop Color="#00FFFFFF" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle x:Name="titlename_dimmer" Width="686" Height="50" AllowDrop="True" Margin="418,360,183,310" Drop="Home_background_Drop">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#40FFFFFF" Offset="0.0" />
+                                <GradientStop Color="#40FFFFFF" Offset="0.75" />
+                                <GradientStop Color="#00FFFFFF" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Label x:Name="selecttitle" Content="" HorizontalAlignment="Left" Margin="422,347,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="38" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Width="514" Height="54" Background="{x:Null}" />
+                    <Border x:Name="focuscolor" BorderBrush="#00000000" BorderThickness="2" HorizontalAlignment="Left" Height="233" Width="168" Margin="363,127,0,0" VerticalAlignment="Top" >
+                        <Button x:Name="btnStart" Content="" Margin="-7.6,177.4,7.6,-2.6" AllowDrop="False" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Opacity="0.7" Background="#000051B6" Click="btnStart_Click"/>
+                    </Border>
+                    <Border BorderBrush="#BFFFFFFF" BorderThickness="2" HorizontalAlignment="Left" Height="175" Width="175"  Margin="355,130,0,0" VerticalAlignment="Top" >
+                    </Border>
+                    <Image HorizontalAlignment="Left" Height="40" Width="40" Margin="65,54,0,0" VerticalAlignment="Top" Source="/Resources/psplus.png" Visibility="Collapsed" />
+                    <Image HorizontalAlignment="Left" Height="40" Width="40" Margin="577,52,0,0" VerticalAlignment="Top" Source="/Resources/user.png" Visibility="Collapsed" />
+                    <Label x:Name="Username" Content="User1" HorizontalAlignment="Left" Margin="618,54,0,0" VerticalAlignment="Top" Foreground="#FFFFFFFF" FontSize="16" />
+                </Grid>
+                <Grid x:Name="OptionS" MouseDown="Grid_MouseDown" Background="Black" Opacity="0.71" Width="390" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <Label x:Name="PSXTitlelbl" Content="PSX BIN/CUE:" HorizontalAlignment="Left" Margin="0,42,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="15" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Background="{x:Null}" />
+                    <TextBox x:Name="txtPath" Text="" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="20" FontFamily="Yu Gothic UI" Foreground="#FFFFFFFF" Height="40" Background="{x:Null}" Width="250"/>
+                    <Button x:Name="btnSelectISO" Content="" HorizontalAlignment="Left" Margin="265,76,0,0" VerticalAlignment="Top" Width="53" Height="40" Click="btnSelectISO_Click" BorderBrush="Black">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/psxicon.ico" Stretch="UniformToFill"/>
+                        </Button.Background>
+                    </Button>
+                    <Label x:Name="lblPSXID" Content="PSX DISC ID:" HorizontalAlignment="Left" Margin="191,116,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="15
+" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Background="{x:Null}" />
+                    <TextBox x:Name="txtContentID" Text="CRST00001" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Height="40" Background="{x:Null}" Width="380"/>
+                    <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Margin="0,234,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Height="40" Background="{x:Null}" Width="380" TextChanged="txtContentID_Copy_TextChanged"/>
+                    <Label x:Name="lblNpTitle" Content="NP Title:" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="15" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Background="{x:Null}" />
+                    <Label x:Name="lblTitle" Content="Title :" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" AllowDrop="False" FontSize="15" FontFamily="Yu Gothic" Foreground="#FFFFFFFF" Background="{x:Null}" />
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Top"
+                Margin="64,279,0,0" Height="52" Width="282" Visibility="Hidden"  >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/pkg.jpg" Height="48" Width="48"/>
+                            <Label Content="Create PS2 Classic" HorizontalAlignment="Left" AllowDrop="False" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF"/>
+                        </StackPanel>
+                    </Button>
+                    <controls:PulseButton x:Name="btnConvert"  Margin="49,308,72,90.4"
+                              IsEllipsis="False" 
+                              IsReflective="true" 
+                              RadiusX="3" 
+                              RadiusY="3" 
+                              Pulses="1" 
+                              IsPulsing="True" 
+                              PulseWidth="2" 
+                              PulseSpeed="0:0:5" 
+                              PulseScale="1.2" 
+                              ButtonBrush="Transparent" 
+                              ButtonHighlightBrush="Transparent" 
+                              ButtonPressedBrush="LightBlue" 
+                              PulseColor="White" Click="btnConvert_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Resources/pkg.jpg" Height="48" Width="48"/>
+                            <Label Content="Create PSX Classic" HorizontalAlignment="Left" AllowDrop="False" FontSize="20" FontFamily="Yu Gothic" Foreground="#FFFFFFFF"/>
+                        </StackPanel>
+                    </controls:PulseButton>
+                    <Button x:Name="btnMutePlaySound" Content="" HorizontalAlignment="Left" Margin="363,10,0,0" VerticalAlignment="Top" Width="18" Height="18" Click="btnMutePlaySound_Click" BorderBrush="Black" Visibility="Collapsed">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Resources/icon_sound_on.png" Stretch="UniformToFill"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+            </Grid>
+        </DockPanel>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="15" Margin="1202,-56,-262.4,0" VerticalAlignment="Top" Width="14"/>
+    </Grid>
+</Window>

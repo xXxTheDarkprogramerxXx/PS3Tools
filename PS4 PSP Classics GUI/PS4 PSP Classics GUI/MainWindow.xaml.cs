@@ -38,7 +38,11 @@ namespace PS4_PSP_Classics_GUI
 
 
         #region << Vars' >>
-
+        private static byte[] pvd_buf = new byte[0x800];
+        private static byte[] root_buf = new byte[0x10000];
+        private static byte[] game_buf = new byte[0x10000];
+        private static byte[] sig_buf = new byte[33];
+        
         Vlc.DotNet.Forms.VlcControl tempvlc;
 
         private readonly BackgroundWorker backgroundWorker1 = new BackgroundWorker();
@@ -69,7 +73,7 @@ namespace PS4_PSP_Classics_GUI
 
 
         #region <<File Types and Instancase >>
-       
+
         PSP_Tools.Pbp pbp = new PSP_Tools.Pbp();
 
         FileType.FileTypes type = FileType.FileTypes.Unknown;
@@ -157,10 +161,10 @@ namespace PS4_PSP_Classics_GUI
 
         private void MenuItem_Click_4(object sender, RoutedEventArgs e)
         {
-           var ps4credits = new MessageBox(@"A Special thanks as always to flatz for his awesome work 
+            var ps4credits = new MessageBox(@"A Special thanks as always to flatz for his awesome work 
 Thanks to cfwprophet and VVildCard777 for dealing with all my questions and their help
 Special thanks to zordon605 for PS2 Multi Iso Info
-And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBoxButton.OK,SoundClass.Sound.PS4_Info_Pannel_Sound);
+And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBoxButton.OK, SoundClass.Sound.PS4_Info_Pannel_Sound);
             ps4credits.ShowDialog();
         }
 
@@ -331,21 +335,21 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
             //"Plain text files (*.csv;*.txt)|*.csv;*.txt";
             thedialog.Multiselect = false;//psp emu only supports 1.8Gig so we might as well only allow one iso/pbp/cso file
             thedialog.InitialDirectory = Environment.SpecialFolder.MyComputer.ToString();
-           
+
             if (thedialog.ShowDialog() == true)
             {
 
                 //get the file type 
                 type = FileType.LoadFileInfo(thedialog.FileName);
 
-                if(type == FileType.FileTypes.Unknown)
+                if (type == FileType.FileTypes.Unknown)
                 {
                     MessageBox ps4messagebox = new MessageBox("Unknown File Type Selected", "File Type Unknown", PS4_MessageBoxButton.OK, SoundClass.Sound.Error);
                     ps4messagebox.ShowDialog();
                     return;
                 }
 
-                if(type == FileType.FileTypes.CSO)
+                if (type == FileType.FileTypes.CSO)
                 {
                     UpdateString("Decompressing CISO");
 
@@ -425,11 +429,11 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
 
                     txtPath.Text = thedialog.FileName;
 
-                    if(Properties.Settings.Default.EnablePMF == true)
-                    {                                
+                    if (Properties.Settings.Default.EnablePMF == true)
+                    {
                         ////play at3
                         byte[] atrac3 = pbp.ReadFileFromPBP(PSP_Tools.Pbp.DataType.Snd0At3);
-                        if(atrac3.Length != 0)
+                        if (atrac3.Length != 0)
                         {
                             Util.SoundClass.atr3vlc.Play(new MemoryStream(atrac3));
                             // Util.SoundClass.Init_SoundPlayer(atrac3);
@@ -445,7 +449,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                     }
                 }
 
-                else if ( type == FileType.FileTypes.ISO)
+                else if (type == FileType.FileTypes.ISO)
                 {
                     //clear the config file as well
                     PS2CutomLua.Clear();
@@ -480,7 +484,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                             // Use fileStream...
                             // Read SFO
                             PSP_Tools.PARAM_SFO sfo = new PSP_Tools.PARAM_SFO(fileStream);
-                         
+
                             string DiscID = sfo.DISC_ID.ToString();//read string to end this will read all the info we need
 
 
@@ -506,9 +510,10 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                                     if (Icon0Png.Length != 0)
                                     {
                                         Icon0.Source = ToImage(Icon0Png);
+                                        Icon0.Stretch = Stretch.Fill;
                                     }
                                 }
-                                catch(Exception ex)
+                                catch (Exception ex)
                                 {
 
                                 }
@@ -531,7 +536,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                                         BackgroundImage.Background = imgB;
                                     }
                                 }
-                                catch(Exception ex)
+                                catch (Exception ex)
                                 {
 
                                 }
@@ -550,7 +555,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                                             var mediaOptions = new string[] { "input-repeat=65535" };
                                             Util.SoundClass.atr3vlc.Play(new MemoryStream(atrac3), mediaOptions);
                                             // Util.SoundClass.Init_SoundPlayer(atrac3);
-                                          
+
                                         }
                                     }
                                 }
@@ -569,8 +574,19 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                                         if (pmf.Length != 0)
                                         {
                                             Icon0.Visibility = Visibility.Hidden;
-                                            var mediaOptions = new string[] { "input-repeat=65535" };
+                                            this.WindowsFormsHost.Visibility = Visibility.Visible;
+                                            var mediaOptions = new string[] { "input-repeat=1" };
                                             tempvlc.Play(new MemoryStream(pmf), mediaOptions);
+                                            tempvlc.Stopped += delegate
+                                            {
+                                                Util.SoundClass.atr3vlc.Stop();
+                                                Application.Current.Dispatcher.Invoke((Action)delegate
+                                                {
+                                                    Icon0.Visibility = Visibility.Visible;//no pmf file
+                                                    this.WindowsFormsHost.Visibility = Visibility.Collapsed;
+                                                });
+
+                                            };
                                             //tempvlc.Stopped += delegate
                                             //{
 
@@ -584,9 +600,10 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                                         }
                                     }
                                 }
-                                catch
+                                catch (Exception pfmex)
                                 {
-
+                                    Icon0.Visibility = Visibility.Visible;//no pmf file
+                                    this.WindowsFormsHost.Visibility = Visibility.Collapsed;
                                 }
                             }
                             else
@@ -632,10 +649,10 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {        
+        {
             try
             {
-               
+
 
                 #region << Quick Sound/Video Extract >>
 
@@ -751,7 +768,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
 
         private void BgWorkerVLC_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-                
+
         }
 
         private void BgWorkerVLC_DoWork(object sender, DoWorkEventArgs e)
@@ -774,23 +791,23 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
         tempvlc.VlcLibDirectory = vlcLibDirectory;// /*libvlc's directory*/;
                                                   //this.MyControl.VlcMediaplayerOptions = new[] { "-vv" };
 
-    string[] options =
-        new string[] { "input-repeat=65535" };
+        string[] options =
+            new string[] { "input-repeat=3" };
         var mediaOptions = new string[] { "input-repeat=-1" };
         tempvlc.VlcMediaplayerOptions = options;
         this.WindowsFormsHost.Child = tempvlc;
+        this.WindowsFormsHost.Visibility = Visibility.Collapsed;
 
 
+        //this.WindowsFormsHost.Child = tempvlc;
 
-    //this.WindowsFormsHost.Child = tempvlc;
-
-    tempvlc.EndInit();
+        tempvlc.EndInit();
 
         Util.SoundClass.atr3vlc = new Vlc.DotNet.Forms.VlcControl();
         Util.SoundClass.atr3vlc.BeginInit();
         Util.SoundClass.atr3vlc.VlcLibDirectory = vlcLibDirectory;// /*libvlc's directory*/;
                                                                   //this.MyControl.VlcMediaplayerOptions = new[] { "-vv" };
-    Util.SoundClass.atr3vlc.EndInit();
+        Util.SoundClass.atr3vlc.EndInit();
 
     });
 
@@ -807,7 +824,8 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
         {
             try
             {
-                Application.Current.Dispatcher.Invoke((Action)delegate {
+                Application.Current.Dispatcher.Invoke((Action)delegate
+                {
                     // your code
 
                     Busy Busy = new Busy(bgWorkerSS);
@@ -1112,12 +1130,12 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                             pbp.WritePBPFiles(AppCommonPath() + @"\Working\PSPISO\", pspdata: "EBOOT.BIN", psrdata: "DATA.BIN", make_eboot_boot: true);
 
                             //clean up blank file
-                            File.Delete(AppCommonPath() + @"\PSP\DATA\GAME.iso");
+                            File.Delete(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG");
 
                             //now pack the pbp as an iso 
                             PSP_Tools.UMD.ISO umdiso = new PSP_Tools.UMD.ISO();
                             umdiso.PSPTitle = psfo.Title;//set the title of the iso to that which is inside the sfo
-                            umdiso.CreateISO(AppCommonPath() + @"\Working\PSPISO\", AppCommonPath() + @"\PSP\DATA\GAME.iso", false);//fake sign should not have to apply here 
+                            umdiso.CreateISO(AppCommonPath() + @"\Working\PSPISO\", AppCommonPath() + @"\PSP\DATA\USER_L0.IMG", false);//fake sign should not have to apply here 
 
                             UpdateString("Creating ISO");
 
@@ -1135,14 +1153,164 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                         if (type == FileType.FileTypes.ISO)
                         {
                             //clean up the blank file
-                            File.Delete(AppCommonPath() + @"\PSP\DATA\GAME.iso");
+                            File.Delete(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG");
                             string currentimage = "";
                             currentimage = pspfiles[0].ToString().Trim();//first and only item
-                            File.Copy(currentimage, AppCommonPath() + @"\PSP\DATA\GAME.iso", true);
+                            File.Copy(currentimage, AppCommonPath() + @"\PSP\DATA\USER_L0.IMG", true);
 
-                            BusyCoping = false;
+                            //BusyCoping = false;
                         }
                     }
+
+                    //check if file is encrypted inside the system 
+                    //if it is decrypt it
+                    bool encrypted = false;
+
+                    byte[] EBOOT;
+                    byte[] EBOOTDec;
+                    using (FileStream isoStream = File.OpenRead(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG"))
+                    {
+                        UpdateString("Eboot is encrypted\nDecrypting....");
+
+
+                        //use disk utils to read iso quickly
+                        CDReader cd = new CDReader(isoStream, true);
+                        //look for the spesific file
+                        Stream fileStream = cd.OpenFile("\\PSP_GAME\\SYSDIR\\EBOOT.BIN", FileMode.Open);
+                        // Use fileStream...
+                        EBOOT = new byte[fileStream.Length];
+                        EBOOTDec = new byte[fileStream.Length];
+                        fileStream.Read(EBOOT, 0, (int)fileStream.Length);
+                        //File.WriteAllBytes(AppCommonPath() + @"\eboot.bin", buffer);
+                        fileStream.Position = 0;
+                        using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                        {
+                            Byte[] FileHeader = binaryReader.ReadBytes(4);
+
+                            if (FileHeader.SequenceEqual(new byte[4] { 0x7E, 0x50, 0x53, 0x50 }))
+                            {
+                                //file is encrypted decrypt it
+                                encrypted = true;
+
+                                //new uses C# no more writing disgusting files
+
+                                PSP_Tools.Crypto.EncryptedPrx prxdecrypter = new PSP_Tools.Crypto.EncryptedPrx();
+                                EBOOTDec =prxdecrypter.Decrypt(EBOOT, true);
+
+                                #region << OLD >>
+                                //OLD USED the PRX Decryption tool by https://github.com/John-K/pspdecrypt
+
+                                //System.IO.File.WriteAllBytes(AppCommonPath() + @"\decrypt.exe", Properties.Resources.pspdecrypt);
+                                //ProcessStartInfo start = new ProcessStartInfo();
+                                //start.FileName = AppCommonPath() + "decrypt.exe";
+                                //start.Arguments = @"""" + AppCommonPath() + @"eboot.bin""";//same folder easy stuff
+                                //start.UseShellExecute = false;
+                                //start.RedirectStandardOutput = true;
+                                //start.CreateNoWindow = true;
+
+                                //using (Process process = Process.Start(start))
+                                //{
+                                //    process.ErrorDataReceived += Process_ErrorDataReceived;
+                                //    using (StreamReader reader = process.StandardOutput)
+                                //    {
+                                //        string result = reader.ReadToEnd();
+
+                                //    }
+                                //}
+                                //Thread.Sleep(110);
+                                ////cleanup
+                                //File.Delete(AppCommonPath() + "decrypt.exe");
+
+
+                                //var index = BinarryTools.IndexOf(isoStream, buffer);
+
+                                #endregion << OLD >>
+
+                                //now try and fix load table
+
+                                EBOOTDec = PSP_Tools.PS4.LoadElf(EBOOTDec);
+                             
+
+                            }
+                        }
+
+                        //always clean up
+                        //File.Delete(AppCommonPath() + @"\eboot.bin");
+                    }
+                    if (encrypted == true)
+                    {
+                        UpdateString("Extracting disc and recreating....");
+                        string Label = "";
+
+
+
+
+                        using (FileStream ISOStream = File.Open(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG", FileMode.Open))
+                        {
+                            CDReader Reader = new CDReader(ISOStream, true, true);
+                            //BinarryTools.ExtractDirectory(Reader.Root, AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG") + "\\", "");
+
+
+                            Label = Reader.VolumeLabel;
+
+                            Reader.Dispose();
+                        }
+
+                        long num = EBOOT.Length;
+                        if (num > 512320L)
+                        {
+                            num = 512320L;
+                        }
+
+
+                        byte[] query = (byte[])BinarryTools.ReadRomData(EBOOT, 0L, (int)num);
+
+
+                        var offset = BinarryTools.FindOffset(AppCommonPath() + @"\PSP\data\USER_L0.IMG", query);
+                        byte[] value = (byte[])BinarryTools.ReadRomData(EBOOTDec, 0L, (int)EBOOT.Length);
+
+
+                        //now replace
+                        FileStream fileStream = new FileStream(AppCommonPath() + @"\PSP\data\USER_L0.IMG", FileMode.Open, FileAccess.Write, FileShare.Write);
+                        fileStream.Seek(Convert.ToInt64(offset), SeekOrigin.Begin);
+                        fileStream.Write(value, 0, value.Length);
+                        fileStream.Close();
+                        //File.Delete(AppCommonPath() + @"\eboot.bin");
+                        //File.Delete(AppCommonPath() + @"\eboot.bin.dec");//delete and cleanup
+                        //now replace file 
+                        //Replace BOOT.BIN with Eboot.BIn
+                        //File.Copy(AppCommonPath() + @"\eboot.bin.dec", AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG") + @"\PSP_GAME\SYSDIR\EBOOT.BIN", true);
+                        //File.Copy(AppCommonPath() + @"\eboot.bin.dec", AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG") + @"\PSP_GAME\SYSDIR\BOOT.BIN", true);
+                        //File.Delete(AppCommonPath() + @"\eboot.bin.dec");//delete and cleanup
+                        //re-create the iso
+                        //BinarryTools.CreateIsoImage(AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG"), AppCommonPath() + @"\PSP\DATA\USER_L0.IMG", Label);
+
+
+
+                        //PSP_Tools.UMD.ISO iso = new PSP_Tools.UMD.ISO();
+                        //iso.PSPTitle = Label ?? psfo.Title;
+
+                        //iso.CreateISO(AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG"), AppCommonPath() + @"\PSP\DATA\USER_L0.IMG");
+
+
+                        //PSP_Tools.UMD.Sign.UMDSIGN()
+
+
+
+                        //while (iso.Status == PSP_Tools.UMD.ISO.ISOStatus.Busy)
+                        //{
+                        //    //sleep the thread
+                        //    DoEvents();
+                        //}
+                        //if (iso.Status == PSP_Tools.UMD.ISO.ISOStatus.Completed)
+                        {
+                            //DeleteDirectory(AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG"));
+                        }
+
+
+
+                    }
+
 
                     BusyCoping = false;
                 })).Start();
@@ -1154,48 +1322,50 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                 #endregion << Move ISO >>
 
                 #region << Patch NP Title File >>
-                //updatenptitledata
-                UpdateString("Patching NP Title");
-                // Original Byte string to find and Replace "43 55 53 41 30 35 32 38 39 5F 30 30"
-                Stream FileStream = new FileStream(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
-
-                //Read NPTitle ID
-                FileStream.Seek(16, SeekOrigin.Begin);
-                byte[] array = new byte[9];
-                FileStream.Read(array, 0, array.Length);
-                //Close the stream
-                FileStream.Close();
-
-                //get the current stream value
-                var currentstr = Encoding.ASCII.GetString(array);
-                string contentid = currentstr;
-                System.Windows.Application.Current.Dispatcher.Invoke(
-                        DispatcherPriority.Normal,
-                        (ThreadStart)delegate
-                        {
-                            contentid = txtContentID.Text;
-                        });
-                //encode to bytes the new content id
-                var bytes = Encoding.ASCII.GetBytes(contentid);
-
-                //read current bytes from file
-                byte[] file = File.ReadAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat");
-
-                //and replace
-                int x, j, iMax = file.Length - array.Length;
-                for (x = 0; x <= iMax; x++)
+                if (File.Exists(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat"))
                 {
-                    for (j = 0; j < array.Length; j++)
-                        if (file[x + j] != array[j]) break;
-                    if (j == array.Length) break;
-                }
-                if (x <= iMax)
-                {
-                    for (j = 0; j < array.Length; j++)
-                        file[x + j] = bytes[j];
-                    File.WriteAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", file);
-                }
+                    //updatenptitledata
+                    UpdateString("Patching NP Title");
+                    // Original Byte string to find and Replace "43 55 53 41 30 35 32 38 39 5F 30 30"
+                    Stream FileStream = new FileStream(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
 
+                    //Read NPTitle ID
+                    FileStream.Seek(16, SeekOrigin.Begin);
+                    byte[] array = new byte[9];
+                    FileStream.Read(array, 0, array.Length);
+                    //Close the stream
+                    FileStream.Close();
+
+                    //get the current stream value
+                    var currentstr = Encoding.ASCII.GetString(array);
+                    string contentid = currentstr;
+                    System.Windows.Application.Current.Dispatcher.Invoke(
+                            DispatcherPriority.Normal,
+                            (ThreadStart)delegate
+                            {
+                                contentid = txtContentID.Text;
+                            });
+                    //encode to bytes the new content id
+                    var bytes = Encoding.ASCII.GetBytes(contentid);
+
+                    //read current bytes from file
+                    byte[] file = File.ReadAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat");
+
+                    //and replace
+                    int x, j, iMax = file.Length - array.Length;
+                    for (x = 0; x <= iMax; x++)
+                    {
+                        for (j = 0; j < array.Length; j++)
+                            if (file[x + j] != array[j]) break;
+                        if (j == array.Length) break;
+                    }
+                    if (x <= iMax)
+                    {
+                        for (j = 0; j < array.Length; j++)
+                            file[x + j] = bytes[j];
+                        File.WriteAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", file);
+                    }
+                }
 
                 #endregion << Patch NP Title File >>
 
@@ -1251,6 +1421,11 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
             DeleteDirectory(AppCommonPath() + @"\PSP\");
             DeleteDirectory(AppCommonPath() + @"\PSPEmu\");
 
+            //Delete Some FIles that are no longer required
+            File.Delete(AppCommonPath() + @"\pkg.exe");
+            File.Delete(AppCommonPath() + @"\orbis-pub-cmd.exe");
+
+
             //reset some vales 
             AddCustomPS2Config = false;
             CustomConfigLocation = string.Empty;
@@ -1278,7 +1453,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
                 if (tempvlc.IsPlaying)
                 {
                     tempvlc.Stop();
-                   // tempvlc.Dispose();
+                    // tempvlc.Dispose();
                 }
             }
             catch (Exception ex)
@@ -1550,93 +1725,103 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
         /// </summary>
         public void SaveGp4()
         {
-            //create new XML Document 
-            xmldoc = new XmlDataDocument();
-            //nodelist 
-            XmlNodeList xmlnode;
-            //setup the resource file to be extarcted
-            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            //load the xml file from the base directory
-            xmldoc.Load(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4");
-            //now load the nodes
-            xmlnode = xmldoc.GetElementsByTagName("volume");//volume is inside the xml
-            //loop to get all info from the node list
-            foreach (XmlNode xn in xmlnode)
+            try
             {
-                XmlNode xNode = xn.SelectSingleNode("package");
-                if (xNode != null)
+
+                //create new XML Document 
+                xmldoc = new XmlDataDocument();
+                //nodelist 
+                XmlNodeList xmlnode;
+                //setup the resource file to be extarcted
+                string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+                //load the xml file from the base directory
+                xmldoc.Load(AppCommonPath() + @"PSPEmu\" + "PSPClassics.gp4");
+                //now load the nodes
+                xmlnode = xmldoc.GetElementsByTagName("volume");//volume is inside the xml
+                                                                //loop to get all info from the node list
+                foreach (XmlNode xn in xmlnode)
                 {
-                    //we found the info we are looking for
-                    xNode.Attributes[0].Value = xmlcontentid;//set the attribute
+                    XmlNode xNode = xn.SelectSingleNode("package");
+                    if (xNode != null)
+                    {
+                        //we found the info we are looking for
+                        xNode.Attributes[0].Value = xmlcontentid;//set the attribute
+                    }
                 }
+                ////Uncomment this if you want to use the current datetime
+                //xmlnode = xmldoc.GetElementsByTagName("volume_ts");
+                //foreach (XmlNode item in xmlnode)
+                //{
+                //    item.InnerText = DateTime.Now.ToString("YYYY-MM-DD HH:mm:ss");//2018-03-21 15:37:08
+                //}
+
+                xmldoc.Save(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4");
+
+                //im cheating here a bit 
+
+                //line builder
+                //string tempval = @"    <file targ_path=""data/GAME.iso"" orig_path=""..\PSP\image\disc01.iso""" + @" />";
+                //string builder = string.Empty;
+
+                //for (int i = 0; i < MainWindow.pspfiles.Count; i++)
+                //{
+                //    builder += tempval.Replace("disc01.iso", "disc0" + (i + 1) + ".iso") + "\n";
+                //}
+
+                //var alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
+
+                //alllines = alllines.Replace(tempval, builder.Remove(builder.Length - 1, 1));
+
+                //File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
+
+                #region << Configs >>
+                //if (pspfiles.Count > 1)
+                //{
+                //    //line builder
+                //    tempval = @"    <file targ_path=""patches/SLES-50366_cli.conf"" orig_path=""..\PS2\patches\SLES-50366_cli.conf""" + @" />";
+                //    builder = string.Empty;
+
+                //    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
+                //    {
+                //        builder += tempval.Replace("SLES-50366_cli.conf", PS2TitleId[i].ToString() /*Game Name Here*/+ "_cli.conf") + "\n";
+                //    }
+
+                //    alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
+
+                //    alllines = alllines.Replace("@addps2patchHere", builder.Remove(builder.Length - 1, 1));
+
+                //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
+
+
+                //    tempval = @"    <file targ_path=""lua_include/SLUS-20071_config.lua"" orig_path=""..\PS2\lua_include\SLUS-20071_config.lua""" + @" />";
+                //    builder = string.Empty;
+
+                //    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
+                //    {
+                //        builder += tempval.Replace("SLUS-20071_config.lua", PS2TitleId[i].ToString().Replace(".","") /*Game Name Here*/+ "_config.lua") + "\n";
+                //    }
+
+                //    alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
+
+                //    alllines = alllines.Replace("@addps2luhere", builder.Remove(builder.Length - 1, 1));
+
+                //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
+
+                //}
+                //else
+                //{
+                //    alllines = alllines.Replace("@addps2patchHere", "");//remove the string
+                //    alllines = alllines.Replace("@addps2luhere", "");//remove the string
+                //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
+                //}
+                #endregion << Configs >>
+
             }
-            ////Uncomment this if you want to use the current datetime
-            //xmlnode = xmldoc.GetElementsByTagName("volume_ts");
-            //foreach (XmlNode item in xmlnode)
-            //{
-            //    item.InnerText = DateTime.Now.ToString("YYYY-MM-DD HH:mm:ss");//2018-03-21 15:37:08
-            //}
-
-            xmldoc.Save(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4");
-
-            //im cheating here a bit 
-
-            //line builder
-            //string tempval = @"    <file targ_path=""data/GAME.iso"" orig_path=""..\PSP\image\disc01.iso""" + @" />";
-            //string builder = string.Empty;
-
-            //for (int i = 0; i < MainWindow.pspfiles.Count; i++)
-            //{
-            //    builder += tempval.Replace("disc01.iso", "disc0" + (i + 1) + ".iso") + "\n";
-            //}
-
-            //var alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
-
-            //alllines = alllines.Replace(tempval, builder.Remove(builder.Length - 1, 1));
-
-            //File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
-
-            #region << Configs >>
-            //if (pspfiles.Count > 1)
-            //{
-            //    //line builder
-            //    tempval = @"    <file targ_path=""patches/SLES-50366_cli.conf"" orig_path=""..\PS2\patches\SLES-50366_cli.conf""" + @" />";
-            //    builder = string.Empty;
-
-            //    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
-            //    {
-            //        builder += tempval.Replace("SLES-50366_cli.conf", PS2TitleId[i].ToString() /*Game Name Here*/+ "_cli.conf") + "\n";
-            //    }
-
-            //    alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
-
-            //    alllines = alllines.Replace("@addps2patchHere", builder.Remove(builder.Length - 1, 1));
-
-            //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
-
-
-            //    tempval = @"    <file targ_path=""lua_include/SLUS-20071_config.lua"" orig_path=""..\PS2\lua_include\SLUS-20071_config.lua""" + @" />";
-            //    builder = string.Empty;
-
-            //    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
-            //    {
-            //        builder += tempval.Replace("SLUS-20071_config.lua", PS2TitleId[i].ToString().Replace(".","") /*Game Name Here*/+ "_config.lua") + "\n";
-            //    }
-
-            //    alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
-
-            //    alllines = alllines.Replace("@addps2luhere", builder.Remove(builder.Length - 1, 1));
-
-            //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
-
-            //}
-            //else
-            //{
-            //    alllines = alllines.Replace("@addps2patchHere", "");//remove the string
-            //    alllines = alllines.Replace("@addps2luhere", "");//remove the string
-            //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
-            //}
-            #endregion << Configs >>
+            catch (Exception ex)
+            {
+                var file = File.ReadAllText(AppCommonPath() + @"PSPEmu\" + "PSPClassics.gp4").Replace("UP9000-CUSA32644_00-NPUG801350000000", xmlcontentid);
+                File.WriteAllText(AppCommonPath() + @"PSPEmu\" + "PSPClassics.gp4", file);
+            }
         }
 
 
@@ -1657,17 +1842,21 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
             UpdateInfo("Writing All Binary Files to Temp Path....");
 
             //copy byte files
-            System.IO.File.WriteAllBytes(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4", Properties.Resources.PSPClassics);
+            System.IO.File.WriteAllBytes(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4", Properties.Resources.psphd1);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4");
             System.IO.File.WriteAllBytes(AppCommonPath() + @"\PSPEmu\" + "param.sfo", Properties.Resources.param);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PSPEmu\" + "param.sfo");
             System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-cmd.exe", Properties.Resources.orbis_pub_cmd);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "orbis-pub-cmd.exe");
 
-            System.IO.File.WriteAllBytes(AppCommonPath() + "PSP.zip", Properties.Resources.PSP);
+            System.IO.File.WriteAllBytes(AppCommonPath() + "PSP.zip", Properties.Resources.psphd);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "PSP.zip");
             System.IO.File.WriteAllBytes(AppCommonPath() + "ext.zip", Properties.Resources.ext);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "ext.zip");
+
+
+            System.IO.File.WriteAllBytes(AppCommonPath() + "psppkg.zip", Properties.Resources.psppkg);
+            UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "psppkg.zip");
 
             UpdateInfo("Writing Image Files to Temp Path...");
 
@@ -1698,10 +1887,17 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
             {
                 DeleteDirectory(AppCommonPath() + @"\ext\");
             }
-            ZipFile.ExtractToDirectory(AppCommonPath() + "ext.zip", AppCommonPath());
+            if (File.Exists(AppCommonPath() + @"\pkg.exe"))
+            {
+                File.Delete(AppCommonPath() + @"\pkg.exe");
+            }
+            //ZipFile.ExtractToDirectory(AppCommonPath() + "ext.zip", AppCommonPath());
+
+            ZipFile.ExtractToDirectory(AppCommonPath() + "psppkg.zip", AppCommonPath());
 
             File.Delete(AppCommonPath() + "ext.zip");
             File.Delete((AppCommonPath() + "PSP.zip"));
+            File.Delete((AppCommonPath() + "psppkg.zip"));
         }
 
         public static void DeleteDirectory(string target_dir)
@@ -1729,7 +1925,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
             if (Properties.Settings.Default.OverwriteTemp == true && Properties.Settings.Default.TempPath != string.Empty)
             {
                 returnstring = Properties.Settings.Default.TempPath + @"\Ps4Tools\";
-             
+
             }
             else
             {
@@ -1884,7 +2080,7 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
         public string Orbis_CMD(string command, string arguments)
         {
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = AppCommonPath() + "orbis-pub-cmd.exe " + command;
+            start.FileName = AppCommonPath() + "pkg.exe " + command;
             start.Arguments = arguments;
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
@@ -1933,4 +2129,356 @@ And a very special thanks to DefaultDNB for his help", "Credits", PS4_MessageBox
 
         #endregion << Methods >>
     }
+
+    public static class BinarryTools
+    {
+        /// <summary>
+        /// Finds the first occurrence of <paramref name="pattern"/> in a stream
+        /// </summary>
+        /// <param name="s">The input stream</param>
+        /// <param name="pattern">The pattern</param>
+        /// <returns>The index of the first occurrence, or -1 if the pattern has not been found</returns>
+        public static long IndexOf(Stream s, byte[] pattern)
+        {
+            // Prepare the bad character array is done once in a separate step
+            var badCharacters = MakeBadCharArray(pattern);
+
+            // We now repeatedly read the stream into a buffer and apply the Boyer-Moore-Horspool algorithm on the buffer until we get a match
+            var buffer = new byte[Math.Max(2 * pattern.Length, 4096)];
+            long offset = 0; // keep track of the offset in the input stream
+            while (true)
+            {
+                int dataLength;
+                if (offset == 0)
+                {
+                    // the first time we fill the whole buffer
+                    dataLength = s.Read(buffer, 0, buffer.Length);
+                }
+                else
+                {
+                    // Later, copy the last pattern.Length bytes from the previous buffer to the start and fill up from the stream
+                    // This is important so we can also find matches which are partly in the old buffer
+                    Array.Copy(buffer, buffer.Length - pattern.Length, buffer, 0, pattern.Length);
+                    dataLength = s.Read(buffer, pattern.Length, buffer.Length - pattern.Length) + pattern.Length;
+                }
+
+                var index = IndexOf(buffer, dataLength, pattern, badCharacters);
+                if (index >= 0)
+                    return offset + index; // found!
+                if (dataLength < buffer.Length)
+                    break;
+                offset += dataLength - pattern.Length;
+            }
+
+            return -1;
+        }
+
+        // --- Boyer-Moore-Horspool algorithm ---
+        // (Slightly modified code from
+        // https://stackoverflow.com/questions/16252518/boyer-moore-horspool-algorithm-for-all-matches-find-byte-array-inside-byte-arra)
+        // Prepare the bad character array is done once in a separate step:
+        private static int[] MakeBadCharArray(byte[] pattern)
+        {
+            var badCharacters = new int[256];
+
+            for (long i = 0; i < 256; ++i)
+                badCharacters[i] = pattern.Length;
+
+            for (var i = 0; i < pattern.Length - 1; ++i)
+                badCharacters[pattern[i]] = pattern.Length - 1 - i;
+
+            return badCharacters;
+        }
+
+        // Core of the BMH algorithm
+        private static int IndexOf(byte[] value, int valueLength, byte[] pattern, int[] badCharacters)
+        {
+            int index = 0;
+
+            while (index <= valueLength - pattern.Length)
+            {
+                for (var i = pattern.Length - 1; value[index + i] == pattern[i]; --i)
+                {
+                    if (i == 0)
+                        return index;
+                }
+
+                index += badCharacters[value[index + pattern.Length - 1]];
+            }
+
+            return -1;
+        }
+
+        public static List<long> GetPatternPositions(string path, byte[] pattern)
+        {
+            using (FileStream stream = new FileStream(path, FileMode.Open))
+            {
+                List<long> searchResults = new List<long>(); //The results as offsets within the file
+                int patternPosition = 0; //Track of how much of the array has been matched
+                long filePosition = 0;
+                long bufferSize = Math.Min(stream.Length, 100000);
+
+                byte[] buffer = new byte[bufferSize];
+                int readCount = 0;
+
+                while ((readCount = stream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    for (int i = 0; i < readCount; i++)
+                    {
+                        byte currentByte = buffer[i];
+
+                        if (currentByte == pattern[0])
+                            patternPosition = 0;
+
+                        if (currentByte == pattern[patternPosition])
+                        {
+                            patternPosition++;
+                            if (patternPosition == pattern.Length)
+                            {
+                                searchResults.Add(filePosition + 1 - pattern.Length);
+                                patternPosition = 0;
+                            }
+                        }
+                        filePosition++;
+                    }
+                }
+
+                return searchResults;
+            }
+        }
+
+        public static void ExtractDirectory(DiscUtils.DiscDirectoryInfo Dinfo, string RootPath, string PathinISO)
+        {
+            if (!string.IsNullOrWhiteSpace(PathinISO))
+            {
+                PathinISO += "\\" + Dinfo.Name;
+            }
+            RootPath += "\\" + Dinfo.Name;
+            AppendDirectory(RootPath);
+            foreach (DiscUtils.DiscDirectoryInfo dinfo in Dinfo.GetDirectories())
+            {
+                ExtractDirectory(dinfo, RootPath, PathinISO);
+            }
+            foreach (DiscUtils.DiscFileInfo finfo in Dinfo.GetFiles())
+            {
+                using (Stream FileStr = finfo.OpenRead())
+                {
+                    using (FileStream Fs = File.Create(RootPath + "\\" + finfo.Name)) // Here you can Set the BufferSize Also e.g. File.Create(RootPath + "\\" + finfo.Name, 4 * 1024)
+                    {
+                        FileStr.CopyTo(Fs, 4 * 1024); // Buffer Size is 4 * 1024 but you can modify it in your code as per your need
+                    }
+                }
+            }
+        }
+        static void AppendDirectory(string path)
+        {
+            try
+            {
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+            }
+            catch (DirectoryNotFoundException Ex)
+            {
+                AppendDirectory(Path.GetDirectoryName(path));
+            }
+            catch (PathTooLongException Exx)
+            {
+                AppendDirectory(Path.GetDirectoryName(path));
+            }
+        }
+
+
+        public static object ReadRomData(byte[] file, long offset, int lenght)
+        {
+            long num = offset;
+            checked
+            {
+                byte[] array = new byte[lenght - 1 + 1];
+                using (BinaryReader binaryReader = new BinaryReader(new MemoryStream(file)))
+                {
+                    long length = binaryReader.BaseStream.Length;
+                    int num2 = 0;
+                    binaryReader.BaseStream.Seek(num, SeekOrigin.Begin);
+                    while (num < length & num2 < lenght)
+                    {
+                        array[num2] = binaryReader.ReadByte();
+                        num += 1L;
+                        num2++;
+                    }
+                }
+                return array;
+            }
+        }
+
+        public static object FindOffset(string filename, byte[] query)
+        {
+            using (BinaryReader binaryReader = new BinaryReader(File.Open(filename, FileMode.Open)))
+            {
+                double num = (double)binaryReader.BaseStream.Length;
+                if ((double)query.Length <= num)
+                {
+                    byte[] array = binaryReader.ReadBytes(query.Length);
+                    bool flag = false;
+                    double num3;
+                    checked
+                    {
+                        int num2 = query.Length - 1;
+                        for (int i = 0; i <= num2; i++)
+                        {
+                            if (array[i] != query[i])
+                            {
+                                flag = false;
+                                break;
+                            }
+                            flag = true;
+                        }
+                        if (flag)
+                        {
+                            return 0;
+                        }
+                        num3 = (double)query.Length;
+                    }
+                    double num4 = num - 1.0;
+                    for (double num5 = num3; num5 <= num4; num5 += 1.0)
+                    {
+                        checked
+                        {
+                            Array.Copy(array, 1, array, 0, array.Length - 1);
+                            array[array.Length - 1] = binaryReader.ReadByte();
+                            int num6 = query.Length - 1;
+                            for (int j = 0; j <= num6; j++)
+                            {
+                                if (array[j] != query[j])
+                                {
+                                    flag = false;
+                                    break;
+                                }
+                                flag = true;
+                            }
+                        }
+                        if (flag)
+                        {
+                            return num5 - (double)(checked(query.Length - 1));
+                        }
+                    }
+                }
+            }
+            return -1;
+        }
+        public static string CreateIsoImage(string sourceDrive, string targetIso, string volumeName)
+        {
+            try
+            {
+                var srcFiles = Directory.GetFiles(sourceDrive, "*", SearchOption.AllDirectories);
+                var iso = new CDBuilder
+                {
+                    UseJoliet = true,
+                    VolumeIdentifier = volumeName
+                };
+
+                foreach (var file in srcFiles)
+                {
+                    var fi = new FileInfo(file);
+                    if (fi.Directory.Name == sourceDrive)
+                    {
+                        iso.AddFile($"{fi.Name}", fi.FullName);
+                        continue;
+                    }
+                    var srcDir = fi.Directory.FullName.Replace(sourceDrive, "").TrimEnd('\\');
+                    iso.AddDirectory(srcDir);
+                    iso.AddFile($"{srcDir}\\{fi.Name}", fi.FullName);
+                }
+
+                iso.Build(targetIso);
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+
+        public static byte[] ReplaceInByteArray(byte[] OriginalArray, byte[] Find,
+byte[] Replace)
+        {
+            byte[] ReturnValue = OriginalArray;
+
+            if (System.Array.BinarySearch(ReturnValue, Find) > -1)
+            {
+                byte[] NewReturnValue;
+                int lFoundPosition;
+                int lCurrentPosition;
+                int lCurrentOriginalPosition;
+                while (FindInByteArray(ReturnValue, Find) > -1)
+                {
+                    NewReturnValue = new byte[ReturnValue.Length + Replace.Length -
+                    Find.Length];
+                    lFoundPosition = FindInByteArray(ReturnValue, Find);
+                    lCurrentPosition = 0;
+                    lCurrentOriginalPosition = 0;
+
+                    for (int x = 0; x < lFoundPosition; x++)
+                    {
+                        NewReturnValue[x] = ReturnValue[x];
+                        lCurrentPosition++;
+                        lCurrentOriginalPosition++;
+                    }
+
+                    for (int y = 0; y < Replace.Length; y++)
+                    {
+                        NewReturnValue[lCurrentPosition] = Replace[y];
+                        lCurrentPosition++;
+                    }
+
+                    lCurrentOriginalPosition = lCurrentOriginalPosition + Find.Length;
+
+                    while (lCurrentPosition < NewReturnValue.Length)
+                    {
+                        NewReturnValue[lCurrentPosition] =
+                        ReturnValue[lCurrentOriginalPosition];
+                        lCurrentPosition++;
+                        lCurrentOriginalPosition++;
+                    }
+
+                    ReturnValue = NewReturnValue;
+                }
+
+            }
+            return ReturnValue;
+        }
+
+        private static int FindInByteArray(byte[] Haystack, byte[] Needle)
+        {
+            int lFoundPosition = -1;
+            int lMayHaveFoundIt = -1;
+            int lMiniCounter = 0;
+
+            for (int lCounter = 0; lCounter < Haystack.Length; lCounter++)
+            {
+                if (Haystack[lCounter] == Needle[lMiniCounter])
+                {
+                    if (lMiniCounter == 0)
+                        lMayHaveFoundIt = lCounter;
+                    if (lMiniCounter == Needle.Length - 1)
+                    {
+                        return lMayHaveFoundIt;
+                    }
+                    lMiniCounter++;
+                }
+                else
+                {
+                    lMayHaveFoundIt = -1;
+                    lMiniCounter = 0;
+                }
+            }
+
+            return lFoundPosition;
+        }
+
+    }
+
+
 }

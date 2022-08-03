@@ -1,0 +1,12 @@
+﻿<Window x:Class="PS4_PSX_Classics_GUI.VideoScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PS4_PSX_Classics_GUI"
+        mc:Ignorable="d"
+        Title="VideoScreen" WindowStyle="None"  Height="480" Width="960" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False">
+    <Grid>
+        <MediaElement x:Name="MediaPlayer"  Source="Resources/PS2 Logo.mp4" Stretch="Fill" LoadedBehavior="Manual"/>
+    </Grid>
+</Window>

@@ -756,9 +756,9 @@ namespace PS4_PSP_Classics_GUI
                 //Create the ContentID UP9000-
 
                 System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Normal, (ThreadStart)delegate
-                        {
-                            xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PSPID.Replace("_", "") + "0000001";
-                        });
+                {
+                    xmlcontentid = "UP9000-" + txtContentID.Text.Trim() + "_00-" + PSPID.Replace("_", "") + "0000001";
+                });
 
                 //Load The SFO From the existing File Location
                 Param_SFO.PARAM_SFO psfo = new Param_SFO.PARAM_SFO(AppCommonPath() + @"\PSP\sce_sys\param.sfo");
@@ -899,26 +899,26 @@ namespace PS4_PSP_Classics_GUI
                     else
                     {
                         //we need to handle iso creation from PBP
-                        if(type == FileType.FileTypes.PBP)
+                        if (type == FileType.FileTypes.PBP)
                         {
 
                             UpdateString("Extracting PBP");
 
                             //we need to extart all files to a folder within working 
                             //we want an eboot and a boot.bin so we create both (since the PS4 Boots boot.bin 
-                            if(!Directory.Exists(AppCommonPath() + @"\Working\PSPISO\"))
+                            if (!Directory.Exists(AppCommonPath() + @"\Working\PSPISO\"))
                             {
                                 Directory.CreateDirectory(AppCommonPath() + @"\Working\PSPISO\");
                             }
                             pbp.WritePBPFiles(AppCommonPath() + @"\Working\PSPISO\", pspdata: "EBOOT.BIN", psrdata: "DATA.BIN", make_eboot_boot: true);
 
                             //clean up blank file
-                            File.Delete(AppCommonPath() + @"\PSP\DATA\GAME.iso");
+                            File.Delete(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG");
 
                             //now pack the pbp as an iso 
                             PSP_Tools.UMD.ISO umdiso = new PSP_Tools.UMD.ISO();
                             umdiso.PSPTitle = psfo.Title;//set the title of the iso to that which is inside the sfo
-                            umdiso.CreateISO(AppCommonPath() + @"\Working\PSPISO\", AppCommonPath() + @"\PSP\DATA\GAME.iso",false);//fake sign should not have to apply here 
+                            umdiso.CreateISO(AppCommonPath() + @"\Working\PSPISO\", AppCommonPath() + @"\PSP\DATA\USER_L0.IMG", false);//fake sign should not have to apply here 
 
                             UpdateString("Creating ISO");
 
@@ -927,23 +927,173 @@ namespace PS4_PSP_Classics_GUI
                                 //sleep the thread
                                 DoEvents();
                             }
-                            if(umdiso.Status == PSP_Tools.UMD.ISO.ISOStatus.Completed)
+                            if (umdiso.Status == PSP_Tools.UMD.ISO.ISOStatus.Completed)
                             {
-                                BusyCoping = false;
+                                //BusyCoping = false;
                             }
                         }
 
                         if (type == FileType.FileTypes.ISO)
                         {
                             //clean up the blank file
-                            File.Delete(AppCommonPath() + @"\PSP\DATA\GAME.iso");
+                            File.Delete(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG");
                             string currentimage = "";
                             currentimage = pspfiles[0].ToString().Trim();//first and only item
-                            File.Copy(currentimage, AppCommonPath() + @"\PSP\DATA\GAME.iso", true);
+                            File.Copy(currentimage, AppCommonPath() + @"\PSP\DATA\USER_L0.IMG", true);
 
-                            BusyCoping = false;
+                            //BusyCoping = false;
                         }
                     }
+
+                    //check if file is encrypted inside the system 
+                    //if it is decrypt it
+                    bool encrypted = false;
+
+                    byte[] EBOOT;
+                    byte[] EBOOTDec;
+                    using (FileStream isoStream = File.OpenRead(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG"))
+                    {
+                        UpdateString("Eboot is encrypted\nDecrypting....");
+
+
+                        //use disk utils to read iso quickly
+                        CDReader cd = new CDReader(isoStream, true);
+                        //look for the spesific file
+                        Stream fileStream = cd.OpenFile("\\PSP_GAME\\SYSDIR\\EBOOT.BIN", FileMode.Open);
+                        // Use fileStream...
+                        EBOOT = new byte[fileStream.Length];
+                        EBOOTDec = new byte[fileStream.Length];
+                        fileStream.Read(EBOOT, 0, (int)fileStream.Length);
+                        //File.WriteAllBytes(AppCommonPath() + @"\eboot.bin", buffer);
+                        fileStream.Position = 0;
+                        using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                        {
+                            Byte[] FileHeader = binaryReader.ReadBytes(4);
+
+                            if (FileHeader.SequenceEqual(new byte[4] { 0x7E, 0x50, 0x53, 0x50 }))
+                            {
+                                //file is encrypted decrypt it
+                                encrypted = true;
+
+                                //new uses C# no more writing disgusting files
+
+                                PSP_Tools.Crypto.EncryptedPrx prxdecrypter = new PSP_Tools.Crypto.EncryptedPrx();
+                                EBOOTDec = prxdecrypter.Decrypt(EBOOT, true);
+
+                                #region << OLD >>
+                                //OLD USED the PRX Decryption tool by https://github.com/John-K/pspdecrypt
+
+                                //System.IO.File.WriteAllBytes(AppCommonPath() + @"\decrypt.exe", Properties.Resources.pspdecrypt);
+                                //ProcessStartInfo start = new ProcessStartInfo();
+                                //start.FileName = AppCommonPath() + "decrypt.exe";
+                                //start.Arguments = @"""" + AppCommonPath() + @"eboot.bin""";//same folder easy stuff
+                                //start.UseShellExecute = false;
+                                //start.RedirectStandardOutput = true;
+                                //start.CreateNoWindow = true;
+
+                                //using (Process process = Process.Start(start))
+                                //{
+                                //    process.ErrorDataReceived += Process_ErrorDataReceived;
+                                //    using (StreamReader reader = process.StandardOutput)
+                                //    {
+                                //        string result = reader.ReadToEnd();
+
+                                //    }
+                                //}
+                                //Thread.Sleep(110);
+                                ////cleanup
+                                //File.Delete(AppCommonPath() + "decrypt.exe");
+
+
+                                //var index = BinarryTools.IndexOf(isoStream, buffer);
+
+                                #endregion << OLD >>
+
+                                //now try and fix load table
+
+                                EBOOTDec = PSP_Tools.PS4.LoadElf(EBOOTDec);
+
+
+                            }
+                        }
+
+                        //always clean up
+                        //File.Delete(AppCommonPath() + @"\eboot.bin");
+                    }
+                    if (encrypted == true)
+                    {
+                        UpdateString("Extracting disc and recreating....");
+                        string Label = "";
+
+
+
+
+                        using (FileStream ISOStream = File.Open(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG", FileMode.Open))
+                        {
+                            CDReader Reader = new CDReader(ISOStream, true, true);
+                            //BinarryTools.ExtractDirectory(Reader.Root, AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG") + "\\", "");
+
+
+                            Label = Reader.VolumeLabel;
+
+                            Reader.Dispose();
+                        }
+
+                        long num = EBOOT.Length;
+                        if (num > 512320L)
+                        {
+                            num = 512320L;
+                        }
+
+
+                        byte[] query = (byte[])BinarryTools.ReadRomData(EBOOT, 0L, (int)num);
+
+
+                        var offset = BinarryTools.FindOffset(AppCommonPath() + @"\PSP\data\USER_L0.IMG", query);
+                        byte[] value = (byte[])BinarryTools.ReadRomData(EBOOTDec, 0L, (int)EBOOT.Length);
+
+
+                        //now replace
+                        FileStream fileStream = new FileStream(AppCommonPath() + @"\PSP\data\USER_L0.IMG", FileMode.Open, FileAccess.Write, FileShare.Write);
+                        fileStream.Seek(Convert.ToInt64(offset), SeekOrigin.Begin);
+                        fileStream.Write(value, 0, value.Length);
+                        fileStream.Close();
+                        //File.Delete(AppCommonPath() + @"\eboot.bin");
+                        //File.Delete(AppCommonPath() + @"\eboot.bin.dec");//delete and cleanup
+                        //now replace file 
+                        //Replace BOOT.BIN with Eboot.BIn
+                        //File.Copy(AppCommonPath() + @"\eboot.bin.dec", AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG") + @"\PSP_GAME\SYSDIR\EBOOT.BIN", true);
+                        //File.Copy(AppCommonPath() + @"\eboot.bin.dec", AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG") + @"\PSP_GAME\SYSDIR\BOOT.BIN", true);
+                        //File.Delete(AppCommonPath() + @"\eboot.bin.dec");//delete and cleanup
+                        //re-create the iso
+                        //BinarryTools.CreateIsoImage(AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG"), AppCommonPath() + @"\PSP\DATA\USER_L0.IMG", Label);
+
+
+
+                        //PSP_Tools.UMD.ISO iso = new PSP_Tools.UMD.ISO();
+                        //iso.PSPTitle = Label ?? psfo.Title;
+
+                        //iso.CreateISO(AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG"), AppCommonPath() + @"\PSP\DATA\USER_L0.IMG");
+
+
+                        //PSP_Tools.UMD.Sign.UMDSIGN()
+
+
+
+                        //while (iso.Status == PSP_Tools.UMD.ISO.ISOStatus.Busy)
+                        //{
+                        //    //sleep the thread
+                        //    DoEvents();
+                        //}
+                        //if (iso.Status == PSP_Tools.UMD.ISO.ISOStatus.Completed)
+                        {
+                            //DeleteDirectory(AppCommonPath() + "\\" + Path.GetFileNameWithoutExtension(AppCommonPath() + @"\PSP\DATA\USER_L0.IMG"));
+                        }
+
+
+
+                    }
+
 
                     BusyCoping = false;
                 })).Start();
@@ -955,48 +1105,50 @@ namespace PS4_PSP_Classics_GUI
                 #endregion << Move ISO >>
 
                 #region << Patch NP Title File >>
-                //updatenptitledata
-                UpdateString("Patching NP Title");
-                // Original Byte string to find and Replace "43 55 53 41 30 35 32 38 39 5F 30 30"
-                Stream FileStream = new FileStream(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
-
-                //Read NPTitle ID
-                FileStream.Seek(16, SeekOrigin.Begin);
-                byte[] array = new byte[9];
-                FileStream.Read(array, 0, array.Length);
-                //Close the stream
-                FileStream.Close();
-
-                //get the current stream value
-                var currentstr = Encoding.ASCII.GetString(array);
-                string contentid = currentstr;
-                System.Windows.Application.Current.Dispatcher.Invoke(
-                        DispatcherPriority.Normal,
-                        (ThreadStart)delegate
-                        {
-                            contentid = txtContentID.Text;
-                        });
-                //encode to bytes the new content id
-                var bytes = Encoding.ASCII.GetBytes(contentid);
-
-                //read current bytes from file
-                byte[] file = File.ReadAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat");
-
-                //and replace
-                int x, j, iMax = file.Length - array.Length;
-                for (x = 0; x <= iMax; x++)
+                if (File.Exists(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat"))
                 {
-                    for (j = 0; j < array.Length; j++)
-                        if (file[x + j] != array[j]) break;
-                    if (j == array.Length) break;
-                }
-                if (x <= iMax)
-                {
-                    for (j = 0; j < array.Length; j++)
-                        file[x + j] = bytes[j];
-                    File.WriteAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", file);
-                }
+                    //updatenptitledata
+                    UpdateString("Patching NP Title");
+                    // Original Byte string to find and Replace "43 55 53 41 30 35 32 38 39 5F 30 30"
+                    Stream FileStream = new FileStream(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", FileMode.Open, FileAccess.Read, FileShare.Read);
 
+                    //Read NPTitle ID
+                    FileStream.Seek(16, SeekOrigin.Begin);
+                    byte[] array = new byte[9];
+                    FileStream.Read(array, 0, array.Length);
+                    //Close the stream
+                    FileStream.Close();
+
+                    //get the current stream value
+                    var currentstr = Encoding.ASCII.GetString(array);
+                    string contentid = currentstr;
+                    System.Windows.Application.Current.Dispatcher.Invoke(
+                            DispatcherPriority.Normal,
+                            (ThreadStart)delegate
+                            {
+                                contentid = txtContentID.Text;
+                            });
+                    //encode to bytes the new content id
+                    var bytes = Encoding.ASCII.GetBytes(contentid);
+
+                    //read current bytes from file
+                    byte[] file = File.ReadAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat");
+
+                    //and replace
+                    int x, j, iMax = file.Length - array.Length;
+                    for (x = 0; x <= iMax; x++)
+                    {
+                        for (j = 0; j < array.Length; j++)
+                            if (file[x + j] != array[j]) break;
+                        if (j == array.Length) break;
+                    }
+                    if (x <= iMax)
+                    {
+                        for (j = 0; j < array.Length; j++)
+                            file[x + j] = bytes[j];
+                        File.WriteAllBytes(AppCommonPath() + @"\PSP\sce_sys\nptitle.dat", file);
+                    }
+                }
 
                 #endregion << Patch NP Title File >>
 
@@ -1051,6 +1203,11 @@ namespace PS4_PSP_Classics_GUI
             DeleteDirectory(AppCommonPath() + @"\Working\");
             DeleteDirectory(AppCommonPath() + @"\PSP\");
             DeleteDirectory(AppCommonPath() + @"\PSPEmu\");
+
+            //Delete Some FIles that are no longer required
+            File.Delete(AppCommonPath() + @"\pkg.exe");
+            File.Delete(AppCommonPath() + @"\orbis-pub-cmd.exe");
+
 
             UpdateInfo("Ready");
         }
@@ -1142,9 +1299,15 @@ namespace PS4_PSP_Classics_GUI
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
+            try
+            {
+                // Begin dragging the window
+                this.DragMove();
+            }
+            catch
+            {
 
-            // Begin dragging the window
-            this.DragMove();
+            }
         }
 
 
@@ -1169,7 +1332,7 @@ namespace PS4_PSP_Classics_GUI
         public string Orbis_CMD(string command, string arguments)
         {
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = AppCommonPath() + "orbis-pub-cmd.exe " + command;
+            start.FileName = AppCommonPath() + "pkg.exe " + command;
             start.Arguments = arguments;
             start.UseShellExecute = false;
             start.RedirectStandardOutput = true;
@@ -1355,93 +1518,103 @@ namespace PS4_PSP_Classics_GUI
         /// </summary>
         public void SaveGp4()
         {
-            //create new XML Document 
-            xmldoc = new XmlDataDocument();
-            //nodelist 
-            XmlNodeList xmlnode;
-            //setup the resource file to be extarcted
-            string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
-            //load the xml file from the base directory
-            xmldoc.Load(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4");
-            //now load the nodes
-            xmlnode = xmldoc.GetElementsByTagName("volume");//volume is inside the xml
-            //loop to get all info from the node list
-            foreach (XmlNode xn in xmlnode)
+            try
             {
-                XmlNode xNode = xn.SelectSingleNode("package");
-                if (xNode != null)
+
+                //create new XML Document 
+                xmldoc = new XmlDataDocument();
+                //nodelist 
+                XmlNodeList xmlnode;
+                //setup the resource file to be extarcted
+                string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
+                //load the xml file from the base directory
+                xmldoc.Load(AppCommonPath() + @"PSPEmu\" + "PSPClassics.gp4");
+                //now load the nodes
+                xmlnode = xmldoc.GetElementsByTagName("volume");//volume is inside the xml
+                                                                //loop to get all info from the node list
+                foreach (XmlNode xn in xmlnode)
                 {
-                    //we found the info we are looking for
-                    xNode.Attributes[0].Value = xmlcontentid;//set the attribute
+                    XmlNode xNode = xn.SelectSingleNode("package");
+                    if (xNode != null)
+                    {
+                        //we found the info we are looking for
+                        xNode.Attributes[0].Value = xmlcontentid;//set the attribute
+                    }
                 }
+                ////Uncomment this if you want to use the current datetime
+                //xmlnode = xmldoc.GetElementsByTagName("volume_ts");
+                //foreach (XmlNode item in xmlnode)
+                //{
+                //    item.InnerText = DateTime.Now.ToString("YYYY-MM-DD HH:mm:ss");//2018-03-21 15:37:08
+                //}
+
+                xmldoc.Save(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4");
+
+                //im cheating here a bit 
+
+                //line builder
+                //string tempval = @"    <file targ_path=""data/GAME.iso"" orig_path=""..\PSP\image\disc01.iso""" + @" />";
+                //string builder = string.Empty;
+
+                //for (int i = 0; i < MainWindow.pspfiles.Count; i++)
+                //{
+                //    builder += tempval.Replace("disc01.iso", "disc0" + (i + 1) + ".iso") + "\n";
+                //}
+
+                //var alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
+
+                //alllines = alllines.Replace(tempval, builder.Remove(builder.Length - 1, 1));
+
+                //File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
+
+                #region << Configs >>
+                //if (pspfiles.Count > 1)
+                //{
+                //    //line builder
+                //    tempval = @"    <file targ_path=""patches/SLES-50366_cli.conf"" orig_path=""..\PS2\patches\SLES-50366_cli.conf""" + @" />";
+                //    builder = string.Empty;
+
+                //    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
+                //    {
+                //        builder += tempval.Replace("SLES-50366_cli.conf", PS2TitleId[i].ToString() /*Game Name Here*/+ "_cli.conf") + "\n";
+                //    }
+
+                //    alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
+
+                //    alllines = alllines.Replace("@addps2patchHere", builder.Remove(builder.Length - 1, 1));
+
+                //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
+
+
+                //    tempval = @"    <file targ_path=""lua_include/SLUS-20071_config.lua"" orig_path=""..\PS2\lua_include\SLUS-20071_config.lua""" + @" />";
+                //    builder = string.Empty;
+
+                //    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
+                //    {
+                //        builder += tempval.Replace("SLUS-20071_config.lua", PS2TitleId[i].ToString().Replace(".","") /*Game Name Here*/+ "_config.lua") + "\n";
+                //    }
+
+                //    alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
+
+                //    alllines = alllines.Replace("@addps2luhere", builder.Remove(builder.Length - 1, 1));
+
+                //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
+
+                //}
+                //else
+                //{
+                //    alllines = alllines.Replace("@addps2patchHere", "");//remove the string
+                //    alllines = alllines.Replace("@addps2luhere", "");//remove the string
+                //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
+                //}
+                #endregion << Configs >>
+
             }
-            ////Uncomment this if you want to use the current datetime
-            //xmlnode = xmldoc.GetElementsByTagName("volume_ts");
-            //foreach (XmlNode item in xmlnode)
-            //{
-            //    item.InnerText = DateTime.Now.ToString("YYYY-MM-DD HH:mm:ss");//2018-03-21 15:37:08
-            //}
-
-            xmldoc.Save(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4");
-
-            //im cheating here a bit 
-
-            //line builder
-            //string tempval = @"    <file targ_path=""data/GAME.iso"" orig_path=""..\PSP\image\disc01.iso""" + @" />";
-            //string builder = string.Empty;
-
-            //for (int i = 0; i < MainWindow.pspfiles.Count; i++)
-            //{
-            //    builder += tempval.Replace("disc01.iso", "disc0" + (i + 1) + ".iso") + "\n";
-            //}
-
-            //var alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
-
-            //alllines = alllines.Replace(tempval, builder.Remove(builder.Length - 1, 1));
-
-            //File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
-
-            #region << Configs >>
-            //if (pspfiles.Count > 1)
-            //{
-            //    //line builder
-            //    tempval = @"    <file targ_path=""patches/SLES-50366_cli.conf"" orig_path=""..\PS2\patches\SLES-50366_cli.conf""" + @" />";
-            //    builder = string.Empty;
-
-            //    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
-            //    {
-            //        builder += tempval.Replace("SLES-50366_cli.conf", PS2TitleId[i].ToString() /*Game Name Here*/+ "_cli.conf") + "\n";
-            //    }
-
-            //    alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
-
-            //    alllines = alllines.Replace("@addps2patchHere", builder.Remove(builder.Length - 1, 1));
-
-            //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
-
-
-            //    tempval = @"    <file targ_path=""lua_include/SLUS-20071_config.lua"" orig_path=""..\PS2\lua_include\SLUS-20071_config.lua""" + @" />";
-            //    builder = string.Empty;
-
-            //    for (int i = 0; i < MainWindow.PS2CutomLua.Count; i++)
-            //    {
-            //        builder += tempval.Replace("SLUS-20071_config.lua", PS2TitleId[i].ToString().Replace(".","") /*Game Name Here*/+ "_config.lua") + "\n";
-            //    }
-
-            //    alllines = File.ReadAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4");
-
-            //    alllines = alllines.Replace("@addps2luhere", builder.Remove(builder.Length - 1, 1));
-
-            //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
-
-            //}
-            //else
-            //{
-            //    alllines = alllines.Replace("@addps2patchHere", "");//remove the string
-            //    alllines = alllines.Replace("@addps2luhere", "");//remove the string
-            //    File.WriteAllText(AppCommonPath() + @"\PSPEmu\" + "PS2Classics.gp4", alllines);
-            //}
-            #endregion << Configs >>
+            catch (Exception ex)
+            {
+                var file = File.ReadAllText(AppCommonPath() + @"PSPEmu\" + "PSPClassics.gp4").Replace("UP9000-CUSA32644_00-NPUG801350000000", xmlcontentid);
+                File.WriteAllText(AppCommonPath() + @"PSPEmu\" + "PSPClassics.gp4", file);
+            }
         }
 
         public bool doesStringMatch()
@@ -1538,17 +1711,21 @@ namespace PS4_PSP_Classics_GUI
             UpdateInfo("Writing All Binary Files to Temp Path....");
 
             //copy byte files
-            System.IO.File.WriteAllBytes(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4", Properties.Resources.PSPClassics);
+            System.IO.File.WriteAllBytes(AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4", Properties.Resources.psphd1);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PSPEmu\" + "PSPClassics.gp4");
             System.IO.File.WriteAllBytes(AppCommonPath() + @"\PSPEmu\" + "param.sfo", Properties.Resources.param);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + @"\PSPEmu\" + "param.sfo");
             System.IO.File.WriteAllBytes(AppCommonPath() + "orbis-pub-cmd.exe", Properties.Resources.orbis_pub_cmd);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "orbis-pub-cmd.exe");
 
-            System.IO.File.WriteAllBytes(AppCommonPath() + "PSP.zip", Properties.Resources.PSP);
+            System.IO.File.WriteAllBytes(AppCommonPath() + "PSP.zip", Properties.Resources.psphd);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "PSP.zip");
             System.IO.File.WriteAllBytes(AppCommonPath() + "ext.zip", Properties.Resources.ext);
             UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "ext.zip");
+
+
+            System.IO.File.WriteAllBytes(AppCommonPath() + "psppkg.zip", Properties.Resources.psppkg);
+            UpdateInfo("Writing Binary File to Temp Path " + "\n Written : " + AppCommonPath() + "psppkg.zip");
 
             UpdateInfo("Writing Image Files to Temp Path...");
 
@@ -1579,10 +1756,17 @@ namespace PS4_PSP_Classics_GUI
             {
                 DeleteDirectory(AppCommonPath() + @"\ext\");
             }
-            ZipFile.ExtractToDirectory(AppCommonPath() + "ext.zip", AppCommonPath());
+            if (File.Exists(AppCommonPath() + @"\pkg.exe"))
+            {
+                File.Delete(AppCommonPath() + @"\pkg.exe");
+            }
+            //ZipFile.ExtractToDirectory(AppCommonPath() + "ext.zip", AppCommonPath());
+
+            ZipFile.ExtractToDirectory(AppCommonPath() + "psppkg.zip", AppCommonPath());
 
             File.Delete(AppCommonPath() + "ext.zip");
             File.Delete((AppCommonPath() + "PSP.zip"));
+            File.Delete((AppCommonPath() + "psppkg.zip"));
         }
 
         public static void DeleteDirectory(string target_dir)

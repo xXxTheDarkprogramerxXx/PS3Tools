@@ -17,6 +17,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>C:\Publish\PSP Classics\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -31,14 +32,13 @@
     <UpdateUrl>http://www.nigmacontractors.co.za/PSTools/PSPClassics/</UpdateUrl>
     <PublisherName>The Darkprogramer</PublisherName>
     <SuiteName>PSTools</SuiteName>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <ExcludeDeploymentUrl>true</ExcludeDeploymentUrl>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -63,26 +63,29 @@
     <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C1F8DAA62FE9978EF05D3AD513804ABC9A1069EE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>BE70B171F959AAE7D50018F8152DBB9D0DE2F73D</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>PS4 PSP Classics GUI_2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>PS4 PSP Classics GUI_5_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharpPlatform">
-      <HintPath>..\..\..\..\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\CSharpPlatform.dll</HintPath>
+    <Reference Include="CSharpPlatform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Users\3deEchelon\Documents\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\CSharpPlatform.dll</HintPath>
     </Reference>
-    <Reference Include="CSharpUtils">
-      <HintPath>..\..\..\..\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\CSharpUtils.dll</HintPath>
+    <Reference Include="CSharpUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Users\3deEchelon\Documents\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\CSharpUtils.dll</HintPath>
     </Reference>
-    <Reference Include="CSPspEmu.Core.Types">
-      <HintPath>..\..\..\..\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\CSPspEmu.Core.Types.dll</HintPath>
+    <Reference Include="CSPspEmu.Core.Types, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Users\3deEchelon\Documents\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\CSPspEmu.Core.Types.dll</HintPath>
     </Reference>
     <Reference Include="DiscUtils, Version=0.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Discutils.0.11.0.2\lib\net40\DiscUtils.dll</HintPath>
@@ -98,8 +101,9 @@
     <Reference Include="PARAM.SFO">
       <HintPath>..\..\PARAM.SFO Editor\PARAM.SFO\bin\Debug\PARAM.SFO.dll</HintPath>
     </Reference>
-    <Reference Include="PSP_Tools">
-      <HintPath>..\..\..\..\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\PSP_Tools.dll</HintPath>
+    <Reference Include="PSP_Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Users\3deEchelon\Documents\Visual Studio 2015\Projects\PSP_PBP_Tools\PSPTools\PSP_Tools\bin\Debug\PSP_Tools.dll</HintPath>
     </Reference>
     <Reference Include="PulseButton">
       <HintPath>..\..\..\..\..\Downloads\Code_20150709\PulseButton\bin\Debug\PulseButton.dll</HintPath>
@@ -201,7 +205,12 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="PS4 PSP Classics GUI_2_TemporaryKey.pfx" />
+    <None Include="PS4 PSP Classics GUI_5_TemporaryKey.pfx" />
+    <None Include="psphd.zip" />
     <None Include="Resources\PSP.zip" />
+    <None Include="Resources\psphd.gp4" />
+    <None Include="Resources\psphd.zip" />
+    <None Include="Resources\psppkg.zip" />
     <None Include="Resources\quickbuild.gp4">
       <SubType>Designer</SubType>
     </None>
@@ -1048,6 +1057,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pspdecrypt.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

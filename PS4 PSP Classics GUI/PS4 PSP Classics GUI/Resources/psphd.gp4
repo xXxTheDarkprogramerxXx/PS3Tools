@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<psproject fmt="gp4" version="1000">
+  <volume>
+    <volume_type>pkg_ps4_app</volume_type>
+    <volume_id>PS4VOLUME</volume_id>
+    <volume_ts>2022-07-27 00:00:00</volume_ts>
+    <package content_id="UP9000-CUSA32644_00-NPUG801350000000" passcode="00000000000000000000000000000000" storage_type="digital50" app_type="full"/>
+    <chunk_info chunk_count="1" scenario_count="1">
+      <chunks>
+        <chunk id="0" label="Chunk #0"/>
+      </chunks>
+      <scenarios default_id="0">
+        <scenario id="0" type="sp" initial_chunk_count="1" label="Scenario #0">0</scenario>
+      </scenarios>
+    </chunk_info>
+  </volume>
+  <files>
+    <file targ_path="data/user_l0.img" orig_path="..\PSP\data\user_l0.img"/>
+    <file targ_path="sce_sys/changeinfo/changeinfo.xml" orig_path="..\PSP\sce_sys\changeinfo\changeinfo.xml"/>
+    <file targ_path="sce_sys/icon0.png" orig_path="..\PSP\sce_sys\icon0.png"/>
+    <file targ_path="sce_sys/param.sfo" orig_path="..\PSP\sce_sys\param.sfo"/>
+    <file targ_path="sce_sys/pic1.png" orig_path="..\PSP\sce_sys\pic1.png"/>
+    <file targ_path="sce_sys/save_data.png" orig_path="..\PSP\sce_sys\save_data.png"/>
+    <file targ_path="sce_sys/shareparam.json" orig_path="..\PSP\sce_sys\shareparam.json"/>
+    <file targ_path="sce_module/libc.prx" orig_path="..\PSP\sce_module\libc.prx"/>
+    <file targ_path="sce_module/libSceFios2.prx" orig_path="..\PSP\sce_module\libSceFios2.prx"/>
+    <file targ_path="sce_module/libSceNpToolkit2.prx" orig_path="..\PSP\sce_module\libSceNpToolkit2.prx"/>
+    <file targ_path="eboot.bin" orig_path="..\PSP\eboot.bin"/>
+    <file targ_path="assets/common/AIM.png" orig_path="..\PSP\assets\common\AIM.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/Analog-Stick-Center.png" orig_path="..\PSP\assets\common\Analog-Stick-Center.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/Analog-Stick-Down.png" orig_path="..\PSP\assets\common\Analog-Stick-Down.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/Analog-Stick-Left.png" orig_path="..\PSP\assets\common\Analog-Stick-Left.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/Analog-Stick-Right.png" orig_path="..\PSP\assets\common\Analog-Stick-Right.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/Analog-Stick-Up.png" orig_path="..\PSP\assets\common\Analog-Stick-Up.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/arrow_left.png" orig_path="..\PSP\assets\common\arrow_left.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/arrow_right.png" orig_path="..\PSP\assets\common\arrow_right.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/checkmark.png" orig_path="..\PSP\assets\common\checkmark.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/consola.ttf" orig_path="..\PSP\assets\common\consola.ttf" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair0.png" orig_path="..\PSP\assets\common\crosshair0.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair0_256.png" orig_path="..\PSP\assets\common\crosshair0_256.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair1.png" orig_path="..\PSP\assets\common\crosshair1.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair1_256.png" orig_path="..\PSP\assets\common\crosshair1_256.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair2.png" orig_path="..\PSP\assets\common\crosshair2.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair2_256.png" orig_path="..\PSP\assets\common\crosshair2_256.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair3.png" orig_path="..\PSP\assets\common\crosshair3.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair3_256.png" orig_path="..\PSP\assets\common\crosshair3_256.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair4.png" orig_path="..\PSP\assets\common\crosshair4.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/crosshair4_256.png" orig_path="..\PSP\assets\common\crosshair4_256.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/DPad-Down.png" orig_path="..\PSP\assets\common\DPad-Down.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/DPad-Left.png" orig_path="..\PSP\assets\common\DPad-Left.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/DPad-Right.png" orig_path="..\PSP\assets\common\DPad-Right.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/DPad-UP.png" orig_path="..\PSP\assets\common\DPad-UP.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/DS1.png" orig_path="..\PSP\assets\common\DS1.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/DS4.png" orig_path="..\PSP\assets\common\DS4.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/fpd.png" orig_path="..\PSP\assets\common\fpd.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/gamespec/icon.png" orig_path="..\PSP\assets\common\gamespec\icon.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/GunCon-A.png" orig_path="..\PSP\assets\common\GunCon-A.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/GunCon-B.png" orig_path="..\PSP\assets\common\GunCon-B.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/GunCon-Trigger.png" orig_path="..\PSP\assets\common\GunCon-Trigger.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/gunCon.png" orig_path="..\PSP\assets\common\gunCon.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/L&R3.png" orig_path="..\PSP\assets\common\L&R3.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/L1.png" orig_path="..\PSP\assets\common\L1.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/L1R1.png" orig_path="..\PSP\assets\common\L1R1.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/L2.png" orig_path="..\PSP\assets\common\L2.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/L3R3.png" orig_path="..\PSP\assets\common\L3R3.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/ar-AR.json" orig_path="..\PSP\assets\common\localization\ar-AR.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/cs-CZ.json" orig_path="..\PSP\assets\common\localization\cs-CZ.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/da-DK.json" orig_path="..\PSP\assets\common\localization\da-DK.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/de-DE.json" orig_path="..\PSP\assets\common\localization\de-DE.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/el-GR.json" orig_path="..\PSP\assets\common\localization\el-GR.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/en-GB.json" orig_path="..\PSP\assets\common\localization\en-GB.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/en-US.json" orig_path="..\PSP\assets\common\localization\en-US.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/es-ES.json" orig_path="..\PSP\assets\common\localization\es-ES.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/es-MX.json" orig_path="..\PSP\assets\common\localization\es-MX.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/fi-FI.json" orig_path="..\PSP\assets\common\localization\fi-FI.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/fr-CA.json" orig_path="..\PSP\assets\common\localization\fr-CA.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/fr-FR.json" orig_path="..\PSP\assets\common\localization\fr-FR.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/hu-HU.json" orig_path="..\PSP\assets\common\localization\hu-HU.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/id-ID.json" orig_path="..\PSP\assets\common\localization\id-ID.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/it-IT.json" orig_path="..\PSP\assets\common\localization\it-IT.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/ja-JP.json" orig_path="..\PSP\assets\common\localization\ja-JP.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/ko-KR.json" orig_path="..\PSP\assets\common\localization\ko-KR.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/nl-NL.json" orig_path="..\PSP\assets\common\localization\nl-NL.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/no-NO.json" orig_path="..\PSP\assets\common\localization\no-NO.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/pl-PL.json" orig_path="..\PSP\assets\common\localization\pl-PL.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/pt-BR.json" orig_path="..\PSP\assets\common\localization\pt-BR.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/pt-PT.json" orig_path="..\PSP\assets\common\localization\pt-PT.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/ro-RO.json" orig_path="..\PSP\assets\common\localization\ro-RO.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/ru-RU.json" orig_path="..\PSP\assets\common\localization\ru-RU.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/sv-SE.json" orig_path="..\PSP\assets\common\localization\sv-SE.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/th-TH.json" orig_path="..\PSP\assets\common\localization\th-TH.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/tr-TR.json" orig_path="..\PSP\assets\common\localization\tr-TR.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/uk-UA.json" orig_path="..\PSP\assets\common\localization\uk-UA.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/vi-VN.json" orig_path="..\PSP\assets\common\localization\vi-VN.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/zh-CHS.json" orig_path="..\PSP\assets\common\localization\zh-CHS.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/localization/zh-CHT.json" orig_path="..\PSP\assets\common\localization\zh-CHT.json" pfs_compression="enable"/>
+    <file targ_path="assets/common/Move.png" orig_path="..\PSP\assets\common\Move.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/msdf/array.png" orig_path="..\PSP\assets\common\msdf\array.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/msdf/msdf-metrics.txt" orig_path="..\PSP\assets\common\msdf\msdf-metrics.txt" pfs_compression="enable"/>
+    <file targ_path="assets/common/neGcon-A.png" orig_path="..\PSP\assets\common\neGcon-A.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/neGcon-B.png" orig_path="..\PSP\assets\common\neGcon-B.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/neGcon-I.png" orig_path="..\PSP\assets\common\neGcon-I.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/neGcon-II.png" orig_path="..\PSP\assets\common\neGcon-II.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/neGCon-L.png" orig_path="..\PSP\assets\common\neGCon-L.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/neGCon-R.png" orig_path="..\PSP\assets\common\neGCon-R.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/neGcon-Start.png" orig_path="..\PSP\assets\common\neGcon-Start.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/neGcon.png" orig_path="..\PSP\assets\common\neGcon.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/Options.png" orig_path="..\PSP\assets\common\Options.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/plus-cursor-circle.png" orig_path="..\PSP\assets\common\plus-cursor-circle.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/plus-cursor.png" orig_path="..\PSP\assets\common\plus-cursor.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/PS1.png" orig_path="..\PSP\assets\common\PS1.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/PSPlus.png" orig_path="..\PSP\assets\common\PSPlus.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/R1.png" orig_path="..\PSP\assets\common\R1.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/R2.png" orig_path="..\PSP\assets\common\R2.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/repeat.png" orig_path="..\PSP\assets\common\repeat.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/select.png" orig_path="..\PSP\assets\common\select.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Browse.ogg" orig_path="..\PSP\assets\common\SFX\Browse.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/BROWSE_DOWN.ogg" orig_path="..\PSP\assets\common\SFX\BROWSE_DOWN.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/BROWSE_DOWN_VIB.ogg" orig_path="..\PSP\assets\common\SFX\BROWSE_DOWN_VIB.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/BROWSE_DOWN_VIB.wav" orig_path="..\PSP\assets\common\SFX\BROWSE_DOWN_VIB.wav" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Browse_UP.ogg" orig_path="..\PSP\assets\common\SFX\Browse_UP.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Browse_UP_VIB.ogg" orig_path="..\PSP\assets\common\SFX\Browse_UP_VIB.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Browse_UP_VIB.wav" orig_path="..\PSP\assets\common\SFX\Browse_UP_VIB.wav" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Browse_VIB.wav" orig_path="..\PSP\assets\common\SFX\Browse_VIB.wav" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/CloseWindow.ogg" orig_path="..\PSP\assets\common\SFX\CloseWindow.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/CloseWindow2.ogg" orig_path="..\PSP\assets\common\SFX\CloseWindow2.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/CloseWindow_VIB.ogg" orig_path="..\PSP\assets\common\SFX\CloseWindow_VIB.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/CloseWindow_VIB.wav" orig_path="..\PSP\assets\common\SFX\CloseWindow_VIB.wav" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/OpenWindow.ogg" orig_path="..\PSP\assets\common\SFX\OpenWindow.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/OpenWindow2.ogg" orig_path="..\PSP\assets\common\SFX\OpenWindow2.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/OpenWindow_VIB.ogg" orig_path="..\PSP\assets\common\SFX\OpenWindow_VIB.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/OpenWindow_VIB.wav" orig_path="..\PSP\assets\common\SFX\OpenWindow_VIB.wav" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Slider.ogg" orig_path="..\PSP\assets\common\SFX\Slider.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Slider_Left_VIB.ogg" orig_path="..\PSP\assets\common\SFX\Slider_Left_VIB.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Slider_Left_VIB.wav" orig_path="..\PSP\assets\common\SFX\Slider_Left_VIB.wav" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Slider_Right_VIB.ogg" orig_path="..\PSP\assets\common\SFX\Slider_Right_VIB.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/Slider_Right_VIB.wav" orig_path="..\PSP\assets\common\SFX\Slider_Right_VIB.wav" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/TimelineSlideDown.ogg" orig_path="..\PSP\assets\common\SFX\TimelineSlideDown.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/TimelineSlideDown_VIB.ogg" orig_path="..\PSP\assets\common\SFX\TimelineSlideDown_VIB.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/TimelineSlideDown_VIB.wav" orig_path="..\PSP\assets\common\SFX\TimelineSlideDown_VIB.wav" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/TimelineSlideUp.ogg" orig_path="..\PSP\assets\common\SFX\TimelineSlideUp.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/TimelineSlideUp_VIB.ogg" orig_path="..\PSP\assets\common\SFX\TimelineSlideUp_VIB.ogg" pfs_compression="enable"/>
+    <file targ_path="assets/common/SFX/TimelineSlideUp_VIB.wav" orig_path="..\PSP\assets\common\SFX\TimelineSlideUp_VIB.wav" pfs_compression="enable"/>
+    <file targ_path="assets/common/start.png" orig_path="..\PSP\assets\common\start.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/start_select_controls_embedded_ps4.png" orig_path="..\PSP\assets\common\start_select_controls_embedded_ps4.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/start_select_controls_embedded_ps5.png" orig_path="..\PSP\assets\common\start_select_controls_embedded_ps5.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/start_select_controls_ps4.png" orig_path="..\PSP\assets\common\start_select_controls_ps4.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/start_select_controls_ps5.png" orig_path="..\PSP\assets\common\start_select_controls_ps5.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/Touchpad.png" orig_path="..\PSP\assets\common\Touchpad.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/Touchpad_left.png" orig_path="..\PSP\assets\common\Touchpad_left.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/Touchpad_right.png" orig_path="..\PSP\assets\common\Touchpad_right.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/ui_ps_circle.png" orig_path="..\PSP\assets\common\ui_ps_circle.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/ui_ps_cross.png" orig_path="..\PSP\assets\common\ui_ps_cross.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/ui_ps_dpad_left.png" orig_path="..\PSP\assets\common\ui_ps_dpad_left.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/ui_ps_dpad_right.png" orig_path="..\PSP\assets\common\ui_ps_dpad_right.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/ui_ps_l1.png" orig_path="..\PSP\assets\common\ui_ps_l1.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/ui_ps_r1.png" orig_path="..\PSP\assets\common\ui_ps_r1.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/ui_ps_square.png" orig_path="..\PSP\assets\common\ui_ps_square.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/ui_ps_touchpad.png" orig_path="..\PSP\assets\common\ui_ps_touchpad.png" pfs_compression="enable"/>
+    <file targ_path="assets/common/ui_ps_triangle.png" orig_path="..\PSP\assets\common\ui_ps_triangle.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/gb3s1518.bwfon" orig_path="..\PSP\assets\PSPHD\flash0\font\gb3s1518.bwfon" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/imagefont.bin" orig_path="..\PSP\assets\PSPHD\flash0\font\imagefont.bin" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/jpn0.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\jpn0.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/kr0.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\kr0.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn0.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn0.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn1.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn1.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn10.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn10.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn11.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn11.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn12.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn12.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn13.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn13.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn14.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn14.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn15.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn15.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn2.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn2.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn3.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn3.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn4.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn4.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn5.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn5.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn6.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn6.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn7.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn7.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn8.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn8.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/flash0/font/ltn9.pgf" orig_path="..\PSP\assets\PSPHD\flash0\font\ltn9.pgf" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP-Analog-Stick-Center.png" orig_path="..\PSP\assets\PSPHD\PSP-Analog-Stick-Center.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP-Analog-Stick-Down.png" orig_path="..\PSP\assets\PSPHD\PSP-Analog-Stick-Down.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP-Analog-Stick-Left.png" orig_path="..\PSP\assets\PSPHD\PSP-Analog-Stick-Left.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP-Analog-Stick-Right.png" orig_path="..\PSP\assets\PSPHD\PSP-Analog-Stick-Right.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP-Analog-Stick-Up.png" orig_path="..\PSP\assets\PSPHD\PSP-Analog-Stick-Up.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP.png" orig_path="..\PSP\assets\PSPHD\PSP.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_CIRCLE-Button.png" orig_path="..\PSP\assets\PSPHD\PSP_CIRCLE-Button.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_DPad-DOWN.png" orig_path="..\PSP\assets\PSPHD\PSP_DPad-DOWN.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_DPad-LEFT.png" orig_path="..\PSP\assets\PSPHD\PSP_DPad-LEFT.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_DPad-RIGHT.png" orig_path="..\PSP\assets\PSPHD\PSP_DPad-RIGHT.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_DPad-UP.png" orig_path="..\PSP\assets\PSPHD\PSP_DPad-UP.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_L-Button.png" orig_path="..\PSP\assets\PSPHD\PSP_L-Button.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_R-Button.png" orig_path="..\PSP\assets\PSPHD\PSP_R-Button.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_SELECT.png" orig_path="..\PSP\assets\PSPHD\PSP_SELECT.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_SQUARE-Button.png" orig_path="..\PSP\assets\PSPHD\PSP_SQUARE-Button.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_START.png" orig_path="..\PSP\assets\PSPHD\PSP_START.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_TRIANGLE-Button.png" orig_path="..\PSP\assets\PSPHD\PSP_TRIANGLE-Button.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/PSP_X-Button.png" orig_path="..\PSP\assets\PSPHD\PSP_X-Button.png" pfs_compression="enable"/>
+    <file targ_path="assets/PSPHD/usermodule/libfont.lib" orig_path="..\PSP\assets\PSPHD\usermodule\libfont.lib" pfs_compression="enable"/>
+    <file targ_path="config-title.txt" orig_path="..\PSP\config-title.txt" pfs_compression="enable"/>
+    <file targ_path="package-ps4.conf" orig_path="..\PSP\package-ps4.conf" pfs_compression="enable"/>
+    <file targ_path="revision.conf" orig_path="..\PSP\revision.conf" pfs_compression="enable"/>
+  </files>
+  <rootdir>
+    <dir targ_name="assets">
+      <dir targ_name="common">
+        <dir targ_name="gamespec"/>
+        <dir targ_name="localization"/>
+        <dir targ_name="msdf"/>
+        <dir targ_name="SFX"/>
+      </dir>
+      <dir targ_name="PSPHD">
+        <dir targ_name="flash0">
+          <dir targ_name="font"/>
+        </dir>
+        <dir targ_name="usermodule"/>
+      </dir>
+    </dir>
+    <dir targ_name="data"/>
+    <dir targ_name="sce_module"/>
+    <dir targ_name="sce_sys">
+      <dir targ_name="changeinfo"/>
+    </dir>
+  </rootdir>
+</psproject>

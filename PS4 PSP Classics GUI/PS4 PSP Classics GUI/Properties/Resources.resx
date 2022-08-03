@@ -1243,4 +1243,16 @@
   <data name="tex_video_32bit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tex_video.32bit.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pspdecrypt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pspdecrypt.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="psphd1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\psphd.gp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="psppkg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\psppkg.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="psphd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\psphd.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -291,12 +291,52 @@ namespace PS4_PSP_Classics_GUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] pspdecrypt {
+            get {
+                object obj = ResourceManager.GetObject("pspdecrypt", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] psphd {
+            get {
+                object obj = ResourceManager.GetObject("psphd", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] psphd1 {
+            get {
+                object obj = ResourceManager.GetObject("psphd1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap psplus {
             get {
                 object obj = ResourceManager.GetObject("psplus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] psppkg {
+            get {
+                object obj = ResourceManager.GetObject("psppkg", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -313,7 +353,7 @@ namespace PS4_PSP_Classics_GUI.Properties {
         ///  &lt;param key=&quot;FORMAT&quot;&gt;obs&lt;/param&gt;
         ///  &lt;param key=&quot;PARENTAL_LEVEL&quot;&gt;3&lt;/param&gt;
         ///  &lt;param key=&quot;REMOTE_PLAY_KEY_ASSIGN&quot;&gt;1&lt;/param&gt;
-        ///  &lt;param key=&quot;SERVICE_ID_ [rest of string was truncated]&quot;;.
+        ///  &lt;param key= [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sfo {
             get {

@@ -54,14 +54,14 @@ namespace PS4_PSP_Classics_GUI
 
         Stopwatch sw = new Stopwatch();
 
-        public void AddEsttingValues(string SettingName,string DefaultValue, Control TypeOfContorl)
+        public void AddEsttingValues(string SettingName, string DefaultValue, Control TypeOfContorl)
         {
             SettingValue set = new SettingValue();
             set.SettingName = SettingName;
             switch (SettingName)
             {
                 case "Overwrite Temp Folder":
-                    if(Properties.Settings.Default.OverwriteTemp == true)
+                    if (Properties.Settings.Default.OverwriteTemp == true)
                     {
                         DefaultValue = "On";
                     }
@@ -71,7 +71,7 @@ namespace PS4_PSP_Classics_GUI
                     }
                     break;
                 case "Temp Path":
-                    if(Properties.Settings.Default.TempPath != "")
+                    if (Properties.Settings.Default.TempPath != "")
                     {
                         DefaultValue = Properties.Settings.Default.TempPath;
                     }
@@ -132,7 +132,7 @@ namespace PS4_PSP_Classics_GUI
                     }
                     break;
                 case "Enable Mysis Patch":
-                    if(Properties.Settings.Default.EnableMysisPatch == true)
+                    if (Properties.Settings.Default.EnableMysisPatch == true)
                     {
                         DefaultValue = "On";
                     }
@@ -194,7 +194,8 @@ namespace PS4_PSP_Classics_GUI
         {
             try
             {
-                Application.Current.Dispatcher.Invoke((Action)delegate {
+                Application.Current.Dispatcher.Invoke((Action)delegate
+                {
                     // your code
 
                     Busy Busy = new Busy(bgWorkerSS);
@@ -238,28 +239,28 @@ namespace PS4_PSP_Classics_GUI
 
         private void OptionsView_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Escape)
+            if (e.Key == Key.Escape)
             {
                 MainWindowView.Opacity = 1.0f;
                 OptionsView.Visibility = Visibility.Hidden;
                 listBox.Background = System.Windows.Media.Brushes.Transparent;
             }
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 //save the current item
             }
 
-           
+
         }
 
         private void listBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         private void listBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-         
+
 
         }
 
@@ -273,7 +274,7 @@ namespace PS4_PSP_Classics_GUI
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Escape)
+            if (e.Key == Key.Escape)
             {
                 if (OptionsView.Visibility == Visibility.Visible)
                 {
@@ -285,9 +286,9 @@ namespace PS4_PSP_Classics_GUI
                     this.Close();
                 }
             }
-            if(OptionsView.Visibility == Visibility.Visible)
+            if (OptionsView.Visibility == Visibility.Visible)
             {
-                if(e.Key == Key.Up)
+                if (e.Key == Key.Up)
                 {
 
                 }
@@ -362,7 +363,7 @@ namespace PS4_PSP_Classics_GUI
                             break;
                         case "Enable Boot Logo":
                             Properties.Settings.Default.EnableBootScreen = false;
-                            
+
                             break;
                         case "Enable PS4 Ambient Music":
                             Properties.Settings.Default.EnableGuiMusic = false;
@@ -461,7 +462,7 @@ namespace PS4_PSP_Classics_GUI
                 WebClient client = new WebClient();
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                
+
                 var os = IntPtr.Size == 4 ? "win-x86" : "win-x64";
                 if (os == "win-x86")
                     client.DownloadFileAsync(new Uri("http://www.nigmacontractors.co.za/pstools/psphd/libvlc/win-x86.zip"), AppCommonPath() + "win-x86.zip");
@@ -472,15 +473,15 @@ namespace PS4_PSP_Classics_GUI
         }
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-           
+
 
             // Calculate download speed and output it to labelSpeed.
             string speed = string.Format("{0} kb/s", (e.BytesReceived / 1024d / sw.Elapsed.TotalSeconds).ToString("0.00"));
 
-           
+
 
             // Show the percentage on our label.
-          string percantage= e.ProgressPercentage.ToString() + "%";
+            string percantage = e.ProgressPercentage.ToString() + "%";
 
             // Update the label with how much data have been downloaded so far and the total size of the file we are currently downloading
             string download = string.Format("{0} MB's / {1} MB's",
@@ -489,7 +490,7 @@ namespace PS4_PSP_Classics_GUI
             string Builder = string.Format(@"Downloading libvlc extension {1}
 Downloaded : {0}
 Speed : {2}
-                              ",download, percantage,speed);
+                              ", download, percantage, speed);
 
             UpdateString(Builder);
 
@@ -502,15 +503,28 @@ Speed : {2}
             foreach (string file in files)
             {
                 File.SetAttributes(file, FileAttributes.Normal);
-                File.Delete(file);
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
 
             foreach (string dir in dirs)
             {
                 DeleteDirectory(dir);
             }
+            try
+            {
+                Directory.Delete(target_dir, false);
+            }
+            catch (Exception ex)
+            {
 
-            Directory.Delete(target_dir, false);
+            }
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
@@ -518,7 +532,7 @@ Speed : {2}
             OpenCloseWaitScreen(false);
             sw.Reset();
             //if directory exists just delete it 
-            if(Directory.Exists(AppCommonPath() + "libvlc"))
+            if (Directory.Exists(AppCommonPath() + "libvlc"))
             {
                 DeleteDirectory(AppCommonPath() + "libvlc");
             }
@@ -528,8 +542,8 @@ Speed : {2}
             {
                 Directory.CreateDirectory(AppCommonPath() + "libvlc");
             }
-            
-            
+
+
 
             var os = IntPtr.Size == 4 ? "win-x86" : "win-x64";
             if (os == "win-x86")
@@ -538,15 +552,20 @@ Speed : {2}
             }
             else
             {
-              
+
                 ZipFile.ExtractToDirectory(AppCommonPath() + "win-x64.zip", AppCommonPath() + @"\libvlc\");
 
             }
-            Application.Current.Dispatcher.Invoke((Action)delegate {
+            Application.Current.Dispatcher.Invoke((Action)delegate
+            {
                 // your code
-            
-            MessageBox ps4mes = new MessageBox("Content Downloaded and Added\n\nPlease Restart The Application", "Done", PS4_MessageBoxButton.OK, SoundClass.Sound.Notification);
-            ps4mes.ShowDialog();
+
+                MessageBox ps4mes = new MessageBox("Content Downloaded and Added\n\nPlease Restart The Application", "Done", PS4_MessageBoxButton.OK, SoundClass.Sound.Notification);
+                ps4mes.ShowDialog();
+
+                Properties.Settings.Default.EnablePMF = true;
+                Properties.Settings.Default.Save();
+
             });
         }
 
@@ -580,7 +599,7 @@ Speed : {2}
                     DoSettings();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MainWindowView.Opacity = 1.0f;
                 OptionsView.Visibility = Visibility.Hidden;
